@@ -12,6 +12,8 @@ export const metadata = buildMetadata({
   noIndex: true,
 });
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminPage() {
   const admin = await requireAdmin();
   if (!admin) redirect("/login");

@@ -1,12 +1,17 @@
 import "dotenv/config";
-import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { Pool } from "pg";
 import { PrismaClient } from "../src/generated/prisma/client.js";
 import { PRODUCT_SEEDS } from "../src/data/products.js";
 import bcrypt from "bcryptjs";
 
-const adapter = new PrismaBetterSqlite3({
-  url: process.env.DATABASE_URL || "file:./prisma/dev.db",
-});
+const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  throw new Error("DATABASE_URL is required to run seed");
+}
+
+const pool = new Pool({ connectionString });
+const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
@@ -53,14 +58,17 @@ async function main() {
     });
   }
 
+  const adminEmail = process.env.ADMIN_EMAIL || "admin@phonefarm.fun";
+  const adminPassword = process.env.ADMIN_PASSWORD || "admin123456";
+
   await prisma.user.upsert({
-    where: { email: "admin@phonefarm.fun" },
+    where: { email: adminEmail },
     update: {},
     create: {
-      email: "admin@phonefarm.fun",
+      email: adminEmail,
       name: "Admin",
       role: "admin",
-      passwordHash: await bcrypt.hash("admin123456", 12),
+      passwordHash: await bcrypt.hash(adminPassword, 12),
     },
   });
 
@@ -69,4 +77,7 @@ async function main() {
 
 main()
   .catch(console.error)
-  .finally(() => prisma.$disconnect());
+  .finally(async () => {
+    await prisma.$disconnect();
+    await pool.end();
+  });

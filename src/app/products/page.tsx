@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { getPublishedProducts } from "@/lib/products-server";
 import { ProductCard } from "@/components/commerce";
 import { buildMetadata } from "@/lib/seo";
 
@@ -17,18 +17,13 @@ export default async function ProductsPage({
 }) {
   const params = await searchParams;
   const orderBy =
-    params.sort === "price-desc"
-      ? { priceUsd: "desc" as const }
-      : params.sort === "price-asc"
-        ? { priceUsd: "asc" as const }
-        : { name: "asc" as const };
+    params.sort === "price-desc" || params.sort === "price-asc" ? "priceUsd" : "name";
+  const order = params.sort === "price-desc" ? "desc" : "asc";
 
-  const products = await prisma.product.findMany({
-    where: {
-      published: true,
-      ...(params.category ? { category: params.category } : {}),
-    },
+  const products = await getPublishedProducts({
+    category: params.category,
     orderBy,
+    order,
   });
 
   const categories = [...new Set(products.map((p) => p.category))];

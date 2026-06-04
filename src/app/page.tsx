@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { getPublishedProducts } from "@/lib/products-server";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductCard, FAQAccordion } from "@/components/commerce";
@@ -18,10 +18,10 @@ export const metadata = buildMetadata({
 });
 
 export default async function HomePage() {
-  const products = await prisma.product.findMany({
-    where: { published: true },
-    orderBy: { priceUsd: "asc" },
+  const products = await getPublishedProducts({
     take: 8,
+    orderBy: "priceUsd",
+    order: "asc",
   });
 
   const previewFaq = FAQ_ITEMS.slice(0, 6);

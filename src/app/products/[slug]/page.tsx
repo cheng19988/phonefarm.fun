@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { getProductBySlug } from "@/lib/products-server";
 import { BuyButtons, FAQAccordion } from "@/components/commerce";
 import { ContactCTA, JsonLd, StockBadge } from "@/components/shared";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
-  const product = await prisma.product.findUnique({ where: { slug } });
+  const product = await getProductBySlug(slug);
   if (!product) return {};
   return buildMetadata({
     title: product.name,
@@ -29,7 +29,7 @@ function parseJson<T>(s: string, fallback: T): T {
 
 export default async function ProductDetailPage({ params }: Props) {
   const { slug } = await params;
-  const product = await prisma.product.findUnique({ where: { slug } });
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
 
   const features = parseJson<string[]>(product.features, []);
