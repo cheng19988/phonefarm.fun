@@ -73,7 +73,7 @@
 | # | Reference Module | Content Summary | Our Implementation |
 |---|------------------|-----------------|-------------------|
 | 1 | Hero | "Professional Phone Farm Box & Motherboard Arrays" + CTA "Start Growing Today" | Hero with real product image, Guangzhou factory positioning |
-| 2 | Value Props (3 columns) | Factory-Direct, Delivered Guaranteed, Built for You | Same structure, rewritten for HuiCheng |
+| 2 | Value Props (3 columns) | Factory-Direct, Delivered Guaranteed, Built for You | Same structure, rewritten for PhoneFarm Fun |
 | 3 | Recommended Products | 8+ product cards with price + category tag | Core product grid with price, stock, Buy/Quote |
 | 4 | Samsung Product Row | Brand-specific farm boxes with Add to Cart | Android/iPhone product highlights |
 | 5 | Software Section | Plufina command center — visual device management | Remote Control / Group Control service section |
