@@ -4,7 +4,7 @@ Real-device phone farm hardware website — Guangzhou factory-direct phone farm 
 
 **Reference design:** [phonefarm.tech](https://phonefarm.tech)  
 **Brand:** PhoneFarm Fun  
-**Location:** Guangzhou, China
+**Repository:** [github.com/cheng19988/phonefarm.fun](https://github.com/cheng19988/phonefarm.fun)
 
 ## Stack
 
