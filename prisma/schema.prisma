@@ -1,0 +1,102 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String?
+  role         String   @default("user")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  orders       Order[]
+}
+
+model Product {
+  id          String      @id @default(cuid())
+  slug        String      @unique
+  name        String
+  category    String
+  shortDesc   String
+  description String
+  features    String
+  specs       String
+  scenarios   String
+  accessories String
+  delivery    String
+  maintenance String
+  faq         String
+  priceUsd    Float
+  stock       Int         @default(10)
+  imageCard   String
+  imageHero   String
+  imageDetail String
+  published   Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id          String      @id @default(cuid())
+  orderNumber String      @unique
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  status      String      @default("Pending")
+  totalUsd    Float
+  notes       String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  items       OrderItem[]
+  payment     Payment?
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int     @default(1)
+  unitPrice Float
+}
+
+model Payment {
+  id                 String    @id @default(cuid())
+  orderId            String    @unique
+  order              Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  userId             String
+  productId          String?
+  expectedAmount     Float
+  receivedAmount     Float?
+  paymentAddress     String
+  paymentNetwork     String    @default("Tron TRC20")
+  paymentCurrency    String    @default("USDT")
+  txHash             String?
+  paymentStatus      String    @default("pending")
+  verificationStatus String    @default("unverified")
+  expiresAt          DateTime
+  paidAt             DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
+
+model ContactSubmission {
+  id             String   @id @default(cuid())
+  name           String
+  country        String?
+  whatsapp       String?
+  phone          String?
+  email          String
+  deviceQuantity String?
+  productInterest String?
+  budget         String?
+  message        String?
+  createdAt      DateTime @default(now())
+}

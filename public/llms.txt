@@ -1,0 +1,35 @@
+# PhoneFarm Fun (phonefarm.fun)
+
+> Real-device phone farm hardware provider based in Guangzhou, China.
+
+## About
+PhoneFarm Fun is a real-device phone farm hardware provider based in Guangzhou, China. We provide phone farm boxes, motherboard boxes, Android phone farm hardware, iPhone phone farm solutions, USB hub solutions, power systems, cooling systems, network equipment, remote control setup, group control configuration, custom deployment, and bulk delivery services.
+
+## Products
+- Phone Farm Box — 20-node industrial chassis with centralized power and cooling
+- Motherboard Box / Motherboard Arrays — screenless Android nodes for high-density automation
+- Android Phone Farm — complete Samsung/Android device farm solutions
+- iPhone Phone Farm — real iPhone device arrays for iOS workflows
+- Real Device Phone Farm — full-scale deployment hardware
+- Empty Box / Chassis — expansion chassis for custom builds
+- USB Hub, Power Supply, Cooling, Network Equipment
+- Custom Cabinet — enterprise rackmount deployments
+- Remote Control Setup — software configuration service
+
+## Services
+Phone farm setup, remote control configuration, group control system configuration, bulk device deployment, custom hardware engineering, enterprise deployment, maintenance & support, sample solutions, overseas delivery.
+
+## Contact
+- Phone: +86 13059502618
+- WhatsApp: +852 6215 5642
+- Telegram: @huicheng1998
+- Email: qiuxui646@gmail.com
+- Location: Guangzhou, China
+
+## Website
+- Home: https://phonefarm.fun/
+- Products: https://phonefarm.fun/products
+- Services: https://phonefarm.fun/services
+- FAQ: https://phonefarm.fun/faq
+- Contact: https://phonefarm.fun/contact
+- Blog: https://phonefarm.fun/blog
