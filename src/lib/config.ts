@@ -2,13 +2,13 @@ export const SITE = {
   name: "PhoneFarm Fun",
   domain: "phonefarm.fun",
   url: "https://phonefarm.fun",
-  tagline: "Real Device Phone Farm Hardware from Guangzhou",
+  tagline: "Android Device Farm Hardware for QA & Automation",
   intro:
-    "PhoneFarm Fun manufactures real-device phone farm hardware in Guangzhou — phone farm boxes, motherboard arrays, power and cooling modules, and deployment support for studios, QA teams, and B2B buyers since 2017.",
+    "Factory-built Android phone farm boxes, motherboard clusters, and real-device lab hardware for QA testing, app compatibility, remote operation, and scalable deployment.",
   location: "Guangzhou, China",
   since: 2017,
   description:
-    "PhoneFarm Fun — Guangzhou real-device phone farm hardware. Phone farm boxes, motherboard boxes, Android & iPhone farms, USB hubs, power, cooling, network equipment, remote control setup, and bulk deployment since 2017.",
+    "PhoneFarm Fun supplies factory-built Android device farm hardware from Guangzhou — starter and pro testing boxes, motherboard clusters, rack solutions, and lab accessories for mobile QA and automation teams.",
 } as const;
 
 export const CONTACT = {
@@ -17,7 +17,8 @@ export const CONTACT = {
   telegramUrl: "https://t.me/huicheng1998",
   whatsapp: "+852 6215 5642",
   whatsappUrl: "https://wa.me/85262155642",
-  email: "qiuxui646@gmail.com",
+  /** Public-facing sales address shown on the website */
+  email: "sales@phonefarm.fun",
 } as const;
 
 export const PAYMENT = {

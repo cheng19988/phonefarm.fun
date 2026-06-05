@@ -7,10 +7,15 @@ export function CartButton() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    fetch("/api/cart")
-      .then((r) => r.json())
-      .then((d) => setCount(d.count ?? 0))
-      .catch(() => setCount(0));
+    function refresh() {
+      fetch("/api/cart")
+        .then((r) => r.json())
+        .then((d) => setCount(d.count ?? 0))
+        .catch(() => setCount(0));
+    }
+    refresh();
+    window.addEventListener("cart-updated", refresh);
+    return () => window.removeEventListener("cart-updated", refresh);
   }, []);
 
   return (

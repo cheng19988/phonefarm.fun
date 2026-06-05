@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBlogPost, BLOG_POSTS } from "@/data/blog";
 import { ContactCTA } from "@/components/shared";
-import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { buildMetadata, breadcrumbJsonLd, articleJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/shared";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -25,11 +25,14 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
-      <JsonLd data={breadcrumbJsonLd([
-        { name: "Home", path: "/" },
-        { name: "Blog", path: "/blog" },
-        { name: post.title, path: `/blog/${slug}` },
-      ])} />
+      <JsonLd data={[
+        articleJsonLd({ title: post.title, description: post.excerpt, slug, date: post.date }),
+        breadcrumbJsonLd([
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
+          { name: post.title, path: `/blog/${slug}` },
+        ]),
+      ]} />
       <article className="section">
         <div className="container-wide max-w-3xl">
           <Link href="/blog" className="text-cyan-400 text-sm">← Back to Guides</Link>

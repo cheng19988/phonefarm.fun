@@ -1,14 +1,39 @@
 import Link from "next/link";
 import { getPublishedProducts } from "@/lib/products-server";
 import { ProductCard } from "@/components/commerce";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/shared";
+import { getProductMeta } from "@/data/product-meta";
+import { buildMetadata, itemListJsonLd } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Hardware Catalog",
+  title: "Android Device Farm Hardware Catalog",
   description:
-    "Phone farm boxes, motherboard boxes, Android & iPhone farms, USB hubs, power, cooling, network equipment, and custom cabinets. Factory-direct from Guangzhou.",
+    "Browse factory-built Android device farm boxes, motherboard clusters, lab accessories, and custom rack solutions. Reference USD pricing, MOQ, and lead times for B2B buyers.",
   path: "/products",
 });
+
+const DEPLOYMENT_SIZES = [
+  {
+    title: "Starter deployment",
+    desc: "20-node starter box for small QA teams and first device labs.",
+    category: "Starter Deployment",
+  },
+  {
+    title: "Standard team deployment",
+    desc: "Pro boxes and turnkey bundles for continuous app testing.",
+    category: "Standard Deployment",
+  },
+  {
+    title: "High-density deployment",
+    desc: "Motherboard clusters and dense rack layouts for scaled QA.",
+    category: "High-Density Deployment",
+  },
+  {
+    title: "Custom hardware solution",
+    desc: "40+ node rack and cabinet projects scoped to your lab.",
+    category: "Custom Deployment",
+  },
+];
 
 export default async function ProductsPage({
   searchParams,
@@ -29,42 +54,85 @@ export default async function ProductsPage({
   const categories = [...new Set(products.map((p) => p.category))];
 
   return (
-    <div className="section">
-      <div className="container-wide">
-        <h1 className="section-title">Phone Farm Hardware Catalog</h1>
-        <p className="section-subtitle max-w-3xl">
-          Reference pricing in USD for standard configurations. Final quotes depend on device model, quantity, and shipping region — use <Link href="/contact" className="text-cyan-400 hover:text-cyan-300">Contact</Link> for bulk or custom orders.
-        </p>
+    <>
+      <JsonLd data={itemListJsonLd(products.map((p) => ({
+        name: p.name,
+        slug: p.slug,
+        priceUsd: p.priceUsd,
+        imageCard: p.imageCard,
+      })))} />
 
-        <div className="grid sm:grid-cols-3 gap-4 mb-10 text-sm">
-          <div className="card p-4"><span className="text-cyan-400 font-medium">MOQ</span><p className="text-slate-400 mt-1">Single unit for most SKUs; bulk from 5+</p></div>
-          <div className="card p-4"><span className="text-cyan-400 font-medium">Lead time</span><p className="text-slate-400 mt-1">3–5 business days in-stock</p></div>
-          <div className="card p-4"><span className="text-cyan-400 font-medium">Shipping</span><p className="text-slate-400 mt-1">DHL/FedEx express or sea freight</p></div>
-        </div>
+      <div className="section">
+        <div className="container-wide">
+          <h1 className="section-title">Device Farm Hardware Catalog</h1>
+          <p className="section-subtitle max-w-3xl">
+            Reference USD pricing for standard SKUs. Final quotes depend on device model, quantity, and shipping region — use{" "}
+            <Link href="/contact" className="text-cyan-400 hover:text-cyan-300">Contact</Link> for bulk or custom rack orders.
+          </p>
 
-        <div className="flex flex-wrap gap-3 mb-8">
-          <Link href="/products" className={`px-3 py-1 rounded-full text-sm border ${!params.category ? "border-cyan-600 text-cyan-400" : "border-slate-700 text-slate-400"}`}>
-            All
-          </Link>
-          {categories.map((cat) => (
-            <Link key={cat} href={`/products?category=${encodeURIComponent(cat)}`} className={`px-3 py-1 rounded-full text-sm border ${params.category === cat ? "border-cyan-600 text-cyan-400" : "border-slate-700 text-slate-400"}`}>
-              {cat}
+          <div className="mb-12">
+            <h2 className="text-lg font-bold text-white mb-4">Choose by deployment size</h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {DEPLOYMENT_SIZES.map((item) => (
+                <Link
+                  key={item.category}
+                  href={`/products?category=${encodeURIComponent(item.category)}`}
+                  className={`card p-4 hover:border-cyan-700 transition-colors ${params.category === item.category ? "border-cyan-600" : ""}`}
+                >
+                  <h3 className="font-semibold text-white text-sm mb-1">{item.title}</h3>
+                  <p className="text-xs text-slate-400">{item.desc}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-4 mb-10 text-sm">
+            <div className="card p-4"><span className="text-cyan-400 font-medium">MOQ</span><p className="text-slate-400 mt-1">1 unit for most SKUs; volume pricing from 5+</p></div>
+            <div className="card p-4"><span className="text-cyan-400 font-medium">Lead time</span><p className="text-slate-400 mt-1">3–5 business days in-stock; custom racks quoted</p></div>
+            <div className="card p-4"><span className="text-cyan-400 font-medium">Shipping</span><p className="text-slate-400 mt-1">DHL/FedEx express or sea freight from Guangzhou</p></div>
+          </div>
+
+          <div className="flex flex-wrap gap-3 mb-8">
+            <Link href="/products" className={`px-3 py-1 rounded-full text-sm border ${!params.category ? "border-cyan-600 text-cyan-400" : "border-slate-700 text-slate-400"}`}>
+              All
             </Link>
-          ))}
-        </div>
+            {categories.map((cat) => (
+              <Link key={cat} href={`/products?category=${encodeURIComponent(cat)}`} className={`px-3 py-1 rounded-full text-sm border ${params.category === cat ? "border-cyan-600 text-cyan-400" : "border-slate-700 text-slate-400"}`}>
+                {cat}
+              </Link>
+            ))}
+          </div>
 
-        <div className="flex gap-3 mb-8 text-sm">
-          <span className="text-slate-500">Sort:</span>
-          <Link href="/products?sort=price-asc" className="text-slate-400 hover:text-white">Price Low</Link>
-          <Link href="/products?sort=price-desc" className="text-slate-400 hover:text-white">Price High</Link>
-        </div>
+          <div className="flex gap-3 mb-8 text-sm">
+            <span className="text-slate-500">Sort:</span>
+            <Link href={`/products?${params.category ? `category=${encodeURIComponent(params.category)}&` : ""}sort=price-asc`} className="text-slate-400 hover:text-white">Price Low</Link>
+            <Link href={`/products?${params.category ? `category=${encodeURIComponent(params.category)}&` : ""}sort=price-desc`} className="text-slate-400 hover:text-white">Price High</Link>
+          </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map((p) => (
-            <ProductCard key={p.id} slug={p.slug} name={p.name} shortDesc={p.shortDesc} priceUsd={p.priceUsd} stock={p.stock} imageCard={p.imageCard} category={p.category} />
-          ))}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {products.map((p) => {
+              const meta = getProductMeta(p.slug);
+              return (
+                <ProductCard
+                  key={p.id}
+                  slug={p.slug}
+                  name={p.name}
+                  shortDesc={p.shortDesc}
+                  priceUsd={p.priceUsd}
+                  stock={p.stock}
+                  imageCard={p.imageCard}
+                  category={p.category}
+                  tier={meta.tier}
+                  nodeCount={meta.nodeCount}
+                  useCase={meta.useCase}
+                  moq={meta.moq}
+                  leadTime={meta.leadTime}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

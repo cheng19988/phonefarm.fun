@@ -97,3 +97,29 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
   const seed = PRODUCT_SEEDS.find((p) => p.slug === slug);
   return seed ? seedToProduct(seed) : null;
 }
+
+export async function getRelatedProducts(slug: string, limit = 3): Promise<Product[]> {
+  const { RELATED_BY_SLUG } = await import("@/data/product-meta");
+  const relatedSlugs = RELATED_BY_SLUG[slug] ?? [];
+  const results: Product[] = [];
+  for (const s of relatedSlugs.slice(0, limit)) {
+    const p = await getProductBySlug(s);
+    if (p) results.push(p);
+  }
+  return results;
+}
+
+export const FEATURED_PRODUCT_SLUGS = [
+  "android-phone-farm",
+  "phone-farm-box",
+  "real-device-phone-farm",
+  "motherboard-box",
+  "iphone-phone-farm",
+  "custom-cabinet",
+];
+
+export async function getFeaturedProducts(): Promise<Product[]> {
+  const all = await getPublishedProducts();
+  const bySlug = new Map(all.map((p) => [p.slug, p]));
+  return FEATURED_PRODUCT_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean) as Product[];
+}

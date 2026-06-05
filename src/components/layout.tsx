@@ -35,7 +35,7 @@ export async function Header() {
         <div className="flex items-center gap-4">
           <CartButton />
           <Link href="/products" className="hidden sm:inline-flex btn-outline text-sm py-2 px-3">
-            Catalog
+            Shop
           </Link>
           {session ? (
             <Link
@@ -74,10 +74,10 @@ export function Footer() {
         <div>
           <h3 className="font-semibold text-white mb-3">Products</h3>
           <ul className="space-y-2 text-sm text-slate-400">
-            <li><Link href="/products/phone-farm-box" className="hover:text-white">Phone Farm Box</Link></li>
-            <li><Link href="/products/motherboard-box" className="hover:text-white">Motherboard Box</Link></li>
-            <li><Link href="/products/android-phone-farm" className="hover:text-white">Android Phone Farm</Link></li>
-            <li><Link href="/products/iphone-phone-farm" className="hover:text-white">iPhone Phone Farm</Link></li>
+            <li><Link href="/products/phone-farm-box" className="hover:text-white">20-Node Pro Testing Box</Link></li>
+            <li><Link href="/products/motherboard-box" className="hover:text-white">Motherboard Cluster</Link></li>
+            <li><Link href="/products/android-phone-farm" className="hover:text-white">Starter Device Farm Box</Link></li>
+            <li><Link href="/products/custom-cabinet" className="hover:text-white">Custom Rack Solution</Link></li>
             <li><Link href="/products" className="hover:text-cyan-400">View All →</Link></li>
           </ul>
         </div>

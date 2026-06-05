@@ -22,7 +22,7 @@ export default function TermsPage() {
         <h2>Warranty</h2>
         <p>Hardware carries a 12-month warranty against manufacturing defects. Misuse, unauthorized modifications, and normal wear are excluded.</p>
         <h2>Contact</h2>
-        <p>Questions about these terms: qiuxui646@gmail.com</p>
+        <p>Questions about these terms: sales@phonefarm.fun</p>
       </div>
     </div>
   );

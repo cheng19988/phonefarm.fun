@@ -25,8 +25,8 @@ function ContactForm() {
           <input name="name" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
         </div>
         <div>
-          <label className="block text-sm text-slate-400 mb-1">Country</label>
-          <input name="country" className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+          <label className="block text-sm text-slate-400 mb-1">Shipping country</label>
+          <input name="country" placeholder="e.g. United States, Germany" className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
         </div>
         <div>
           <label className="block text-sm text-slate-400 mb-1">WhatsApp / Telegram</label>
@@ -41,12 +41,12 @@ function ContactForm() {
           <input name="email" type="email" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
         </div>
         <div>
-          <label className="block text-sm text-slate-400 mb-1">Device Quantity</label>
-          <input name="deviceQuantity" className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+          <label className="block text-sm text-slate-400 mb-1">Required node count</label>
+          <input name="deviceQuantity" placeholder="e.g. 20, 40, custom rack" className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
         </div>
         <div>
-          <label className="block text-sm text-slate-400 mb-1">Product Interest</label>
-          <input name="productInterest" defaultValue={searchParams.get("product") || searchParams.get("service") || ""} className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+          <label className="block text-sm text-slate-400 mb-1">Product / SKU interest</label>
+          <input name="productInterest" defaultValue={searchParams.get("product") || searchParams.get("service") || ""} placeholder="e.g. 20-Node Pro Box, custom cabinet" className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
         </div>
         <div>
           <label className="block text-sm text-slate-400 mb-1">Budget</label>
@@ -54,8 +54,13 @@ function ContactForm() {
         </div>
       </div>
       <div>
-        <label className="block text-sm text-slate-400 mb-1">Message</label>
-        <textarea name="message" rows={4} className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+        <label className="block text-sm text-slate-400 mb-1">Project details</label>
+        <textarea
+          name="message"
+          rows={4}
+          placeholder="Target Android version, preferred device models, expected quantity, remote control / ADB setup needs, timeline..."
+          className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white"
+        />
       </div>
       <button type="submit" disabled={status === "loading"} className="btn-primary w-full">
         {status === "loading" ? "Sending..." : "Send Inquiry"}
@@ -70,8 +75,10 @@ export default function ContactPage() {
   return (
     <div className="section">
       <div className="container-wide max-w-4xl">
-        <h1 className="section-title">Contact Us</h1>
-        <p className="section-subtitle">Share your requirements — we respond within one business day (Guangzhou time, UTC+8).</p>
+        <h1 className="section-title">Contact Sales</h1>
+        <p className="section-subtitle">
+          Share your node count, target Android version, preferred device models, shipping country, and remote control requirements. We respond within one business day (Guangzhou time, UTC+8).
+        </p>
 
         <div className="card p-6 mb-8">
           <h2 className="font-bold text-white mb-4">Direct contact</h2>

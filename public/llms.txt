@@ -1,20 +1,22 @@
 # PhoneFarm Fun (phonefarm.fun)
 
-> Real-device phone farm hardware provider based in Guangzhou, China.
+> Factory-built Android device farm hardware from Guangzhou, China — for mobile QA, app testing, and automation labs.
 
 ## About
-PhoneFarm Fun is a real-device phone farm hardware provider based in Guangzhou, China. We provide phone farm boxes, motherboard boxes, Android phone farm hardware, iPhone phone farm solutions, USB hub solutions, power systems, cooling systems, network equipment, remote control setup, group control configuration, custom deployment, and bulk delivery services.
+PhoneFarm Fun is a Guangzhou-based hardware team supplying real Android device farm boxes, motherboard clusters, iOS device racks, lab accessories, and custom rack solutions for B2B buyers running mobile QA and device automation workflows.
 
 ## Products
-- Phone Farm Box — 20-node industrial chassis with centralized power and cooling
-- Motherboard Box / Motherboard Arrays — screenless Android nodes for high-density automation
-- Android Phone Farm — complete Samsung/Android device farm solutions
-- iPhone Phone Farm — real iPhone device arrays for iOS workflows
-- Real Device Phone Farm — full-scale deployment hardware
-- Empty Box / Chassis — expansion chassis for custom builds
-- USB Hub, Power Supply, Cooling, Network Equipment
-- Custom Cabinet — enterprise rackmount deployments
-- Remote Control Setup — software configuration service
+- 20-Node Android Device Farm Starter Box — entry-level QA lab chassis
+- 20-Node Real Device Testing Box Pro — continuous app testing hardware
+- Android Motherboard Cluster for App QA — high-density headless nodes
+- iOS Device Testing Rack (10–20 Nodes) — iOS compatibility testing
+- 20-Node Turnkey Device Lab Bundle — integrated power, cooling, USB, network
+- 20-Node Empty Chassis — expansion unit for custom builds
+- 7-Port Industrial USB Hub Module
+- 450W Power Supply Module
+- 4-Fan Cooling Kit
+- Network Kit for 20-Node Cluster
+- Custom Android Device Farm Rack Solution — 40+ node quoted projects
 
 ## Services
 Phone farm setup, remote control configuration, group control system configuration, bulk device deployment, custom hardware engineering, enterprise deployment, maintenance & support, sample solutions, overseas delivery.
@@ -23,7 +25,7 @@ Phone farm setup, remote control configuration, group control system configurati
 - Phone: +86 13059502618
 - WhatsApp: +852 6215 5642
 - Telegram: @huicheng1998
-- Email: qiuxui646@gmail.com
+- Email: sales@phonefarm.fun
 - Location: Guangzhou, China
 
 ## Website

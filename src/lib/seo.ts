@@ -58,7 +58,7 @@ export function organizationJsonLd() {
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+86-13059502618",
-      email: "qiuxui646@gmail.com",
+      email: "sales@phonefarm.fun",
       contactType: "sales",
       areaServed: "Worldwide",
     },
@@ -116,5 +116,56 @@ export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
       name: item.name,
       item: `${SITE.url}${item.path}`,
     })),
+  };
+}
+
+export function itemListJsonLd(
+  products: { name: string; slug: string; priceUsd: number; imageCard: string }[]
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "PhoneFarm Fun Hardware Catalog",
+    itemListElement: products.map((product, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${SITE.url}/products/${product.slug}`,
+      item: {
+        "@type": "Product",
+        name: product.name,
+        url: `${SITE.url}/products/${product.slug}`,
+        image: `${SITE.url}${product.imageCard}`,
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "USD",
+          price: product.priceUsd,
+        },
+      },
+    })),
+  };
+}
+
+export function articleJsonLd(article: {
+  title: string;
+  description: string;
+  slug: string;
+  date: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    datePublished: article.date,
+    author: { "@type": "Organization", name: SITE.name },
+    publisher: {
+      "@type": "Organization",
+      name: SITE.name,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE.url}/images/card_800x800/phonefarm.fun-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-card_800x800.webp`,
+      },
+    },
+    mainEntityOfPage: `${SITE.url}/blog/${article.slug}`,
   };
 }

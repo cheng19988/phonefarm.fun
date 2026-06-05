@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         <h2>Data Security</h2>
         <p>We implement industry-standard security measures to protect your data. Order and payment records are stored securely in our database.</p>
         <h2>Contact</h2>
-        <p>For privacy inquiries, email qiuxui646@gmail.com.</p>
+        <p>For privacy inquiries, email sales@phonefarm.fun.</p>
       </div>
     </div>
   );
