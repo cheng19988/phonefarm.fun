@@ -1,16 +1,13 @@
 import Link from "next/link";
 import { CONTACT, NAV, SITE } from "@/lib/config";
 import { ContactBar } from "./shared";
-import { getSession } from "@/lib/auth";
 
-export async function Header() {
-  const session = await getSession();
-
+export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-800">
       <div className="hidden md:block bg-slate-900/80 border-b border-slate-800">
         <div className="container-wide py-2 flex justify-between items-center text-xs text-slate-400">
-          <span>📍 {SITE.location} · Real Device Hardware Since {SITE.since}</span>
+          <span>{SITE.location} · Real device hardware since {SITE.since}</span>
           <ContactBar compact />
         </div>
       </div>
@@ -32,18 +29,9 @@ export async function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link href="/products" className="hidden sm:inline-flex btn-primary text-sm py-2 px-4">
-            Shop Now
+          <Link href="/contact" className="hidden sm:inline-flex btn-primary text-sm py-2 px-4">
+            Request Quote
           </Link>
-          {session ? (
-            <Link href={session.role === "admin" ? "/admin" : "/account/orders"} className="text-sm text-slate-300 hover:text-white">
-              Account
-            </Link>
-          ) : (
-            <Link href="/login" className="text-sm text-slate-300 hover:text-white">
-              Login
-            </Link>
-          )}
         </div>
       </div>
       <nav className="lg:hidden container-wide pb-3 flex gap-4 overflow-x-auto text-sm">

@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProductCard, FAQAccordion } from "@/components/commerce";
 import { DeploymentKitForm } from "@/components/deployment-kit-form";
-import { ContactCTA } from "@/components/shared";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/shared";
 import { FAQ_ITEMS } from "@/data/faq";
@@ -35,15 +34,15 @@ export default async function HomePage() {
         <Image src={IMAGES.homeHero} alt="Phone farm box hardware from Guangzhou" fill className="object-cover opacity-30" priority />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/90 to-transparent" />
         <div className="container-wide relative py-20">
-          <p className="text-cyan-400 font-medium mb-3">📍 {SITE.location} · Real Device Hardware Since {SITE.since}</p>
+          <p className="text-cyan-400 font-medium mb-3">{SITE.location} · Manufacturing since {SITE.since}</p>
           <h1 className="text-4xl md:text-6xl font-bold text-white max-w-3xl leading-tight mb-6">
-            Real Device Phone Farm Hardware from Guangzhou
+            Phone Farm Boxes &amp; Device Arrays — Built in Guangzhou
           </h1>
           <p className="text-xl text-slate-300 max-w-2xl mb-8">
             {SITE.intro}
           </p>
           <div className="flex flex-wrap gap-4">
-            <Link href="/products" className="btn-primary text-lg px-8 py-3">Shop Phone Farm Boxes</Link>
+            <Link href="/products" className="btn-primary text-lg px-8 py-3">View Product Catalog</Link>
             <Link href="/contact" className="btn-secondary text-lg px-8 py-3">Get Custom Quote</Link>
           </div>
         </div>
@@ -53,9 +52,9 @@ export default async function HomePage() {
       <section className="section bg-slate-900/50">
         <div className="container-wide grid md:grid-cols-3 gap-8">
           {[
-            { title: "Factory-Direct", desc: "Talk directly to the Guangzhou phone farm hardware manufacturer. Phone farm boxes and motherboard arrays with optimized power, cooling, and device density — no middlemen." },
-            { title: "Delivered, Guaranteed", desc: "Global shipping with QC-tested configurations. Your phone farm arrives ready for deployment — on time, intact, and stable under continuous workloads." },
-            { title: "Built for Your Workflow", desc: "Custom deployment support for creator studios, marketing teams, testing teams, and enterprise clients — not generic off-the-shelf templates." },
+            { title: "Factory-Direct", desc: "Work with the Guangzhou team that assembles and tests each chassis — phone farm boxes, motherboard arrays, and supporting modules without reseller markup." },
+            { title: "QC Before Shipment", desc: "Burn-in testing, cable routing checks, and packaging for export. Typical lead time 3–5 business days for in-stock configurations." },
+            { title: "Built to Your Scale", desc: "From a single 20-node box to rackmount cabinets and custom node counts — we engineer around your device models and workflow." },
           ].map((item) => (
             <div key={item.title} className="card p-6">
               <h2 className="text-xl font-bold text-white mb-3">{item.title}</h2>
@@ -150,7 +149,7 @@ export default async function HomePage() {
               <li>✓ Real-time visual monitoring dashboard</li>
               <li>✓ Group control system configuration service</li>
             </ul>
-            <Link href="/services/remote-control-configuration" className="btn-primary">Remote Control Setup →</Link>
+            <Link href="/contact?service=remote-control-configuration" className="btn-primary">Remote Control Setup →</Link>
           </div>
         </div>
       </section>
@@ -158,14 +157,14 @@ export default async function HomePage() {
       {/* Use Cases */}
       <section className="section">
         <div className="container-wide">
-          <h2 className="section-title">Multi-Scenario Applications</h2>
-          <p className="section-subtitle">Integrated hardware and remote control for automated, large-scale digital operations on real devices.</p>
+          <h2 className="section-title">Typical Use Cases</h2>
+          <p className="section-subtitle">Hardware for teams that need many real devices running in parallel — not cloud VMs or emulators.</p>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "Creator Studio Farm", desc: "Run multiple TikTok, Reels, Shorts, and live streaming accounts on real devices." },
-              { title: "Digital Marketing & Ads", desc: "Multi-account social media management, bulk publishing, and ad verification at scale." },
-              { title: "E-commerce Growth", desc: "Operate multiple stores in parallel with synchronized device clusters." },
-              { title: "Development & QA", desc: "Stable real-device environment for compatibility checks and long-running stability tests." },
+              { title: "App QA & Compatibility", desc: "Run builds across device models and Android versions on physical hardware." },
+              { title: "Social & Content Ops", desc: "Manage multiple accounts from one controlled device cluster with stable USB links." },
+              { title: "E-commerce Operations", desc: "Parallel store management and listing workflows on dedicated device racks." },
+              { title: "Automation R&D", desc: "Long-running ADB scripts, sensor tests, and fleet monitoring in a cooled enclosure." },
             ].map((item) => (
               <div key={item.title} className="card p-6">
                 <h3 className="font-bold text-white mb-2">{item.title}</h3>
@@ -205,7 +204,7 @@ export default async function HomePage() {
       <section className="section">
         <div className="container-wide">
           <h2 className="section-title">Guangzhou Factory &amp; Facilities</h2>
-          <p className="section-subtitle">Real production capacity — office, meeting rooms, assembly workshop, and warehouse ready for global delivery since {SITE.since}.</p>
+          <p className="section-subtitle">Office, assembly workshop, and warehouse in Guangzhou — <Link href="/about" className="text-cyan-400 hover:text-cyan-300">see more on About</Link>.</p>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
             {[
               { src: IMAGES.company.office, label: "Office" },
@@ -225,14 +224,14 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Trust highlights */}
       <section className="section bg-slate-900/50">
         <div className="container-wide grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
           {[
-            { num: "50,000+", label: "Real devices deployed" },
-            { num: "8,000+", label: "Teams served worldwide" },
-            { num: "400+", label: "Hardware configurations" },
-            { num: String(SITE.since), label: "Serving customers since" },
+            { num: "20", label: "Nodes per standard box" },
+            { num: "3–5 days", label: "Typical in-stock lead time" },
+            { num: "12 mo", label: "Hardware warranty" },
+            { num: String(SITE.since), label: "Manufacturing in Guangzhou" },
           ].map((s) => (
             <div key={s.label}>
               <div className="text-3xl md:text-4xl font-bold text-cyan-400 mb-2">{s.num}</div>
@@ -273,17 +272,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Deployment Kit + CTA */}
+      {/* Deployment Kit */}
       <section className="section bg-slate-900/50">
         <div className="container-wide max-w-3xl">
           <DeploymentKitForm />
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="section">
-        <div className="container-wide">
-          <ContactCTA title="Ready to Deploy Your Phone Farm?" />
         </div>
       </section>
     </>

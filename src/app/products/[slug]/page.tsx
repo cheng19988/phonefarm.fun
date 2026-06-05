@@ -3,9 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductBySlug } from "@/lib/products-server";
 import { BuyButtons, FAQAccordion } from "@/components/commerce";
-import { ContactCTA, JsonLd, StockBadge } from "@/components/shared";
+import { ContactCTA, ContactBar, JsonLd, StockBadge } from "@/components/shared";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd } from "@/lib/seo";
-import { CONTACT } from "@/lib/config";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -65,10 +64,10 @@ export default async function ProductDetailPage({ params }: Props) {
                 <span className="text-3xl font-bold text-white">${product.priceUsd.toLocaleString()}</span>
                 <StockBadge stock={product.stock} />
               </div>
-              <BuyButtons slug={product.slug} stock={product.stock} />
-              <div className="mt-6 p-4 rounded-lg bg-slate-900/80 border border-slate-800 text-sm text-slate-400">
-                <p className="font-medium text-white mb-2">Contact Sales</p>
-                <p>📞 {CONTACT.phone} · 💬 WhatsApp · ✈️ Telegram · ✉️ {CONTACT.email}</p>
+              <BuyButtons slug={product.slug} />
+              <div className="mt-6 p-4 rounded-lg bg-slate-900/80 border border-slate-800 text-sm">
+                <p className="font-medium text-white mb-2">Sales contact</p>
+                <ContactBar />
               </div>
             </div>
           </div>

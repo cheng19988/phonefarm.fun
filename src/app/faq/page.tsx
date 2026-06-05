@@ -18,7 +18,7 @@ export default function FAQPage() {
         <div className="container-wide max-w-3xl">
           <h1 className="section-title">Frequently Asked Questions</h1>
           <p className="section-subtitle">
-            Everything you need to know about PhoneFarm Fun hardware, ordering, shipping, and support.
+            Hardware specs, ordering, shipping, customization, and support — answered by the Guangzhou team.
           </p>
           <FAQAccordion items={FAQ_ITEMS} />
           <div className="mt-16">

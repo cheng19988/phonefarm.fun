@@ -1,0 +1,27 @@
+---
+description: Auto commit and push after completing tasks; retry on network timeout
+alwaysApply: true
+---
+
+# Auto Commit & Push
+
+After completing a task that changed project files:
+
+1. Run `git status` and `git diff` to review changes.
+2. Stage relevant files (never commit `.env`, secrets, or credentials).
+3. Create a concise commit message focused on **why**.
+4. Commit and push to `origin` on the current branch.
+5. **Do not wait for the user to ask** — push is part of task completion.
+
+## Push retries
+
+If `git push` fails due to network timeout, proxy, or connection reset:
+
+- Retry with proxy bypass: `git -c http.proxy= -c https.proxy= push origin HEAD`
+- Wait a few seconds and retry up to 3 times before reporting failure.
+- Never update git config to change proxy settings.
+
+## Exceptions
+
+- Skip commit/push if the user explicitly says not to, or if there are no file changes.
+- Do not force-push to `main`/`master`.

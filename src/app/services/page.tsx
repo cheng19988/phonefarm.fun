@@ -16,8 +16,8 @@ export default function ServicesPage() {
     <div className="section">
       <div className="container-wide">
         <h1 className="section-title">Phone Farm Services</h1>
-        <p className="section-subtitle">
-          From single-box setup to enterprise rack deployment — PhoneFarm Fun provides end-to-end hardware and configuration services from our Guangzhou factory.
+        <p className="section-subtitle max-w-3xl">
+          Hardware assembly, software configuration, and logistics from our Guangzhou team. Each service starts with a scoping call — no fixed packages required.
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {SERVICES.map((svc) => (

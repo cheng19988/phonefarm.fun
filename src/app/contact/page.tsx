@@ -3,7 +3,7 @@
 import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { ContactBar } from "@/components/shared";
-import { CONTACT, SITE } from "@/lib/config";
+import { SITE } from "@/lib/config";
 
 function ContactForm() {
   const searchParams = useSearchParams();
@@ -71,18 +71,12 @@ export default function ContactPage() {
     <div className="section">
       <div className="container-wide max-w-4xl">
         <h1 className="section-title">Contact Us</h1>
-        <p className="section-subtitle">Get your custom quote in minutes. Factory-direct support from {SITE.location}.</p>
+        <p className="section-subtitle">Share your requirements — we respond within one business day (Guangzhou time, UTC+8).</p>
 
         <div className="card p-6 mb-8">
-          <h2 className="font-bold text-white mb-4">Direct Contact</h2>
+          <h2 className="font-bold text-white mb-4">Direct contact</h2>
           <ContactBar />
-          <ul className="mt-4 space-y-2 text-slate-300">
-            <li>📞 Phone: {CONTACT.phone}</li>
-            <li>💬 WhatsApp: {CONTACT.whatsapp}</li>
-            <li>✈️ Telegram: {CONTACT.telegram}</li>
-            <li>✉️ Email: {CONTACT.email}</li>
-            <li>📍 Location: {SITE.location}</li>
-          </ul>
+          <p className="mt-4 text-sm text-slate-400">Location: {SITE.location} · Typical response: within 24 hours on weekdays</p>
         </div>
 
         <Suspense fallback={<div className="card p-6 text-slate-400">Loading form...</div>}>

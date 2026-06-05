@@ -5,21 +5,21 @@ export const SERVICES = [
     slug: "phone-farm-setup",
     title: "Phone Farm Setup",
     description:
-      "End-to-end phone farm deployment — from hardware assembly and device mounting to power routing, network configuration, and first-boot testing.",
+      "End-to-end deployment: mount devices, route power and USB, configure network, run burn-in, and hand off a ready-to-use cluster. Typical timeline 2–5 days on-site or remote-guided.",
     image: IMAGES.serviceScene,
   },
   {
     slug: "remote-control-configuration",
     title: "Remote Control Configuration",
     description:
-      "Screen mirroring, ADB setup, and visual device management workstation configuration so you can control dozens of devices from one dashboard.",
+      "Install screen mirroring, ADB paths, and a control workstation so one operator can view and command 20+ devices. Includes basic batch APK push setup.",
     image: IMAGES.remoteControl.hero,
   },
   {
     slug: "group-control-system-configuration",
     title: "Group Control System Configuration",
     description:
-      "Batch task scheduling, synchronized multi-device actions, client/project grouping, and automation script integration for agency-scale operations.",
+      "Group devices by client or project, schedule synchronized tasks, and integrate with your existing automation scripts. Best for agencies running 40+ nodes.",
     image: IMAGES.remoteControl.detail,
   },
   {
@@ -62,6 +62,6 @@ export const SERVICES = [
     title: "Overseas Delivery",
     description:
       "International logistics from Guangzhou — express courier, sea freight, customs documentation, and door-to-door delivery to North America, Europe, and Southeast Asia.",
-    image: IMAGES.warehouse,
+    image: IMAGES.company.warehouse,
   },
 ];

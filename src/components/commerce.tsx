@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { CONTACT } from "@/lib/config";
 import { StockBadge } from "./shared";
 
 type ProductCardProps = {
@@ -31,7 +32,7 @@ export function ProductCard({ slug, name, shortDesc, priceUsd, stock, imageCard,
           <StockBadge stock={stock} />
         </div>
         <div className="grid grid-cols-2 gap-2">
-          <Link href={`/products/${slug}`} className="btn-primary text-center text-sm py-2">Buy Now</Link>
+          <Link href={`/products/${slug}`} className="btn-primary text-center text-sm py-2">View Details</Link>
           <Link href={`/contact?product=${slug}`} className="btn-secondary text-center text-sm py-2">Get Quote</Link>
         </div>
       </div>
@@ -55,23 +56,12 @@ export function FAQAccordion({ items }: { items: { question: string; answer: str
   );
 }
 
-export function BuyButtons({ slug, stock }: { slug: string; stock: number }) {
-  const disabled = stock <= 0;
+export function BuyButtons({ slug }: { slug: string; stock?: number }) {
   return (
     <div className="flex flex-wrap gap-3">
-      <form action="/api/orders" method="POST">
-        <input type="hidden" name="productSlug" value={slug} />
-        <input type="hidden" name="action" value="buy" />
-        <button type="submit" disabled={disabled} className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed">
-          Buy Now
-        </button>
-      </form>
-      <form action="/api/orders" method="POST">
-        <input type="hidden" name="productSlug" value={slug} />
-        <input type="hidden" name="action" value="quote" />
-        <button type="submit" className="btn-secondary">Add to Order</button>
-      </form>
-      <Link href={`/contact?product=${slug}`} className="btn-outline">Get Quote</Link>
+      <Link href={`/contact?product=${slug}`} className="btn-primary">Request Quote</Link>
+      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">WhatsApp Sales</a>
+      <Link href="/products" className="btn-outline">Browse Catalog</Link>
     </div>
   );
 }

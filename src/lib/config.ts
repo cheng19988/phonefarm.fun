@@ -4,7 +4,7 @@ export const SITE = {
   url: "https://phonefarm.fun",
   tagline: "Real Device Phone Farm Hardware from Guangzhou",
   intro:
-    "PhoneFarm Fun is a Guangzhou-based real-device phone farm hardware brand focused on phone farm boxes, motherboard boxes, remote control setup, and custom deployment support for creators, marketing teams, testing teams, and enterprise clients.",
+    "PhoneFarm Fun manufactures real-device phone farm hardware in Guangzhou — phone farm boxes, motherboard arrays, power and cooling modules, and deployment support for studios, QA teams, and B2B buyers since 2017.",
   location: "Guangzhou, China",
   since: 2017,
   description:

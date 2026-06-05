@@ -4,9 +4,9 @@ import { ProductCard } from "@/components/commerce";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Products & Hardware Shop",
+  title: "Phone Farm Hardware Catalog",
   description:
-    "Shop phone farm boxes, motherboard boxes, Android & iPhone farms, USB hubs, power, cooling, network equipment, and custom cabinets. Factory-direct from Guangzhou.",
+    "Phone farm boxes, motherboard boxes, Android & iPhone farms, USB hubs, power, cooling, network equipment, and custom cabinets. Factory-direct from Guangzhou.",
   path: "/products",
 });
 
@@ -31,10 +31,16 @@ export default async function ProductsPage({
   return (
     <div className="section">
       <div className="container-wide">
-        <h1 className="section-title">Phone Farm Products</h1>
-        <p className="section-subtitle">
-          Factory-direct real device phone farm hardware — prices shown in USD. In-stock units ship within 3–5 business days.
+        <h1 className="section-title">Phone Farm Hardware Catalog</h1>
+        <p className="section-subtitle max-w-3xl">
+          Reference pricing in USD for standard configurations. Final quotes depend on device model, quantity, and shipping region — use <Link href="/contact" className="text-cyan-400 hover:text-cyan-300">Contact</Link> for bulk or custom orders.
         </p>
+
+        <div className="grid sm:grid-cols-3 gap-4 mb-10 text-sm">
+          <div className="card p-4"><span className="text-cyan-400 font-medium">MOQ</span><p className="text-slate-400 mt-1">Single unit for most SKUs; bulk from 5+</p></div>
+          <div className="card p-4"><span className="text-cyan-400 font-medium">Lead time</span><p className="text-slate-400 mt-1">3–5 business days in-stock</p></div>
+          <div className="card p-4"><span className="text-cyan-400 font-medium">Shipping</span><p className="text-slate-400 mt-1">DHL/FedEx express or sea freight</p></div>
+        </div>
 
         <div className="flex flex-wrap gap-3 mb-8">
           <Link href="/products" className={`px-3 py-1 rounded-full text-sm border ${!params.category ? "border-cyan-600 text-cyan-400" : "border-slate-700 text-slate-400"}`}>

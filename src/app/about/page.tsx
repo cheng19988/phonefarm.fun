@@ -1,8 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ContactCTA } from "@/components/shared";
 import { buildMetadata } from "@/lib/seo";
 import { IMAGES } from "@/lib/images";
-import { SITE } from "@/lib/config";
+import { CONTACT, SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
   title: "About PhoneFarm Fun — Guangzhou Manufacturer",
@@ -18,15 +19,26 @@ export default function AboutPage() {
         <h1 className="section-title">About PhoneFarm Fun</h1>
         <p className="text-xl text-slate-300 mb-4 leading-relaxed">{SITE.intro}</p>
         <p className="text-slate-400 mb-8 leading-relaxed">
-          Based in <strong className="text-white">{SITE.location}</strong>, we specialize in high-density mobile device racks, motherboard chassis, USB hub modules, power and cooling systems, and network equipment. Since <strong className="text-white">{SITE.since}</strong>, we have served creator studios, marketing teams, QA labs, and enterprise clients across North America, Europe, and Southeast Asia.
+          We design and assemble phone farm chassis, motherboard arrays, and supporting modules at our facility in <strong className="text-white">{SITE.location}</strong>. Since <strong className="text-white">{SITE.since}</strong>, we have shipped hardware to buyers in North America, Europe, Southeast Asia, and the Middle East — primarily B2B orders from studios, QA labs, and automation teams.
         </p>
+
+        <div className="card p-6 mb-12">
+          <h2 className="text-lg font-bold text-white mb-4">What we manufacture</h2>
+          <ul className="grid sm:grid-cols-2 gap-3 text-sm text-slate-300">
+            <li>• Phone farm boxes (up to 20 real devices per 2U chassis)</li>
+            <li>• Android motherboard arrays (screenless, high-density)</li>
+            <li>• Power, cooling, USB hub, and network accessory modules</li>
+            <li>• Custom rackmount cabinets for 40–100+ node deployments</li>
+            <li>• Remote setup and group-control configuration (service)</li>
+          </ul>
+        </div>
 
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {[
-            { title: "Real Device Environment", desc: "Every product uses physical smartphones or motherboards — not cloud phones or emulators." },
-            { title: "Stable Deployment", desc: "Centralized power, active cooling, and QC burn-in testing ensure 24/7 uptime." },
-            { title: "Custom Production", desc: "Bespoke chassis, node counts, and rack integrations engineered for your workflow." },
-            { title: "Enterprise & B2B", desc: "Bulk pricing, dedicated account management, and custom deployment for large orders." },
+            { title: "Real devices only", desc: "Physical smartphones or motherboards — we do not resell cloud phones or emulator services." },
+            { title: "QC before export", desc: "Burn-in testing, cable checks, and export packaging from our Guangzhou workshop." },
+            { title: "Custom engineering", desc: "Node count, chassis size, and rack layout tailored to your device models." },
+            { title: "B2B & bulk orders", desc: "Volume pricing from 5+ units, sample kits, and dedicated project coordination." },
           ].map((item) => (
             <div key={item.title} className="card p-6">
               <h2 className="font-bold text-white mb-2">{item.title}</h2>
@@ -35,16 +47,15 @@ export default function AboutPage() {
           ))}
         </div>
 
-        <h2 className="text-2xl font-bold text-white mb-6">Our Guangzhou Facilities</h2>
-        <p className="text-slate-400 mb-6">Office, front desk, meeting rooms, production workshop, and warehouse — real factory capacity ready for global delivery.</p>
+        <h2 className="text-2xl font-bold text-white mb-2">Guangzhou facilities</h2>
+        <p className="text-slate-400 mb-6">Office, assembly workshop, and warehouse — photos from our actual operations in Guangzhou.</p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-12">
           {[
             { src: IMAGES.company.office, label: "Office" },
             { src: IMAGES.company.frontdesk, label: "Front Desk" },
             { src: IMAGES.company.meeting, label: "Meeting Room" },
-            { src: IMAGES.company.workshop, label: "Production Workshop" },
+            { src: IMAGES.company.workshop, label: "Assembly Workshop" },
             { src: IMAGES.company.warehouse, label: "Warehouse & Shipping" },
-            { src: IMAGES.serviceScene, label: "Control Systems Lab" },
           ].map((img) => (
             <div key={img.label} className="relative aspect-[4/3] rounded-xl overflow-hidden">
               <Image src={img.src} alt={img.label} fill className="object-cover" />
@@ -53,6 +64,12 @@ export default function AboutPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="card p-6 mb-12 text-sm text-slate-400">
+          <p className="text-white font-medium mb-2">Contact the team</p>
+          <p>Phone: {CONTACT.phone} · WhatsApp: {CONTACT.whatsapp} · Telegram: {CONTACT.telegram}</p>
+          <p className="mt-1">Email: {CONTACT.email} · Location: {SITE.location}</p>
         </div>
 
         <ContactCTA title="Partner With PhoneFarm Fun" />
