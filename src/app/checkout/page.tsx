@@ -44,10 +44,10 @@ export default async function CheckoutPage() {
                 <span>Total (USD reference)</span>
                 <span>${total.toLocaleString()}</span>
               </div>
-              <p className="text-xs text-slate-500">Payment will be collected in USDT (TRC20) on the next step.</p>
+              <p className="text-xs text-slate-500">You will receive payment instructions after placing your order.</p>
             </div>
             <form action="/api/checkout" method="POST">
-              <button type="submit" className="btn-primary w-full">Place Order &amp; Pay with USDT</button>
+              <button type="submit" className="btn-primary w-full">Place Order</button>
             </form>
             <Link href="/cart" className="block text-center text-sm text-slate-400 mt-4 hover:text-white">← Back to cart</Link>
           </>

@@ -52,7 +52,7 @@ export default async function HomePage() {
           {[
             { title: "Factory-Direct", desc: "Buy from the Guangzhou team that assembles and QC-tests each chassis — no reseller markup." },
             { title: "QC Before Shipment", desc: "Burn-in testing and export packaging. In-stock units typically ship in 3–5 business days." },
-            { title: "USDT Checkout", desc: "Pay with USDT (TRC20) for international orders. Bulk and custom projects available on quote." },
+            { title: "Global Shipping", desc: "Export packaging from Guangzhou with express courier or sea freight to North America, Europe, and Southeast Asia." },
           ].map((item) => (
             <div key={item.title} className="card p-6">
               <h2 className="text-xl font-bold text-white mb-3">{item.title}</h2>

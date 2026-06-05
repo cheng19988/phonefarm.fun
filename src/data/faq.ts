@@ -72,7 +72,7 @@ export const FAQ_ITEMS = [
   {
     question: "How to pay?",
     answer:
-      "Online orders accept USDT on Tron TRC20 network (minimum 10 USDT). For bulk orders, we also accept bank transfer (T/T), Wise, and PayPal upon request. Contact sales for invoice-based payment.",
+      "For online orders, payment instructions are shown on your order page after checkout. For bulk orders we accept bank transfer (T/T), Wise, and PayPal upon request. Contact sales for invoice-based payment.",
   },
   {
     question: "How to contact sales?",

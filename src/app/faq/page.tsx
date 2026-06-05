@@ -6,7 +6,7 @@ import { buildMetadata, faqJsonLd } from "@/lib/seo";
 export const metadata = buildMetadata({
   title: "Phone Farm FAQ — Hardware, Shipping, Payment & Support",
   description:
-    "Answers about phone farm boxes, motherboard boxes, real device vs cloud, customization, MOQ, samples, delivery, USDT payment, and contacting sales.",
+    "Answers about phone farm boxes, motherboard boxes, real device vs cloud, customization, MOQ, samples, delivery, payment, and contacting sales.",
   path: "/faq",
 });
 

@@ -117,9 +117,9 @@ export default function OrderPage() {
 
         {payment && order.status === "Waiting for Payment" && (
           <div className="card p-6 mb-6 border-cyan-800/50">
-            <h2 className="font-bold text-white mb-4">USDT Payment (Tron TRC20)</h2>
+            <h2 className="font-bold text-white mb-4">Payment</h2>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between"><span className="text-slate-400">Amount</span><span className="text-white font-mono">{payment.expectedAmount} USDT</span></div>
+              <div className="flex justify-between"><span className="text-slate-400">Amount due</span><span className="text-white font-mono">{payment.expectedAmount} {payment.paymentCurrency}</span></div>
               <div className="flex justify-between"><span className="text-slate-400">Network</span><span className="text-white">{payment.paymentNetwork}</span></div>
               <div>
                 <span className="text-slate-400 block mb-1">Address</span>
@@ -145,7 +145,7 @@ export default function OrderPage() {
               {txStatus && <p className="text-xs text-slate-400">{txStatus}</p>}
             </form>
             <p className="text-xs text-slate-500 mt-4">
-              Send the exact USDT amount via Tron TRC20. We poll the blockchain automatically. Need help? {CONTACT.email}
+              Send the exact amount to the address above before the timer expires. Need help? {CONTACT.email}
             </p>
           </div>
         )}
