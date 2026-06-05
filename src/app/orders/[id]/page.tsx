@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { CONTACT } from "@/lib/config";
@@ -36,28 +36,42 @@ export default function OrderPage() {
   const [txInput, setTxInput] = useState("");
   const [txStatus, setTxStatus] = useState<string | null>(null);
 
-  async function loadOrder() {
-    const res = await fetch(`/api/orders/${orderId}`);
-    const data = await res.json();
-    if (!res.ok) {
-      setOrder({ error: data.error } as OrderData);
-      return;
-    }
-    setOrder(data);
-  }
+  const loadOrder = useCallback(() => {
+    fetch(`/api/orders/${orderId}`)
+      .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
+      .then(({ ok, data }) => {
+        if (!ok) {
+          setOrder({ error: data.error } as OrderData);
+          return;
+        }
+        setOrder(data);
+      });
+  }, [orderId]);
 
   useEffect(() => {
-    loadOrder();
+    let cancelled = false;
+    fetch(`/api/orders/${orderId}`)
+      .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
+      .then(({ ok, data }) => {
+        if (cancelled) return;
+        if (!ok) setOrder({ error: data.error } as OrderData);
+        else setOrder(data);
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [orderId]);
 
   useEffect(() => {
     if (!order?.payment || order.status !== "Waiting for Payment") return;
-    const interval = setInterval(async () => {
-      const res = await fetch(`/api/payment/verify?paymentId=${order.payment!.id}`);
-      const data = await res.json();
-      if (data.status === "paid" || data.status === "expired" || data.status === "failed") {
-        loadOrder();
-      }
+    const interval = setInterval(() => {
+      fetch(`/api/payment/verify?paymentId=${order.payment!.id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status === "paid" || data.status === "expired" || data.status === "failed") {
+            loadOrder();
+          }
+        });
       const expires = new Date(order.payment!.expiresAt).getTime() - Date.now();
       if (expires <= 0) setTimeLeft("Expired");
       else {
@@ -67,7 +81,7 @@ export default function OrderPage() {
       }
     }, 5000);
     return () => clearInterval(interval);
-  }, [order, orderId]);
+  }, [order, loadOrder]);
 
   async function submitTxid(e: React.FormEvent) {
     e.preventDefault();
@@ -110,14 +124,17 @@ export default function OrderPage() {
             </div>
           ))}
           <div className="flex justify-between font-bold text-white mt-4">
-            <span>Total</span>
+            <span>Total (USD)</span>
             <span>${order.totalUsd.toLocaleString()}</span>
           </div>
         </div>
 
         {payment && order.status === "Waiting for Payment" && (
           <div className="card p-6 mb-6 border-cyan-800/50">
-            <h2 className="font-bold text-white mb-4">Payment</h2>
+            <h2 className="font-bold text-white mb-4">Payment Instructions</h2>
+            <p className="text-sm text-slate-400 mb-4">
+              Pay the exact USD equivalent in {payment.paymentCurrency} on {payment.paymentNetwork}. Card and PayPal checkout are not available on this site — contact {CONTACT.email} for bank transfer (T/T), Wise, or PayPal invoice.
+            </p>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between"><span className="text-slate-400">Amount due</span><span className="text-white font-mono">{payment.expectedAmount} {payment.paymentCurrency}</span></div>
               <div className="flex justify-between"><span className="text-slate-400">Network</span><span className="text-white">{payment.paymentNetwork}</span></div>
@@ -132,7 +149,7 @@ export default function OrderPage() {
               )}
             </div>
             <form onSubmit={submitTxid} className="mt-4 space-y-2">
-              <label className="text-xs text-slate-400">Submit TXID (optional, speeds up verification)</label>
+              <label className="text-xs text-slate-400">Submit TXID (optional — speeds up verification)</label>
               <div className="flex gap-2">
                 <input
                   value={txInput}
@@ -145,7 +162,7 @@ export default function OrderPage() {
               {txStatus && <p className="text-xs text-slate-400">{txStatus}</p>}
             </form>
             <p className="text-xs text-slate-500 mt-4">
-              Send the exact amount to the address above before the timer expires. Need help? {CONTACT.email}
+              Send the exact amount before the timer expires. Questions: {CONTACT.email}
             </p>
           </div>
         )}
@@ -158,7 +175,7 @@ export default function OrderPage() {
 
         {order.status === "Expired" && (
           <div className="card p-6 mb-6 border-red-800/50 text-red-400">
-            Payment window expired. Contact sales to reopen this order.
+            Payment window expired. Contact {CONTACT.email} to reopen this order.
           </div>
         )}
 

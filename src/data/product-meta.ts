@@ -32,7 +32,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
   "iphone-phone-farm": {
     tier: "Pro",
     nodeCount: "10–20 nodes",
-    useCase: "iOS compatibility & TestFlight QA",
+    useCase: "Mixed-device QA lab (customer devices)",
     moq: 1,
     leadTime: "5–7 business days",
   },

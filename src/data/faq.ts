@@ -17,7 +17,7 @@ export const FAQ_ITEMS = [
   {
     question: "Real device farm vs cloud phone — what's the difference?",
     answer:
-      "Real device farms use physical Android hardware under your control with genuine sensors and device fingerprints. Cloud phones are virtual instances on shared infrastructure. For app QA and compatibility testing on real silicon, physical device labs provide more accurate results.",
+      "Real device farms use physical Android hardware under your control with genuine sensors and hardware behavior. Cloud phones are virtual instances on shared infrastructure. For app QA and compatibility testing on real silicon, physical device labs provide more accurate results.",
   },
   {
     question: "Real device farm vs emulator — what's the difference?",
@@ -25,9 +25,9 @@ export const FAQ_ITEMS = [
       "Emulators simulate Android in software on a PC. Real device farms use actual hardware for testing that reflects real-world performance, sensors, and OS behavior. Many QA teams use both — emulators for fast iteration and real devices for release validation.",
   },
   {
-    question: "Android device farm vs iOS device rack?",
+    question: "Android device farm vs multi-device lab rack?",
     answer:
-      "Android farms use ADB, USB hubs, and open automation tooling. iOS racks require macOS control stations and iOS-specific management tools. PhoneFarm Fun supplies hardware chassis for both platforms from our Guangzhou workshop.",
+      "Android-focused farms use our standard 20-node chassis with ADB and USB hub routing. Multi-device lab racks use the same hardware layout configured for customer-supplied phones when teams need mixed-platform QA. PhoneFarm Fun supplies the chassis — devices are provided by the customer unless otherwise quoted.",
   },
   {
     question: "How many devices can one box support?",
@@ -45,7 +45,7 @@ export const FAQ_ITEMS = [
       "All chassis SKUs support ADB-based remote operation from a control PC. Optional remote workstation setup is available as a separate service after hardware delivery.",
   },
   {
-    question: "Do you support group control configuration?",
+    question: "Do you support multi-device lab management setup?",
     answer:
       "Yes. Our team can configure batch device management for QA workflows — device grouping, synchronized test runs, and multi-group organization for engineering teams.",
   },
@@ -72,7 +72,7 @@ export const FAQ_ITEMS = [
   {
     question: "How do I pay?",
     answer:
-      "Online orders show payment instructions after checkout. Bulk and invoice orders can use bank transfer (T/T), Wise, or PayPal — contact sales@phonefarm.fun for invoice-based payment.",
+      "Online checkout accepts USDT (TRC20) at the USD amount shown. Bank transfer (T/T), Wise, and PayPal are available via manual invoice — contact sales@phonefarm.fun. Card payments are not supported on this site.",
   },
   {
     question: "How do I contact sales?",

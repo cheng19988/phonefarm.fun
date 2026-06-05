@@ -3,13 +3,13 @@
 > Factory-built Android device farm hardware from Guangzhou, China — for mobile QA, app testing, and automation labs.
 
 ## About
-PhoneFarm Fun is a Guangzhou-based hardware team supplying real Android device farm boxes, motherboard clusters, iOS device racks, lab accessories, and custom rack solutions for B2B buyers running mobile QA and device automation workflows.
+PhoneFarm Fun is a Guangzhou-based hardware team supplying real Android device farm boxes, motherboard clusters, multi-device lab racks, lab accessories, and custom rack solutions for B2B buyers running mobile QA and device automation workflows.
 
 ## Products
 - 20-Node Android Device Farm Starter Box — entry-level QA lab chassis
 - 20-Node Real Device Testing Box Pro — continuous app testing hardware
 - Android Motherboard Cluster for App QA — high-density headless nodes
-- iOS Device Testing Rack (10–20 Nodes) — iOS compatibility testing
+- 10–20 Node Multi-Device Lab Rack — customer-supplied device chassis
 - 20-Node Turnkey Device Lab Bundle — integrated power, cooling, USB, network
 - 20-Node Empty Chassis — expansion unit for custom builds
 - 7-Port Industrial USB Hub Module
@@ -19,7 +19,7 @@ PhoneFarm Fun is a Guangzhou-based hardware team supplying real Android device f
 - Custom Android Device Farm Rack Solution — 40+ node quoted projects
 
 ## Services
-Phone farm setup, remote control configuration, group control system configuration, bulk device deployment, custom hardware engineering, enterprise deployment, maintenance & support, sample solutions, overseas delivery.
+Device lab setup and assembly, remote control workstation setup, multi-device lab management setup, large-scale lab deployment (quote), custom hardware engineering (quote), enterprise rack deployment (quote), hardware maintenance and support, sample hardware evaluation, international shipping and export.
 
 ## Contact
 - Phone: +86 13059502618

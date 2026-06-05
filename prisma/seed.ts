@@ -36,6 +36,7 @@ async function main() {
         imageCard: seed.imageCard,
         imageHero: seed.imageHero,
         imageDetail: seed.imageDetail,
+        published: true,
       },
       create: {
         slug: seed.slug,
@@ -55,6 +56,7 @@ async function main() {
         imageCard: seed.imageCard,
         imageHero: seed.imageHero,
         imageDetail: seed.imageDetail,
+        published: true,
       },
     });
   }

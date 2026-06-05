@@ -2,23 +2,46 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import type { ResolvedCartLine } from "@/lib/cart-resolve";
 
 export default function CartPageClient() {
   const [lines, setLines] = useState<ResolvedCartLine[]>([]);
   const [loading, setLoading] = useState(true);
 
-  async function refresh() {
+  const refresh = useCallback(() => {
     setLoading(true);
-    const res = await fetch("/api/cart/details");
-    const data = await res.json();
-    setLines(data.lines ?? []);
-    setLoading(false);
-  }
+    fetch("/api/cart/details")
+      .then((res) => res.json())
+      .then((data) => {
+        setLines(data.lines ?? []);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLines([]);
+        setLoading(false);
+      });
+  }, []);
 
   useEffect(() => {
-    refresh();
+    let cancelled = false;
+    fetch("/api/cart/details")
+      .then((res) => res.json())
+      .then((data) => {
+        if (!cancelled) {
+          setLines(data.lines ?? []);
+          setLoading(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setLines([]);
+          setLoading(false);
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   async function updateQty(type: string, slug: string, quantity: number) {

@@ -44,7 +44,9 @@ export default async function CheckoutPage() {
                 <span>Total (USD reference)</span>
                 <span>${total.toLocaleString()}</span>
               </div>
-              <p className="text-xs text-slate-500">You will receive payment instructions after placing your order.</p>
+              <p className="text-xs text-slate-500">
+                Prices are in USD. After placing your order you will pay via USDT (TRC20) at the shown amount. For bank transfer (T/T), Wise, or PayPal invoice, contact sales@phonefarm.fun before checkout.
+              </p>
             </div>
             <form action="/api/checkout" method="POST">
               <button type="submit" className="btn-primary w-full">Place Order</button>

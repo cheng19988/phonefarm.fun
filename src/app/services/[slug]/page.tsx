@@ -45,7 +45,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <Image src={service.image} alt={service.title} fill className="object-cover" priority />
             </div>
             <div>
-              <p className="text-cyan-400 text-sm mb-2">Deployment Service</p>
+              <p className="text-cyan-400 text-sm mb-2">{service.priceUsd > 0 ? "Fixed-price service" : "Quote-based service"}</p>
               <h1 className="text-3xl font-bold text-white mb-4">{service.title}</h1>
               <p className="text-slate-300 mb-4">{service.description}</p>
               <p className="text-slate-400 text-sm mb-2">Timeline: {service.timeline}</p>
