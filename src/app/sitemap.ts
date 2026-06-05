@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE } from "@/lib/config";
 import { BLOG_POSTS } from "@/data/blog";
 import { PRODUCT_SEEDS } from "@/data/products";
+import { SERVICES } from "@/data/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = ["", "/products", "/services", "/about", "/faq", "/contact", "/blog", "/privacy", "/terms"].map(
@@ -27,5 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...productPages, ...blogPages];
+  const servicePages = SERVICES.map((s) => ({
+    url: `${SITE.url}/services/${s.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
+  return [...staticPages, ...productPages, ...servicePages, ...blogPages];
 }

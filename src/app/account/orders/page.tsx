@@ -44,7 +44,7 @@ export default async function AccountOrdersPage() {
                   <div>
                     <p className="font-bold text-white">{order.orderNumber}</p>
                     <p className="text-sm text-slate-400 mt-1">
-                      {order.items.map((i) => i.product.name).join(", ")}
+                      {order.items.map((i) => i.itemName).join(", ")}
                     </p>
                   </div>
                   <div className="text-right">

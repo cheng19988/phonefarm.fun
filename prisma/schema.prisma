@@ -58,13 +58,25 @@ model Order {
 }
 
 model OrderItem {
-  id        String  @id @default(cuid())
+  id        String   @id @default(cuid())
   orderId   String
-  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  productId String
-  product   Product @relation(fields: [productId], references: [id])
-  quantity  Int     @default(1)
+  order     Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String?
+  product   Product? @relation(fields: [productId], references: [id])
+  itemType  String   @default("product")
+  itemSlug  String
+  itemName  String
+  quantity  Int      @default(1)
   unitPrice Float
+}
+
+model PaymentSettings {
+  id             String   @id @default("default")
+  trc20Address   String
+  usdtContract   String   @default("TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t")
+  minAmount      Float    @default(10)
+  expiryMinutes  Int      @default(30)
+  updatedAt      DateTime @updatedAt
 }
 
 model Payment {
@@ -79,6 +91,9 @@ model Payment {
   paymentNetwork     String    @default("Tron TRC20")
   paymentCurrency    String    @default("USDT")
   txHash             String?
+  submittedTxHash    String?
+  failureReason      String?
+  lastCheckedAt      DateTime?
   paymentStatus      String    @default("pending")
   verificationStatus String    @default("unverified")
   expiresAt          DateTime

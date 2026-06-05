@@ -21,5 +21,13 @@ export async function GET(_req: Request, { params }: Params) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
-  return NextResponse.json(order);
+  return NextResponse.json({
+    ...order,
+    items: order.items.map((item) => ({
+      quantity: item.quantity,
+      unitPrice: item.unitPrice,
+      itemType: item.itemType,
+      product: item.product ?? { name: item.itemName, slug: item.itemSlug },
+    })),
+  });
 }

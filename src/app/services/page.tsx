@@ -28,8 +28,11 @@ export default function ServicesPage() {
               <div className="p-6">
                 <h2 className="text-xl font-bold text-white mb-2">{svc.title}</h2>
                 <p className="text-slate-400 text-sm mb-4">{svc.description}</p>
-                <Link href={`/contact?service=${svc.slug}`} className="text-cyan-400 text-sm hover:text-cyan-300">
-                  Request This Service →
+                <Link href={`/services/${svc.slug}`} className="text-cyan-400 text-sm hover:text-cyan-300">
+                  View Details →
+                </Link>
+                <Link href={`/contact?service=${svc.slug}`} className="block text-slate-500 text-sm mt-2 hover:text-slate-300">
+                  Request quote
                 </Link>
               </div>
             </article>

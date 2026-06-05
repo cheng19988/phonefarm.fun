@@ -1,8 +1,12 @@
 import Link from "next/link";
 import { CONTACT, NAV, SITE } from "@/lib/config";
 import { ContactBar } from "./shared";
+import { CartButton } from "./cart-button";
+import { getSession } from "@/lib/auth";
 
-export function Header() {
+export async function Header() {
+  const session = await getSession();
+
   return (
     <header className="sticky top-0 z-40 bg-slate-950/95 backdrop-blur-md border-b border-slate-800">
       <div className="hidden md:block bg-slate-900/80 border-b border-slate-800">
@@ -28,10 +32,23 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
-          <Link href="/contact" className="hidden sm:inline-flex btn-primary text-sm py-2 px-4">
-            Request Quote
+        <div className="flex items-center gap-4">
+          <CartButton />
+          <Link href="/products" className="hidden sm:inline-flex btn-outline text-sm py-2 px-3">
+            Catalog
           </Link>
+          {session ? (
+            <Link
+              href={session.role === "admin" ? "/admin" : "/account/orders"}
+              className="text-sm text-slate-300 hover:text-white"
+            >
+              Account
+            </Link>
+          ) : (
+            <Link href="/login" className="text-sm text-slate-300 hover:text-white">
+              Login
+            </Link>
+          )}
         </div>
       </div>
       <nav className="lg:hidden container-wide pb-3 flex gap-4 overflow-x-auto text-sm">

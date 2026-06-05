@@ -16,6 +16,7 @@ export async function GET(req: NextRequest) {
   const payment = await prisma.payment.findUnique({ where: { id: paymentId } });
   return NextResponse.json({
     status: result.status,
+    reason: "reason" in result ? result.reason : undefined,
     payment: payment
       ? {
           paymentStatus: payment.paymentStatus,

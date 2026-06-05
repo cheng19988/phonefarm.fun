@@ -3,6 +3,7 @@ import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
 import { PrismaClient } from "../src/generated/prisma/client.js";
 import { PRODUCT_SEEDS } from "../src/data/products.js";
+import { PAYMENT } from "../src/lib/config.js";
 import bcrypt from "bcryptjs";
 
 const connectionString = process.env.DATABASE_URL;
@@ -57,6 +58,28 @@ async function main() {
       },
     });
   }
+
+  await prisma.paymentSettings.upsert({
+    where: { id: "default" },
+    update: {
+      trc20Address: PAYMENT.address,
+      usdtContract: PAYMENT.contract,
+      minAmount: PAYMENT.minAmount,
+      expiryMinutes: PAYMENT.expiryMinutes,
+    },
+    create: {
+      id: "default",
+      trc20Address: PAYMENT.address,
+      usdtContract: PAYMENT.contract,
+      minAmount: PAYMENT.minAmount,
+      expiryMinutes: PAYMENT.expiryMinutes,
+    },
+  });
+
+  await prisma.product.updateMany({
+    where: { slug: "remote-control-setup" },
+    data: { published: false },
+  });
 
   const adminEmail = process.env.ADMIN_EMAIL || "admin@phonefarm.fun";
   const adminPassword = process.env.ADMIN_PASSWORD || "admin123456";

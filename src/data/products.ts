@@ -211,10 +211,6 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
     priceUsd: 2500,
     description: "Custom Cabinet solutions for enterprise phone farm deployments. Rackmount 42U cabinets with integrated power distribution, cooling ducts, cable management, and modular device trays.",
   }),
-  p("remote-control-setup", "Remote Control Setup", "Remote Control", "Remote control software configuration and group control system setup for your phone farm.", IMAGES.remoteControl, 350, 99, {
-    description: "Remote Control Setup service includes software installation, ADB configuration, screen mirroring setup, batch APK deployment, and group control system integration for your existing or new phone farm hardware.",
-    priceUsd: 350,
-  }),
 ];
 
 export function getProductSeed(slug: string) {

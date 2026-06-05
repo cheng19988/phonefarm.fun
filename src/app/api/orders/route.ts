@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
-import { PAYMENT } from "@/lib/config";
 import { createPaymentExpiry, usdToUsdt } from "@/lib/payment";
+import { getPaymentSettings } from "@/lib/payment-settings";
+import { getService } from "@/data/services";
 
 function orderNumber() {
   return `PF${Date.now().toString(36).toUpperCase()}`;
@@ -18,7 +19,49 @@ export async function POST(req: NextRequest) {
 
   const form = await req.formData();
   const productSlug = String(form.get("productSlug") || "");
+  const serviceSlug = String(form.get("serviceSlug") || "");
   const action = String(form.get("action") || "buy");
+  const settings = await getPaymentSettings();
+
+  if (serviceSlug) {
+    const service = getService(serviceSlug);
+    if (!service || service.priceUsd <= 0) {
+      return NextResponse.redirect(new URL(`/contact?service=${serviceSlug}`, req.url));
+    }
+    const order = await prisma.order.create({
+      data: {
+        orderNumber: orderNumber(),
+        userId: session.id,
+        status: action === "buy" ? "Waiting for Payment" : "Pending",
+        totalUsd: service.priceUsd,
+        items: {
+          create: [{
+            itemType: "service",
+            itemSlug: service.slug,
+            itemName: service.title,
+            quantity: 1,
+            unitPrice: service.priceUsd,
+          }],
+        },
+      },
+    });
+    if (action === "buy") {
+      await prisma.payment.create({
+        data: {
+          orderId: order.id,
+          userId: session.id,
+          expectedAmount: usdToUsdt(service.priceUsd, settings.minAmount),
+          paymentAddress: settings.trc20Address,
+          paymentNetwork: "Tron TRC20",
+          paymentCurrency: "USDT",
+          paymentStatus: "pending",
+          verificationStatus: "unverified",
+          expiresAt: createPaymentExpiry(settings.expiryMinutes),
+        },
+      });
+    }
+    return NextResponse.redirect(new URL(`/orders/${order.id}`, req.url));
+  }
 
   const product = await prisma.product.findUnique({ where: { slug: productSlug } });
   if (!product) {
@@ -32,25 +75,31 @@ export async function POST(req: NextRequest) {
       status: action === "buy" ? "Waiting for Payment" : "Pending",
       totalUsd: product.priceUsd,
       items: {
-        create: [{ productId: product.id, quantity: 1, unitPrice: product.priceUsd }],
+        create: [{
+          productId: product.id,
+          itemType: "product",
+          itemSlug: product.slug,
+          itemName: product.name,
+          quantity: 1,
+          unitPrice: product.priceUsd,
+        }],
       },
     },
   });
 
   if (action === "buy") {
-    const amount = usdToUsdt(product.priceUsd);
     await prisma.payment.create({
       data: {
         orderId: order.id,
         userId: session.id,
         productId: product.id,
-        expectedAmount: amount,
-        paymentAddress: PAYMENT.address,
-        paymentNetwork: PAYMENT.network,
-        paymentCurrency: PAYMENT.currency,
+        expectedAmount: usdToUsdt(product.priceUsd, settings.minAmount),
+        paymentAddress: settings.trc20Address,
+        paymentNetwork: "Tron TRC20",
+        paymentCurrency: "USDT",
         paymentStatus: "pending",
         verificationStatus: "unverified",
-        expiresAt: createPaymentExpiry(),
+        expiresAt: createPaymentExpiry(settings.expiryMinutes),
       },
     });
     return NextResponse.redirect(new URL(`/orders/${order.id}`, req.url));
