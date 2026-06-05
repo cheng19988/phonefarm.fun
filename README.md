@@ -33,7 +33,7 @@ Open [http://localhost:3000](http://localhost:3000)
    - `DATABASE_URL` — PostgreSQL connection string (`?sslmode=require` for Neon)
    - `JWT_SECRET` — random secret string
    - `ADMIN_EMAIL` / `ADMIN_PASSWORD` — optional, used when running seed
-3. Deploy from GitHub. Build runs `prisma generate && next build` (no DB migration during build).
+3. Deploy from GitHub. `postinstall` runs `prisma generate`; build runs `next build` only.
 4. After first deploy, run locally once (with production `DATABASE_URL` in `.env`):
 
 ```bash
@@ -41,6 +41,18 @@ npm run db:setup
 ```
 
 Product catalog pages fall back to static data if the database is empty or unreachable, so the site still builds and renders.
+
+### Neon (free) + Vercel checklist
+
+1. [neon.tech](https://neon.tech) → New Project → copy **Pooled connection** string (host contains `-pooler`).
+2. Append `?sslmode=require` if not already present.
+3. Vercel → Project → **Settings → Environment Variables** → add for **Production + Preview + Development**:
+   - `DATABASE_URL` = Neon pooled URL
+   - `JWT_SECRET` = any long random string (e.g. 32+ chars)
+4. **Redeploy** (Deployments → ⋯ → Redeploy).
+5. On your PC, put the same `DATABASE_URL` in `.env`, then run `npm run db:setup` to create tables + seed products/admin.
+
+If build still fails, open Vercel **Build Logs**, copy the red error block (not just the last line), and send it.
 
 ## Asset Library
 

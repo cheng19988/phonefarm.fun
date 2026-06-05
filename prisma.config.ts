@@ -9,6 +9,7 @@ export default defineConfig({
     path: "prisma/migrations",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    // Fallback allows `prisma generate` on CI/Vercel before DATABASE_URL is wired up.
+    url: process.env.DATABASE_URL ?? "postgresql://localhost:5432/phonefarm",
   },
 });
