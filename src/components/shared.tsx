@@ -12,16 +12,16 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Record<string
 export function ContactBar({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`flex flex-wrap items-center gap-3 ${compact ? "text-xs" : "text-sm"}`}>
-      <a href={`tel:${CONTACT.phone}`} className="hover:text-cyan-400 transition-colors">
+      <a href={`tel:${CONTACT.phone}`} className="text-slate-600 hover:text-orange-600 transition-colors">
         📞 {CONTACT.phone}
       </a>
-      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-green-400 transition-colors">
+      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-green-600 transition-colors">
         WhatsApp
       </a>
-      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-blue-600 transition-colors">
         Telegram
       </a>
-      <a href={`mailto:${CONTACT.email}`} className="hover:text-cyan-400 transition-colors">
+      <a href={`mailto:${CONTACT.email}`} className="text-slate-600 hover:text-orange-600 transition-colors">
         {CONTACT.email}
       </a>
     </div>
@@ -30,7 +30,7 @@ export function ContactBar({ compact = false }: { compact?: boolean }) {
 
 export function ContactCTA({ title = "Talk to Our Sales Team" }: { title?: string }) {
   return (
-    <section className="rounded-2xl bg-gradient-to-br from-cyan-900/40 to-slate-900 border border-cyan-800/50 p-8 md:p-12 text-center">
+    <section className="rounded-2xl bg-slate-900 p-8 md:p-12 text-center">
       <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{title}</h2>
       <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
         Factory-direct support from {SITE.location}. Get pricing, custom quotes, and deployment guidance within 24 hours.
@@ -50,18 +50,18 @@ export function ContactCTA({ title = "Talk to Our Sales Team" }: { title?: strin
 
 export function MobileContactBar() {
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-slate-950/95 border-t border-slate-800 backdrop-blur-sm">
-      <div className="grid grid-cols-4 divide-x divide-slate-800">
-        <a href={`tel:${CONTACT.phone}`} className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-white">
+    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t border-slate-200 backdrop-blur-sm">
+      <div className="grid grid-cols-4 divide-x divide-slate-200">
+        <a href={`tel:${CONTACT.phone}`} className="flex flex-col items-center py-3 text-xs text-slate-600 hover:text-orange-600">
           <span className="text-base mb-0.5">📞</span> Call
         </a>
-        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-green-400">
+        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center py-3 text-xs text-slate-600 hover:text-green-600">
           <span className="text-base mb-0.5">💬</span> WhatsApp
         </a>
-        <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-blue-400">
+        <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center py-3 text-xs text-slate-600 hover:text-blue-600">
           <span className="text-base mb-0.5">✈️</span> Telegram
         </a>
-        <a href={`mailto:${CONTACT.email}`} className="flex flex-col items-center py-3 text-xs text-slate-300 hover:text-cyan-400">
+        <a href={`mailto:${CONTACT.email}`} className="flex flex-col items-center py-3 text-xs text-slate-600 hover:text-orange-600">
           <span className="text-base mb-0.5">✉️</span> Email
         </a>
       </div>

@@ -67,37 +67,37 @@ export default async function ProductsPage({
           <h1 className="section-title">Device Farm Hardware Catalog</h1>
           <p className="section-subtitle max-w-3xl">
             Reference USD pricing for standard SKUs. Final quotes depend on device model, quantity, and shipping region — use{" "}
-            <Link href="/contact" className="text-cyan-400 hover:text-cyan-300">Contact</Link> for bulk or custom rack orders.
+            <Link href="/contact" className="text-orange-600 hover:text-orange-500">Contact</Link> for bulk or custom rack orders.
           </p>
 
           <div className="mb-12">
-            <h2 className="text-lg font-bold text-white mb-4">Choose by deployment size</h2>
+            <h2 className="text-lg font-bold text-slate-900 mb-4">Choose by deployment size</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {DEPLOYMENT_SIZES.map((item) => (
                 <Link
                   key={item.category}
                   href={`/products?category=${encodeURIComponent(item.category)}`}
-                  className={`card p-4 hover:border-cyan-700 transition-colors ${params.category === item.category ? "border-cyan-600" : ""}`}
+                  className={`card p-4 hover:border-orange-300 transition-colors ${params.category === item.category ? "border-orange-500" : ""}`}
                 >
-                  <h3 className="font-semibold text-white text-sm mb-1">{item.title}</h3>
-                  <p className="text-xs text-slate-400">{item.desc}</p>
+                  <h3 className="font-semibold text-slate-900 text-sm mb-1">{item.title}</h3>
+                  <p className="text-xs text-slate-600">{item.desc}</p>
                 </Link>
               ))}
             </div>
           </div>
 
           <div className="grid sm:grid-cols-3 gap-4 mb-10 text-sm">
-            <div className="card p-4"><span className="text-cyan-400 font-medium">MOQ</span><p className="text-slate-400 mt-1">1 unit for most SKUs; volume pricing from 5+</p></div>
-            <div className="card p-4"><span className="text-cyan-400 font-medium">Lead time</span><p className="text-slate-400 mt-1">3–5 business days in-stock; custom racks quoted</p></div>
-            <div className="card p-4"><span className="text-cyan-400 font-medium">Shipping</span><p className="text-slate-400 mt-1">DHL/FedEx express or sea freight from Guangzhou</p></div>
+            <div className="card p-4"><span className="text-orange-600 font-medium">MOQ</span><p className="text-slate-600 mt-1">1 unit for most SKUs; volume pricing from 5+</p></div>
+            <div className="card p-4"><span className="text-orange-600 font-medium">Lead time</span><p className="text-slate-600 mt-1">3–5 business days in-stock; custom racks quoted</p></div>
+            <div className="card p-4"><span className="text-orange-600 font-medium">Shipping</span><p className="text-slate-600 mt-1">DHL/FedEx express or sea freight from Guangzhou</p></div>
           </div>
 
           <div className="flex flex-wrap gap-3 mb-8">
-            <Link href="/products" className={`px-3 py-1 rounded-full text-sm border ${!params.category ? "border-cyan-600 text-cyan-400" : "border-slate-700 text-slate-400"}`}>
+            <Link href="/products" className={`px-3 py-1 rounded-full text-sm border ${!params.category ? "border-orange-500 text-orange-600 bg-orange-50" : "border-slate-300 text-slate-600 hover:border-slate-400"}`}>
               All
             </Link>
             {categories.map((cat) => (
-              <Link key={cat} href={`/products?category=${encodeURIComponent(cat)}`} className={`px-3 py-1 rounded-full text-sm border ${params.category === cat ? "border-cyan-600 text-cyan-400" : "border-slate-700 text-slate-400"}`}>
+              <Link key={cat} href={`/products?category=${encodeURIComponent(cat)}`} className={`px-3 py-1 rounded-full text-sm border ${params.category === cat ? "border-orange-500 text-orange-600 bg-orange-50" : "border-slate-300 text-slate-600 hover:border-slate-400"}`}>
                 {cat}
               </Link>
             ))}
@@ -105,8 +105,8 @@ export default async function ProductsPage({
 
           <div className="flex gap-3 mb-8 text-sm">
             <span className="text-slate-500">Sort:</span>
-            <Link href={`/products?${params.category ? `category=${encodeURIComponent(params.category)}&` : ""}sort=price-asc`} className="text-slate-400 hover:text-white">Price Low</Link>
-            <Link href={`/products?${params.category ? `category=${encodeURIComponent(params.category)}&` : ""}sort=price-desc`} className="text-slate-400 hover:text-white">Price High</Link>
+            <Link href={`/products?${params.category ? `category=${encodeURIComponent(params.category)}&` : ""}sort=price-asc`} className="text-slate-600 hover:text-orange-600">Price Low</Link>
+            <Link href={`/products?${params.category ? `category=${encodeURIComponent(params.category)}&` : ""}sort=price-desc`} className="text-slate-600 hover:text-orange-600">Price High</Link>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">

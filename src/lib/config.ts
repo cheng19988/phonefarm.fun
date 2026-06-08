@@ -31,10 +31,10 @@ export const PAYMENT = {
 } as const;
 
 export const NAV = [
+  { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
   { href: "/services", label: "Services" },
+  { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/blog", label: "Guides" },
   { href: "/contact", label: "Contact" },
 ] as const;

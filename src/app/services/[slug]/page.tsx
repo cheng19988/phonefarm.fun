@@ -41,39 +41,39 @@ export default async function ServiceDetailPage({ params }: Props) {
       <div className="section">
         <div className="container-wide max-w-4xl">
           <div className="grid lg:grid-cols-2 gap-12 mb-12">
-            <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-900">
+            <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-50 border border-slate-200">
               <Image src={service.image} alt={service.title} fill className="object-cover" priority />
             </div>
             <div>
-              <p className="text-cyan-400 text-sm mb-2">{service.priceUsd > 0 ? "Fixed-price service" : "Quote-based service"}</p>
-              <h1 className="text-3xl font-bold text-white mb-4">{service.title}</h1>
-              <p className="text-slate-300 mb-4">{service.description}</p>
-              <p className="text-slate-400 text-sm mb-2">Timeline: {service.timeline}</p>
+              <p className="text-orange-600 text-sm mb-2">{service.priceUsd > 0 ? "Fixed-price service" : "Quote-based service"}</p>
+              <h1 className="text-3xl font-bold text-slate-900 mb-4">{service.title}</h1>
+              <p className="text-slate-600 mb-4">{service.description}</p>
+              <p className="text-slate-500 text-sm mb-2">Timeline: {service.timeline}</p>
               {service.priceUsd > 0 ? (
-                <p className="text-3xl font-bold text-white mb-6">${service.priceUsd.toLocaleString()}</p>
+                <p className="text-3xl font-bold text-slate-900 mb-6">${service.priceUsd.toLocaleString()}</p>
               ) : (
-                <p className="text-xl text-cyan-400 mb-6">Custom quote required</p>
+                <p className="text-xl text-orange-600 mb-6">Custom quote required</p>
               )}
               <ServiceBuyButtons slug={service.slug} priceUsd={service.priceUsd} />
-              <div className="mt-6 p-4 rounded-lg bg-slate-900/80 border border-slate-800">
-                <p className="font-medium text-white mb-2 text-sm">Sales contact</p>
+              <div className="mt-6 p-4 rounded-lg bg-slate-50 border border-slate-200">
+                <p className="font-medium text-slate-900 mb-2 text-sm">Sales contact</p>
                 <ContactBar />
               </div>
             </div>
           </div>
 
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-4">Deliverables</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-4">Deliverables</h2>
             <ul className="grid sm:grid-cols-2 gap-3">
               {service.deliverables.map((d) => (
-                <li key={d} className="card p-4 text-sm text-slate-300">{d}</li>
+                <li key={d} className="card p-4 text-sm text-slate-600">{d}</li>
               ))}
             </ul>
           </section>
 
           {service.faq.length > 0 && (
             <section className="mb-12">
-              <h2 className="text-2xl font-bold text-white mb-4">Service FAQ</h2>
+              <h2 className="text-2xl font-bold text-slate-900 mb-4">Service FAQ</h2>
               <FAQAccordion items={service.faq.map((f) => ({ question: f.q, answer: f.a }))} />
             </section>
           )}

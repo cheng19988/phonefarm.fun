@@ -26,12 +26,12 @@ export default function ServicesPage() {
                 <Image src={svc.image} alt={svc.title} fill className="object-cover group-hover:scale-105 transition-transform" />
               </div>
               <div className="p-6 flex flex-col flex-1">
-                <h2 className="text-xl font-bold text-white mb-2">{svc.title}</h2>
-                <p className="text-slate-400 text-sm mb-3 flex-1">{svc.description}</p>
+                <h2 className="text-xl font-bold text-slate-900 mb-2">{svc.title}</h2>
+                <p className="text-slate-600 text-sm mb-3 flex-1">{svc.description}</p>
                 <p className="text-xs text-slate-500 mb-3">
                   {svc.priceUsd > 0 ? `$${svc.priceUsd} · ${svc.timeline}` : `Quote required · ${svc.timeline}`}
                 </p>
-                <Link href={`/services/${svc.slug}`} className="text-cyan-400 text-sm hover:text-cyan-300">
+                <Link href={`/services/${svc.slug}`} className="text-orange-600 text-sm hover:text-orange-500">
                   View Details →
                 </Link>
                 {svc.priceUsd <= 0 && (
