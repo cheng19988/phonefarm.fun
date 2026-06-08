@@ -18,7 +18,7 @@ const BLOG_IMAGES: Record<string, string> = {
   "phone-farm-setup-guide-2026": IMAGES.workshop,
   "motherboard-box-vs-phone-box": IMAGES.motherboardBox.hero,
   "bulk-apk-installation-guide": IMAGES.remoteControl.hero,
-  "enterprise-phone-farm-deployment": IMAGES.power.hero,
+  "enterprise-phone-farm-deployment": IMAGES.customCabinet.hero,
 };
 
 function readingTime(content: string) {
@@ -30,40 +30,40 @@ export default function BlogPage() {
   return (
     <>
       <PageHero
+        large
         title="Phone Farm Hardware Guides"
         subtitle="Choosing phone farm boxes, motherboard clusters, power and cooling, rack deployment, and remote operation workflows."
-        compact
       />
-      <section className="section pt-10 md:pt-12">
+      <section className="section pt-12 md:pt-16">
         <div className="container-wide">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-10">
             {BLOG_POSTS.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="card overflow-hidden hover:border-orange-200 transition-colors group flex flex-col"
+                className="card overflow-hidden hover:border-orange-200 transition-colors group flex flex-col md:flex-row md:min-h-[220px]"
               >
-                <div className="relative aspect-[16/10] bg-slate-50 overflow-hidden">
+                <div className="relative aspect-[16/10] md:aspect-auto md:w-[42%] shrink-0 bg-slate-50 overflow-hidden">
                   <Image
                     src={BLOG_IMAGES[post.slug] ?? IMAGES.phoneFarmBox.card}
                     alt=""
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width:768px) 100vw, 33vw"
+                    sizes="(max-width:768px) 100vw, 40vw"
                   />
                 </div>
-                <div className="p-5 flex flex-col flex-1">
-                  <div className="flex items-center gap-2 text-xs text-slate-500 mb-2">
-                    <span className="text-orange-600 font-medium">{post.category}</span>
+                <div className="p-6 md:p-8 flex flex-col flex-1">
+                  <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm text-slate-500 mb-3">
+                    <span className="text-orange-600 font-semibold">{post.category}</span>
                     <span>·</span>
                     <span>{post.date}</span>
                     <span>·</span>
                     <span>{readingTime(post.content)} min read</span>
                   </div>
-                  <h2 className="font-bold text-slate-900 group-hover:text-orange-600 transition-colors leading-snug mb-2">
+                  <h2 className="text-xl md:text-2xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors leading-snug mb-3">
                     {post.title}
                   </h2>
-                  <p className="text-sm text-slate-600 line-clamp-2 flex-1">{post.excerpt}</p>
+                  <p className="text-sm md:text-base text-slate-600 line-clamp-3 flex-1 leading-relaxed">{post.excerpt}</p>
                 </div>
               </Link>
             ))}

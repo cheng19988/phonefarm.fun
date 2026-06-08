@@ -6,6 +6,14 @@ import { ContactBar } from "@/components/shared";
 import { CONTACT, SITE } from "@/lib/config";
 import { FormInput, FormLabel, FormSelect, FormTextarea, PageHero } from "@/components/store";
 
+const QUOTE_CHECKLIST = [
+  "Target node count (e.g. 20, 40, custom rack)",
+  "Phone / device model preference (Android version, screenless motherboard, etc.)",
+  "Shipping country and preferred freight method",
+  "Quantity and MOQ expectations",
+  "Remote setup requirement (ADB only, workstation config, or full lab management)",
+];
+
 function ContactForm() {
   const searchParams = useSearchParams();
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -31,8 +39,8 @@ function ContactForm() {
   const defaultProduct = searchParams.get("product") || searchParams.get("service") || "";
 
   return (
-    <form onSubmit={handleSubmit} className="card p-6 md:p-8 space-y-4">
-      <div className="grid sm:grid-cols-2 gap-4">
+    <form onSubmit={handleSubmit} className="card p-6 md:p-8 lg:p-10 space-y-5">
+      <div className="grid sm:grid-cols-2 gap-5">
         <div>
           <FormLabel required>Name</FormLabel>
           <FormInput name="name" required />
@@ -67,7 +75,7 @@ function ContactForm() {
         </div>
         <div>
           <FormLabel>Device model preference</FormLabel>
-          <FormInput name="deviceModel" placeholder="e.g. Samsung A series, Xiaomi, motherboard cluster" />
+          <FormInput name="deviceModel" placeholder="e.g. Samsung A series, motherboard cluster" />
         </div>
         <div>
           <FormLabel>Remote control requirement</FormLabel>
@@ -79,7 +87,7 @@ function ContactForm() {
             <option value="Not sure">Not sure — need recommendation</option>
           </FormSelect>
         </div>
-        <div>
+        <div className="sm:col-span-2">
           <FormLabel>Budget (optional)</FormLabel>
           <FormInput name="budget" placeholder="USD range" />
         </div>
@@ -88,15 +96,15 @@ function ContactForm() {
         <FormLabel>Project details</FormLabel>
         <FormTextarea
           name="message"
-          rows={5}
+          rows={6}
           placeholder="Target Android version, deployment timeline, rack requirements, automation workflow..."
         />
       </div>
-      <button type="submit" disabled={status === "loading"} className="btn-primary w-full py-3">
-        {status === "loading" ? "Sending..." : "Submit Quote Request"}
+      <button type="submit" disabled={status === "loading"} className="btn-primary w-full py-3.5 text-base">
+        {status === "loading" ? "Sending..." : "Send Hardware Requirement"}
       </button>
-      {status === "success" && <p className="text-green-700 text-sm bg-green-50 border border-green-200 rounded-lg p-3">Thank you! We will respond within 24 hours on business days.</p>}
-      {status === "error" && <p className="text-red-700 text-sm bg-red-50 border border-red-200 rounded-lg p-3">Failed to send. Please contact us via WhatsApp.</p>}
+      {status === "success" && <p className="text-green-700 text-sm bg-green-50 border border-green-200 rounded-lg p-4">Thank you! We will respond within 24 hours on business days.</p>}
+      {status === "error" && <p className="text-red-700 text-sm bg-red-50 border border-red-200 rounded-lg p-4">Failed to send. Please contact us via WhatsApp or email.</p>}
     </form>
   );
 }
@@ -105,38 +113,49 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
+        large
         title="Request a Phone Farm Hardware Quote"
         subtitle="Share your node count, device models, shipping country, and setup requirements. Our Guangzhou sales team responds within one business day."
         eyebrow="B2B hardware inquiry"
-        compact
       />
-      <section className="section pt-10 md:pt-12">
+      <section className="section pt-12 md:pt-16">
         <div className="container-wide">
-          <div className="grid lg:grid-cols-5 gap-10">
-            <div className="lg:col-span-3">
-              <Suspense fallback={<div className="card p-8 text-slate-500">Loading form...</div>}>
+          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
+            <div className="lg:col-span-7">
+              <Suspense fallback={<div className="card p-10 text-slate-500 text-lg">Loading form...</div>}>
                 <ContactForm />
               </Suspense>
             </div>
-            <div className="lg:col-span-2 space-y-6">
-              <div className="card p-6">
-                <h2 className="font-bold text-slate-900 mb-4">Direct contact</h2>
+            <div className="lg:col-span-5 space-y-6">
+              <div className="card p-6 md:p-8">
+                <h2 className="font-bold text-slate-900 text-lg mb-4">Direct contact</h2>
                 <ContactBar />
+                <p className="text-orange-600 font-medium mt-4">{CONTACT.email}</p>
               </div>
-              <div className="card p-6 bg-slate-50">
+              <div className="card p-6 md:p-8 bg-slate-900 text-white">
+                <h3 className="font-bold text-lg mb-4">Before you request a quote</h3>
+                <ul className="space-y-3">
+                  {QUOTE_CHECKLIST.map((item) => (
+                    <li key={item} className="flex gap-3 text-slate-300 text-sm md:text-base leading-relaxed">
+                      <span className="text-orange-400 shrink-0">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="card p-6 md:p-8 bg-slate-50">
                 <h3 className="font-bold text-slate-900 mb-3">What happens next</h3>
-                <ol className="space-y-3 text-sm text-slate-600 list-decimal list-inside">
+                <ol className="space-y-3 text-sm md:text-base text-slate-600 list-decimal list-inside leading-relaxed">
                   <li>We review your node count, SKU interest, and shipping region.</li>
                   <li>Sales replies with pricing, lead time, and configuration options.</li>
                   <li>For custom racks, we schedule a short scoping call if needed.</li>
                   <li>Standard SKUs can be added to cart; custom projects get a manual invoice.</li>
                 </ol>
               </div>
-              <div className="card p-6">
+              <div className="card p-6 md:p-8">
                 <h3 className="font-bold text-slate-900 mb-2">Response time</h3>
-                <p className="text-sm text-slate-600">Within 24 hours on weekdays (Guangzhou time, UTC+8).</p>
+                <p className="text-sm md:text-base text-slate-600">Within 24 hours on weekdays (Guangzhou time, UTC+8).</p>
                 <p className="text-sm text-slate-500 mt-2">{SITE.location}</p>
-                <p className="text-sm text-orange-600 mt-2 font-medium">{CONTACT.email}</p>
               </div>
             </div>
           </div>

@@ -12,6 +12,7 @@ export function PageHero({
   imageAlt,
   children,
   compact,
+  large,
 }: {
   title: string;
   subtitle?: string;
@@ -20,19 +21,25 @@ export function PageHero({
   imageAlt?: string;
   children?: ReactNode;
   compact?: boolean;
+  large?: boolean;
 }) {
+  const pad = compact ? "py-12 md:py-14" : large ? "py-16 md:py-24 lg:py-28" : "py-14 md:py-20 lg:py-24";
+  const titleSize = large
+    ? "text-4xl sm:text-5xl lg:text-[3.25rem]"
+    : "text-3xl sm:text-4xl lg:text-[2.75rem]";
+
   return (
     <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200">
-      <div className={`container-wide ${compact ? "py-10 md:py-12" : "py-12 md:py-16"}`}>
-        <div className={`grid gap-8 items-center ${image ? "lg:grid-cols-2 lg:gap-12" : ""}`}>
+      <div className={`container-wide ${pad}`}>
+        <div className={`grid gap-10 lg:gap-14 items-center ${image ? "lg:grid-cols-2" : ""}`}>
           <div>
-            {eyebrow && <p className="text-sm font-semibold text-orange-600 mb-2">{eyebrow}</p>}
-            <h1 className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold text-slate-900 leading-tight mb-4">{title}</h1>
-            {subtitle && <p className="text-lg text-slate-600 leading-relaxed max-w-2xl mb-6">{subtitle}</p>}
+            {eyebrow && <p className="text-sm font-semibold text-orange-600 mb-3 uppercase tracking-wide">{eyebrow}</p>}
+            <h1 className={`${titleSize} font-bold text-slate-900 leading-[1.08] mb-5 tracking-tight`}>{title}</h1>
+            {subtitle && <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mb-8">{subtitle}</p>}
             {children}
           </div>
           {image && (
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-md">
+            <div className={`relative rounded-2xl lg:rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-lg ${large ? "aspect-[16/10] lg:min-h-[360px]" : "aspect-[4/3]"}`}>
               <Image src={image} alt={imageAlt ?? title} fill className="object-cover" sizes="(max-width:1024px) 100vw, 50vw" priority />
             </div>
           )}
@@ -71,10 +78,10 @@ export function SectionHeader({
   className?: string;
 }) {
   return (
-    <div className={`mb-8 ${center ? "text-center" : ""} ${className}`}>
-      <h2 className={`text-2xl md:text-3xl font-bold text-slate-900 mb-2 ${center ? "mx-auto" : ""}`}>{title}</h2>
+    <div className={`mb-10 md:mb-12 ${center ? "text-center" : ""} ${className}`}>
+      <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-3 tracking-tight ${center ? "mx-auto" : ""}`}>{title}</h2>
       {subtitle && (
-        <p className={`text-slate-600 text-base md:text-lg max-w-3xl ${center ? "mx-auto" : ""}`}>{subtitle}</p>
+        <p className={`text-slate-600 text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed ${center ? "mx-auto" : ""}`}>{subtitle}</p>
       )}
     </div>
   );
@@ -134,33 +141,33 @@ export function BuyingGuideBlock() {
 
 /* ── Data display ── */
 
-export function PriceDisplay({ amount, size = "md" }: { amount: number; size?: "sm" | "md" | "lg" }) {
-  const sizes = { sm: "text-xl", md: "text-2xl", lg: "text-3xl" };
+export function PriceDisplay({ amount, size = "md" }: { amount: number; size?: "sm" | "md" | "lg" | "xl" }) {
+  const sizes = { sm: "text-xl", md: "text-2xl", lg: "text-3xl", xl: "text-4xl" };
   return <span className={`font-bold text-slate-900 ${sizes[size]}`}>${amount.toLocaleString()}</span>;
 }
 
-export function MetaGrid({ items }: { items: { label: string; value: string }[] }) {
+export function MetaGrid({ items, large }: { items: { label: string; value: string }[]; large?: boolean }) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+    <div className={`grid grid-cols-2 sm:grid-cols-3 gap-3 ${large ? "md:gap-4" : ""}`}>
       {items.map((item) => (
-        <div key={item.label} className="card p-3 text-sm">
-          <span className="text-slate-500 block text-xs mb-0.5">{item.label}</span>
-          <span className="text-slate-900 font-medium">{item.value}</span>
+        <div key={item.label} className={`card ${large ? "p-4 md:p-5" : "p-3"} text-sm`}>
+          <span className="text-slate-500 block text-xs uppercase tracking-wide mb-1">{item.label}</span>
+          <span className="text-slate-900 font-semibold text-sm md:text-base">{item.value}</span>
         </div>
       ))}
     </div>
   );
 }
 
-export function SpecTable({ specs }: { specs: Record<string, string> }) {
+export function SpecTable({ specs, large }: { specs: Record<string, string>; large?: boolean }) {
   return (
-    <div className="overflow-x-auto -mx-1">
-      <table className="w-full text-sm min-w-[280px]">
+    <div className="overflow-x-auto -mx-1 rounded-xl border border-slate-200 bg-white">
+      <table className={`w-full min-w-[320px] ${large ? "text-base" : "text-sm"}`}>
         <tbody>
           {Object.entries(specs).map(([k, v]) => (
-            <tr key={k} className="border-b border-slate-200">
-              <td className="py-3 pr-4 text-slate-600 align-top w-[38%] sm:w-1/3">{k}</td>
-              <td className="py-3 text-slate-900 align-top">{v}</td>
+            <tr key={k} className="border-b border-slate-100 last:border-0">
+              <td className={`py-4 px-4 md:px-5 text-slate-600 align-top font-medium w-[38%] sm:w-[34%] ${large ? "md:w-[32%]" : ""}`}>{k}</td>
+              <td className={`py-4 px-4 md:px-5 text-slate-900 align-top leading-relaxed ${large ? "md:pr-8" : ""}`}>{v}</td>
             </tr>
           ))}
         </tbody>
@@ -169,13 +176,13 @@ export function SpecTable({ specs }: { specs: Record<string, string> }) {
   );
 }
 
-export function IconList({ items, icon = "✓" }: { items: string[]; icon?: string }) {
+export function IconList({ items, icon = "✓", large }: { items: string[]; icon?: string; large?: boolean }) {
   return (
-    <ul className="space-y-2">
+    <ul className={`space-y-3 ${large ? "md:space-y-4" : ""}`}>
       {items.map((item) => (
-        <li key={item} className="flex gap-2 text-sm text-slate-600">
-          <span className="text-orange-600 shrink-0">{icon}</span>
-          <span>{item}</span>
+        <li key={item} className={`flex gap-3 text-slate-600 ${large ? "text-base md:text-lg" : "text-sm"}`}>
+          <span className="text-orange-600 shrink-0 font-bold">{icon}</span>
+          <span className="leading-relaxed">{item}</span>
         </li>
       ))}
     </ul>
@@ -197,7 +204,7 @@ export function FormInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}
-      className={`w-full bg-white border border-slate-300 rounded-lg px-3 py-2.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 ${props.className ?? ""}`}
+      className={`w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 text-base ${props.className ?? ""}`}
     />
   );
 }
@@ -206,7 +213,7 @@ export function FormTextarea(props: React.TextareaHTMLAttributes<HTMLTextAreaEle
   return (
     <textarea
       {...props}
-      className={`w-full bg-white border border-slate-300 rounded-lg px-3 py-2.5 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 ${props.className ?? ""}`}
+      className={`w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 text-base ${props.className ?? ""}`}
     />
   );
 }
@@ -215,7 +222,7 @@ export function FormSelect(props: React.SelectHTMLAttributes<HTMLSelectElement>)
   return (
     <select
       {...props}
-      className={`w-full bg-white border border-slate-300 rounded-lg px-3 py-2.5 text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 ${props.className ?? ""}`}
+      className={`w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 text-base ${props.className ?? ""}`}
     />
   );
 }
@@ -225,12 +232,12 @@ export function FormSelect(props: React.SelectHTMLAttributes<HTMLSelectElement>)
 export function AuthShell({ title, subtitle, children }: { title: string; subtitle?: string; children: ReactNode }) {
   return (
     <div className="section bg-slate-50 min-h-[60vh]">
-      <div className="container-wide max-w-md">
-        <div className="text-center mb-6">
-          <h1 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{title}</h1>
-          {subtitle && <p className="text-slate-600 text-sm">{subtitle}</p>}
+      <div className="container-wide max-w-lg">
+        <div className="text-center mb-8">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-3">{title}</h1>
+          {subtitle && <p className="text-slate-600 text-base">{subtitle}</p>}
         </div>
-        <div className="card p-6 md:p-8">{children}</div>
+        <div className="card p-6 md:p-8 lg:p-10">{children}</div>
         <p className="text-center text-sm text-slate-500 mt-6">
           <Link href="/products" className="text-orange-600 hover:text-orange-500">← Back to Shop</Link>
         </p>
@@ -274,7 +281,7 @@ export function FilterPills({
           <Link
             key={item.value || "all"}
             href={href}
-            className={`px-4 py-2 rounded-full text-sm font-medium border transition-colors ${
+            className={`px-4 py-2.5 rounded-full text-sm md:text-base font-medium border transition-colors ${
               isActive
                 ? "border-orange-500 text-orange-600 bg-orange-50"
                 : "border-slate-300 text-slate-600 hover:border-slate-400 bg-white"

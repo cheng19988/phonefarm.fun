@@ -3,6 +3,7 @@ export type ProductMeta = {
   tier: string;
   nodeCount: string;
   useCase: string;
+  deploymentType: string;
   moq: number;
   leadTime: string;
 };
@@ -12,6 +13,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     tier: "Starter",
     nodeCount: "20 nodes",
     useCase: "Small QA teams & first device lab",
+    deploymentType: "Starter Deployment",
     moq: 1,
     leadTime: "3–5 business days",
   },
@@ -19,6 +21,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     tier: "Pro",
     nodeCount: "20 nodes",
     useCase: "24/7 app testing & automation lab",
+    deploymentType: "Standard Deployment",
     moq: 1,
     leadTime: "3–5 business days",
   },
@@ -26,6 +29,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     tier: "High-Density",
     nodeCount: "20 nodes",
     useCase: "Headless Android QA at scale",
+    deploymentType: "High-Density Deployment",
     moq: 1,
     leadTime: "5–7 business days",
   },
@@ -33,6 +37,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     tier: "Pro",
     nodeCount: "10–20 nodes",
     useCase: "Mixed-device QA lab (customer devices)",
+    deploymentType: "Standard Deployment",
     moq: 1,
     leadTime: "5–7 business days",
   },
@@ -40,6 +45,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     tier: "Pro",
     nodeCount: "20 nodes",
     useCase: "Turnkey device lab deployment",
+    deploymentType: "Standard Deployment",
     moq: 1,
     leadTime: "5–7 business days",
   },
@@ -47,6 +53,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     tier: "Accessory",
     nodeCount: "20 slots",
     useCase: "Expand or custom-build farms",
+    deploymentType: "Accessory",
     moq: 1,
     leadTime: "3–5 business days",
   },
@@ -54,6 +61,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     tier: "Accessory",
     nodeCount: "7-port hub",
     useCase: "USB routing for device clusters",
+    deploymentType: "Accessory",
     moq: 1,
     leadTime: "3–5 business days",
   },
@@ -61,6 +69,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     tier: "Accessory",
     nodeCount: "1 PSU",
     useCase: "Replacement / spare power module",
+    deploymentType: "Accessory",
     moq: 1,
     leadTime: "3–5 business days",
   },
@@ -68,6 +77,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     tier: "Accessory",
     nodeCount: "4-fan kit",
     useCase: "Supplemental cooling for dense racks",
+    deploymentType: "Accessory",
     moq: 1,
     leadTime: "3–5 business days",
   },
@@ -75,6 +85,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     tier: "Accessory",
     nodeCount: "20-node kit",
     useCase: "Network baseline for one cluster",
+    deploymentType: "Accessory",
     moq: 1,
     leadTime: "3–5 business days",
   },
@@ -82,6 +93,7 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     tier: "Custom",
     nodeCount: "40+ nodes",
     useCase: "High-density rack / cabinet builds",
+    deploymentType: "Custom Deployment",
     moq: 1,
     leadTime: "Quote-based (2–4 weeks)",
   },
@@ -107,6 +119,7 @@ export function getProductMeta(slug: string): ProductMeta {
       tier: "Standard",
       nodeCount: "Varies",
       useCase: "Device testing hardware",
+      deploymentType: "Standard Deployment",
       moq: 1,
       leadTime: "3–5 business days",
     }

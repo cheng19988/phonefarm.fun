@@ -120,14 +120,14 @@ export default function OrderPage() {
 
   return (
     <div className="section">
-      <div className="container-wide max-w-2xl">
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-          <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Order {order.orderNumber}</h1>
+      <div className="container-wide max-w-3xl">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">Order {order.orderNumber}</h1>
           <StatusBadge status={order.status} />
         </div>
 
-        <div className="card p-6 mb-6">
-          <h2 className="font-bold text-slate-900 mb-4">Order items</h2>
+        <div className="card p-6 md:p-8 mb-8">
+          <h2 className="text-lg font-bold text-slate-900 mb-5">Order items</h2>
           {order.items.map((item, i) => (
             <div key={i} className="flex justify-between text-sm py-3 border-b border-slate-100 last:border-0 gap-4">
               <span className="text-slate-700">{item.product.name}</span>
@@ -141,38 +141,38 @@ export default function OrderPage() {
         </div>
 
         {payment && order.status === "Waiting for Payment" && (
-          <div className="card p-6 mb-6 border-orange-200 bg-orange-50/50">
-            <h2 className="font-bold text-slate-900 mb-2">USDT payment instructions</h2>
-            <p className="text-sm text-slate-600 mb-4">
+          <div className="card p-6 md:p-8 mb-8 border-orange-200 bg-orange-50/50">
+            <h2 className="text-lg font-bold text-slate-900 mb-3">USDT payment instructions</h2>
+            <p className="text-base text-slate-600 mb-5 leading-relaxed">
               Pay the exact amount below in {payment.paymentCurrency} on {payment.paymentNetwork}. Card and PayPal checkout are not available — contact {CONTACT.email} for manual invoice options.
             </p>
-            <div className="space-y-3 text-sm bg-white rounded-xl p-4 border border-slate-200">
+            <div className="space-y-4 text-base bg-white rounded-xl p-5 md:p-6 border border-slate-200">
               <div className="flex justify-between gap-4"><span className="text-slate-500">Amount due</span><span className="text-slate-900 font-mono font-bold">{payment.expectedAmount} {payment.paymentCurrency}</span></div>
               <div className="flex justify-between gap-4"><span className="text-slate-500">Network</span><span className="text-slate-900">{payment.paymentNetwork}</span></div>
               <div>
                 <span className="text-slate-500 block mb-1">Wallet address</span>
-                <code className="block bg-slate-50 border border-slate-200 p-3 rounded-lg text-orange-700 text-xs break-all font-mono">{payment.paymentAddress}</code>
+                <code className="block bg-slate-50 border border-slate-200 p-4 rounded-lg text-orange-700 text-sm break-all font-mono">{payment.paymentAddress}</code>
               </div>
               <div className="flex justify-between gap-4"><span className="text-slate-500">Expires in</span><span className="text-amber-700 font-medium">{timeLeft}</span></div>
               <div className="flex justify-between gap-4"><span className="text-slate-500">Verification</span><span className="text-slate-700">{payment.verificationStatus}</span></div>
               {payment.failureReason && (
-                <p className="text-red-700 text-xs bg-red-50 border border-red-200 rounded-lg p-3">
+                <p className="text-red-800 text-sm bg-red-50 border border-red-200 rounded-lg p-4 leading-relaxed">
                   Payment issue: {payment.failureReason.replace(/_/g, " ")}. Double-check amount, network, and address, then submit your TXID below or contact {CONTACT.email}.
                 </p>
               )}
             </div>
-            <form onSubmit={submitTxid} className="mt-4 space-y-2">
+            <form onSubmit={submitTxid} className="mt-5 space-y-3">
               <FormLabel>Submit TXID (speeds up confirmation)</FormLabel>
-              <div className="flex flex-col sm:flex-row gap-2">
+              <div className="flex flex-col sm:flex-row gap-3">
                 <FormInput
                   value={txInput}
                   onChange={(e) => setTxInput(e.target.value)}
                   placeholder="Transaction hash (TXID)"
-                  className="flex-1 font-mono text-sm"
+                  className="flex-1 font-mono"
                 />
-                <button type="submit" className="btn-primary sm:shrink-0 px-6">Verify TXID</button>
+                <button type="submit" className="btn-primary sm:shrink-0 px-8 py-3">Verify TXID</button>
               </div>
-              {txStatus && <p className="text-xs text-slate-600">{txStatus}</p>}
+              {txStatus && <p className="text-sm text-slate-600">{txStatus}</p>}
             </form>
           </div>
         )}

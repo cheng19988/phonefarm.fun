@@ -18,6 +18,7 @@ type ProductCardProps = {
   tier?: string;
   nodeCount?: string;
   useCase?: string;
+  deploymentType?: string;
   moq?: number;
   leadTime?: string;
   compact?: boolean;
@@ -34,6 +35,7 @@ export function ProductCard({
   category,
   tier,
   nodeCount,
+  deploymentType,
   moq = 1,
   leadTime,
   compact = false,
@@ -48,7 +50,7 @@ export function ProductCard({
       <Link
         href={`/products/${slug}`}
         className={`block relative overflow-hidden bg-slate-50 ${
-          featured ? "aspect-[4/5]" : "aspect-[4/5] sm:aspect-square"
+          featured ? "aspect-[4/5]" : "aspect-[4/5] sm:aspect-[4/5]"
         }`}
       >
         <Image
@@ -83,8 +85,9 @@ export function ProductCard({
             {shortDesc}
           </p>
         )}
-        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-500 mb-3">
+        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs md:text-sm text-slate-500 mb-3">
           {nodeCount && <span>{nodeCount}</span>}
+          {deploymentType && <span>· {deploymentType}</span>}
           <span>MOQ {moq}</span>
           {leadTime && <span>· {leadTime}</span>}
         </div>
@@ -128,7 +131,7 @@ export function ServiceCard({
 }) {
   return (
     <article className="card overflow-hidden flex flex-col h-full hover:border-orange-200 transition-colors group">
-      <Link href={`/services/${slug}`} className="block relative aspect-[16/10] overflow-hidden bg-slate-50">
+      <Link href={`/services/${slug}`} className="block relative aspect-[4/3] overflow-hidden bg-slate-50">
         <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="(max-width:768px) 100vw, 33vw" />
         {quoteOnly && (
           <span className="absolute top-3 left-3 text-xs bg-slate-900 text-white px-2 py-1 rounded font-medium">Quote Required</span>
@@ -140,7 +143,7 @@ export function ServiceCard({
         </Link>
         <p className="text-sm text-slate-600 mb-3 line-clamp-2 flex-1">{description}</p>
         <p className="text-sm font-medium text-orange-600 mb-4">
-          {quoteOnly ? "Custom quote" : `$${priceUsd.toLocaleString()}`} · {timeline}
+          {quoteOnly ? "Custom quote — contact sales" : `$${priceUsd.toLocaleString()}`} · {timeline}
         </p>
         <div className="grid grid-cols-2 gap-2 mt-auto">
           <Link href={`/services/${slug}`} className="btn-outline text-center text-sm py-2">View Details</Link>

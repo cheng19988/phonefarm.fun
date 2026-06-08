@@ -23,47 +23,47 @@ export default async function CheckoutPage() {
 
   return (
     <>
-      <PageHero title="Checkout" subtitle={`Signed in as ${session.email}`} compact />
-      <section className="section pt-8">
-        <div className="container-wide max-w-2xl">
+      <PageHero title="Checkout" subtitle={`Signed in as ${session.email}`} />
+      <section className="section pt-10 md:pt-12">
+        <div className="container-wide max-w-3xl">
           {purchasable.length === 0 ? (
-            <div className="card p-8 text-center">
-              <p className="text-slate-600 mb-4">No purchasable items in cart.</p>
-              <Link href="/products" className="btn-primary">Browse Products</Link>
+            <div className="card p-10 text-center">
+              <p className="text-slate-600 text-lg mb-6">No purchasable items in cart.</p>
+              <Link href="/products" className="btn-primary px-8 py-3">Browse Products</Link>
             </div>
           ) : (
             <>
-              <div className="card p-6 mb-6">
-                <h2 className="font-bold text-slate-900 mb-4">Order summary</h2>
-                <div className="space-y-3 mb-4">
+              <div className="card p-6 md:p-8 mb-8">
+                <h2 className="text-xl font-bold text-slate-900 mb-5">Order summary</h2>
+                <div className="space-y-4 mb-6">
                   {purchasable.map((line) => (
-                    <div key={`${line.type}-${line.slug}`} className="flex justify-between text-sm gap-4">
+                    <div key={`${line.type}-${line.slug}`} className="flex justify-between text-base gap-4 py-2 border-b border-slate-100 last:border-0">
                       <span className="text-slate-700">{line.name} × {line.quantity}</span>
-                      <span className="text-slate-900 font-medium shrink-0">${(line.priceUsd * line.quantity).toLocaleString()}</span>
+                      <span className="text-slate-900 font-semibold shrink-0">${(line.priceUsd * line.quantity).toLocaleString()}</span>
                     </div>
                   ))}
                 </div>
-                <div className="flex justify-between items-center pt-4 border-t border-slate-200">
-                  <span className="font-bold text-slate-900">Total (USD reference)</span>
-                  <PriceDisplay amount={total} size="md" />
+                <div className="flex justify-between items-center pt-5 border-t border-slate-200">
+                  <span className="text-lg font-bold text-slate-900">Total (USD reference)</span>
+                  <PriceDisplay amount={total} size="lg" />
                 </div>
               </div>
 
-              <div className="card p-6 mb-6 bg-orange-50 border-orange-100">
-                <h3 className="font-bold text-slate-900 mb-2">Payment method</h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
+              <div className="card p-6 md:p-8 mb-8 bg-orange-50 border-orange-100">
+                <h3 className="text-lg font-bold text-slate-900 mb-3">Payment method</h3>
+                <p className="text-base text-slate-600 leading-relaxed">
                   After placing your order, pay the exact USD amount in <strong className="text-slate-900">USDT (TRC20)</strong> on the order page. This site does not accept credit cards or automatic PayPal checkout.
                 </p>
-                <p className="text-sm text-slate-500 mt-2">
+                <p className="text-base text-slate-600 mt-4 leading-relaxed">
                   For bank transfer (T/T), Wise, or PayPal invoice, contact{" "}
-                  <a href="mailto:sales@phonefarm.fun" className="text-orange-600">sales@phonefarm.fun</a> before checkout.
+                  <a href="mailto:sales@phonefarm.fun" className="text-orange-600 font-medium">sales@phonefarm.fun</a> before checkout.
                 </p>
               </div>
 
               <form action="/api/checkout" method="POST">
-                <button type="submit" className="btn-primary w-full py-3 text-base">Place Order</button>
+                <button type="submit" className="btn-primary w-full py-3.5 text-base">Place Order</button>
               </form>
-              <Link href="/cart" className="block text-center text-sm text-slate-500 mt-4 hover:text-orange-600">← Back to cart</Link>
+              <Link href="/cart" className="block text-center text-sm text-slate-500 mt-5 hover:text-orange-600">← Back to cart</Link>
             </>
           )}
         </div>

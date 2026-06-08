@@ -90,6 +90,7 @@ export default async function HomePage() {
                   category={p!.category}
                   tier={meta.tier}
                   nodeCount={meta.nodeCount}
+                  deploymentType={meta.deploymentType}
                   moq={meta.moq}
                   leadTime={meta.leadTime}
                   featured

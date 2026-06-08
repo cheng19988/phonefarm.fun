@@ -63,47 +63,47 @@ export default function CartPageClient() {
 
   return (
     <div className="section">
-      <div className="container-wide max-w-3xl">
+      <div className="container-wide max-w-4xl">
         <h1 className="section-title">Shopping Cart</h1>
         {lines.length === 0 ? (
-          <div className="card p-8 md:p-12 text-center">
-            <p className="text-slate-600 mb-2">Your cart is empty.</p>
-            <p className="text-sm text-slate-500 mb-6">Browse phone farm boxes, motherboard clusters, and accessories.</p>
-            <Link href="/products" className="btn-primary">Shop Hardware</Link>
+          <div className="card p-10 md:p-14 text-center">
+            <p className="text-slate-600 text-lg mb-2">Your cart is empty.</p>
+            <p className="text-base text-slate-500 mb-8">Browse phone farm boxes, motherboard clusters, and accessories.</p>
+            <Link href="/products" className="btn-primary px-10 py-3 text-base">Shop Hardware</Link>
           </div>
         ) : (
           <>
-            <div className="space-y-4 mb-8">
+            <div className="space-y-5 mb-10">
               {lines.map((line) => (
-                <div key={`${line.type}-${line.slug}`} className="card p-4 md:p-5">
-                  <div className="flex flex-col sm:flex-row gap-4">
+                <div key={`${line.type}-${line.slug}`} className="card p-5 md:p-6">
+                  <div className="flex flex-col sm:flex-row gap-5">
                     {line.image && (
-                      <div className="relative w-full sm:w-24 h-40 sm:h-24 rounded-lg overflow-hidden shrink-0 bg-slate-50 border border-slate-200">
-                        <Image src={line.image} alt={line.name} fill className="object-cover" />
+                      <div className="relative w-full sm:w-36 md:w-44 h-48 sm:h-36 md:h-44 rounded-xl overflow-hidden shrink-0 bg-slate-50 border border-slate-200">
+                        <Image src={line.image} alt={line.name} fill className="object-cover" sizes="176px" />
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
                       <Link
                         href={line.type === "product" ? `/products/${line.slug}` : `/services/${line.slug}`}
-                        className="font-semibold text-slate-900 hover:text-orange-600 line-clamp-2"
+                        className="font-semibold text-lg text-slate-900 hover:text-orange-600 line-clamp-2"
                       >
                         {line.name}
                       </Link>
                       <p className="text-sm text-slate-500 capitalize mt-1">{line.type}</p>
                       {!line.purchasable && (
-                        <p className="text-xs text-amber-700 mt-2 bg-amber-50 border border-amber-200 rounded px-2 py-1 inline-block">
+                        <p className="text-sm text-amber-800 mt-3 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 inline-block">
                           Requires quote — remove to checkout other items
                         </p>
                       )}
-                      <div className="flex flex-wrap items-center justify-between gap-3 mt-4">
-                        <div className="flex items-center gap-2">
-                          <button type="button" className="btn-outline px-3 py-1.5 text-sm min-w-[36px]" onClick={() => updateQty(line.type, line.slug, line.quantity - 1)} aria-label="Decrease quantity">−</button>
-                          <span className="text-slate-900 w-8 text-center font-medium">{line.quantity}</span>
-                          <button type="button" className="btn-outline px-3 py-1.5 text-sm min-w-[36px]" onClick={() => updateQty(line.type, line.slug, line.quantity + 1)} aria-label="Increase quantity">+</button>
+                      <div className="flex flex-wrap items-center justify-between gap-4 mt-5">
+                        <div className="flex items-center gap-3">
+                          <button type="button" className="btn-outline px-4 py-2 text-base min-w-[44px] min-h-[44px]" onClick={() => updateQty(line.type, line.slug, line.quantity - 1)} aria-label="Decrease quantity">−</button>
+                          <span className="text-slate-900 w-10 text-center font-semibold text-lg">{line.quantity}</span>
+                          <button type="button" className="btn-outline px-4 py-2 text-base min-w-[44px] min-h-[44px]" onClick={() => updateQty(line.type, line.slug, line.quantity + 1)} aria-label="Increase quantity">+</button>
                         </div>
-                        <PriceDisplay amount={line.priceUsd * line.quantity} size="sm" />
+                        <PriceDisplay amount={line.priceUsd * line.quantity} size="md" />
                       </div>
-                      <button type="button" onClick={() => remove(line.type, line.slug)} className="text-sm text-slate-500 hover:text-red-600 mt-3">
+                      <button type="button" onClick={() => remove(line.type, line.slug)} className="text-sm text-slate-500 hover:text-red-600 mt-4">
                         Remove
                       </button>
                     </div>
@@ -111,12 +111,12 @@ export default function CartPageClient() {
                 </div>
               ))}
             </div>
-            <div className="card p-6 space-y-4">
+            <div className="card p-6 md:p-8 space-y-5">
               <div className="flex justify-between items-center">
-                <span className="text-lg font-bold text-slate-900">Total (USD)</span>
-                <PriceDisplay amount={total} size="md" />
+                <span className="text-xl font-bold text-slate-900">Total (USD)</span>
+                <PriceDisplay amount={total} size="lg" />
               </div>
-              <Link href="/checkout" className="btn-primary w-full text-center block py-3">Proceed to Checkout</Link>
+              <Link href="/checkout" className="btn-primary w-full text-center block py-3.5 text-base">Proceed to Checkout</Link>
               <Link href="/products" className="block text-center text-sm text-slate-500 hover:text-orange-600">Continue shopping</Link>
             </div>
           </>
