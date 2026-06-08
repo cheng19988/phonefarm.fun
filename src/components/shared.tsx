@@ -1,4 +1,5 @@
 import { CONTACT, SITE } from "@/lib/config";
+import { CtaBlock } from "./store";
 
 export function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
   return (
@@ -30,21 +31,15 @@ export function ContactBar({ compact = false }: { compact?: boolean }) {
 
 export function ContactCTA({ title = "Talk to Our Sales Team" }: { title?: string }) {
   return (
-    <section className="rounded-2xl bg-slate-900 p-8 md:p-12 text-center">
-      <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">{title}</h2>
-      <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
-        Factory-direct support from {SITE.location}. Get pricing, custom quotes, and deployment guidance within 24 hours.
-      </p>
-      <ContactBar />
-      <div className="mt-6 flex flex-wrap justify-center gap-3">
-        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
-          WhatsApp Sales
-        </a>
-        <a href="/contact" className="btn-secondary">
-          Send Inquiry
-        </a>
-      </div>
-    </section>
+    <CtaBlock
+      title={title}
+      description={`Factory-direct support from ${SITE.location}. Get pricing, custom quotes, and deployment guidance within 24 hours.`}
+      primaryHref={CONTACT.whatsappUrl}
+      primaryLabel="WhatsApp Sales"
+      secondaryHref="/contact"
+      secondaryLabel="Send Inquiry"
+      dark
+    />
   );
 }
 

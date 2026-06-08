@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProductBySlug, getRelatedProducts } from "@/lib/products-server";
 import { BuyButtons, FAQAccordion, ProductCard } from "@/components/commerce";
 import { ContactCTA, ContactBar, JsonLd, StockBadge } from "@/components/shared";
 import { getProductMeta } from "@/data/product-meta";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
+import { Breadcrumbs, SpecTable, IconList, MetaGrid, PriceDisplay, SectionHeader } from "@/components/store";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -42,6 +44,10 @@ export default async function ProductDetailPage({ params }: Props) {
   const faq = parseJson<{ q: string; a: string }[]>(product.faq, []);
   const faqItems = faq.map((f) => ({ question: f.q, answer: f.a }));
 
+  const gallery = [product.imageDetail, product.imageHero, product.imageCard].filter(
+    (v, i, a) => a.indexOf(v) === i
+  );
+
   return (
     <>
       <JsonLd data={[
@@ -54,111 +60,109 @@ export default async function ProductDetailPage({ params }: Props) {
         ...(faqItems.length > 0 ? [faqJsonLd(faqItems)] : []),
       ]} />
 
-      <div className="section">
+      <div className="section pt-8 md:pt-10">
         <div className="container-wide">
-          {/* Hero */}
-          <div className="grid lg:grid-cols-2 gap-12 mb-16">
-            <div className="relative aspect-square rounded-xl overflow-hidden bg-slate-50 border border-slate-200">
-              <Image src={product.imageDetail} alt={product.name} fill className="object-cover" priority />
-            </div>
+          <Breadcrumbs items={[
+            { label: "Home", href: "/" },
+            { label: "Products", href: "/products" },
+            { label: product.name },
+          ]} />
+
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
             <div>
-              <p className="text-orange-600 text-sm mb-2">{meta.tier} · {product.category}</p>
-              <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-3">{product.name}</h1>
-              <p className="text-slate-600 mb-6">{product.shortDesc}</p>
-              <div className="flex flex-wrap items-center gap-4 mb-4">
-                <span className="text-3xl font-bold text-slate-900">${product.priceUsd.toLocaleString()}</span>
+              <div className="relative aspect-square rounded-2xl overflow-hidden bg-slate-50 border border-slate-200 mb-3">
+                <Image src={product.imageDetail} alt={product.name} fill className="object-cover" priority sizes="(max-width:1024px) 100vw, 50vw" />
+              </div>
+              {gallery.length > 1 && (
+                <div className="grid grid-cols-4 gap-2">
+                  {gallery.slice(0, 4).map((src) => (
+                    <div key={src} className="relative aspect-square rounded-lg overflow-hidden border border-slate-200 bg-slate-50">
+                      <Image src={src} alt="" fill className="object-cover" sizes="120px" />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div>
+              <p className="text-orange-600 text-sm font-medium mb-2">{meta.tier} · {product.category}</p>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-3 leading-tight">{product.name}</h1>
+              <p className="text-slate-600 mb-6 leading-relaxed">{product.shortDesc}</p>
+              <div className="flex flex-wrap items-center gap-4 mb-6">
+                <PriceDisplay amount={product.priceUsd} size="lg" />
                 <StockBadge stock={product.stock} />
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-6 text-sm">
-                <div className="card p-3"><span className="text-slate-500 block text-xs">Nodes</span><span className="text-slate-900">{meta.nodeCount}</span></div>
-                <div className="card p-3"><span className="text-slate-500 block text-xs">MOQ</span><span className="text-slate-900">{meta.moq} unit</span></div>
-                <div className="card p-3"><span className="text-slate-500 block text-xs">Lead time</span><span className="text-slate-900">{meta.leadTime}</span></div>
+              <MetaGrid items={[
+                { label: "Nodes", value: meta.nodeCount },
+                { label: "MOQ", value: `${meta.moq} unit` },
+                { label: "Lead time", value: meta.leadTime },
+              ]} />
+              <div className="mt-6">
+                <BuyButtons slug={product.slug} stock={product.stock} />
               </div>
-              <BuyButtons slug={product.slug} stock={product.stock} />
-              <div className="mt-6 p-4 rounded-lg bg-slate-50 border border-slate-200 text-sm">
+              <div className="mt-6 p-4 rounded-xl bg-slate-50 border border-slate-200 text-sm">
                 <p className="font-medium text-slate-900 mb-2">Sales contact</p>
                 <ContactBar />
               </div>
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid lg:grid-cols-3 gap-10 lg:gap-12">
             <div className="lg:col-span-2 space-y-12">
               <section>
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">Overview</h2>
+                <SectionHeader title="Overview" />
                 <p className="text-slate-600 leading-relaxed">{product.description}</p>
               </section>
 
               {features.length > 0 && (
                 <section>
-                  <h2 className="text-2xl font-bold text-slate-900 mb-4">Key Features</h2>
-                  <ul className="space-y-2">
-                    {features.map((f) => (
-                      <li key={f} className="flex gap-2 text-slate-600"><span className="text-orange-600">✓</span>{f}</li>
-                    ))}
-                  </ul>
+                  <SectionHeader title="Key Features" />
+                  <IconList items={features} />
                 </section>
               )}
 
               <section>
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">Key Specifications</h2>
-                <table className="w-full text-sm">
-                  <tbody>
-                    {Object.entries(specs).map(([k, v]) => (
-                      <tr key={k} className="border-b border-slate-200">
-                        <td className="py-3 text-slate-600 pr-4 w-1/3">{k}</td>
-                        <td className="py-3 text-slate-900">{v}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <SectionHeader title="Key Specifications" />
+                <SpecTable specs={specs} />
               </section>
 
               <section>
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">Built for Real-Device Workflows</h2>
+                <SectionHeader title="Use Cases" subtitle="Built for phone farm deployment, app testing, device labs, and Android hardware automation workflows." />
                 <ul className="grid sm:grid-cols-2 gap-3">
                   {scenarios.map((s) => (
                     <li key={s} className="card p-4 text-sm text-slate-600">{s}</li>
                   ))}
                 </ul>
-                <p className="text-slate-500 text-sm mt-4">
-                  Designed for app QA testing, Android compatibility checks, device lab setup, and long-running automation tasks within your platform policies.
-                </p>
               </section>
 
-              <section>
-                <h2 className="text-2xl font-bold text-slate-900 mb-4">FAQ</h2>
-                <FAQAccordion items={faqItems} />
-              </section>
-
-              <section className="card p-6">
-                <h2 className="text-lg font-bold text-slate-900 mb-2">Customer feedback</h2>
-                <p className="text-slate-600 text-sm">
-                  Build photos and reference deployments are available on request — contact{" "}
-                  <a href="mailto:sales@phonefarm.fun" className="text-orange-600">sales@phonefarm.fun</a> or WhatsApp for recent shipment examples from our Guangzhou workshop.
-                </p>
-              </section>
+              {faqItems.length > 0 && (
+                <section>
+                  <SectionHeader title="Product FAQ" />
+                  <FAQAccordion items={faqItems} />
+                </section>
+              )}
             </div>
 
-            <div className="space-y-8">
+            <div className="space-y-6">
               <section className="card p-6">
                 <h3 className="font-bold text-slate-900 mb-3">What&apos;s Included</h3>
-                <ul className="space-y-1 text-sm text-slate-600">
-                  {accessories.map((a) => <li key={a}>• {a}</li>)}
-                </ul>
+                <IconList items={accessories} icon="•" />
               </section>
               <section className="card p-6">
-                <h3 className="font-bold text-slate-900 mb-3">Pre-Shipment & Delivery</h3>
-                <ul className="space-y-1 text-sm text-slate-600">
-                  {delivery.map((d) => <li key={d}>• {d}</li>)}
-                </ul>
+                <h3 className="font-bold text-slate-900 mb-3">Pre-Shipment &amp; Delivery</h3>
+                <IconList items={delivery} icon="•" />
               </section>
+              <div className="card p-6 bg-orange-50 border-orange-100">
+                <h3 className="font-bold text-slate-900 mb-2">Need a custom layout?</h3>
+                <p className="text-sm text-slate-600 mb-4">Share node count, device models, and rack requirements for a tailored quote.</p>
+                <Link href={`/contact?product=${slug}`} className="btn-primary text-sm w-full text-center block">Request Custom Quote</Link>
+              </div>
             </div>
           </div>
 
           {related.length > 0 && (
-            <section className="mt-16">
-              <h2 className="text-2xl font-bold text-slate-900 mb-6">Related Products</h2>
+            <section className="mt-16 pt-12 border-t border-slate-200">
+              <SectionHeader title="Related Products" />
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {related.map((p) => {
                   const rMeta = getProductMeta(p.slug);
@@ -174,9 +178,9 @@ export default async function ProductDetailPage({ params }: Props) {
                       category={p.category}
                       tier={rMeta.tier}
                       nodeCount={rMeta.nodeCount}
-                      useCase={rMeta.useCase}
                       moq={rMeta.moq}
                       leadTime={rMeta.leadTime}
+                      compact
                     />
                   );
                 })}

@@ -58,7 +58,7 @@ const HARDWARE_SHOWCASE = [
 
 export const metadata: Metadata = {
   ...buildMetadata({
-    title: "Real Android Device Farm Hardware for Testing Teams",
+    title: "Professional Phone Farm Boxes & Motherboard Arrays",
     description: SITE.description,
     path: "/",
   }),
@@ -174,10 +174,8 @@ export default async function HomePage() {
                   category={p!.category}
                   tier={meta.tier}
                   nodeCount={meta.nodeCount}
-                  useCase={meta.useCase}
                   moq={meta.moq}
                   leadTime={meta.leadTime}
-                  large
                 />
               );
             })}

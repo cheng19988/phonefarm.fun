@@ -5,6 +5,7 @@ import Link from "next/link";
 import { CONTACT } from "@/lib/config";
 import { AddToCartButton } from "./add-to-cart-button";
 import { StockBadge } from "./shared";
+import { PriceDisplay } from "./store";
 
 type ProductCardProps = {
   slug: string;
@@ -19,7 +20,7 @@ type ProductCardProps = {
   useCase?: string;
   moq?: number;
   leadTime?: string;
-  large?: boolean;
+  compact?: boolean;
 };
 
 export function ProductCard({
@@ -32,49 +33,41 @@ export function ProductCard({
   category,
   tier,
   nodeCount,
-  useCase,
   moq = 1,
   leadTime,
-  large = false,
+  compact = false,
 }: ProductCardProps) {
   return (
-    <article className="card group flex flex-col h-full">
-      <Link href={`/products/${slug}`} className="block relative aspect-square overflow-hidden bg-slate-50">
+    <article className="card group flex flex-col h-full hover:border-orange-200 transition-colors">
+      <Link href={`/products/${slug}`} className="block relative aspect-[4/5] sm:aspect-square overflow-hidden bg-slate-50">
         <Image
           src={imageCard}
           alt={name}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-300"
-          sizes={large ? "(max-width:768px) 100vw, 25vw" : "(max-width:768px) 100vw, 33vw"}
+          sizes="(max-width:768px) 100vw, 25vw"
         />
-        <span className="absolute top-3 left-3 text-xs bg-white/90 text-slate-700 px-2 py-1 rounded border border-slate-200">
+        <span className="absolute top-3 left-3 text-xs bg-white/95 text-slate-700 px-2 py-1 rounded border border-slate-200 font-medium">
           {tier ?? category}
         </span>
       </Link>
-      <div className={`flex flex-col flex-1 ${large ? "p-5" : "p-4"}`}>
+      <div className={`flex flex-col flex-1 ${compact ? "p-3" : "p-4 md:p-5"}`}>
         <Link href={`/products/${slug}`}>
-          <h3 className={`font-semibold text-slate-900 group-hover:text-orange-600 transition-colors mb-1 line-clamp-2 ${large ? "text-lg" : ""}`}>
+          <h3 className="font-semibold text-slate-900 group-hover:text-orange-600 transition-colors mb-1 line-clamp-2 text-base md:text-lg leading-snug">
             {name}
           </h3>
         </Link>
-        {nodeCount && (
-          <p className="text-xs text-slate-500 mb-1">
-            {nodeCount}
-            {useCase ? ` · ${useCase}` : ""}
-          </p>
-        )}
-        <p className={`text-slate-600 mb-3 line-clamp-2 flex-1 ${large ? "text-sm" : "text-sm"}`}>{shortDesc}</p>
-        <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs text-slate-500 mb-3">
-          <span>MOQ: {moq}</span>
-          {leadTime && <span>Lead: {leadTime}</span>}
+        {!compact && <p className="text-sm text-slate-600 mb-3 line-clamp-2 flex-1">{shortDesc}</p>}
+        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-500 mb-3">
+          {nodeCount && <span>{nodeCount}</span>}
+          <span>MOQ {moq}</span>
+          {leadTime && <span>· {leadTime}</span>}
         </div>
-        <div className="flex items-center justify-between mb-3">
-          <span className={`font-bold text-slate-900 ${large ? "text-2xl" : "text-xl"}`}>
-            ${priceUsd.toLocaleString()}
-          </span>
+        <div className="flex items-center justify-between mb-3 gap-2">
+          <PriceDisplay amount={priceUsd} size={compact ? "sm" : "md"} />
           <StockBadge stock={stock} />
         </div>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-2 mt-auto">
           <AddToCartButton
             type="product"
             slug={slug}
@@ -91,14 +84,58 @@ export function ProductCard({
   );
 }
 
+export function ServiceCard({
+  slug,
+  title,
+  description,
+  image,
+  priceUsd,
+  timeline,
+  quoteOnly,
+}: {
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  priceUsd: number;
+  timeline: string;
+  quoteOnly?: boolean;
+}) {
+  return (
+    <article className="card overflow-hidden flex flex-col h-full hover:border-orange-200 transition-colors group">
+      <Link href={`/services/${slug}`} className="block relative aspect-[16/10] overflow-hidden bg-slate-50">
+        <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" sizes="(max-width:768px) 100vw, 33vw" />
+        {quoteOnly && (
+          <span className="absolute top-3 left-3 text-xs bg-slate-900 text-white px-2 py-1 rounded font-medium">Quote Required</span>
+        )}
+      </Link>
+      <div className="p-5 flex flex-col flex-1">
+        <Link href={`/services/${slug}`}>
+          <h3 className="font-bold text-slate-900 group-hover:text-orange-600 transition-colors mb-2">{title}</h3>
+        </Link>
+        <p className="text-sm text-slate-600 mb-3 line-clamp-2 flex-1">{description}</p>
+        <p className="text-sm font-medium text-orange-600 mb-4">
+          {quoteOnly ? "Custom quote" : `$${priceUsd.toLocaleString()}`} · {timeline}
+        </p>
+        <div className="grid grid-cols-2 gap-2 mt-auto">
+          <Link href={`/services/${slug}`} className="btn-outline text-center text-sm py-2">View Details</Link>
+          <Link href={`/contact?service=${slug}`} className="btn-primary text-center text-sm py-2">
+            {quoteOnly ? "Get Quote" : "Request Quote"}
+          </Link>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 export function FAQAccordion({ items }: { items: { question: string; answer: string }[] }) {
   return (
     <div className="space-y-3">
       {items.map((item, i) => (
-        <details key={i} className="card p-4 group">
-          <summary className="font-medium text-slate-900 cursor-pointer list-none flex justify-between items-center">
-            {item.question}
-            <span className="text-orange-600 group-open:rotate-45 transition-transform text-xl">+</span>
+        <details key={i} className="card p-4 md:p-5 group">
+          <summary className="font-medium text-slate-900 cursor-pointer list-none flex justify-between items-start gap-4">
+            <span>{item.question}</span>
+            <span className="text-orange-600 group-open:rotate-45 transition-transform text-xl shrink-0 leading-none">+</span>
           </summary>
           <p className="mt-3 text-slate-600 text-sm leading-relaxed">{item.answer}</p>
         </details>
@@ -110,16 +147,23 @@ export function FAQAccordion({ items }: { items: { question: string; answer: str
 export function BuyButtons({ slug, stock = 0 }: { slug: string; stock?: number }) {
   const disabled = stock <= 0;
   return (
-    <div className="flex flex-wrap gap-3 items-center">
+    <div className="flex flex-col sm:flex-row flex-wrap gap-3">
       <AddToCartButton
         type="product"
         slug={slug}
         disabled={disabled}
-        className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+        className="btn-primary text-base px-8 py-3 disabled:opacity-50 disabled:cursor-not-allowed flex-1 sm:flex-none text-center justify-center"
         label={disabled ? "Out of Stock" : "Add to Cart"}
       />
-      <Link href={`/contact?product=${slug}`} className="btn-outline">Get Quote</Link>
-      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary text-sm">WhatsApp</a>
+      <Link href={`/contact?product=${slug}`} className="btn-outline text-base px-6 py-3 text-center">Request Quote</Link>
+      <a
+        href={CONTACT.whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="btn-secondary text-sm px-4 py-3 text-center sm:ml-auto"
+      >
+        WhatsApp
+      </a>
     </div>
   );
 }
@@ -127,13 +171,16 @@ export function BuyButtons({ slug, stock = 0 }: { slug: string; stock?: number }
 export function ServiceBuyButtons({ slug, priceUsd }: { slug: string; priceUsd: number }) {
   if (priceUsd <= 0) {
     return (
-      <Link href={`/contact?service=${slug}`} className="btn-primary">Request Quote</Link>
+      <div className="flex flex-wrap gap-3">
+        <Link href={`/contact?service=${slug}`} className="btn-primary">Request Quote</Link>
+        <Link href={`/services/${slug}`} className="btn-outline">View Details</Link>
+      </div>
     );
   }
   return (
     <div className="flex flex-wrap gap-3">
       <AddToCartButton type="service" slug={slug} className="btn-primary" />
-      <Link href={`/contact?service=${slug}`} className="btn-outline">Get Quote</Link>
+      <Link href={`/contact?service=${slug}`} className="btn-outline">Request Quote</Link>
     </div>
   );
 }

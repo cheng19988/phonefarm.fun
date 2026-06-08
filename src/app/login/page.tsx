@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
+import { AuthShell, FormInput, FormLabel } from "@/components/store";
 
 function LoginForm() {
   const router = useRouter();
@@ -21,8 +22,7 @@ function LoginForm() {
       body: JSON.stringify({ email: form.get("email"), password: form.get("password") }),
     });
     if (res.ok) {
-      const redirect = searchParams.get("redirect") || "/account/orders";
-      router.push(redirect);
+      router.push(searchParams.get("redirect") || "/account/orders");
       router.refresh();
     } else {
       const data = await res.json();
@@ -32,19 +32,19 @@ function LoginForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card p-6 space-y-4">
-      {error && <p className="text-red-400 text-sm">{error}</p>}
+    <form onSubmit={handleSubmit} className="space-y-4">
+      {error && <p className="text-red-700 text-sm bg-red-50 border border-red-200 rounded-lg p-3">{error}</p>}
       <div>
-        <label className="block text-sm text-slate-400 mb-1">Email</label>
-        <input name="email" type="email" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+        <FormLabel required>Email</FormLabel>
+        <FormInput name="email" type="email" required autoComplete="email" />
       </div>
       <div>
-        <label className="block text-sm text-slate-400 mb-1">Password</label>
-        <input name="password" type="password" required className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-white" />
+        <FormLabel required>Password</FormLabel>
+        <FormInput name="password" type="password" required autoComplete="current-password" />
       </div>
-      <button type="submit" disabled={loading} className="btn-primary w-full">{loading ? "Logging in..." : "Login"}</button>
-      <p className="text-center text-sm text-slate-400">
-        No account? <Link href="/register" className="text-cyan-400">Register</Link>
+      <button type="submit" disabled={loading} className="btn-primary w-full py-3">{loading ? "Logging in..." : "Login"}</button>
+      <p className="text-center text-sm text-slate-600">
+        No account? <Link href="/register" className="text-orange-600 hover:text-orange-500 font-medium">Register</Link>
       </p>
     </form>
   );
@@ -52,13 +52,10 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="section">
-      <div className="container-wide max-w-md">
-        <h1 className="section-title text-center">Login</h1>
-        <Suspense fallback={<div className="card p-6 text-slate-400">Loading...</div>}>
-          <LoginForm />
-        </Suspense>
-      </div>
-    </div>
+    <AuthShell title="Login" subtitle="Access your orders and checkout">
+      <Suspense fallback={<p className="text-slate-500 text-sm">Loading...</p>}>
+        <LoginForm />
+      </Suspense>
+    </AuthShell>
   );
 }

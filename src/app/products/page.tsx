@@ -4,35 +4,23 @@ import { ProductCard } from "@/components/commerce";
 import { JsonLd } from "@/components/shared";
 import { getProductMeta } from "@/data/product-meta";
 import { buildMetadata, itemListJsonLd } from "@/lib/seo";
+import { PageHero, FilterPills, BuyingGuideBlock, SectionHeader } from "@/components/store";
+import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
-  title: "Android Device Farm Hardware Catalog",
+  title: "Phone Farm Hardware Catalog",
   description:
-    "Browse factory-built Android device farm boxes, motherboard clusters, lab accessories, and custom rack solutions. Reference USD pricing, MOQ, and lead times for B2B buyers.",
+    "Browse factory-built phone farm boxes, motherboard arrays, rack solutions, and accessories. Reference USD pricing, MOQ, and lead times for B2B buyers.",
   path: "/products",
 });
 
-const DEPLOYMENT_SIZES = [
-  {
-    title: "Starter deployment",
-    desc: "20-node starter box for small QA teams and first device labs.",
-    category: "Starter Deployment",
-  },
-  {
-    title: "Standard team deployment",
-    desc: "Pro boxes and turnkey bundles for continuous app testing.",
-    category: "Standard Deployment",
-  },
-  {
-    title: "High-density deployment",
-    desc: "Motherboard clusters and dense rack layouts for scaled QA.",
-    category: "High-Density Deployment",
-  },
-  {
-    title: "Custom hardware solution",
-    desc: "40+ node rack and cabinet projects scoped to your lab.",
-    category: "Custom Deployment",
-  },
+const DEPLOYMENT_FILTERS = [
+  { label: "All Products", value: "" },
+  { label: "Starter Deployment", value: "Starter Deployment" },
+  { label: "Standard Deployment", value: "Standard Deployment" },
+  { label: "High-Density Deployment", value: "High-Density Deployment" },
+  { label: "Custom Deployment", value: "Custom Deployment" },
+  { label: "Accessory", value: "Accessory" },
 ];
 
 export default async function ProductsPage({
@@ -46,12 +34,17 @@ export default async function ProductsPage({
   const order = params.sort === "price-desc" ? "desc" : "asc";
 
   const products = await getPublishedProducts({
-    category: params.category,
+    category: params.category || undefined,
     orderBy,
     order,
   });
 
-  const categories = [...new Set(products.map((p) => p.category))];
+  const sortQuery = (sort: string) => {
+    const q = new URLSearchParams();
+    if (params.category) q.set("category", params.category);
+    q.set("sort", sort);
+    return `/products?${q.toString()}`;
+  };
 
   return (
     <>
@@ -62,54 +55,36 @@ export default async function ProductsPage({
         imageCard: p.imageCard,
       })))} />
 
-      <div className="section">
-        <div className="container-wide">
-          <h1 className="section-title">Device Farm Hardware Catalog</h1>
-          <p className="section-subtitle max-w-3xl">
-            Reference USD pricing for standard SKUs. Final quotes depend on device model, quantity, and shipping region — use{" "}
-            <Link href="/contact" className="text-orange-600 hover:text-orange-500">Contact</Link> for bulk or custom rack orders.
-          </p>
+      <PageHero
+        title="Phone Farm Hardware Catalog"
+        subtitle="Phone farm boxes, motherboard arrays, rack solutions, and accessories for real-device deployment."
+        eyebrow="Factory-built · Guangzhou"
+        image={IMAGES.phoneFarmBox.hero}
+        imageAlt="Phone farm hardware catalog"
+        compact
+      />
 
-          <div className="mb-12">
-            <h2 className="text-lg font-bold text-slate-900 mb-4">Choose by deployment size</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-              {DEPLOYMENT_SIZES.map((item) => (
-                <Link
-                  key={item.category}
-                  href={`/products?category=${encodeURIComponent(item.category)}`}
-                  className={`card p-4 hover:border-orange-300 transition-colors ${params.category === item.category ? "border-orange-500" : ""}`}
-                >
-                  <h3 className="font-semibold text-slate-900 text-sm mb-1">{item.title}</h3>
-                  <p className="text-xs text-slate-600">{item.desc}</p>
-                </Link>
-              ))}
+      <section className="section pt-10 md:pt-12">
+        <div className="container-wide">
+          <SectionHeader
+            title="Choose by deployment size"
+            subtitle="Filter by deployment type or browse the full catalog."
+          />
+
+          <div className="mb-8">
+            <FilterPills items={DEPLOYMENT_FILTERS} active={params.category ?? ""} baseHref="/products" />
+          </div>
+
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-8 text-sm">
+            <p className="text-slate-500">{products.length} SKU{products.length !== 1 ? "s" : ""}</p>
+            <div className="flex gap-4">
+              <span className="text-slate-500">Sort:</span>
+              <Link href={sortQuery("price-asc")} className="text-slate-600 hover:text-orange-600">Price Low</Link>
+              <Link href={sortQuery("price-desc")} className="text-slate-600 hover:text-orange-600">Price High</Link>
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-4 mb-10 text-sm">
-            <div className="card p-4"><span className="text-orange-600 font-medium">MOQ</span><p className="text-slate-600 mt-1">1 unit for most SKUs; volume pricing from 5+</p></div>
-            <div className="card p-4"><span className="text-orange-600 font-medium">Lead time</span><p className="text-slate-600 mt-1">3–5 business days in-stock; custom racks quoted</p></div>
-            <div className="card p-4"><span className="text-orange-600 font-medium">Shipping</span><p className="text-slate-600 mt-1">DHL/FedEx express or sea freight from Guangzhou</p></div>
-          </div>
-
-          <div className="flex flex-wrap gap-3 mb-8">
-            <Link href="/products" className={`px-3 py-1 rounded-full text-sm border ${!params.category ? "border-orange-500 text-orange-600 bg-orange-50" : "border-slate-300 text-slate-600 hover:border-slate-400"}`}>
-              All
-            </Link>
-            {categories.map((cat) => (
-              <Link key={cat} href={`/products?category=${encodeURIComponent(cat)}`} className={`px-3 py-1 rounded-full text-sm border ${params.category === cat ? "border-orange-500 text-orange-600 bg-orange-50" : "border-slate-300 text-slate-600 hover:border-slate-400"}`}>
-                {cat}
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex gap-3 mb-8 text-sm">
-            <span className="text-slate-500">Sort:</span>
-            <Link href={`/products?${params.category ? `category=${encodeURIComponent(params.category)}&` : ""}sort=price-asc`} className="text-slate-600 hover:text-orange-600">Price Low</Link>
-            <Link href={`/products?${params.category ? `category=${encodeURIComponent(params.category)}&` : ""}sort=price-desc`} className="text-slate-600 hover:text-orange-600">Price High</Link>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
             {products.map((p) => {
               const meta = getProductMeta(p.slug);
               return (
@@ -124,15 +99,16 @@ export default async function ProductsPage({
                   category={p.category}
                   tier={meta.tier}
                   nodeCount={meta.nodeCount}
-                  useCase={meta.useCase}
                   moq={meta.moq}
                   leadTime={meta.leadTime}
                 />
               );
             })}
           </div>
+
+          <BuyingGuideBlock />
         </div>
-      </div>
+      </section>
     </>
   );
 }

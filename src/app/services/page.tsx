@@ -1,52 +1,88 @@
-import Image from "next/image";
-import Link from "next/link";
-import { SERVICES } from "@/data/services";
+import { ServiceCard } from "@/components/commerce";
 import { ContactCTA } from "@/components/shared";
+import { SERVICES } from "@/data/services";
 import { buildMetadata } from "@/lib/seo";
+import { PageHero, SectionHeader } from "@/components/store";
+import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
-  title: "Device Lab Setup & Hardware Services",
+  title: "Device Farm Setup & Hardware Support",
   description:
-    "Device lab assembly, remote workstation setup, multi-device lab management, custom hardware engineering, maintenance, and international shipping from Guangzhou.",
+    "Assembly, remote workstation setup, custom hardware engineering, deployment support, and maintenance for phone farm labs from Guangzhou.",
   path: "/services",
 });
 
+const SERVICE_GROUPS = [
+  {
+    title: "Setup & Assembly",
+    desc: "Mount devices, route power and USB, run burn-in, and hand off a ready-to-test cluster.",
+    slugs: ["phone-farm-setup", "sample-solution"],
+  },
+  {
+    title: "Remote Operation",
+    desc: "Configure ADB paths, device grouping, and control workstations for remote lab operation.",
+    slugs: ["remote-control-configuration", "group-control-system-configuration"],
+  },
+  {
+    title: "Hardware Customization",
+    desc: "Bespoke chassis design, rack integration, and enterprise deployment engineering.",
+    slugs: ["custom-hardware-solution", "enterprise-deployment"],
+  },
+  {
+    title: "Deployment Support",
+    desc: "Large-scale lab provisioning, international shipping, and export logistics.",
+    slugs: ["bulk-device-deployment", "overseas-delivery"],
+  },
+  {
+    title: "Maintenance & Replacement",
+    desc: "Ongoing hardware support, replacement parts, and periodic health checks.",
+    slugs: ["maintenance-support"],
+  },
+] as const;
+
 export default function ServicesPage() {
+  const bySlug = new Map(SERVICES.map((s) => [s.slug, s]));
+
   return (
-    <div className="section">
-      <div className="container-wide">
-        <h1 className="section-title">Device Lab Services</h1>
-        <p className="section-subtitle max-w-3xl">
-          Hardware assembly, lab configuration, and export logistics from our Guangzhou workshop. Fixed-price services can be added to cart; rack and enterprise projects require a quote.
-        </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES.map((svc) => (
-            <article key={svc.slug} className="card overflow-hidden group flex flex-col">
-              <div className="relative aspect-video">
-                <Image src={svc.image} alt={svc.title} fill className="object-cover group-hover:scale-105 transition-transform" />
+    <>
+      <PageHero
+        title="Device Farm Setup & Hardware Support"
+        subtitle="Assembly, cabling, remote control configuration, testing, and delivery support for phone farm boxes and device labs."
+        eyebrow="Guangzhou workshop services"
+        image={IMAGES.workshop}
+        imageAlt="Phone farm hardware assembly services"
+        compact
+      />
+
+      <section className="section pt-10 md:pt-12">
+        <div className="container-wide space-y-16">
+          {SERVICE_GROUPS.map((group) => {
+            const items = group.slugs.map((slug) => bySlug.get(slug)).filter(Boolean);
+            if (items.length === 0) return null;
+            return (
+              <div key={group.title}>
+                <SectionHeader title={group.title} subtitle={group.desc} />
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {items.map((svc) => (
+                    <ServiceCard
+                      key={svc!.slug}
+                      slug={svc!.slug}
+                      title={svc!.title}
+                      description={svc!.description}
+                      image={svc!.image}
+                      priceUsd={svc!.priceUsd}
+                      timeline={svc!.timeline}
+                      quoteOnly={svc!.priceUsd <= 0}
+                    />
+                  ))}
+                </div>
               </div>
-              <div className="p-6 flex flex-col flex-1">
-                <h2 className="text-xl font-bold text-slate-900 mb-2">{svc.title}</h2>
-                <p className="text-slate-600 text-sm mb-3 flex-1">{svc.description}</p>
-                <p className="text-xs text-slate-500 mb-3">
-                  {svc.priceUsd > 0 ? `$${svc.priceUsd} · ${svc.timeline}` : `Quote required · ${svc.timeline}`}
-                </p>
-                <Link href={`/services/${svc.slug}`} className="text-orange-600 text-sm hover:text-orange-500">
-                  View Details →
-                </Link>
-                {svc.priceUsd <= 0 && (
-                  <Link href={`/contact?service=${svc.slug}`} className="btn-outline text-sm text-center mt-3">
-                    Request Quote
-                  </Link>
-                )}
-              </div>
-            </article>
-          ))}
-        </div>
-        <div className="mt-16">
+            );
+          })}
+
           <ContactCTA title="Need a Custom Deployment Plan?" />
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

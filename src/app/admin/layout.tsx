@@ -18,9 +18,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="section">
       <div className="container-wide">
-        <div className="flex flex-wrap gap-3 mb-8 border-b border-slate-800 pb-4">
+        <div className="flex flex-wrap gap-3 mb-8 border-b border-slate-200 pb-4">
           {LINKS.map((l) => (
-            <Link key={l.href} href={l.href} className="text-sm text-slate-400 hover:text-cyan-400">
+            <Link key={l.href} href={l.href} className="text-sm text-slate-600 hover:text-orange-600">
               {l.label}
             </Link>
           ))}
