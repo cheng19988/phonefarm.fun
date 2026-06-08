@@ -3,6 +3,7 @@ import { getPublishedProducts } from "@/lib/products-server";
 import Image from "next/image";
 import Link from "next/link";
 import { ProductCard, FAQAccordion } from "@/components/commerce";
+import { HomeHero } from "@/components/home-hero";
 import { buildMetadata, faqJsonLd, naverSiteVerificationMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/shared";
 import { FAQ_ITEMS } from "@/data/faq";
@@ -17,24 +18,6 @@ const RECOMMENDED_SLUGS = [
   "phone-farm-box",
   "motherboard-box",
   "custom-cabinet",
-] as const;
-
-const VALUE_PROPS = [
-  {
-    icon: "🏭",
-    title: "Factory-Direct Hardware",
-    desc: "Phone farm boxes, motherboard arrays, power and cooling modules assembled for real-device deployment.",
-  },
-  {
-    icon: "✓",
-    title: "Tested Before Shipment",
-    desc: "Power, cooling, cabling, and basic operation checks before packing.",
-  },
-  {
-    icon: "⚙",
-    title: "Built for Your Setup",
-    desc: "Support for 20-node boxes, motherboard clusters, rack cabinets, and custom deployment requests.",
-  },
 ] as const;
 
 const HARDWARE_SHOWCASE = [
@@ -76,90 +59,23 @@ export default async function HomePage() {
     <>
       <JsonLd data={faqJsonLd(previewFaq)} />
 
-      {/* Hero — product-forward, light background */}
-      <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200 overflow-hidden">
-        <div className="container-wide py-10 md:py-14 lg:py-16">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="order-2 lg:order-1">
-              <p className="text-sm font-semibold text-orange-600 mb-3">
-                {SITE.location} · Hardware assembly since {SITE.since}
+      <HomeHero />
+
+      {/* Recommended products — storefront grid */}
+      <section className="section bg-white pt-12 md:pt-16">
+        <div className="container-wide">
+          <div className="home-section-header">
+            <div className="relative">
+              <p className="text-orange-400 text-sm font-semibold uppercase tracking-wide mb-2">Shop hardware</p>
+              <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] font-bold text-white mb-3 leading-tight">
+                Recommended Phone Farm Hardware
+              </h2>
+              <p className="text-slate-300 text-base md:text-lg max-w-2xl leading-relaxed">
+                Factory-configured phone farm boxes, motherboard clusters, and rack cabinets — ready to order or customize for your lab size.
               </p>
-              <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-slate-900 leading-tight mb-4">
-                Professional Phone Farm Boxes &amp; Motherboard Arrays
-              </h1>
-              <p className="text-base sm:text-lg text-slate-600 mb-8 max-w-xl leading-relaxed">
-                Factory-built real-device hardware for phone farm setups, app testing labs, remote operation, and scalable device deployment.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <Link href="/products/phone-farm-box" className="btn-primary text-base px-6 py-3">
-                  Shop Phone Farm Box
-                </Link>
-                <Link href="/contact" className="btn-secondary text-base px-6 py-3">
-                  Request Custom Quote
-                </Link>
-              </div>
-            </div>
-            <div className="order-1 lg:order-2 relative">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 shadow-lg">
-                <Image
-                  src={IMAGES.phoneFarmBox.hero}
-                  alt="20-node phone farm box with real Android devices"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width:1024px) 100vw, 50vw"
-                />
-              </div>
-              <div className="hidden sm:block absolute -bottom-4 -left-4 w-28 h-28 md:w-36 md:h-36 rounded-xl overflow-hidden border-4 border-white shadow-lg bg-white relative">
-                <Image
-                  src={IMAGES.androidFarm.card}
-                  alt="Android device farm starter box"
-                  fill
-                  className="object-cover"
-                  sizes="144px"
-                />
-              </div>
-              <div className="hidden md:block absolute -top-3 -right-3 w-24 h-24 rounded-xl overflow-hidden border-4 border-white shadow-lg bg-white relative">
-                <Image
-                  src={IMAGES.motherboardBox.card}
-                  alt="Motherboard array cluster"
-                  fill
-                  className="object-cover"
-                  sizes="96px"
-                />
-              </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Three value props */}
-      <section className="bg-white border-b border-slate-200 py-10 md:py-12">
-        <div className="container-wide">
-          <div className="grid md:grid-cols-3 gap-8 md:gap-6">
-            {VALUE_PROPS.map((item) => (
-              <div key={item.title} className="flex gap-4 items-start">
-                <div className="w-12 h-12 shrink-0 rounded-full bg-orange-50 border border-orange-100 flex items-center justify-center text-xl text-orange-600">
-                  {item.icon}
-                </div>
-                <div>
-                  <h2 className="font-bold text-slate-900 mb-1">{item.title}</h2>
-                  <p className="text-sm text-slate-600 leading-relaxed">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Recommended products — immediately after hero */}
-      <section className="section bg-slate-50">
-        <div className="container-wide">
-          <h2 className="section-title">Recommended Phone Farm Hardware</h2>
-          <p className="section-subtitle">
-            Choose factory-configured phone farm boxes, motherboard clusters, and accessories for your deployment size.
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 lg:gap-7">
             {recommendedProducts.map((p) => {
               const meta = getProductMeta(p!.slug);
               return (
@@ -176,13 +92,14 @@ export default async function HomePage() {
                   nodeCount={meta.nodeCount}
                   moq={meta.moq}
                   leadTime={meta.leadTime}
+                  featured
                 />
               );
             })}
           </div>
-          <div className="text-center mt-10">
-            <Link href="/products" className="btn-outline px-8">
-              Full Catalog →
+          <div className="text-center mt-12">
+            <Link href="/products" className="btn-primary px-10 py-3 text-base">
+              Browse Full Catalog →
             </Link>
           </div>
         </div>

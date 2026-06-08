@@ -21,6 +21,7 @@ type ProductCardProps = {
   moq?: number;
   leadTime?: string;
   compact?: boolean;
+  featured?: boolean;
 };
 
 export function ProductCard({
@@ -36,28 +37,52 @@ export function ProductCard({
   moq = 1,
   leadTime,
   compact = false,
+  featured = false,
 }: ProductCardProps) {
   return (
-    <article className="card group flex flex-col h-full hover:border-orange-200 transition-colors">
-      <Link href={`/products/${slug}`} className="block relative aspect-[4/5] sm:aspect-square overflow-hidden bg-slate-50">
+    <article
+      className={`card group flex flex-col h-full hover:border-orange-200 transition-colors ${
+        featured ? "shadow-md hover:shadow-xl" : ""
+      }`}
+    >
+      <Link
+        href={`/products/${slug}`}
+        className={`block relative overflow-hidden bg-slate-50 ${
+          featured ? "aspect-[4/5]" : "aspect-[4/5] sm:aspect-square"
+        }`}
+      >
         <Image
           src={imageCard}
           alt={name}
           fill
-          className="object-cover group-hover:scale-105 transition-transform duration-300"
-          sizes="(max-width:768px) 100vw, 25vw"
+          className={`object-cover group-hover:scale-105 transition-transform duration-300 ${
+            featured ? "object-center" : ""
+          }`}
+          sizes={featured ? "(max-width:768px) 100vw, 22vw" : "(max-width:768px) 100vw, 25vw"}
         />
-        <span className="absolute top-3 left-3 text-xs bg-white/95 text-slate-700 px-2 py-1 rounded border border-slate-200 font-medium">
+        <span
+          className={`absolute top-3 left-3 bg-white/95 text-slate-700 px-2 py-1 rounded border border-slate-200 font-medium ${
+            featured ? "text-xs sm:text-sm px-2.5 py-1" : "text-xs"
+          }`}
+        >
           {tier ?? category}
         </span>
       </Link>
-      <div className={`flex flex-col flex-1 ${compact ? "p-3" : "p-4 md:p-5"}`}>
+      <div className={`flex flex-col flex-1 ${compact ? "p-3" : featured ? "p-5 md:p-6" : "p-4 md:p-5"}`}>
         <Link href={`/products/${slug}`}>
-          <h3 className="font-semibold text-slate-900 group-hover:text-orange-600 transition-colors mb-1 line-clamp-2 text-base md:text-lg leading-snug">
+          <h3
+            className={`font-semibold text-slate-900 group-hover:text-orange-600 transition-colors mb-1 line-clamp-2 leading-snug ${
+              featured ? "text-lg md:text-xl" : "text-base md:text-lg"
+            }`}
+          >
             {name}
           </h3>
         </Link>
-        {!compact && <p className="text-sm text-slate-600 mb-3 line-clamp-2 flex-1">{shortDesc}</p>}
+        {!compact && (
+          <p className={`text-slate-600 mb-3 line-clamp-2 flex-1 ${featured ? "text-sm md:text-base" : "text-sm"}`}>
+            {shortDesc}
+          </p>
+        )}
         <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-slate-500 mb-3">
           {nodeCount && <span>{nodeCount}</span>}
           <span>MOQ {moq}</span>

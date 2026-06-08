@@ -9,6 +9,17 @@ type SEOInput = {
   noIndex?: boolean;
 };
 
+/** Naver Search Advisor HTML tag — homepage only; omit when env is unset. */
+export function naverSiteVerificationMetadata(): Pick<Metadata, "other"> | Record<string, never> {
+  const token = process.env.NAVER_SITE_VERIFICATION?.trim();
+  if (!token) return {};
+  return {
+    other: {
+      "naver-site-verification": token,
+    },
+  };
+}
+
 export function buildMetadata({
   title,
   description,
