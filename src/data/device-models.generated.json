@@ -1,0 +1,409 @@
+[
+  {
+    "slug": "a908n-phonefarma908n",
+    "name": "A908N",
+    "brand": "Android",
+    "series": "Universal Android",
+    "ramGb": 6,
+    "storageGb": 128,
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/a908n-phonefarma908n.webp",
+    "cardImage": "/images/models/a908n-phonefarma908n-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_A908N_6_128GB_USB_LAN_OTG_black_circuit_board_box-phone-farm-a908n-en_main_box_phone_farm_a908n.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s8-change-6structureofb",
+    "name": "Galaxy S8",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ports": [
+      "USB",
+      "LAN"
+    ],
+    "variant": "2026 Port",
+    "image": "/images/models/s8-change-6structureofb.webp",
+    "cardImage": "/images/models/s8-change-6structureofb-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_Change_Generasi_Terbaru_2026_Port_USB_LAN_box-phone-farm-s8-change-id_gallery_6_Structure_of_B.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "note-10-lite-10litechange",
+    "name": "Galaxy Note 10 Lite",
+    "brand": "Samsung",
+    "series": "Galaxy Note",
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/note-10-lite-10litechange.webp",
+    "cardImage": "/images/models/note-10-lite-10litechange-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_Note_10_Lite_Change_USB_LAN_OTG_Port_with_Black_Circuit_Board_box-phone-farm-note-10-lite-change-.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "note-20-xphonefarmnot",
+    "name": "Galaxy Note 20",
+    "brand": "Samsung",
+    "series": "Galaxy Note",
+    "ramGb": 8,
+    "storageGb": 256,
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/note-20-xphonefarmnot.webp",
+    "cardImage": "/images/models/note-20-xphonefarmnot-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_Note_20_8_256GB_USB_LAN_OTG_black_circuit_board_box-phone-farm-note-20-en_main_box_phone_farm_not.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "note-8-honefarmnote8",
+    "name": "Galaxy Note 8",
+    "brand": "Samsung",
+    "series": "Galaxy Note",
+    "ramGb": 6,
+    "storageGb": 64,
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/note-8-honefarmnote8.webp",
+    "cardImage": "/images/models/note-8-honefarmnote8-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_Note_8_6_64GB_USB_LAN_OTG_black_circuit_board_box-phone-farm-note-8-en_main_box_phone_farm_note_8.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "note-8-super-nefarmnote8s",
+    "name": "Galaxy Note 8 Super Change",
+    "brand": "Samsung",
+    "series": "Galaxy Note",
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "variant": "Super Change",
+    "image": "/images/models/note-8-super-nefarmnote8s.webp",
+    "cardImage": "/images/models/note-8-super-nefarmnote8s-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_Note_8_Super_Change_USB_Port_LAN_OTG_boxphone-note-8-super-change-en_main_Box_Phone_Farm_Note_8_S.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "note-9-phonefarmnote",
+    "name": "Galaxy Note 9",
+    "brand": "Samsung",
+    "series": "Galaxy Note",
+    "ramGb": 6,
+    "storageGb": 128,
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/note-9-phonefarmnote.webp",
+    "cardImage": "/images/models/note-9-phonefarmnote-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_Note_9_6_128GB_USB_LAN_OTG_black_circuit_board_box-phone-farm-note-9-en_main_box_phone_farm_note_.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "nubia-z17-efarmnubiaz17",
+    "name": "Nubia Z17",
+    "brand": "Nubia",
+    "series": "Nubia",
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "variant": "Super Change",
+    "image": "/images/models/nubia-z17-efarmnubiaz17.webp",
+    "cardImage": "/images/models/nubia-z17-efarmnubiaz17-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_Nubia_Z17_Super_Change_USB_Port_LAN_OTG_box-phone-farm-nubia-z17-en_main_box_phone_farm_nubia_z17.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "oneplus-5-mainoneplus5s",
+    "name": "OnePlus 5",
+    "brand": "OnePlus",
+    "series": "OnePlus",
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "variant": "Super Change",
+    "image": "/images/models/oneplus-5-mainoneplus5s.webp",
+    "cardImage": "/images/models/oneplus-5-mainoneplus5s-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_OnePlus_5_Super_Change_USB_Port_LAN_OTG_box-phone-farm-oneplus-5-super-change-en_main_Oneplus_5_S.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "oneplus-8-pro-inoneplus8pro",
+    "name": "OnePlus 8 Pro",
+    "brand": "OnePlus",
+    "series": "OnePlus",
+    "ramGb": 8,
+    "storageGb": 128,
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/oneplus-8-pro-inoneplus8pro.webp",
+    "cardImage": "/images/models/oneplus-8-pro-inoneplus8pro-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_OnePlus_8_Pro_8_128GB_USB_Port_LAN_OTG_box-phone-farm-oneplus-8-pro-en_main_oneplus_8_pro.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "pixel-4xl-lery2boxspeci",
+    "name": "Pixel 4 XL",
+    "brand": "Google",
+    "series": "Pixel",
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "variant": "Super Change",
+    "image": "/images/models/pixel-4xl-lery2boxspeci.webp",
+    "cardImage": "/images/models/pixel-4xl-lery2boxspeci-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_Pixel_4XL_Super_Change_Cong_USB_LAN_OTG_box-phone-farm-pixel-4xl-super-change_gallery_2_box_speci.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s10-change-mainboxphone",
+    "name": "Galaxy S10",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "variant": "Super Change",
+    "image": "/images/models/s10-change-mainboxphone.webp",
+    "cardImage": "/images/models/s10-change-mainboxphone-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_S10_Change_USB_LAN_OTG_Port_with_Black_Circuit_Board_box-phone-farm-s10-change-en_main_box_phone_.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s10-honefarms10en",
+    "name": "Galaxy S10",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/s10-honefarms10en.webp",
+    "cardImage": "/images/models/s10-honefarms10en-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_S10_USB_LAN_OTG_Port_with_Black_Circuit_Board_box-phone-farm-s10-en_main_box_phone_farm_s10_en.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s20-xphonefarms20",
+    "name": "Galaxy S20",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ramGb": 8,
+    "storageGb": 128,
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/s20-xphonefarms20.webp",
+    "cardImage": "/images/models/s20-xphonefarms20-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_S20_8_128GB_USB_LAN_OTG_black_circuit_box-phone-farm-s20-en_main_box_phone_farm_s20.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s21-fe-efarms21fe2",
+    "name": "Galaxy S21 FE",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ramGb": 6,
+    "storageGb": 128,
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/s21-fe-efarms21fe2.webp",
+    "cardImage": "/images/models/s21-fe-efarms21fe2-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_S21_FE_6_128GB_USB_LAN_OTG_black_circuit_board_box-phone-farm-s21-fe-en_main_box_phone_farm_s21fe (2).png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s21-fe-phonefarms21fe",
+    "name": "Galaxy S21 FE",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ramGb": 6,
+    "storageGb": 128,
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/s21-fe-phonefarms21fe.webp",
+    "cardImage": "/images/models/s21-fe-phonefarms21fe-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_S21_FE_6_128GB_USB_LAN_OTG_black_circuit_board_box-phone-farm-s21-fe-en_main_box_phone_farm_s21fe.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s8-change-ains8changeen",
+    "name": "Galaxy S8",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ports": [
+      "USB",
+      "LAN"
+    ],
+    "variant": "2026 Port",
+    "image": "/images/models/s8-change-ains8changeen.webp",
+    "cardImage": "/images/models/s8-change-ains8changeen-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_S8_Change_Latest_Generation_2026_USB_LAN_Port_box-phone-farm-s8-change-en_main_s8_change_en.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s8-8enmainboxs8",
+    "name": "Galaxy S8",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ports": [
+      "USB",
+      "LAN"
+    ],
+    "image": "/images/models/s8-8enmainboxs8.webp",
+    "cardImage": "/images/models/s8-8enmainboxs8-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_S8_S8_Latest_Generation_2026_USB_LAN_Port_box-phone-farm-s8-en_main_box_s8.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s8-super-s8superchange",
+    "name": "Galaxy S8",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "variant": "Super Change",
+    "image": "/images/models/s8-super-s8superchange.webp",
+    "cardImage": "/images/models/s8-super-s8superchange-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_S8_Super_Change_USB_Port_LAN_OTG_boxphone-s8-super-change-en_main_Box_Phone_Farm_S8_Super_Change_.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s9-mainboxphone",
+    "name": "Galaxy S9",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/s9-mainboxphone.webp",
+    "cardImage": "/images/models/s9-mainboxphone-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_S9_S9_Latest_Generation_2026_USB_LAN_OTG_Black_Circuit_Board_box-phone-farm-s9-en_main_box_phone_.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "z-flip3-honefarmzlip3",
+    "name": "Galaxy Z Flip3",
+    "brand": "Samsung",
+    "series": "Galaxy Z",
+    "ramGb": 8,
+    "storageGb": 128,
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/z-flip3-honefarmzlip3.webp",
+    "cardImage": "/images/models/z-flip3-honefarmzlip3-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_Z_Flip3_8_128GB_USB_LAN_OTG_black_circuit_box-phone-farm-z-flip3-en_main_box_phone_farm_zlip_3.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "z-flip4-honefarmzlip4",
+    "name": "Galaxy Z Flip4",
+    "brand": "Samsung",
+    "series": "Galaxy Z",
+    "ramGb": 8,
+    "storageGb": 128,
+    "ports": [
+      "USB",
+      "LAN",
+      "OTG"
+    ],
+    "image": "/images/models/z-flip4-honefarmzlip4.webp",
+    "cardImage": "/images/models/z-flip4-honefarmzlip4-card.webp",
+    "sourceFile": "product_Box_Phone_Farm_Z_Flip4_8_128GB_USB_LAN_OTG_black_circuit_box-phone-farm-z-flip4-en_main_box_phone_farm_zlip_4.png",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s8-allery2mains8",
+    "name": "Galaxy S8",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ports": [
+      "USB"
+    ],
+    "image": "/images/models/s8-allery2mains8.webp",
+    "cardImage": "/images/models/s8-allery2mains8-card.webp",
+    "sourceFile": "product_Perangkat_S8_S8_dijual_terpisah_dipasang_ke_dalam_Box_Phone_Farm_device-s8-id_gallery_2_main_s8.jpg",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s8-llery3frame13",
+    "name": "Galaxy S8",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ports": [
+      "USB"
+    ],
+    "image": "/images/models/s8-llery3frame13.webp",
+    "cardImage": "/images/models/s8-llery3frame13-card.webp",
+    "sourceFile": "product_Perangkat_S8_S8_dijual_terpisah_dipasang_ke_dalam_Box_Phone_Farm_device-s8-id_gallery_3_Frame_13.jpg",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s8-y4frame212",
+    "name": "Galaxy S8",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ports": [
+      "USB"
+    ],
+    "image": "/images/models/s8-y4frame212.webp",
+    "cardImage": "/images/models/s8-y4frame212-card.webp",
+    "sourceFile": "product_Perangkat_S8_S8_dijual_terpisah_dipasang_ke_dalam_Box_Phone_Farm_device-s8-id_gallery_4_Frame_21 (2).jpg",
+    "boxSlug": "phone-farm-box"
+  },
+  {
+    "slug": "s8-llery4frame21",
+    "name": "Galaxy S8",
+    "brand": "Samsung",
+    "series": "Galaxy S",
+    "ports": [
+      "USB"
+    ],
+    "image": "/images/models/s8-llery4frame21.webp",
+    "cardImage": "/images/models/s8-llery4frame21-card.webp",
+    "sourceFile": "product_Perangkat_S8_S8_dijual_terpisah_dipasang_ke_dalam_Box_Phone_Farm_device-s8-id_gallery_4_Frame_21.jpg",
+    "boxSlug": "phone-farm-box"
+  }
+]

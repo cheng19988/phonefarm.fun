@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import type { ResolvedCartLine } from "@/lib/cart-resolve";
-import { LoadingBlock, PriceDisplay } from "@/components/store";
+import { CartLoadingSkeleton, PriceDisplay } from "@/components/store";
 
 export default function CartPageClient() {
   const [lines, setLines] = useState<ResolvedCartLine[]>([]);
@@ -59,7 +59,7 @@ export default function CartPageClient() {
 
   const total = lines.reduce((s, l) => s + l.priceUsd * l.quantity, 0);
 
-  if (loading) return <LoadingBlock label="Loading your cart..." />;
+  if (loading) return <CartLoadingSkeleton />;
 
   return (
     <div className="section">
@@ -67,9 +67,18 @@ export default function CartPageClient() {
         <h1 className="section-title">Shopping Cart</h1>
         {lines.length === 0 ? (
           <div className="card p-10 md:p-14 text-center">
-            <p className="text-slate-600 text-lg mb-2">Your cart is empty.</p>
-            <p className="text-base text-slate-500 mb-8">Browse phone farm boxes, motherboard clusters, and accessories.</p>
-            <Link href="/products" className="btn-primary px-10 py-3 text-base">Shop Hardware</Link>
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">Your cart is empty</h2>
+            <p className="text-base text-slate-500 mb-8 max-w-md mx-auto">
+              Browse phone farm boxes or request a custom quote.
+            </p>
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
+              <Link href="/products" className="btn-primary px-10 py-3.5 text-base min-h-[44px] flex items-center justify-center">
+                Shop Products
+              </Link>
+              <Link href="/contact" className="btn-outline px-10 py-3.5 text-base min-h-[44px] flex items-center justify-center">
+                Request Quote
+              </Link>
+            </div>
           </div>
         ) : (
           <>
@@ -116,8 +125,12 @@ export default function CartPageClient() {
                 <span className="text-xl font-bold text-slate-900">Total (USD)</span>
                 <PriceDisplay amount={total} size="lg" />
               </div>
-              <Link href="/checkout" className="btn-primary w-full text-center block py-3.5 text-base">Proceed to Checkout</Link>
-              <Link href="/products" className="block text-center text-sm text-slate-500 hover:text-orange-600">Continue shopping</Link>
+              <Link href="/checkout" className="btn-primary w-full text-center block py-3.5 text-base min-h-[44px] leading-[44px]">
+                Proceed to Checkout
+              </Link>
+              <Link href="/products" className="block text-center text-base font-medium text-orange-600 hover:text-orange-500 py-2">
+                Continue Shopping
+              </Link>
             </div>
           </>
         )}

@@ -79,4 +79,49 @@ export const FAQ_ITEMS = [
     answer:
       "Reach us via WhatsApp (+852 6215 5642), Telegram (@huicheng1998), phone (13059502618), or email sales@phonefarm.fun. We respond within 24 hours on business days (Guangzhou time, UTC+8).",
   },
+  {
+    question: "Is phone farming still profitable in 2026?",
+    answer:
+      "Profitability depends on your workflow — app QA contracts, automation services, content operations, and B2B lab deployments all use real-device hardware differently. PhoneFarm Fun supplies the chassis and factory support; we do not sell cloud subscriptions or income guarantees. Most buyers purchase hardware for testing, automation, or scalable device lab operations.",
+  },
+  {
+    question: "What device management software works with your hardware?",
+    answer:
+      "Our chassis ships ADB-ready for any standard Android lab toolchain — your CI scripts, test runners, or third-party device management platforms. We optionally configure remote workstations and batch grouping after delivery. We do not lock you into proprietary control software.",
+  },
+  {
+    question: "Can phone farm boxes support creator studio workflows?",
+    answer:
+      "Yes. Teams run parallel Android devices for multi-account publishing, regional app checks, and content-app QA. A 20-node box provides isolated device slots with centralized power and cooling — more stable than desk chargers for continuous operation.",
+  },
+  {
+    question: "How does group control work on a device farm?",
+    answer:
+      "Group control means organizing devices into batches for synchronized commands — install APKs, run test suites, or mirror screens by group. Hardware provides USB/ADB paths; your software or our optional setup service configures grouping on the control PC.",
+  },
+  {
+    question: "Which Samsung models fit a standard phone farm box?",
+    answer:
+      "We configure boxes for Galaxy S8–S21 FE, Note series, Z Flip, OnePlus, Pixel, and other Android models with USB+LAN+OTG routing. Share your target model list on the contact form — we confirm tray spacing and port layout before assembly.",
+  },
+  {
+    question: "Android phone farm vs iPhone phone farm?",
+    answer:
+      "Android farms use our standard 20-node chassis with ADB automation. iPhone lab hardware requires different tray and power design — we quote iPhone-specific chassis separately. Most QA automation buyers start with Android; iOS labs are scoped per project.",
+  },
+  {
+    question: "Do you offer warranty and after-sales support?",
+    answer:
+      "Hardware includes a factory warranty against assembly defects. Burn-in testing before shipment reduces DOA rates. Maintenance and remote support packages are available as optional services for enterprise deployments.",
+  },
+  {
+    question: "Why buy factory-direct from Guangzhou?",
+    answer:
+      "Guangzhou is a major electronics manufacturing hub. PhoneFarm Fun assembles chassis locally, runs QC and burn-in before export, and supports overseas freight — reducing middleman markup versus reseller listings.",
+  },
+  {
+    question: "Can I use phone farm hardware for e-commerce app testing?",
+    answer:
+      "Yes. E-commerce teams test seller apps, payment SDKs, and regional builds on real devices representing different Android versions. Physical labs catch OEM-specific issues that emulators miss before production releases.",
+  },
 ];

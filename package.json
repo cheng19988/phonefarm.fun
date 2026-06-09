@@ -11,6 +11,7 @@
     "db:seed": "tsx prisma/seed.ts",
     "db:setup": "prisma db push && tsx prisma/seed.ts",
     "sync-assets": "tsx scripts/sync-assets.ts",
+    "sync-real-assets": "tsx scripts/sync-real-assets.ts",
     "postinstall": "prisma generate"
   },
   "dependencies": {
@@ -35,6 +36,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.7",
+    "heic-convert": "^2.1.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "tsx": "^4.22.4",
     "typescript": "^5"

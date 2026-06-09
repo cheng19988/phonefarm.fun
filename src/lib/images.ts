@@ -1,85 +1,105 @@
-const card = (name: string) => `/images/card_800x800/${name}-card_800x800.webp`;
-const hero = (name: string) => `/images/hero_1600x900/${name}-hero_1600x900.webp`;
-const detail = (name: string) => `/images/detail_1200x900/${name}-detail_1200x900.webp`;
+/** Real factory & product photography — primary visual source */
+const r = (file: string) => `/images/real/${file}`;
+const factory = (file: string) => `/images/factory/${file}`;
 
-export const IMAGES = {
-  homeHero: hero("phonefarm.fun-product-box-0f5501e1584de9a625d220f62951bc6d-d04df"),
-  phoneFarmBox: {
-    card: card("phonefarm.fun-product-box-2025-10-25-11-27-img-0551-a9b35"),
-    hero: hero("phonefarm.fun-product-box-2025-10-25-11-27-img-0551-a9b35"),
-    detail: detail("phonefarm.fun-product-box-2025-10-25-11-27-img-0551-a9b35"),
-  },
-  motherboardBox: {
-    card: card("phonefarm.fun-components-electronicscomponentslayout-64e0d"),
-    hero: hero("phonefarm.fun-components-electronicscomponentslayout-64e0d"),
-    detail: detail("phonefarm.fun-components-electronicscomponentslayout-64e0d"),
-  },
-  androidFarm: {
-    card: card("phonefarm.fun-product-box-2025-10-25-11-28-img-0553-47327"),
-    hero: hero("phonefarm.fun-product-box-2025-10-25-11-28-img-0553-47327"),
-    detail: detail("phonefarm.fun-product-box-2025-10-25-11-28-img-0553-47327"),
-  },
-  iphoneFarm: {
-    card: card("phonefarm.fun-product-box-2025-10-25-11-37-img-0566-ee21b"),
-    hero: hero("phonefarm.fun-product-box-2025-10-25-11-37-img-0566-ee21b"),
-    detail: detail("phonefarm.fun-product-box-2025-10-25-11-37-img-0566-ee21b"),
-  },
-  realDevice: {
-    card: card("phonefarm.fun-product-box-0f5501e1584de9a625d220f62951bc6d-d04df"),
-    hero: hero("phonefarm.fun-product-box-0f5501e1584de9a625d220f62951bc6d-d04df"),
-    detail: detail("phonefarm.fun-product-box-0f5501e1584de9a625d220f62951bc6d-d04df"),
-  },
-  emptyBox: {
-    card: card("phonefarm.fun-components-electronicsassembly-detail-f936c"),
-    hero: hero("phonefarm.fun-components-electronicsassembly-detail-f936c"),
-    detail: detail("phonefarm.fun-components-electronicsassembly-detail-f936c"),
-  },
-  usbHub: {
-    card: card("phonefarm.fun-components-electronicscomponentsassembly-19059"),
-    hero: hero("phonefarm.fun-components-electronicscomponentsassembly-19059"),
-    detail: detail("phonefarm.fun-components-electronicscomponentsassembly-19059"),
-  },
-  power: {
-    card: card("phonefarm.fun-components-electronicsassemblylabworkbench-9e7df"),
-    hero: hero("phonefarm.fun-components-electronicsassemblylabworkbench-9e7df"),
-    detail: detail("phonefarm.fun-components-electronicsassemblylabworkbench-9e7df"),
-  },
-  cooling: {
-    card: card("phonefarm.fun-components-electronics-workbenchdetail-6f814"),
-    hero: hero("phonefarm.fun-components-electronics-workbenchdetail-6f814"),
-    detail: detail("phonefarm.fun-components-electronics-workbenchdetail-6f814"),
-  },
-  network: {
-    card: card("phonefarm.fun-rack-cabinet-moderntechserverdeviceshowcase-89e28"),
-    hero: hero("phonefarm.fun-rack-cabinet-moderntechserverdeviceshowcase-89e28"),
-    detail: detail("phonefarm.fun-rack-cabinet-moderntechserverdeviceshowcase-89e28"),
-  },
-  customCabinet: {
-    card: card("phonefarm.fun-rack-cabinet-moderntechlab-datarack-2fb2e"),
-    hero: hero("phonefarm.fun-rack-cabinet-moderntechlab-datarack-2fb2e"),
-    detail: detail("phonefarm.fun-rack-cabinet-moderntechlab-datarack-2fb2e"),
-  },
-  remoteControl: {
-    card: card("phonefarm.fun-service-scenes-moderndevicemanagementcontrol-ae6b9"),
-    hero: hero("phonefarm.fun-service-scenes-moderndevicemanagementcontrol-ae6b9"),
-    detail: detail("phonefarm.fun-service-scenes-moderndevicemanagementcontrol-ae6b9"),
-  },
-  serviceScene: hero("phonefarm.fun-service-scenes-moderntechoffice-devicecontrol-2663b"),
-  factory: hero("phonefarm.fun-rack-cabinet-modernlab-serverworkbench-a0099"),
-  workshop: hero("phonefarm.fun-components-electronicsassemblylab-19f44"),
-  office: hero("phonefarm.fun-service-scenes-moderntechofficeworkspace-23aa6"),
-  meeting: hero("phonefarm.fun-service-scenes-modernoffice-lab-28010"),
-  warehouse: hero("phonefarm.fun-rack-cabinet-industrial-server-8317a"),
-  /** Real company photos from D:\\网站搭建素材库\\公司照片1-3 */
-  company: {
-    office: "/images/company/office.png",
-    frontdesk: "/images/company/frontdesk.png",
-    meeting: "/images/company/meeting.png",
-    workshop: "/images/company/workshop.png",
-    warehouse: "/images/company/warehouse.png",
-  },
+/** Inner-page heroes & CTAs — factory/real photos only (no slide decks) */
+export const BANNERS = {
+  home: factory("factory-01.webp"),
+  products: r("phone-farm-box-3.webp"),
+  services: factory("factory-02.webp"),
+  about: "/images/company/workshop.webp",
+  contact: "/images/company/frontdesk.webp",
+  faq: factory("factory-04.webp"),
+  blog: r("motherboard-box-real-1.webp"),
 } as const;
 
-/** Asset library source path */
+export const FACTORY_GALLERY = Array.from({ length: 12 }, (_, i) =>
+  factory(`factory-${String(i + 1).padStart(2, "0")}.webp`),
+);
+
+export const IMAGES = {
+  /** Dense rack / assembly — best for homepage hero background */
+  homeHeroBg: factory("factory-01.webp"),
+  /** Staged product shot for hero foreground */
+  homeHeroProduct: r("phone-farm-box-1.webp"),
+
+  phoneFarmBox: {
+    card: r("phone-farm-box-card.webp"),
+    hero: r("phone-farm-box-1.webp"),
+    detail: r("phone-farm-box-2.webp"),
+  },
+  motherboardBox: {
+    card: r("motherboard-box-real-1.webp"),
+    hero: r("motherboard-box-real-1.webp"),
+    detail: r("motherboard-box-real-2.webp"),
+  },
+  androidFarm: {
+    card: r("phone-farm-box-card.webp"),
+    hero: r("phone-farm-box-3.webp"),
+    detail: r("phone-farm-box-4.webp"),
+  },
+  iphoneFarm: {
+    card: r("phone-farm-box-5.webp"),
+    hero: r("phone-farm-box-6.webp"),
+    detail: r("phone-farm-box-7.webp"),
+  },
+  realDevice: {
+    card: r("phone-farm-box-card.webp"),
+    hero: r("phone-farm-box-8.webp"),
+    detail: r("phone-farm-box-9.webp"),
+  },
+  emptyBox: {
+    card: r("motherboard-box-real-3.webp"),
+    hero: r("motherboard-box-real-3.webp"),
+    detail: r("motherboard-box-real-4.webp"),
+  },
+  usbHub: {
+    card: r("phone-farm-box-10.webp"),
+    hero: factory("factory-05.webp"),
+    detail: r("phone-farm-box-11.webp"),
+  },
+  power: {
+    card: factory("factory-06.webp"),
+    hero: factory("factory-06.webp"),
+    detail: factory("factory-07.webp"),
+  },
+  cooling: {
+    card: factory("factory-08.webp"),
+    hero: factory("factory-08.webp"),
+    detail: factory("factory-09.webp"),
+  },
+  network: {
+    card: r("motherboard-box-real-5.webp"),
+    hero: factory("factory-10.webp"),
+    detail: r("motherboard-box-real-6.webp"),
+  },
+  customCabinet: {
+    card: factory("factory-11.webp"),
+    hero: factory("factory-11.webp"),
+    detail: factory("factory-12.webp"),
+  },
+  remoteControl: {
+    card: "/images/company/meeting.webp",
+    hero: "/images/company/meeting.webp",
+    detail: r("phone-farm-box-15.webp"),
+  },
+  serviceScene: factory("factory-02.webp"),
+  factoryScene: factory("factory-01.webp"),
+  workshop: "/images/company/workshop.webp",
+  office: "/images/company/office.webp",
+  meeting: "/images/company/meeting.webp",
+  warehouse: "/images/company/warehouse.webp",
+
+  company: {
+    office: "/images/company/office.webp",
+    frontdesk: "/images/company/frontdesk.webp",
+    meeting: "/images/company/meeting.webp",
+    workshop: "/images/company/workshop.webp",
+    warehouse: "/images/company/warehouse.webp",
+  },
+
+  banners: BANNERS,
+  factoryGallery: FACTORY_GALLERY,
+} as const;
+
 export const ASSET_LIBRARY = "D:\\网站搭建素材库" as const;
-export const ASSET_SITE_FOLDER = `${ASSET_LIBRARY}\\02_six_website_ready\\phonefarm.fun_main_factory_site` as const;

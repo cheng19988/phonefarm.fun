@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { getCart } from "@/lib/cart";
 import { resolveCartItems } from "@/lib/cart-resolve";
 import { getSession } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
+import { CheckoutAccess } from "@/components/checkout-access";
 import { PageHero, PriceDisplay } from "@/components/store";
 
 export const metadata = buildMetadata({
@@ -15,11 +15,13 @@ export const metadata = buildMetadata({
 
 export default async function CheckoutPage() {
   const session = await getSession();
-  if (!session) redirect("/login?redirect=/checkout");
-
   const lines = await resolveCartItems(await getCart());
   const purchasable = lines.filter((l) => l.purchasable);
   const total = purchasable.reduce((s, l) => s + l.priceUsd * l.quantity, 0);
+
+  if (!session) {
+    return <CheckoutAccess lines={purchasable} total={total} />;
+  }
 
   return (
     <>

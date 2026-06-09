@@ -158,6 +158,6 @@ export const PRODUCT_HW_SPECS: Record<string, Record<string, string>> = {
 
 export function getProfessionalSpecs(slug: string, dbSpecs: Record<string, string>): Record<string, string> {
   const template = PRODUCT_HW_SPECS[slug];
-  if (!template) return dbSpecs;
-  return { ...template, ...dbSpecs };
+  if (template) return template;
+  return dbSpecs;
 }

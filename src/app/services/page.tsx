@@ -65,7 +65,7 @@ export default function ServicesPage() {
         title="Device Farm Setup & Hardware Support"
         subtitle="Assembly, cabling, burn-in testing, export packing, and remote configuration — factory delivery support for phone farm hardware."
         eyebrow="Guangzhou workshop · Factory delivery"
-        image={IMAGES.workshop}
+        image={IMAGES.banners.services}
         imageAlt="Phone farm hardware assembly services"
       />
 

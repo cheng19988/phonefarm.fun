@@ -49,7 +49,7 @@ export default function FAQPage() {
         title="Phone Farm Hardware FAQ"
         subtitle="Products, ordering, shipping, customization, and setup — answered by our Guangzhou hardware team."
         eyebrow="B2B hardware support"
-        image={IMAGES.workshop}
+        image={IMAGES.banners.faq}
         imageAlt="Phone farm hardware FAQ"
       />
       <section className="inner-page-section">

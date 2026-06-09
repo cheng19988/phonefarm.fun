@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Sans } from "next/font/google";
 import { Header, Footer } from "@/components/layout";
 import { MobileContactBar } from "@/components/shared";
 import { JsonLd } from "@/components/shared";
@@ -17,6 +17,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const instrumentSans = Instrument_Sans({
+  variable: "--font-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: {
     default: `${SITE.name} | ${SITE.tagline}`,
@@ -28,7 +34,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full`}>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${instrumentSans.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased pb-16 md:pb-0">
         <JsonLd data={organizationJsonLd()} />
         <Header />

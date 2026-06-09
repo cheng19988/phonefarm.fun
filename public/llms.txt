@@ -1,27 +1,36 @@
 # PhoneFarm Fun (phonefarm.fun)
 
-> Factory-built Android device farm hardware from Guangzhou, China — for mobile QA, app testing, and automation labs.
+> Factory-built Android device farm hardware from Guangzhou, China — real-device labs for mobile QA, app testing, automation, and B2B deployment.
 
 ## About
-PhoneFarm Fun is a Guangzhou-based hardware team supplying real Android device farm boxes, motherboard clusters, multi-device lab racks, lab accessories, and custom rack solutions for B2B buyers running mobile QA and device automation workflows.
+PhoneFarm Fun is a Guangzhou-based hardware manufacturer (since 2017) supplying real Android device farm boxes, motherboard clusters, multi-device lab racks, lab accessories, and custom rack solutions. We assemble chassis locally, run burn-in QC, and export worldwide.
 
 ## Products
-- 20-Node Android Device Farm Starter Box — entry-level QA lab chassis
-- 20-Node Real Device Testing Box Pro — continuous app testing hardware
-- Android Motherboard Cluster for App QA — high-density headless nodes
-- 10–20 Node Multi-Device Lab Rack — customer-supplied device chassis
-- 20-Node Turnkey Device Lab Bundle — integrated power, cooling, USB, network
-- 20-Node Empty Chassis — expansion unit for custom builds
-- 7-Port Industrial USB Hub Module
-- 450W Power Supply Module
-- 4-Fan Cooling Kit
-- Network Kit for 20-Node Cluster
-- Custom Android Device Farm Rack Solution — 40+ node quoted projects
+- Phone Farm Box — 20-node real Android device chassis (USB+LAN+OTG)
+- Motherboard Box — high-density headless Android clusters for QA
+- Android Phone Farm — starter QA deployment SKU
+- iPhone Phone Farm — iOS lab hardware (quoted per project)
+- Real Device Phone Farm — turnkey lab bundle
+- Empty Box / Chassis — expansion units
+- USB Hub, Power Supply, Cooling Kit, Network Kit — accessories
+- Custom Rack Cabinet — 40+ node engineered projects
+
+## Supported device models (examples)
+Samsung Galaxy S8, S9, S10, S20, S21 FE, Note 8/9/10 Lite/20, Z Flip3/4; OnePlus 5/8 Pro; Google Pixel 4 XL; Nubia Z17; A908N and other Android SKUs with USB/LAN/OTG routing.
 
 ## Services
-Device lab setup and assembly, remote control workstation setup, multi-device lab management setup, large-scale lab deployment (quote), custom hardware engineering (quote), enterprise rack deployment (quote), hardware maintenance and support, sample hardware evaluation, international shipping and export.
+Phone farm setup & assembly, remote control workstation setup, group control / batch management configuration, bulk device deployment, custom hardware engineering, enterprise rack deployment, maintenance & support, sample hardware evaluation, overseas delivery & export.
 
-## Contact
+## FAQ topics
+What is a phone farm box; motherboard cluster vs phone box; real device vs cloud phone; real device vs emulator; Android vs iPhone farm; device capacity per box; custom hardware; remote control; group control; international shipping; MOQ; sample orders; lead time; USDT payment; Samsung model compatibility; creator studio workflows; e-commerce app testing; device management software (ADB-neutral).
+
+## Guides & blog
+How to choose a phone farm box; cloud phone vs real device; lab setup guide; motherboard vs phone box; bulk APK deployment; power & cooling for 24/7 labs; phone farming profitability (hardware perspective); creator studio setup; digital marketing device labs; Samsung model compatibility; remote lab management; e-commerce testing at scale.
+
+## Use cases
+Creator & content studio; digital marketing labs; e-commerce operations; development & QA testing.
+
+## Contact (PhoneFarm Fun only)
 - Phone: +86 13059502618
 - WhatsApp: +852 6215 5642
 - Telegram: @huicheng1998
@@ -31,7 +40,13 @@ Device lab setup and assembly, remote control workstation setup, multi-device la
 ## Website
 - Home: https://phonefarm.fun/
 - Products: https://phonefarm.fun/products
+- Phone Farm Box: https://phonefarm.fun/products/phone-farm-box
+- Motherboard Box: https://phonefarm.fun/products/motherboard-box
 - Services: https://phonefarm.fun/services
 - FAQ: https://phonefarm.fun/faq
+- Guides: https://phonefarm.fun/blog
 - Contact: https://phonefarm.fun/contact
-- Blog: https://phonefarm.fun/blog
+- About: https://phonefarm.fun/about
+
+## Order flow
+Browse catalog → product detail → add to cart / request quote → register/login → USDT TRC20 checkout (30 min window) or contact sales for invoice.

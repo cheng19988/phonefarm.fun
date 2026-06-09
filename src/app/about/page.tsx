@@ -42,7 +42,7 @@ export default function AboutPage() {
         title="Guangzhou-Based Phone Farm Hardware Team"
         subtitle="We build phone farm boxes, motherboard arrays, and rack deployments for device labs, app testing teams, and automation workflows."
         eyebrow={`Since ${SITE.since} · ${SITE.location}`}
-        image={IMAGES.company.workshop}
+        image={IMAGES.banners.about}
         imageAlt="Phone farm hardware assembly workshop"
       />
 

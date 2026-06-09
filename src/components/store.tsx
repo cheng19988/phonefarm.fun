@@ -37,9 +37,9 @@ export function PageHero({
         <div className="catalog-hero-overlay" aria-hidden />
         <div className="container-wide relative z-10 w-full py-16 md:py-20 lg:py-24">
           {eyebrow && (
-            <p className="text-sm font-semibold text-orange-400 mb-4 uppercase tracking-widest">{eyebrow}</p>
+            <p className="text-sm font-semibold text-[var(--accent)] mb-4 uppercase tracking-widest">{eyebrow}</p>
           )}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[3.75rem] font-bold text-white leading-[1.05] mb-5 md:mb-6 tracking-tight max-w-4xl">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-[3.75rem] font-bold text-white leading-[1.05] mb-5 md:mb-6 tracking-tight max-w-4xl">
             {title}
           </h1>
           {subtitle && (
@@ -210,17 +210,20 @@ export function MetaGrid({ items, large }: { items: { label: string; value: stri
 
 export function SpecTable({ specs, large }: { specs: Record<string, string>; large?: boolean }) {
   return (
-    <div className="overflow-x-auto -mx-1 rounded-2xl border-2 border-slate-200 bg-white shadow-sm">
-      <table className={`w-full min-w-[320px] ${large ? "text-base md:text-lg" : "text-sm"}`}>
-        <tbody>
-          {Object.entries(specs).map(([k, v], i) => (
-            <tr key={k} className={`border-b border-slate-100 last:border-0 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/80"}`}>
-              <td className={`py-4 px-5 md:px-6 text-slate-600 align-top font-semibold w-[38%] sm:w-[34%] ${large ? "md:w-[32%]" : ""}`}>{k}</td>
-              <td className={`py-4 px-5 md:px-6 text-slate-900 align-top leading-relaxed font-medium ${large ? "md:pr-10" : ""}`}>{v}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="space-y-2">
+      <p className="text-xs text-slate-500 md:hidden">Swipe horizontally to view full spec table →</p>
+      <div className="overflow-x-auto -mx-1 rounded-2xl border-2 border-slate-200 bg-white shadow-sm">
+        <table className={`w-full min-w-[320px] ${large ? "text-base md:text-lg" : "text-sm"}`}>
+          <tbody>
+            {Object.entries(specs).map(([k, v], i) => (
+              <tr key={k} className={`border-b border-slate-100 last:border-0 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/80"}`}>
+                <td className={`py-4 px-5 md:px-6 text-slate-600 align-top font-semibold w-[38%] sm:w-[34%] ${large ? "md:w-[32%]" : ""}`}>{k}</td>
+                <td className={`py-4 px-5 md:px-6 text-slate-900 align-top leading-relaxed font-medium ${large ? "md:pr-10" : ""}`}>{v}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
@@ -342,6 +345,35 @@ export function LoadingBlock({ label = "Loading..." }: { label?: string }) {
           <div className="h-4 bg-slate-100 rounded w-2/3" />
           <p className="text-sm text-slate-500 pt-2">{label}</p>
         </div>
+      </div>
+    </div>
+  );
+}
+
+export function CartLoadingSkeleton() {
+  return (
+    <div className="section">
+      <div className="container-wide max-w-4xl">
+        <div className="h-9 bg-slate-200 rounded w-48 mb-8 animate-pulse" />
+        <div className="space-y-5">
+          {[1, 2].map((i) => (
+            <div key={i} className="card p-5 md:p-6 animate-pulse">
+              <div className="flex flex-col sm:flex-row gap-5">
+                <div className="w-full sm:w-36 h-48 sm:h-36 bg-slate-100 rounded-xl" />
+                <div className="flex-1 space-y-4">
+                  <div className="h-6 bg-slate-200 rounded w-3/4" />
+                  <div className="h-4 bg-slate-100 rounded w-1/4" />
+                  <div className="h-10 bg-slate-100 rounded w-32" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="card p-6 md:p-8 mt-10 animate-pulse space-y-4">
+          <div className="h-6 bg-slate-200 rounded w-1/3" />
+          <div className="h-12 bg-slate-100 rounded w-full" />
+        </div>
+        <p className="text-sm text-slate-500 text-center mt-6">Loading your hardware cart...</p>
       </div>
     </div>
   );

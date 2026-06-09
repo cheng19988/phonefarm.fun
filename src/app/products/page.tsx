@@ -2,10 +2,11 @@ import Link from "next/link";
 import { getPublishedProducts } from "@/lib/products-server";
 import { ProductCard } from "@/components/commerce";
 import { JsonLd } from "@/components/shared";
-import { PRIMARY_CATALOG_SLUGS } from "@/data/product-images";
+import { PRIMARY_CATALOG_SLUGS, getProductCardImage } from "@/data/product-images";
 import { getProductMeta } from "@/data/product-meta";
 import { buildMetadata, itemListJsonLd } from "@/lib/seo";
 import { PageHero, FilterPills, BuyingGuideBlock, SectionHeader } from "@/components/store";
+import { DeviceModelGridAll } from "@/components/device-model-grid";
 import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
@@ -70,7 +71,7 @@ export default async function ProductsPage({
         title="Phone Farm Hardware Catalog"
         subtitle="Phone farm boxes, motherboard arrays, rack solutions, and lab accessories — factory-built in Guangzhou with reference USD pricing, MOQ, and lead times."
         eyebrow="Factory-built · Guangzhou"
-        image={IMAGES.customCabinet.hero}
+        image={IMAGES.banners.products}
         imageAlt="Phone farm rack and hardware catalog"
       />
 
@@ -131,7 +132,7 @@ export default async function ProductsPage({
                       shortDesc={p!.shortDesc}
                       priceUsd={p!.priceUsd}
                       stock={p!.stock}
-                      imageCard={p!.imageCard}
+                      imageCard={getProductCardImage(p!.slug, p!.imageCard)}
                       category={p!.category}
                       tier={meta.tier}
                       nodeCount={meta.nodeCount}
@@ -166,7 +167,7 @@ export default async function ProductsPage({
                       shortDesc={p.shortDesc}
                       priceUsd={p.priceUsd}
                       stock={p.stock}
-                      imageCard={p.imageCard}
+                      imageCard={getProductCardImage(p.slug, p.imageCard)}
                       category={p.category}
                       tier={meta.tier}
                       nodeCount={meta.nodeCount}
@@ -180,6 +181,15 @@ export default async function ProductsPage({
               </div>
             </>
           )}
+
+          <section className="mb-16 md:mb-20">
+            <SectionHeader
+              title="Android Model Configurations"
+              subtitle="Product images show real box builds with model-specific USB/LAN/OTG routing — Galaxy, Note, OnePlus, Pixel, and more."
+              large
+            />
+            <DeviceModelGridAll />
+          </section>
 
           <BuyingGuideBlock />
         </div>

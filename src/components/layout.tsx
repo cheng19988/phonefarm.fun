@@ -1,118 +1,60 @@
+import { HeaderNav } from "./header-nav";
 import Link from "next/link";
-import { CONTACT, NAV, SITE } from "@/lib/config";
-import { ContactBar } from "./shared";
-import { CartButton } from "./cart-button";
+import { CONTACT, SITE } from "@/lib/config";
 import { getSession } from "@/lib/auth";
+import { SiteLogo } from "./site-logo";
 
 export async function Header() {
   const session = await getSession();
-
-  return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-      <div className="hidden md:block bg-slate-900 border-b border-slate-800">
-        <div className="container-wide py-2.5 flex justify-between items-center text-xs md:text-sm text-slate-300">
-          <span className="font-medium">{SITE.location} · Real device hardware since {SITE.since}</span>
-          <ContactBar compact />
-        </div>
-      </div>
-      <div className="container-wide py-4 md:py-5 flex items-center justify-between gap-4">
-        <Link href="/" className="flex items-center gap-3 shrink-0 min-w-0">
-          <div className="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold text-base shrink-0 shadow-md">
-            PF
-          </div>
-          <div className="min-w-0 hidden xs:block sm:block">
-            <div className="font-bold text-slate-900 leading-tight truncate text-base md:text-lg">{SITE.name}</div>
-            <div className="text-xs text-slate-500 leading-tight hidden sm:block truncate">{SITE.tagline}</div>
-          </div>
-        </Link>
-        <nav className="hidden lg:flex items-center gap-7 xl:gap-8">
-          {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="text-base font-medium text-slate-600 hover:text-slate-900 transition-colors">
-              {item.label}
-            </Link>
-          ))}
-        </nav>
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-          <CartButton />
-          <Link href="/products" className="btn-primary text-base py-2.5 px-5 md:px-6">
-            Shop
-          </Link>
-          {session ? (
-            <Link
-              href={session.role === "admin" ? "/admin" : "/account/orders"}
-              className="hidden sm:inline text-sm text-slate-600 hover:text-slate-900"
-            >
-              Account
-            </Link>
-          ) : (
-            <Link href="/login" className="hidden sm:inline text-sm text-slate-600 hover:text-slate-900">
-              Login
-            </Link>
-          )}
-        </div>
-      </div>
-      <nav className="lg:hidden border-t border-slate-100">
-        <div className="container-wide py-2 flex gap-1 overflow-x-auto text-sm scrollbar-none">
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="px-3 py-1.5 rounded-full whitespace-nowrap text-slate-600 hover:text-slate-900 hover:bg-slate-50"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-      </nav>
-    </header>
-  );
+  return <HeaderNav sessionEmail={session?.email} isAdmin={session?.role === "admin"} />;
 }
 
 export function Footer() {
   return (
-    <footer className="bg-white border-t border-slate-200 mt-auto">
-      <div className="container-wide py-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-[var(--ink)] text-slate-300 border-t border-white/5 mt-auto">
+      <div className="container-wide py-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
         <div className="sm:col-span-2 lg:col-span-1">
-          <div className="font-bold text-slate-900 text-lg mb-2">{SITE.name}</div>
-          <p className="text-slate-600 text-sm mb-4 leading-relaxed">
-            Factory-built phone farm boxes, motherboard arrays, and rack hardware from Guangzhou.
+          <SiteLogo variant="inverse" size="sm" href="/" className="mb-4" />
+          <p className="text-slate-400 text-sm mb-4 leading-relaxed max-w-xs">
+            Factory-built phone farm boxes, motherboard arrays, and rack hardware from Guangzhou — real Android devices for QA and automation labs.
           </p>
-          <a href={`mailto:${CONTACT.email}`} className="text-sm text-orange-600 hover:text-orange-500 font-medium">
+          <a href={`mailto:${CONTACT.email}`} className="text-sm text-[var(--accent)] hover:underline font-medium">
             {CONTACT.email}
           </a>
         </div>
         <div>
-          <h3 className="font-semibold text-slate-900 mb-3 text-sm uppercase tracking-wide">Products</h3>
-          <ul className="space-y-2 text-sm text-slate-600">
-            <li><Link href="/products/phone-farm-box" className="hover:text-orange-600">20-Node Pro Testing Box</Link></li>
-            <li><Link href="/products/motherboard-box" className="hover:text-orange-600">Motherboard Cluster</Link></li>
-            <li><Link href="/products/android-phone-farm" className="hover:text-orange-600">Starter Device Farm Box</Link></li>
-            <li><Link href="/products/custom-cabinet" className="hover:text-orange-600">Custom Rack Solution</Link></li>
-            <li><Link href="/products" className="hover:text-orange-600 font-medium">Full Catalog →</Link></li>
+          <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Products</h3>
+          <ul className="space-y-2.5 text-sm text-slate-400">
+            <li><Link href="/products/phone-farm-box" className="hover:text-[var(--accent)]">Phone Farm Box</Link></li>
+            <li><Link href="/products/motherboard-box" className="hover:text-[var(--accent)]">Motherboard Cluster</Link></li>
+            <li><Link href="/products/android-phone-farm" className="hover:text-[var(--accent)]">Android Phone Farm</Link></li>
+            <li><Link href="/products/iphone-phone-farm" className="hover:text-[var(--accent)]">iPhone Phone Farm</Link></li>
+            <li><Link href="/products/custom-cabinet" className="hover:text-[var(--accent)]">Custom Rack Solution</Link></li>
+            <li><Link href="/products" className="hover:text-[var(--accent)] font-medium">Full Catalog →</Link></li>
           </ul>
         </div>
         <div>
-          <h3 className="font-semibold text-slate-900 mb-3 text-sm uppercase tracking-wide">Services</h3>
-          <ul className="space-y-2 text-sm text-slate-600">
-            <li><Link href="/services/phone-farm-setup" className="hover:text-orange-600">Device Lab Setup</Link></li>
-            <li><Link href="/services/remote-control-configuration" className="hover:text-orange-600">Remote Control Setup</Link></li>
-            <li><Link href="/services/custom-hardware-solution" className="hover:text-orange-600">Custom Engineering</Link></li>
-            <li><Link href="/services" className="hover:text-orange-600 font-medium">All Services →</Link></li>
+          <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Resources</h3>
+          <ul className="space-y-2.5 text-sm text-slate-400">
+            <li><Link href="/services" className="hover:text-[var(--accent)]">Services</Link></li>
+            <li><Link href="/blog" className="hover:text-[var(--accent)]">Guides &amp; Blog</Link></li>
+            <li><Link href="/faq" className="hover:text-[var(--accent)]">FAQ</Link></li>
+            <li><Link href="/about" className="hover:text-[var(--accent)]">About Factory</Link></li>
+            <li><Link href="/contact" className="hover:text-[var(--accent)]">Contact Sales</Link></li>
           </ul>
         </div>
         <div>
-          <h3 className="font-semibold text-slate-900 mb-3 text-sm uppercase tracking-wide">Company</h3>
-          <ul className="space-y-2 text-sm text-slate-600">
-            <li><Link href="/about" className="hover:text-orange-600">About</Link></li>
-            <li><Link href="/blog" className="hover:text-orange-600">Blog</Link></li>
-            <li><Link href="/faq" className="hover:text-orange-600">FAQ</Link></li>
-            <li><Link href="/contact" className="hover:text-orange-600">Contact</Link></li>
-            <li><Link href="/privacy" className="hover:text-orange-600">Privacy</Link></li>
-            <li><Link href="/terms" className="hover:text-orange-600">Terms</Link></li>
+          <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contact</h3>
+          <ul className="space-y-2.5 text-sm text-slate-400">
+            <li><a href={`tel:${CONTACT.phone}`} className="hover:text-white">{CONTACT.phone}</a></li>
+            <li><a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400">WhatsApp</a></li>
+            <li><a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-sky-400">Telegram</a></li>
+            <li><a href={`mailto:${CONTACT.email}`} className="hover:text-[var(--accent)]">{CONTACT.email}</a></li>
           </ul>
+          <p className="text-xs text-slate-500 mt-4">{SITE.location}</p>
         </div>
       </div>
-      <div className="border-t border-slate-200 py-4 text-center text-xs text-slate-500">
+      <div className="border-t border-white/10 py-5 text-center text-xs text-slate-500">
         © {new Date().getFullYear()} {SITE.name} · {SITE.location}
       </div>
     </footer>

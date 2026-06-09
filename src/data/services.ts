@@ -73,7 +73,7 @@ export const SERVICES: ServiceItem[] = [
     title: "Large-Scale Lab Deployment",
     description:
       "Quote-based provisioning for 50+ device labs — bulk APK staging, test environment baseline, fleet health checks, and deployment documentation.",
-    image: IMAGES.factory,
+    image: IMAGES.factoryScene,
     priceUsd: 0,
     timeline: "Quote-based",
     deliverables: [

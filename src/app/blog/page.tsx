@@ -34,7 +34,7 @@ export default function BlogPage() {
         title="Phone Farm Hardware Guides"
         subtitle="Choosing phone farm boxes, motherboard clusters, power and cooling, rack deployment, and remote operation workflows."
         eyebrow="Procurement & deployment guides"
-        image={IMAGES.motherboardBox.hero}
+        image={IMAGES.banners.blog}
         imageAlt="Phone farm hardware guides"
       />
       <section className="inner-page-section">

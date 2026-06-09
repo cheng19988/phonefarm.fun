@@ -5,6 +5,7 @@ import { BuyButtons, FAQAccordion, ProductCard } from "@/components/commerce";
 import { ProductGallery } from "@/components/product-gallery";
 import { ContactCTA, ContactBar, JsonLd, StockBadge } from "@/components/shared";
 import { getProductGalleryImages } from "@/data/product-images";
+import { DeviceModelGridAll } from "@/components/device-model-grid";
 import { getProductMeta, getProductEyebrow } from "@/data/product-meta";
 import { getProfessionalSpecs } from "@/data/product-specs";
 import { isQuotePreferredProduct } from "@/lib/product-commerce";
@@ -212,6 +213,17 @@ export default async function ProductDetailPage({ params }: Props) {
               </section>
             </div>
           </div>
+
+          {(slug === "phone-farm-box" || slug === "android-phone-farm") && (
+            <section className="pt-14 md:pt-16 border-t-2 border-slate-200">
+              <SectionHeader
+                title="Compatible Android Models"
+                subtitle="Full factory catalog with RAM, storage, and port routing from product detail images. Share your target device list when ordering."
+                large
+              />
+              <DeviceModelGridAll />
+            </section>
+          )}
 
           {related.length > 0 && (
             <section className="pt-14 md:pt-16 lg:pt-20 pb-10 border-t-2 border-slate-200">

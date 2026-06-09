@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ContactForm } from "@/components/contact-form";
 import { CONTACT, SITE } from "@/lib/config";
 import { IMAGES } from "@/lib/images";
@@ -25,7 +24,7 @@ export default async function ContactPage({ searchParams }: Props) {
         title="Request a Phone Farm Hardware Quote"
         subtitle="Share your node count, device models, shipping country, and setup requirements. Our Guangzhou sales team responds within one business day."
         eyebrow="B2B hardware inquiry"
-        image={IMAGES.phoneFarmBox.hero}
+        image={IMAGES.banners.contact}
         imageAlt="Phone farm hardware quote request"
       />
       <section className="inner-page-section">
