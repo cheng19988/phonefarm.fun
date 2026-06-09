@@ -56,7 +56,7 @@ export function ProductsCatalogHero() {
           </div>
 
           <div className="grid grid-cols-[1.15fr_0.85fr] gap-3">
-            <Link href={main.href} className="catalog-hero-stage catalog-hero-stage--main row-span-2 group">
+            <Link href={main.href} className="catalog-hero-stage catalog-hero-stage--main catalog-hero-stage--cutout row-span-2 group">
               <Image
                 src={main.src}
                 alt={main.label}

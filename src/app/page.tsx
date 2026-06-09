@@ -77,8 +77,8 @@ export default async function HomePage() {
       <JsonLd data={faqJsonLd(previewFaq)} />
       <HomeHero />
 
-      {/* What is a phone farm — intro for new visitors */}
-      <section className="section bg-white border-b border-zinc-200">
+      {/* What is a phone farm — intro (no duplicate chassis image from hero) */}
+      <section className="section bg-white border-b border-zinc-200" id="phone-farm-intro">
         <div className="container-wide grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div>
             <p className="eyebrow">New to phone farms?</p>
@@ -106,14 +106,14 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <div className="photo-stage photo-stage--wide col-span-2">
-              <Image src={IMAGES.productsHeroChassis} alt="Phone farm box chassis" fill className="photo-fit--hero" sizes="50vw" />
+            <div className="photo-stage photo-stage--wide col-span-2 min-h-[200px]">
+              <Image src={IMAGES.company.workshop} alt="Guangzhou phone farm assembly workshop" fill className="object-cover object-center" sizes="50vw" />
             </div>
             <div className="photo-stage photo-stage--card">
-              <Image src={IMAGES.motherboardBox.hero} alt="Motherboard array" fill className="photo-fit" sizes="25vw" />
+              <Image src={IMAGES.phoneFarmBox.hero} alt="Configured phone farm box with Android devices" fill className="photo-fit" sizes="25vw" />
             </div>
             <div className="photo-stage photo-stage--card">
-              <Image src={IMAGES.phoneFarmBox.hero} alt="Configured phone farm build" fill className="photo-fit" sizes="25vw" />
+              <Image src={IMAGES.motherboardBox.hero} alt="Android motherboard cluster array" fill className="photo-fit" sizes="25vw" />
             </div>
           </div>
         </div>
@@ -425,8 +425,8 @@ export default async function HomePage() {
           </div>
           <div className="cta-product-stack">
             <Image
-              src={IMAGES.productsHeroChassis}
-              alt="20-node phone farm box chassis"
+              src={IMAGES.phoneFarmBox.hero}
+              alt="Configured phone farm box with Android devices"
               fill
               className="photo-fit--hero"
               sizes="340px"

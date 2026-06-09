@@ -73,8 +73,8 @@ export default function AboutPage() {
             </div>
             <div className="photo-stage photo-stage--wide min-h-[280px] lg:min-h-[320px]">
               <Image
-                src={IMAGES.productsHeroChassis}
-                alt="20-node phone farm box chassis"
+                src={IMAGES.phoneFarmBox.hero}
+                alt="Configured phone farm box with Android devices"
                 fill
                 className="photo-fit--hero"
                 sizes="50vw"

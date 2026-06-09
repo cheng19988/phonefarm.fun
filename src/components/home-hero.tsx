@@ -31,21 +31,21 @@ export function HomeHero() {
             <Link href="/products" className="btn-primary-lg shadow-lg shadow-orange-900/20">
               Start Shopping
             </Link>
-            <Link href="/about#what-is-phone-farm" className="btn-ghost-light">
+            <Link href="#phone-farm-intro" className="btn-ghost-light">
               What Is a Phone Farm?
             </Link>
           </div>
         </div>
 
-        <div className="relative z-10 w-full">
-          <div className="product-stage product-stage--hero">
+        <div className="relative z-10 hero-product-cutout lg:-mr-4">
+          <div className="hero-product-cutout-inner">
             <Image
               src={IMAGES.productsHeroChassis}
               alt="20-node phone farm box chassis with USB, LAN1, LAN2 and OTG ports"
               fill
-              className="photo-fit--hero"
+              className="object-contain object-center"
               priority
-              sizes="(max-width:1024px) 100vw, 560px"
+              sizes="(max-width:1024px) 100vw, 640px"
             />
           </div>
         </div>

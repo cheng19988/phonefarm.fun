@@ -34,8 +34,19 @@ async function main() {
     raw: { width: info.width, height: info.height, channels: 4 },
   });
 
-  await raw.clone().webp({ quality: 90, alphaQuality: 100 }).toFile(outWebp);
-  await raw.clone().png({ compressionLevel: 9 }).toFile(outPng);
+  const trimmed = raw
+    .clone()
+    .trim({ threshold: 10 })
+    .extend({
+      top: 16,
+      bottom: 16,
+      left: 16,
+      right: 16,
+      background: { r: 0, g: 0, b: 0, alpha: 0 },
+    });
+
+  await trimmed.clone().webp({ quality: 90, alphaQuality: 100 }).toFile(outWebp);
+  await trimmed.clone().png({ compressionLevel: 9 }).toFile(outPng);
 
   const outMeta = await sharp(outWebp).metadata();
   console.log("Saved:", outWebp, outMeta.width, outMeta.height, "alpha:", outMeta.hasAlpha);
