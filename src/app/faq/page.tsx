@@ -2,7 +2,7 @@ import { FAQAccordion } from "@/components/commerce";
 import { ContactCTA, JsonLd } from "@/components/shared";
 import { FAQ_ITEMS } from "@/data/faq";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
-import { PageHero, SectionHeader } from "@/components/store";
+import { PageHero } from "@/components/store";
 import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
@@ -54,11 +54,19 @@ export default function FAQPage() {
       />
       <section className="inner-page-section">
         <div className="container-wide max-w-5xl space-y-12 md:space-y-16">
-          {FAQ_CATEGORIES.map((cat) => {
+          {FAQ_CATEGORIES.map((cat, idx) => {
             const items = cat.indices.map((i) => FAQ_ITEMS[i]).filter(Boolean);
             return (
               <div key={cat.title} className="detail-section">
-                <SectionHeader title={cat.title} subtitle={cat.description} large />
+                <div className="flex items-start gap-4 mb-8 pb-5 border-b border-slate-200">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange-100 text-orange-700 font-bold text-sm">
+                    {idx + 1}
+                  </span>
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mb-1">{cat.title}</h2>
+                    <p className="text-slate-600 text-base md:text-lg">{cat.description}</p>
+                  </div>
+                </div>
                 <FAQAccordion items={items} large />
               </div>
             );

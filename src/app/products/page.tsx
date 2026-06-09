@@ -78,14 +78,14 @@ export default async function ProductsPage({
         <div className="container-wide py-6 md:py-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {[
-              { label: "Core SKUs", value: "Boxes · Arrays · Racks" },
-              { label: "Pricing", value: "Reference USD · MOQ shown" },
-              { label: "Lead time", value: "Quoted per deployment" },
-              { label: "Origin", value: "Guangzhou workshop" },
+              { label: "Deployment types", value: "Starter · Standard · High-Density · Custom" },
+              { label: "MOQ", value: "From 1 unit" },
+              { label: "Lead time", value: "3–7 business days" },
+              { label: "Origin", value: "Factory built in Guangzhou" },
             ].map((stat) => (
-              <div key={stat.label} className="rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-4 md:px-5 md:py-5">
-                <p className="text-xs uppercase tracking-widest text-slate-500 font-bold mb-1">{stat.label}</p>
-                <p className="text-sm md:text-base font-bold text-slate-900">{stat.value}</p>
+              <div key={stat.label} className="rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-4 md:px-6 md:py-5">
+                <p className="text-[11px] md:text-xs uppercase tracking-widest text-slate-500 font-bold mb-1.5">{stat.label}</p>
+                <p className="text-sm md:text-base font-bold text-slate-900 leading-snug">{stat.value}</p>
               </div>
             ))}
           </div>
@@ -101,7 +101,7 @@ export default async function ProductsPage({
           />
 
           <div className="mb-10 md:mb-12">
-            <FilterPills items={DEPLOYMENT_FILTERS} active={params.category ?? ""} baseHref="/products" />
+            <FilterPills items={DEPLOYMENT_FILTERS} active={params.category ?? ""} baseHref="/products" bar />
           </div>
 
           <div className="flex flex-wrap items-center justify-between gap-4 mb-10 md:mb-12 text-sm md:text-base pb-6 border-b border-slate-200">

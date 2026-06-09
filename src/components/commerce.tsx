@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CONTACT } from "@/lib/config";
+import { isQuotePreferredProduct } from "@/lib/product-commerce";
 import { AddToCartButton } from "./add-to-cart-button";
 import { StockBadge } from "./shared";
 import { PriceDisplay } from "./store";
@@ -42,6 +43,18 @@ export function ProductCard({
   featured = false,
 }: ProductCardProps) {
   const isCatalog = featured && !compact;
+  const quotePreferred = isQuotePreferredProduct(slug, leadTime, deploymentType);
+  const outOfStock = stock <= 0;
+
+  const commerceLine1 = [nodeCount, deploymentType].filter(Boolean).join(" · ");
+  const commerceLine2 = [
+    `MOQ ${moq} unit${moq !== 1 ? "s" : ""}`,
+    leadTime ? `Lead time ${leadTime}` : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+
+  const ctaMinH = "min-h-[44px]";
 
   return (
     <article
@@ -52,7 +65,7 @@ export function ProductCard({
       <Link
         href={`/products/${slug}`}
         className={`block relative overflow-hidden bg-slate-100 ${
-          isCatalog ? "aspect-[4/3] lg:aspect-[3/2]" : "aspect-[4/5]"
+          isCatalog ? "aspect-[4/3] lg:aspect-[3/2]" : "aspect-[4/3]"
         }`}
       >
         <Image
@@ -74,66 +87,85 @@ export function ProductCard({
         <Link href={`/products/${slug}`}>
           <h3
             className={`font-bold text-slate-900 group-hover:text-orange-600 transition-colors mb-2 line-clamp-2 leading-snug ${
-              isCatalog ? "text-xl md:text-2xl" : featured ? "text-lg md:text-xl" : "text-base md:text-lg"
+              isCatalog ? "text-xl md:text-2xl lg:text-[1.65rem]" : featured ? "text-lg md:text-xl" : "text-base md:text-lg"
             }`}
           >
             {name}
           </h3>
         </Link>
+
         {!compact && (
-          <div className={`grid grid-cols-2 gap-2 mb-4 ${isCatalog ? "gap-3" : ""}`}>
-            {nodeCount && (
-              <div className={`rounded-lg border border-slate-200 bg-slate-50 ${isCatalog ? "px-3 py-2.5" : "px-2.5 py-1.5"}`}>
-                <span className="text-[10px] md:text-xs uppercase tracking-wide text-slate-500 font-semibold block">Nodes</span>
-                <span className={`font-bold text-slate-800 ${isCatalog ? "text-sm md:text-base" : "text-xs md:text-sm"}`}>{nodeCount}</span>
+          <>
+            {(commerceLine1 || commerceLine2) && (
+              <div className={`mb-4 space-y-1.5 ${isCatalog ? "text-base" : "text-sm"}`}>
+                {commerceLine1 && (
+                  <p className="text-slate-700 font-medium leading-snug">{commerceLine1}</p>
+                )}
+                {commerceLine2 && (
+                  <p className="text-slate-500 leading-snug">{commerceLine2}</p>
+                )}
               </div>
             )}
-            {deploymentType && (
-              <div className={`rounded-lg border border-slate-200 bg-slate-50 ${isCatalog ? "px-3 py-2.5" : "px-2.5 py-1.5"}`}>
-                <span className="text-[10px] md:text-xs uppercase tracking-wide text-slate-500 font-semibold block">Deployment</span>
-                <span className={`font-bold text-slate-800 line-clamp-1 ${isCatalog ? "text-sm md:text-base" : "text-xs md:text-sm"}`}>{deploymentType}</span>
-              </div>
+            {isCatalog && (
+              <p className="text-slate-600 mb-4 line-clamp-2 text-base leading-relaxed">{shortDesc}</p>
             )}
-            <div className={`rounded-lg border border-slate-200 bg-slate-50 ${isCatalog ? "px-3 py-2.5" : "px-2.5 py-1.5"}`}>
-              <span className="text-[10px] md:text-xs uppercase tracking-wide text-slate-500 font-semibold block">MOQ</span>
-              <span className={`font-bold text-slate-800 ${isCatalog ? "text-sm md:text-base" : "text-xs md:text-sm"}`}>{moq} unit{moq !== 1 ? "s" : ""}</span>
-            </div>
-            {leadTime && (
-              <div className={`rounded-lg border border-slate-200 bg-slate-50 ${isCatalog ? "px-3 py-2.5" : "px-2.5 py-1.5"}`}>
-                <span className="text-[10px] md:text-xs uppercase tracking-wide text-slate-500 font-semibold block">Lead time</span>
-                <span className={`font-bold text-slate-800 ${isCatalog ? "text-sm md:text-base" : "text-xs md:text-sm"}`}>{leadTime}</span>
-              </div>
+            {!isCatalog && (
+              <p className={`text-slate-600 mb-3 line-clamp-2 flex-1 ${featured ? "text-sm md:text-base" : "text-sm"}`}>
+                {shortDesc}
+              </p>
             )}
+          </>
+        )}
+
+        <div className="flex flex-wrap items-end justify-between gap-3 mb-4 md:mb-5 border-t-2 border-slate-100 pt-4 md:pt-5 mt-auto">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-slate-500 font-semibold mb-1">Reference price</p>
+            <PriceDisplay amount={priceUsd} size={isCatalog ? "xl" : compact ? "sm" : "lg"} />
           </div>
-        )}
-        {!compact && !isCatalog && (
-          <p className={`text-slate-600 mb-3 line-clamp-2 flex-1 ${featured ? "text-sm md:text-base" : "text-sm"}`}>
-            {shortDesc}
-          </p>
-        )}
-        {!compact && isCatalog && (
-          <p className="text-slate-600 mb-4 line-clamp-2 text-base leading-relaxed">{shortDesc}</p>
-        )}
-        <div className="flex items-end justify-between mb-4 md:mb-5 gap-3 border-t-2 border-slate-100 pt-4 md:pt-5">
-          <PriceDisplay amount={priceUsd} size={isCatalog ? "lg" : compact ? "sm" : "md"} />
           <StockBadge stock={stock} />
         </div>
-        <div className={`grid grid-cols-2 gap-2 md:gap-3 mt-auto ${isCatalog ? "md:grid-cols-2" : ""}`}>
-          <AddToCartButton
-            type="product"
-            slug={slug}
-            disabled={stock <= 0}
-            className={`btn-primary text-center w-full disabled:opacity-50 ${
-              isCatalog ? "btn-primary-lg !py-3 !text-base" : "text-sm py-2.5"
-            }`}
-            label={stock <= 0 ? "Out of Stock" : "Add to Cart"}
-          />
-          <Link
-            href={`/products/${slug}`}
-            className={`btn-outline text-center ${isCatalog ? "btn-outline-lg !py-3 !text-base" : "text-sm py-2.5"}`}
-          >
-            View Details
-          </Link>
+
+        <div className={`grid grid-cols-2 gap-2 md:gap-3 ${ctaMinH}`}>
+          {quotePreferred ? (
+            <>
+              <Link
+                href={`/contact?product=${slug}`}
+                className={`btn-primary text-center w-full ${ctaMinH} flex items-center justify-center ${
+                  isCatalog ? "btn-primary-lg !py-3 !text-base" : "text-sm md:text-base py-2.5"
+                }`}
+              >
+                Request Quote
+              </Link>
+              <Link
+                href={`/products/${slug}`}
+                className={`btn-outline text-center flex items-center justify-center ${ctaMinH} ${
+                  isCatalog ? "btn-outline-lg !py-3 !text-base" : "text-sm md:text-base py-2.5"
+                }`}
+              >
+                View Details
+              </Link>
+            </>
+          ) : (
+            <>
+              <AddToCartButton
+                type="product"
+                slug={slug}
+                disabled={outOfStock}
+                className={`btn-primary text-center w-full disabled:opacity-50 flex items-center justify-center ${ctaMinH} ${
+                  isCatalog ? "btn-primary-lg !py-3 !text-base" : "text-sm md:text-base py-2.5"
+                }`}
+                label={outOfStock ? "Out of Stock" : "Add to Cart"}
+              />
+              <Link
+                href={`/products/${slug}`}
+                className={`btn-outline text-center flex items-center justify-center ${ctaMinH} ${
+                  isCatalog ? "btn-outline-lg !py-3 !text-base" : "text-sm md:text-base py-2.5"
+                }`}
+              >
+                View Details
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </article>
@@ -176,8 +208,8 @@ export function ServiceCard({
           {quoteOnly ? "Custom quote — contact sales" : `$${priceUsd.toLocaleString()}`} · {timeline}
         </p>
         <div className="grid grid-cols-2 gap-2 md:gap-3 mt-auto">
-          <Link href={`/services/${slug}`} className={`btn-outline text-center ${large ? "btn-outline-lg !py-3" : "text-sm py-2"}`}>View Details</Link>
-          <Link href={`/contact?service=${slug}`} className={`btn-primary text-center ${large ? "btn-primary-lg !py-3" : "text-sm py-2"}`}>
+          <Link href={`/services/${slug}`} className={`btn-outline text-center min-h-[44px] flex items-center justify-center ${large ? "btn-outline-lg !py-3" : "text-sm py-2"}`}>View Details</Link>
+          <Link href={`/contact?service=${slug}`} className={`btn-primary text-center min-h-[44px] flex items-center justify-center ${large ? "btn-primary-lg !py-3" : "text-sm py-2"}`}>
             {quoteOnly ? "Get Quote" : "Request Quote"}
           </Link>
         </div>
@@ -188,39 +220,84 @@ export function ServiceCard({
 
 export function FAQAccordion({ items, large }: { items: { question: string; answer: string }[]; large?: boolean }) {
   return (
-    <div className={`space-y-3 ${large ? "md:space-y-4" : ""}`}>
+    <div className={`space-y-3 ${large ? "md:space-y-3" : ""}`}>
       {items.map((item, i) => (
-        <details key={i} className={`card group ${large ? "p-5 md:p-6 lg:p-7" : "p-4 md:p-5"}`}>
-          <summary className={`font-semibold text-slate-900 cursor-pointer list-none flex justify-between items-start gap-4 ${large ? "text-base md:text-lg" : ""}`}>
-            <span>{item.question}</span>
-            <span className="text-orange-600 group-open:rotate-45 transition-transform text-xl shrink-0 leading-none">+</span>
+        <details
+          key={i}
+          className={`group rounded-xl border-2 border-slate-200 bg-white overflow-hidden transition-colors hover:border-slate-300 open:border-orange-200 open:shadow-md ${
+            large ? "open:shadow-lg" : ""
+          }`}
+        >
+          <summary
+            className={`font-semibold text-slate-900 cursor-pointer list-none flex justify-between items-start gap-4 px-5 py-4 md:px-6 md:py-5 bg-slate-50/80 group-open:bg-orange-50/50 group-open:border-b group-open:border-slate-200 ${
+              large ? "text-base md:text-lg" : "text-sm md:text-base"
+            }`}
+          >
+            <span className="leading-snug">{item.question}</span>
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white border border-slate-200 text-orange-600 group-open:rotate-45 transition-transform text-lg leading-none shadow-sm">
+              +
+            </span>
           </summary>
-          <p className={`mt-3 text-slate-600 leading-relaxed ${large ? "text-base md:text-lg" : "text-sm"}`}>{item.answer}</p>
+          <p className={`px-5 py-4 md:px-6 md:py-5 text-slate-600 leading-relaxed ${large ? "text-base md:text-lg" : "text-sm"}`}>
+            {item.answer}
+          </p>
         </details>
       ))}
     </div>
   );
 }
 
-export function BuyButtons({ slug, stock = 0 }: { slug: string; stock?: number }) {
+export function BuyButtons({
+  slug,
+  stock = 0,
+  quotePreferred = false,
+}: {
+  slug: string;
+  stock?: number;
+  quotePreferred?: boolean;
+}) {
   const disabled = stock <= 0;
+
+  if (quotePreferred) {
+    return (
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+        <Link href={`/contact?product=${slug}`} className="btn-primary-lg flex-1 sm:flex-none text-center justify-center min-h-[44px] flex items-center">
+          Request Quote
+        </Link>
+        <Link href={`/products/${slug}`} className="btn-outline-lg text-center flex-1 sm:flex-none min-h-[44px] flex items-center justify-center">
+          View Details
+        </Link>
+        <a
+          href={CONTACT.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-secondary text-base px-5 py-3.5 text-center sm:ml-auto min-h-[44px] flex items-center justify-center"
+        >
+          WhatsApp
+        </a>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+    <div className="space-y-3">
       <AddToCartButton
         type="product"
         slug={slug}
         disabled={disabled}
-        className="btn-primary-lg disabled:opacity-50 disabled:cursor-not-allowed flex-1 sm:flex-none text-center justify-center"
+        className="btn-primary-lg w-full disabled:opacity-50 disabled:cursor-not-allowed text-center justify-center min-h-[48px]"
         label={disabled ? "Out of Stock" : "Add to Cart"}
       />
-      <Link href={`/contact?product=${slug}`} className="btn-outline-lg text-center flex-1 sm:flex-none">Request Quote</Link>
+      <Link href={`/contact?product=${slug}`} className="btn-outline-lg w-full text-center block min-h-[48px] leading-[48px]">
+        Request Quote
+      </Link>
       <a
         href={CONTACT.whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="btn-secondary text-base px-5 py-3.5 text-center sm:ml-auto"
+        className="block w-full text-center text-sm font-medium text-slate-500 hover:text-green-700 py-2 transition-colors"
       >
-        WhatsApp
+        WhatsApp sales →
       </a>
     </div>
   );
@@ -230,15 +307,15 @@ export function ServiceBuyButtons({ slug, priceUsd }: { slug: string; priceUsd: 
   if (priceUsd <= 0) {
     return (
       <div className="flex flex-wrap gap-3">
-        <Link href={`/contact?service=${slug}`} className="btn-primary">Request Quote</Link>
-        <Link href={`/services/${slug}`} className="btn-outline">View Details</Link>
+        <Link href={`/contact?service=${slug}`} className="btn-primary min-h-[44px] flex items-center">Request Quote</Link>
+        <Link href={`/services/${slug}`} className="btn-outline min-h-[44px] flex items-center">View Details</Link>
       </div>
     );
   }
   return (
     <div className="flex flex-wrap gap-3">
-      <AddToCartButton type="service" slug={slug} className="btn-primary" />
-      <Link href={`/contact?service=${slug}`} className="btn-outline">Request Quote</Link>
+      <AddToCartButton type="service" slug={slug} className="btn-primary min-h-[44px]" />
+      <Link href={`/contact?service=${slug}`} className="btn-outline min-h-[44px] flex items-center">Request Quote</Link>
     </div>
   );
 }

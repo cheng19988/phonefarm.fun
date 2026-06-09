@@ -244,14 +244,14 @@ export function CapabilityStrip({
   items: { title: string; desc: string }[];
 }) {
   return (
-    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
       {items.map((item, i) => (
-        <div key={item.title} className="delivery-step flex-col sm:flex-row">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-orange-600 text-white font-bold text-lg">
+        <div key={item.title} className="capability-card">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-white font-bold text-lg shadow-md">
             {i + 1}
           </span>
           <div>
-            <h3 className="font-bold text-slate-900 text-base md:text-lg mb-1">{item.title}</h3>
+            <h3 className="font-bold text-slate-900 text-lg md:text-xl mb-2">{item.title}</h3>
             <p className="text-sm md:text-base text-slate-600 leading-relaxed">{item.desc}</p>
           </div>
         </div>
@@ -353,13 +353,16 @@ export function FilterPills({
   items,
   active,
   baseHref,
+  bar,
 }: {
   items: { label: string; value: string }[];
   active: string;
   baseHref: string;
+  /** Wrap in catalog filter bar styling */
+  bar?: boolean;
 }) {
-  return (
-    <div className="flex flex-wrap gap-2">
+  const pills = (
+    <div className="flex flex-wrap gap-2 md:gap-2.5">
       {items.map((item) => {
         const isActive = active === item.value;
         const href = item.value ? `${baseHref}?category=${encodeURIComponent(item.value)}` : baseHref;
@@ -367,10 +370,10 @@ export function FilterPills({
           <Link
             key={item.value || "all"}
             href={href}
-            className={`px-4 py-2.5 rounded-full text-sm md:text-base font-medium border transition-colors ${
+            className={`px-4 py-2.5 md:px-5 md:py-3 rounded-lg text-sm md:text-base font-semibold border-2 transition-all ${
               isActive
-                ? "border-orange-500 text-orange-600 bg-orange-50"
-                : "border-slate-300 text-slate-600 hover:border-slate-400 bg-white"
+                ? "border-orange-500 text-orange-700 bg-orange-50 shadow-sm"
+                : "border-slate-200 text-slate-700 hover:border-slate-300 bg-white hover:bg-slate-50"
             }`}
           >
             {item.label}
@@ -378,5 +381,27 @@ export function FilterPills({
         );
       })}
     </div>
+  );
+
+  if (!bar) return pills;
+
+  return (
+    <div className="catalog-filter-bar">
+      <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3 md:mb-4">Filter by deployment type</p>
+      {pills}
+    </div>
+  );
+}
+
+export function TrustStrip({ items }: { items: string[] }) {
+  return (
+    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 pt-6 mt-6 border-t border-slate-200">
+      {items.map((item) => (
+        <li key={item} className="flex gap-2.5 items-start text-sm text-slate-600">
+          <span className="text-emerald-600 font-bold shrink-0 mt-0.5" aria-hidden>✓</span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
   );
 }

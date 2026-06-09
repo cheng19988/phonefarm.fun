@@ -85,12 +85,20 @@ export default function ServicesPage() {
             <DeliveryTimeline steps={DELIVERY_FLOW} />
           </div>
 
-          {SERVICE_GROUPS.map((group) => {
+          {SERVICE_GROUPS.map((group, idx) => {
             const items = group.slugs.map((slug) => bySlug.get(slug)).filter(Boolean);
             if (items.length === 0) return null;
             return (
               <div key={group.title} className="service-group-band">
-                <SectionHeader title={group.title} subtitle={group.desc} large />
+                <div className="flex items-start gap-4 md:gap-5 mb-8 md:mb-10 pb-6 border-b-2 border-slate-200">
+                  <span className="hidden sm:flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-white font-bold text-lg">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight mb-2">{group.title}</h2>
+                    <p className="text-slate-600 text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed">{group.desc}</p>
+                  </div>
+                </div>
                 <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
                   {items.map((svc) => (
                     <ServiceCard

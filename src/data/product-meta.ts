@@ -125,3 +125,20 @@ export function getProductMeta(slug: string): ProductMeta {
     }
   );
 }
+
+/** Avoid redundant labels like "High-Density · High-Density Deployment". */
+export function getProductEyebrow(meta: ProductMeta, category?: string): string {
+  const tier = meta.tier.trim();
+  const deployment = meta.deploymentType.trim();
+  const cat = (category ?? "").trim();
+  const tierLower = tier.toLowerCase();
+  const depLower = deployment.toLowerCase();
+  const catLower = cat.toLowerCase();
+
+  if (cat && (catLower === depLower || catLower === tierLower)) return deployment;
+  if (depLower.startsWith(tierLower) || tierLower === depLower.split(/\s+/)[0]?.toLowerCase()) {
+    return deployment;
+  }
+  if (cat && catLower.includes(tierLower)) return deployment;
+  return `${tier} · ${deployment}`;
+}

@@ -1,79 +1,37 @@
-import { IMAGES } from "@/lib/images";
+import realImageManifest from "@/lib/real-images-manifest.json";
 
-/** Extra gallery images per SKU (project assets only; no external brands). */
-export const PRODUCT_GALLERY: Record<string, string[]> = {
-  "android-phone-farm": [
-    IMAGES.androidFarm.detail,
-    IMAGES.androidFarm.hero,
-    IMAGES.workshop,
-    IMAGES.usbHub.detail,
-  ],
-  "phone-farm-box": [
-    IMAGES.phoneFarmBox.detail,
-    IMAGES.phoneFarmBox.hero,
-    IMAGES.remoteControl.hero,
-    IMAGES.cooling.detail,
-  ],
-  "motherboard-box": [
-    IMAGES.motherboardBox.detail,
-    IMAGES.motherboardBox.hero,
-    IMAGES.emptyBox.detail,
-    IMAGES.network.hero,
-  ],
-  "iphone-phone-farm": [
-    IMAGES.iphoneFarm.detail,
-    IMAGES.iphoneFarm.hero,
-    IMAGES.network.hero,
-    IMAGES.realDevice.hero,
-  ],
-  "real-device-phone-farm": [
-    IMAGES.realDevice.detail,
-    IMAGES.realDevice.hero,
-    IMAGES.phoneFarmBox.hero,
-    IMAGES.power.hero,
-  ],
-  "empty-box-chassis": [
-    IMAGES.emptyBox.detail,
-    IMAGES.emptyBox.hero,
-    IMAGES.phoneFarmBox.detail,
-    IMAGES.power.detail,
-  ],
-  "usb-hub": [
-    IMAGES.usbHub.detail,
-    IMAGES.usbHub.hero,
-    IMAGES.phoneFarmBox.card,
-    IMAGES.motherboardBox.card,
-  ],
-  "power-supply-solution": [
-    IMAGES.power.detail,
-    IMAGES.power.hero,
-    IMAGES.cooling.detail,
-    IMAGES.emptyBox.detail,
-  ],
-  "cooling-solution": [
-    IMAGES.cooling.detail,
-    IMAGES.cooling.hero,
-    IMAGES.power.detail,
-    IMAGES.phoneFarmBox.card,
-  ],
-  "network-equipment": [
-    IMAGES.network.detail,
-    IMAGES.network.hero,
-    IMAGES.customCabinet.hero,
-    IMAGES.usbHub.hero,
-  ],
-  "custom-cabinet": [
-    IMAGES.customCabinet.detail,
-    IMAGES.customCabinet.hero,
-    IMAGES.warehouse,
-    IMAGES.motherboardBox.hero,
-  ],
+const REAL_BASE = "/images/real";
+
+/** Real-photo filenames per SKU — used when files exist under public/images/real/ */
+export const REAL_GALLERY_BY_SLUG: Record<string, string[]> = {
+  "android-phone-farm": ["phone-farm-box-32-front.webp", "phone-farm-box-32-inside.webp"],
+  "phone-farm-box": ["phone-farm-box-32-front.webp", "phone-farm-box-32-inside.webp", "phone-farm-box-32-testing.webp"],
+  "motherboard-box": ["motherboard-box-front.webp", "motherboard-box-inside.webp", "motherboard-box-cables.webp"],
+  "iphone-phone-farm": ["iphone-farm-box-front.webp", "iphone-farm-box-inside.webp"],
+  "real-device-phone-farm": ["phone-array-12-front.webp"],
+  "empty-box-chassis": ["motherboard-box-inside.webp"],
+  "usb-hub": ["otg-lan-router-setup.webp"],
+  "power-supply-solution": ["export-packing-box.webp"],
+  "cooling-solution": ["workshop-testing-bench.webp"],
+  "network-equipment": ["otg-lan-router-setup.webp"],
+  "custom-cabinet": ["workshop-assembly-table.webp", "export-packing-box.webp"],
 };
 
+const existingReal = new Set(realImageManifest as string[]);
+
+function realPathsForSlug(slug: string): string[] {
+  const names = REAL_GALLERY_BY_SLUG[slug] ?? [];
+  return names
+    .filter((name) => existingReal.has(name))
+    .map((name) => `${REAL_BASE}/${name}`);
+}
+
+/** Gallery uses this SKU's own assets only — no cross-SKU stock images. */
 export function getProductGalleryImages(slug: string, fallback: string[]): string[] {
-  const extras = PRODUCT_GALLERY[slug] ?? [];
-  const merged = [...fallback, ...extras];
-  return merged.filter((src, i) => merged.indexOf(src) === i).slice(0, 5);
+  const real = realPathsForSlug(slug);
+  const own = [...real, ...fallback.filter(Boolean)];
+  const unique = own.filter((src, i) => own.indexOf(src) === i);
+  return unique.slice(0, 5);
 }
 
 /** Primary catalog slugs — larger cards on /products */
@@ -83,3 +41,10 @@ export const PRIMARY_CATALOG_SLUGS = [
   "motherboard-box",
   "custom-cabinet",
 ] as const;
+
+export function getGalleryFallbackReport(): { slug: string; usesReal: boolean; imageCount: number }[] {
+  return Object.keys(REAL_GALLERY_BY_SLUG).map((slug) => {
+    const real = realPathsForSlug(slug);
+    return { slug, usesReal: real.length > 0, imageCount: real.length };
+  });
+}

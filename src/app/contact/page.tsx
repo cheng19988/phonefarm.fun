@@ -1,11 +1,8 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
-import { Suspense, useState } from "react";
-import { ContactBar } from "@/components/shared";
+import Link from "next/link";
+import { ContactForm } from "@/components/contact-form";
 import { CONTACT, SITE } from "@/lib/config";
 import { IMAGES } from "@/lib/images";
-import { FormInput, FormLabel, FormSelect, FormTextarea, PageHero } from "@/components/store";
+import { PageHero } from "@/components/store";
 
 const QUOTE_CHECKLIST = [
   "Target node count (e.g. 20, 40, custom rack)",
@@ -15,102 +12,12 @@ const QUOTE_CHECKLIST = [
   "Remote setup requirement (ADB only, workstation config, or full lab management)",
 ];
 
-function ContactForm() {
-  const searchParams = useSearchParams();
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+type Props = { searchParams: Promise<{ product?: string; service?: string }> };
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("loading");
-    const form = new FormData(e.currentTarget);
+export default async function ContactPage({ searchParams }: Props) {
+  const params = await searchParams;
+  const defaultProduct = params.product || params.service || "";
 
-    const extras = [
-      form.get("deviceModel") && `Device model preference: ${form.get("deviceModel")}`,
-      form.get("remoteControl") && `Remote control: ${form.get("remoteControl")}`,
-      form.get("quantity") && `Quantity: ${form.get("quantity")}`,
-    ].filter(Boolean).join("\n");
-
-    const message = [form.get("message"), extras].filter(Boolean).join("\n\n");
-    form.set("message", message);
-
-    const res = await fetch("/api/contact", { method: "POST", body: form });
-    setStatus(res.ok ? "success" : "error");
-  }
-
-  const defaultProduct = searchParams.get("product") || searchParams.get("service") || "";
-
-  return (
-    <form onSubmit={handleSubmit} className="card product-card-heavy p-6 md:p-8 lg:p-10 xl:p-12 space-y-5">
-      <div className="grid sm:grid-cols-2 gap-5">
-        <div>
-          <FormLabel required>Name</FormLabel>
-          <FormInput name="name" required />
-        </div>
-        <div>
-          <FormLabel required>Email</FormLabel>
-          <FormInput name="email" type="email" required />
-        </div>
-        <div>
-          <FormLabel>WhatsApp / Telegram</FormLabel>
-          <FormInput name="whatsapp" placeholder="@username or phone" />
-        </div>
-        <div>
-          <FormLabel>Phone</FormLabel>
-          <FormInput name="phone" />
-        </div>
-        <div>
-          <FormLabel>Shipping country</FormLabel>
-          <FormInput name="country" placeholder="e.g. United States, Germany" />
-        </div>
-        <div>
-          <FormLabel>Quantity</FormLabel>
-          <FormInput name="quantity" placeholder="e.g. 1, 5, 20-node rack" />
-        </div>
-        <div>
-          <FormLabel>Product / SKU</FormLabel>
-          <FormInput name="productInterest" defaultValue={defaultProduct} placeholder="e.g. 20-Node Pro Box" />
-        </div>
-        <div>
-          <FormLabel>Node count</FormLabel>
-          <FormInput name="deviceQuantity" placeholder="e.g. 20, 40, custom rack" />
-        </div>
-        <div>
-          <FormLabel>Device model preference</FormLabel>
-          <FormInput name="deviceModel" placeholder="e.g. Samsung A series, motherboard cluster" />
-        </div>
-        <div>
-          <FormLabel>Remote control requirement</FormLabel>
-          <FormSelect name="remoteControl" defaultValue="">
-            <option value="">Select...</option>
-            <option value="ADB only">ADB only — I will manage locally</option>
-            <option value="Remote workstation setup">Remote workstation setup needed</option>
-            <option value="Full lab management">Full multi-device lab management</option>
-            <option value="Not sure">Not sure — need recommendation</option>
-          </FormSelect>
-        </div>
-        <div className="sm:col-span-2">
-          <FormLabel>Budget (optional)</FormLabel>
-          <FormInput name="budget" placeholder="USD range" />
-        </div>
-      </div>
-      <div>
-        <FormLabel>Project details</FormLabel>
-        <FormTextarea
-          name="message"
-          rows={6}
-          placeholder="Target Android version, deployment timeline, rack requirements, automation workflow..."
-        />
-      </div>
-      <button type="submit" disabled={status === "loading"} className="btn-primary w-full py-3.5 text-base">
-        {status === "loading" ? "Sending..." : "Send Hardware Requirement"}
-      </button>
-      {status === "success" && <p className="text-green-700 text-sm bg-green-50 border border-green-200 rounded-lg p-4">Thank you! We will respond within 24 hours on business days.</p>}
-      {status === "error" && <p className="text-red-700 text-sm bg-red-50 border border-red-200 rounded-lg p-4">Failed to send. Please contact us via WhatsApp or email.</p>}
-    </form>
-  );
-}
-
-export default function ContactPage() {
   return (
     <>
       <PageHero
@@ -125,22 +32,51 @@ export default function ContactPage() {
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
             <div className="lg:col-span-7">
-              <Suspense fallback={<div className="card p-10 text-slate-500 text-lg">Loading form...</div>}>
-                <ContactForm />
-              </Suspense>
+              <ContactForm defaultProduct={defaultProduct} />
             </div>
             <div className="lg:col-span-5 space-y-6 lg:space-y-8">
               <div className="detail-section">
-                <h2 className="font-bold text-slate-900 text-xl md:text-2xl mb-4">Direct contact</h2>
-                <ContactBar />
-                <p className="text-orange-600 font-medium mt-4">{CONTACT.email}</p>
+                <h2 className="font-bold text-slate-900 text-xl md:text-2xl mb-5">Direct contact</h2>
+                <dl className="space-y-4">
+                  <div>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Email</dt>
+                    <dd>
+                      <a href={`mailto:${CONTACT.email}`} className="text-base md:text-lg font-semibold text-orange-600 hover:text-orange-500">
+                        {CONTACT.email}
+                      </a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Phone</dt>
+                    <dd>
+                      <a href={`tel:${CONTACT.phone}`} className="text-base font-semibold text-slate-800 hover:text-orange-600">
+                        {CONTACT.phone}
+                      </a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">WhatsApp / Telegram</dt>
+                    <dd className="flex flex-wrap gap-4 text-base font-semibold">
+                      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-slate-800 hover:text-green-700">
+                        WhatsApp
+                      </a>
+                      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-slate-800 hover:text-blue-700">
+                        Telegram
+                      </a>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Location</dt>
+                    <dd className="text-base text-slate-700">{SITE.location}</dd>
+                  </div>
+                </dl>
               </div>
               <div className="detail-section bg-slate-900 text-white border-slate-800">
                 <h3 className="font-bold text-xl md:text-2xl mb-4">Before you request a quote</h3>
-                <ul className="space-y-3">
+                <ul className="space-y-3.5">
                   {QUOTE_CHECKLIST.map((item) => (
-                    <li key={item} className="flex gap-3 text-slate-300 text-sm md:text-base leading-relaxed">
-                      <span className="text-orange-400 shrink-0">•</span>
+                    <li key={item} className="flex gap-3 text-slate-100 text-sm md:text-base leading-relaxed">
+                      <span className="text-orange-400 shrink-0 font-bold">✓</span>
                       <span>{item}</span>
                     </li>
                   ))}

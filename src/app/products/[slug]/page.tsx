@@ -7,6 +7,7 @@ import { ContactCTA, ContactBar, JsonLd, StockBadge } from "@/components/shared"
 import { getProductGalleryImages } from "@/data/product-images";
 import { getProductMeta } from "@/data/product-meta";
 import { getProfessionalSpecs } from "@/data/product-specs";
+import { isQuotePreferredProduct } from "@/lib/product-commerce";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { Breadcrumbs, SpecTable, IconList, MetaGrid, PriceDisplay, SectionHeader, DetailSection } from "@/components/store";
 
@@ -30,9 +31,21 @@ function parseJson<T>(s: string, fallback: T): T {
   try { return JSON.parse(s); } catch { return fallback; }
 }
 
-const DEFAULT_CHASSIS = ["Factory-assembled chassis", "Device tray layout per SKU", "Mounting hardware included"];
-const DEFAULT_POWER = ["Centralized power distribution", "Active cooling layout", "Managed USB routing"];
-const DEFAULT_PACKING = ["Power and connectivity burn-in", "Export packaging with foam inserts"];
+const DEFAULT_CHASSIS = [
+  "Factory-assembled steel chassis with labeled device trays",
+  "Mounting hardware and internal cable routing channels",
+  "Layout verified against your SKU configuration before packing",
+];
+const DEFAULT_POWER = [
+  "Centralized PSU with protected power rails",
+  "Active cooling path sized for continuous lab operation",
+  "USB backplane and labeled data paths for stable ADB",
+];
+const DEFAULT_PACKING = [
+  "Power and connectivity burn-in before export",
+  "Foam-lined export packaging with slot-level QC notes",
+  "Commercial invoice and freight handoff from Guangzhou",
+];
 
 export default async function ProductDetailPage({ params }: Props) {
   const { slug } = await params;
@@ -40,26 +53,27 @@ export default async function ProductDetailPage({ params }: Props) {
   if (!product) notFound();
 
   const meta = getProductMeta(slug);
+  const quotePreferred = isQuotePreferredProduct(slug, meta.leadTime, meta.deploymentType);
   const related = await getRelatedProducts(slug, 3);
 
-  const features = parseJson<string[]>(product.features, []);
   const rawSpecs = parseJson<Record<string, string>>(product.specs, {});
   const specs = getProfessionalSpecs(slug, rawSpecs);
   const scenarios = parseJson<string[]>(product.scenarios, []);
   const accessories = parseJson<string[]>(product.accessories, []);
   const delivery = parseJson<string[]>(product.delivery, []);
+  const maintenance = parseJson<string[]>(product.maintenance, []);
   const faq = parseJson<{ q: string; a: string }[]>(product.faq, []);
   const faqItems = faq.map((f) => ({ question: f.q, answer: f.a }));
 
   const gallery = getProductGalleryImages(slug, [
-    product.imageDetail,
     product.imageHero,
+    product.imageDetail,
     product.imageCard,
   ]);
 
-  const chassisItems = features.length >= 3 ? features.slice(0, 3) : DEFAULT_CHASSIS;
-  const powerItems = features.length >= 5 ? features.slice(3, 6) : features.length > 3 ? features.slice(3) : DEFAULT_POWER;
-  const packingItems = delivery.length ? delivery : DEFAULT_PACKING;
+  const chassisItems = accessories.length >= 2 ? accessories.slice(0, 3) : DEFAULT_CHASSIS;
+  const powerItems = maintenance.length >= 2 ? maintenance.slice(0, 3) : DEFAULT_POWER;
+  const packingItems = delivery.length ? delivery.slice(0, 4) : DEFAULT_PACKING;
 
   return (
     <>
@@ -107,7 +121,7 @@ export default async function ProductDetailPage({ params }: Props) {
                   { label: "Typical use", value: meta.useCase },
                 ]} />
                 <div className="mt-8 space-y-3">
-                  <BuyButtons slug={product.slug} stock={product.stock} />
+                  <BuyButtons slug={product.slug} stock={product.stock} quotePreferred={quotePreferred} />
                   <Link
                     href={`/contact?product=${slug}`}
                     className="btn-outline-lg w-full text-center block"
@@ -131,16 +145,10 @@ export default async function ProductDetailPage({ params }: Props) {
             <div className="lg:col-span-8 space-y-10 md:space-y-12">
               <DetailSection title="Overview">
                 <p className="text-slate-600 text-base md:text-lg lg:text-xl leading-relaxed">{product.description}</p>
-                {features.length > 0 && (
-                  <ul className="mt-8 grid sm:grid-cols-2 gap-3 md:gap-4">
-                    {features.map((f) => (
-                      <li key={f} className="flex gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm md:text-base text-slate-700">
-                        <span className="text-orange-600 font-bold shrink-0">✓</span>
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+                <p className="mt-6 text-slate-700 text-base md:text-lg leading-relaxed">
+                  <span className="font-semibold text-slate-900">Best for: </span>
+                  {meta.useCase}
+                </p>
               </DetailSection>
 
               <DetailSection
