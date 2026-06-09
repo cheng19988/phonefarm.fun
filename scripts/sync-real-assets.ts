@@ -134,11 +134,12 @@ function slugFromProductFilename(filename: string): string | null {
   return null;
 }
 
-async function writeProductStage(input: Buffer, dest: string, size: number) {
+async function writeProductStage(input: Buffer, dest: string, width: number, height?: number) {
   fs.mkdirSync(path.dirname(dest), { recursive: true });
+  const h = height ?? Math.round(width * 0.75);
   await sharp(input)
     .rotate()
-    .resize(size, size, {
+    .resize(width, h, {
       fit: "contain",
       background: { r: 238, g: 242, b: 247, alpha: 1 },
     })
@@ -218,8 +219,8 @@ async function processModelCatalog(): Promise<Record<string, unknown>[]> {
     const buf = await loadBuffer(file);
     if (!buf) continue;
     const webpName = `${meta.imageSlug}.webp`;
-    await writeProductStage(buf, path.join(OUT_MODELS, webpName), 960);
-    await writeProductStage(buf, path.join(OUT_MODELS, `${meta.imageSlug}-card.webp`), 640);
+    await writeProductStage(buf, path.join(OUT_MODELS, webpName), 1200, 900);
+    await writeProductStage(buf, path.join(OUT_MODELS, `${meta.imageSlug}-card.webp`), 800, 600);
     catalog.push({
       slug: meta.imageSlug,
       name: meta.name,

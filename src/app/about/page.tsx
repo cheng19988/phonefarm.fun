@@ -71,12 +71,12 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="catalog-hero-stage min-h-[280px] lg:min-h-[320px]">
+            <div className="photo-stage photo-stage--wide min-h-[280px] lg:min-h-[320px]">
               <Image
                 src={IMAGES.productsHeroChassis}
                 alt="20-node phone farm box chassis"
                 fill
-                className="object-contain p-6 md:p-8"
+                className="photo-fit--hero"
                 sizes="50vw"
               />
             </div>

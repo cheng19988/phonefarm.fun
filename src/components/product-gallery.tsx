@@ -3,11 +3,6 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 
-const frameClass =
-  "relative overflow-hidden rounded-2xl lg:rounded-3xl bg-gradient-to-b from-slate-100 to-slate-50 border-2 border-slate-200";
-
-const imageClass = "object-contain object-center p-4 md:p-6 lg:p-8";
-
 export function ProductGallery({ images, alt }: { images: string[]; alt: string }) {
   const uniqueImages = useMemo(
     () => images.filter((src, i) => src && images.indexOf(src) === i),
@@ -18,23 +13,23 @@ export function ProductGallery({ images, alt }: { images: string[]; alt: string 
 
   if (!main) return null;
 
-  const thumbAlt = `${alt} — reference image`;
+  const thumbAlt = `${alt} — product image`;
 
   return (
     <div className="space-y-4 md:space-y-5">
-      <div className={`${frameClass} aspect-[4/3] shadow-lg`}>
+      <div className="photo-stage photo-stage--wide shadow-lg ring-1 ring-zinc-200/80">
         <Image
           src={main}
           alt={thumbAlt}
           fill
-          className={imageClass}
+          className="photo-fit--hero"
           priority
           sizes="(max-width:1024px) 100vw, 58vw"
         />
       </div>
       {uniqueImages.length > 1 && (
         <div
-          className="flex gap-3 md:gap-4 overflow-x-auto pb-2 -mx-1 px-1 snap-x scrollbar-thin"
+          className="flex gap-3 overflow-x-auto pb-2 snap-x"
           role="tablist"
           aria-label="Product images"
         >
@@ -45,14 +40,14 @@ export function ProductGallery({ images, alt }: { images: string[]; alt: string 
               role="tab"
               aria-selected={i === active}
               onClick={() => setActive(i)}
-              className={`relative shrink-0 w-[72px] h-[72px] sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-xl overflow-hidden border-2 transition-all snap-start bg-gradient-to-b from-slate-100 to-slate-50 ${
+              className={`relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-xl overflow-hidden border-2 transition-all snap-start photo-stage photo-stage--thumb ${
                 i === active
                   ? "border-orange-500 ring-2 ring-orange-500/30 shadow-md"
-                  : "border-slate-200 hover:border-slate-300"
+                  : "border-zinc-200 hover:border-zinc-300"
               }`}
               aria-label={`View image ${i + 1} of ${uniqueImages.length}`}
             >
-              <Image src={src} alt="" fill className="object-contain object-center p-1.5 md:p-2" sizes="112px" />
+              <Image src={src} alt="" fill className="photo-fit" sizes="96px" />
             </button>
           ))}
         </div>

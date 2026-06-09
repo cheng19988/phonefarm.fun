@@ -64,15 +64,13 @@ export function ProductCard({
     >
       <Link
         href={`/products/${slug}`}
-        className={`block relative overflow-hidden bg-slate-100 ${
-          isCatalog ? "aspect-[4/3] lg:aspect-[3/2]" : "aspect-[4/3]"
-        }`}
+        className="block relative overflow-hidden photo-stage photo-stage--card"
       >
         <Image
           src={imageCard}
           alt={name}
           fill
-          className="object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
+          className="photo-fit group-hover:scale-[1.02] transition-transform duration-300"
           sizes={isCatalog ? "(max-width:768px) 100vw, 33vw" : "(max-width:768px) 100vw, 25vw"}
         />
         <span

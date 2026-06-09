@@ -106,14 +106,14 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
-            <div className="catalog-hero-stage col-span-2 min-h-[200px]">
-              <Image src={IMAGES.productsHeroChassis} alt="Phone farm box chassis" fill className="object-contain p-6" sizes="50vw" />
+            <div className="photo-stage photo-stage--wide col-span-2">
+              <Image src={IMAGES.productsHeroChassis} alt="Phone farm box chassis" fill className="photo-fit--hero" sizes="50vw" />
             </div>
-            <div className="catalog-hero-stage min-h-[140px]">
-              <Image src={IMAGES.motherboardBox.hero} alt="Motherboard array" fill className="object-contain p-3" sizes="25vw" />
+            <div className="photo-stage photo-stage--card">
+              <Image src={IMAGES.motherboardBox.hero} alt="Motherboard array" fill className="photo-fit" sizes="25vw" />
             </div>
-            <div className="catalog-hero-stage min-h-[140px]">
-              <Image src={IMAGES.company.workshop} alt="Guangzhou assembly workshop" fill className="object-cover" sizes="25vw" />
+            <div className="photo-stage photo-stage--card">
+              <Image src={IMAGES.phoneFarmBox.hero} alt="Configured phone farm build" fill className="photo-fit" sizes="25vw" />
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@ export default async function HomePage() {
                       src={cardImage}
                       alt={p!.name}
                       fill
-                      className="object-contain p-3 group-hover:scale-[1.02] transition-transform duration-500"
+                      className="photo-fit group-hover:scale-[1.02] transition-transform duration-500"
                       sizes="(max-width:768px) 100vw, 33vw"
                     />
                     <span className="absolute top-3 left-3 bg-white/95 text-zinc-800 text-[10px] font-semibold px-2 py-1 rounded-md border border-zinc-200">
@@ -274,12 +274,12 @@ export default async function HomePage() {
                 Remote Setup Service
               </Link>
             </div>
-            <div className="relative aspect-[16/10] rounded-xl overflow-hidden ring-1 ring-zinc-200">
+            <div className="photo-stage photo-stage--wide ring-1 ring-zinc-200">
               <Image
                 src={IMAGES.phoneFarmBox.detail}
                 alt="Phone farm box hardware detail with USB routing"
                 fill
-                className="object-cover object-center"
+                className="photo-fit--hero"
                 sizes="50vw"
               />
             </div>
@@ -425,10 +425,10 @@ export default async function HomePage() {
           </div>
           <div className="cta-product-stack">
             <Image
-              src={IMAGES.homeCtaBg}
-              alt="Motherboard phone farm cluster hardware"
+              src={IMAGES.productsHeroChassis}
+              alt="20-node phone farm box chassis"
               fill
-              className="object-contain p-4"
+              className="photo-fit--hero"
               sizes="340px"
             />
           </div>

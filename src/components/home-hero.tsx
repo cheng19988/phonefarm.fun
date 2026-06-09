@@ -28,7 +28,7 @@ export function HomeHero() {
             20-node chassis, motherboard clusters, and custom racks assembled in Guangzhou.
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
-            <Link href="/products" className="btn-primary-lg">
+            <Link href="/products" className="btn-primary-lg shadow-lg shadow-orange-900/20">
               Start Shopping
             </Link>
             <Link href="/about#what-is-phone-farm" className="btn-ghost-light">
@@ -37,27 +37,26 @@ export function HomeHero() {
           </div>
         </div>
 
-        <div className="relative z-10">
-          <div className="product-stage product-stage--hero max-w-[520px] mx-auto lg:ml-auto">
+        <div className="relative z-10 w-full">
+          <div className="product-stage product-stage--hero">
             <Image
               src={IMAGES.productsHeroChassis}
               alt="20-node phone farm box chassis with USB, LAN1, LAN2 and OTG ports"
               fill
-              className="object-contain p-5 md:p-8 drop-shadow-xl"
+              className="photo-fit--hero"
               priority
-              sizes="(max-width:1024px) 90vw, 520px"
+              sizes="(max-width:1024px) 100vw, 560px"
             />
           </div>
         </div>
       </div>
 
-      {/* Ordering facts — light strip, not a black bar */}
-      <div className="relative z-10 border-t border-white/10 bg-black/25 backdrop-blur-sm">
+      <div className="relative z-10 border-t border-white/10 bg-black/20 backdrop-blur-sm">
         <div className="container-wide py-4">
           <p className="text-[10px] uppercase tracking-widest text-zinc-400 mb-3">Ordering at a glance</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {ORDERING_FACTS.map((item) => (
-              <div key={item.label}>
+              <div key={item.label} className="rounded-lg bg-white/5 px-3 py-2 border border-white/5">
                 <p className="font-semibold text-white text-sm">{item.value}</p>
                 <p className="text-xs text-zinc-400 mt-0.5">{item.label}</p>
               </div>
