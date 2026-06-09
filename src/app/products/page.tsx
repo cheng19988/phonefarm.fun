@@ -5,9 +5,9 @@ import { JsonLd } from "@/components/shared";
 import { PRIMARY_CATALOG_SLUGS, getProductCardImage } from "@/data/product-images";
 import { getProductMeta } from "@/data/product-meta";
 import { buildMetadata, itemListJsonLd } from "@/lib/seo";
-import { PageHero, FilterPills, BuyingGuideBlock, SectionHeader } from "@/components/store";
+import { ProductsCatalogHero } from "@/components/products-catalog-hero";
+import { FilterPills, BuyingGuideBlock, SectionHeader } from "@/components/store";
 import { DeviceModelGridAll } from "@/components/device-model-grid";
-import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
   title: "Phone Farm Hardware Catalog",
@@ -66,14 +66,7 @@ export default async function ProductsPage({
         imageCard: p.imageCard,
       })))} />
 
-      <PageHero
-        banner
-        title="Phone Farm Hardware Catalog"
-        subtitle="Phone farm boxes, motherboard arrays, rack solutions, and lab accessories — factory-built in Guangzhou with reference USD pricing, MOQ, and lead times."
-        eyebrow="Factory-built · Guangzhou"
-        image={IMAGES.banners.products}
-        imageAlt="Phone farm rack and hardware catalog"
-      />
+      <ProductsCatalogHero />
 
       <div className="border-b border-slate-200 bg-white">
         <div className="container-wide py-6 md:py-8">

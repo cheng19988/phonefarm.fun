@@ -5,7 +5,7 @@ const factory = (file: string) => `/images/factory/${file}`;
 /** Inner-page heroes & CTAs — factory/real photos only (no slide decks) */
 export const BANNERS = {
   home: factory("factory-01.webp"),
-  products: r("phone-farm-box-3.webp"),
+  products: r("phone-farm-box-1.webp"),
   services: factory("factory-02.webp"),
   about: "/images/company/workshop.webp",
   contact: "/images/company/frontdesk.webp",
