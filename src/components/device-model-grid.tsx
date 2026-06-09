@@ -2,7 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { DEVICE_MODELS, specLine, type DeviceModel } from "@/data/device-models";
+import {
+  getCatalogModels,
+  getFeaturedCatalogModels,
+  specLine,
+  type DeviceModel,
+} from "@/data/device-models";
 
 function ModelCard({ model }: { model: DeviceModel }) {
   const img = model.cardImage ?? model.image;
@@ -35,7 +40,7 @@ function ModelCard({ model }: { model: DeviceModel }) {
 }
 
 export function DeviceModelGrid({ limit, models }: { limit?: number; models?: DeviceModel[] }) {
-  const list = models ?? (limit ? DEVICE_MODELS.slice(0, limit) : DEVICE_MODELS);
+  const list = models ?? (limit ? getFeaturedCatalogModels(limit) : getCatalogModels());
   if (list.length === 0) return null;
 
   return (

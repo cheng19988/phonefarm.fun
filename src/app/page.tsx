@@ -13,7 +13,7 @@ import { getProductMeta } from "@/data/product-meta";
 import { getProductCardImage } from "@/data/product-images";
 import { IMAGES } from "@/lib/images";
 import { DeviceModelGrid } from "@/components/device-model-grid";
-import { DEVICE_MODELS } from "@/data/device-models";
+import { getFeaturedCatalogModels, getCatalogModels } from "@/data/device-models";
 import {
   TRUST_STATS,
   USE_CASES,
@@ -25,18 +25,7 @@ import { SITE, CONTACT } from "@/lib/config";
 
 const FEATURED_SLUGS = ["phone-farm-box", "motherboard-box", "custom-cabinet"] as const;
 
-const RECOMMENDED_MODELS = (() => {
-  const seen = new Set<string>();
-  const picked = [];
-  for (const m of DEVICE_MODELS) {
-    const key = `${m.brand}:${m.name}`;
-    if (seen.has(key)) continue;
-    seen.add(key);
-    picked.push(m);
-    if (picked.length >= 8) break;
-  }
-  return picked;
-})();
+const RECOMMENDED_MODELS = getFeaturedCatalogModels(8);
 
 const FACTORY_SHOWCASE = [
   IMAGES.company.workshop,
@@ -88,6 +77,48 @@ export default async function HomePage() {
       <JsonLd data={faqJsonLd(previewFaq)} />
       <HomeHero />
 
+      {/* What is a phone farm — intro for new visitors */}
+      <section className="section bg-white border-b border-zinc-200">
+        <div className="container-wide grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          <div>
+            <p className="eyebrow">New to phone farms?</p>
+            <h2 className="section-title">What Is a Phone Farm?</h2>
+            <p className="text-zinc-600 text-sm md:text-base leading-relaxed mb-4">
+              A <strong className="text-zinc-900">phone farm</strong> is a rack or box that runs many real Android phones together —
+              connected by USB and network ports for QA testing, app compatibility checks, automation scripts, and multi-device workflows.
+            </p>
+            <p className="text-zinc-600 text-sm md:text-base leading-relaxed mb-4">
+              Unlike cloud phones or emulators, our hardware uses <strong className="text-zinc-900">physical devices</strong> in factory-built chassis.
+              Each 20-node box provides power, cooling, and port routing (USB · LAN · OTG) so your lab can deploy, test, and scale reliably.
+            </p>
+            <ul className="space-y-2 text-sm text-zinc-700 mb-6">
+              <li className="flex gap-2"><span className="text-[var(--accent)]">→</span> QA teams running regression on real Android silicon</li>
+              <li className="flex gap-2"><span className="text-[var(--accent)]">→</span> Automation labs controlling 20+ devices via ADB</li>
+              <li className="flex gap-2"><span className="text-[var(--accent)]">→</span> Agencies validating apps across Samsung, OnePlus, Pixel SKUs</li>
+            </ul>
+            <div className="flex flex-wrap gap-3">
+              <Link href="/about#what-is-phone-farm" className="btn-primary text-sm py-2.5">
+                Full Introduction
+              </Link>
+              <Link href="/blog/how-to-choose-phone-farm-box" className="btn-outline text-sm py-2.5">
+                Buying Guide
+              </Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="catalog-hero-stage col-span-2 min-h-[200px]">
+              <Image src={IMAGES.productsHeroChassis} alt="Phone farm box chassis" fill className="object-contain p-6" sizes="50vw" />
+            </div>
+            <div className="catalog-hero-stage min-h-[140px]">
+              <Image src={IMAGES.motherboardBox.hero} alt="Motherboard array" fill className="object-contain p-3" sizes="25vw" />
+            </div>
+            <div className="catalog-hero-stage min-h-[140px]">
+              <Image src={IMAGES.company.workshop} alt="Guangzhou assembly workshop" fill className="object-cover" sizes="25vw" />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Value proposition strip */}
       <section className="value-strip section-tight">
         <div className="container-wide grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-zinc-200">
@@ -100,14 +131,15 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Trust stats */}
-      <section className="bg-[var(--ink)] border-y border-white/5 section-tight">
+      {/* Track record — light band with context */}
+      <section className="bg-zinc-100 border-y border-zinc-200 section-tight">
         <div className="container-wide">
+          <p className="text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Factory track record</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {TRUST_STATS.map((s) => (
               <div key={s.label} className="text-center lg:text-left">
-                <p className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-white tabular-nums">{s.value}</p>
-                <p className="text-xs md:text-sm text-zinc-400 mt-1">{s.label}</p>
+                <p className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-zinc-900 tabular-nums">{s.value}</p>
+                <p className="text-xs md:text-sm text-zinc-600 mt-1">{s.label}</p>
               </div>
             ))}
           </div>
@@ -168,12 +200,12 @@ export default async function HomePage() {
               <SectionHead
                 eyebrow="Recommended configurations"
                 title="Popular Phone Farm Box Models"
-                subtitle={`${DEVICE_MODELS.length} SKUs in catalog — Samsung, OnePlus, Pixel, and universal Android builds.`}
+                subtitle={`${getCatalogModels().length} main product photos — Samsung, OnePlus, Pixel, and universal Android builds.`}
               />
               <DeviceModelGrid models={RECOMMENDED_MODELS} />
               <p className="mt-6 flex flex-wrap gap-3 text-sm">
                 <Link href="/products/phone-farm-box" className="text-[var(--accent)] font-semibold hover:underline">
-                  View all {DEVICE_MODELS.length} models →
+                  View all {getCatalogModels().length} models →
                 </Link>
                 <span className="text-zinc-400">·</span>
                 <Link href="/contact" className="text-zinc-600 hover:text-zinc-900">

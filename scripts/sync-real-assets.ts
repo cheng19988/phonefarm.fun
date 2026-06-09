@@ -207,6 +207,12 @@ async function processModelCatalog(): Promise<Record<string, unknown>[]> {
 
   for (const file of files.sort()) {
     const base = path.basename(file);
+    const lower = base.toLowerCase();
+    // Skip gallery frames, structure diagrams, and page screenshots
+    if (/gallery|frame_\d|structure_of|perangkat|box_speci|device-s8-id/.test(lower)) continue;
+    // Prefer main product hero shots; skip if no main marker unless it has RAM/storage specs
+    if (!/main_box|en_main|main_box_phone|_main_/.test(lower) && !/\d+_\d+gb/.test(lower)) continue;
+
     const meta = parseModelMeta(base);
     if (!meta) continue;
     const buf = await loadBuffer(file);

@@ -48,6 +48,40 @@ export default function AboutPage() {
 
       <section className="inner-page-section">
         <div className="container-wide space-y-16 md:space-y-20">
+          <div id="what-is-phone-farm" className="grid lg:grid-cols-2 gap-10 items-start scroll-mt-24">
+            <div>
+              <SectionHeader
+                title="What Is a Phone Farm?"
+                subtitle="A practical introduction for teams evaluating real-device hardware."
+                large
+              />
+              <div className="prose-content text-base md:text-lg">
+                <p>
+                  A <strong>phone farm</strong> is a dedicated hardware setup that runs multiple real Android smartphones
+                  in parallel — typically 20 devices per chassis — with centralized power, cooling, USB data paths, and network ports.
+                </p>
+                <p>
+                  Phone farms are used by QA labs, app developers, marketing teams, and automation engineers who need
+                  <strong> real silicon behavior</strong> that emulators and cloud phones cannot fully replicate: OEM-specific builds,
+                  regional apps, payment SDKs, camera/sensor paths, and multi-account workflows.
+                </p>
+                <p>
+                  PhoneFarm Fun builds the <strong>hardware layer</strong>: factory-assembled boxes, motherboard clusters, and custom racks
+                  shipped from Guangzhou. Devices are mounted, ports are routed (USB · LAN · OTG), and units are burn-in tested before export.
+                </p>
+              </div>
+            </div>
+            <div className="catalog-hero-stage min-h-[280px] lg:min-h-[320px]">
+              <Image
+                src={IMAGES.productsHeroChassis}
+                alt="20-node phone farm box chassis"
+                fill
+                className="object-contain p-6 md:p-8"
+                sizes="50vw"
+              />
+            </div>
+          </div>
+
           <div>
             <SectionHeader title="What We Build" subtitle="Factory-assembled hardware for real-device phone farm and QA lab deployment." large />
             <IconList items={BUILD_ITEMS} large />
