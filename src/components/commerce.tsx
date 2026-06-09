@@ -260,20 +260,20 @@ export function BuyButtons({
 
   if (quotePreferred) {
     return (
-      <div className="flex flex-col sm:flex-row flex-wrap gap-3">
-        <Link href={`/contact?product=${slug}`} className="btn-primary-lg flex-1 sm:flex-none text-center justify-center min-h-[44px] flex items-center">
+      <div className="space-y-3">
+        <Link
+          href={`/contact?product=${slug}`}
+          className="btn-primary-lg w-full text-center block min-h-[48px] leading-[48px]"
+        >
           Request Quote
-        </Link>
-        <Link href={`/products/${slug}`} className="btn-outline-lg text-center flex-1 sm:flex-none min-h-[44px] flex items-center justify-center">
-          View Details
         </Link>
         <a
           href={CONTACT.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn-secondary text-base px-5 py-3.5 text-center sm:ml-auto min-h-[44px] flex items-center justify-center"
+          className="block w-full text-center text-sm font-medium text-slate-500 hover:text-green-700 py-2 transition-colors"
         >
-          WhatsApp
+          WhatsApp sales →
         </a>
       </div>
     );

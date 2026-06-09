@@ -126,7 +126,15 @@ export function getProductMeta(slug: string): ProductMeta {
   );
 }
 
-/** Avoid redundant labels like "High-Density · High-Density Deployment". */
+/** Natural single-line hardware label — no repeated words like "High-Density · High-Density Deployment". */
+const HARDWARE_EYEBROW: Record<string, string> = {
+  Starter: "Starter Hardware",
+  Pro: "Pro Hardware",
+  "High-Density": "High-Density Hardware",
+  Accessory: "Accessory Module",
+  Custom: "Custom Rack Solution",
+};
+
 export function getProductEyebrow(meta: ProductMeta, category?: string): string {
   const tier = meta.tier.trim();
   const deployment = meta.deploymentType.trim();
@@ -135,10 +143,21 @@ export function getProductEyebrow(meta: ProductMeta, category?: string): string 
   const depLower = deployment.toLowerCase();
   const catLower = cat.toLowerCase();
 
-  if (cat && (catLower === depLower || catLower === tierLower)) return deployment;
-  if (depLower.startsWith(tierLower) || tierLower === depLower.split(/\s+/)[0]?.toLowerCase()) {
-    return deployment;
+  if (tier === "Pro" && deployment === "Standard Deployment") {
+    return "Standard Deployment";
   }
-  if (cat && catLower.includes(tierLower)) return deployment;
-  return `${tier} · ${deployment}`;
+  if (tier === "Starter" && deployment === "Starter Deployment") {
+    return "Starter Deployment";
+  }
+
+  if (deployment && tierLower && (depLower.startsWith(tierLower) || depLower === tierLower)) {
+    return HARDWARE_EYEBROW[tier] ?? deployment;
+  }
+
+  if (cat && (catLower === depLower || catLower === tierLower || catLower.includes(tierLower))) {
+    return HARDWARE_EYEBROW[tier] ?? deployment;
+  }
+
+  if (HARDWARE_EYEBROW[tier]) return HARDWARE_EYEBROW[tier];
+  return deployment || tier;
 }

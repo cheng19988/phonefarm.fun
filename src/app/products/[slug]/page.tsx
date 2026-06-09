@@ -5,11 +5,11 @@ import { BuyButtons, FAQAccordion, ProductCard } from "@/components/commerce";
 import { ProductGallery } from "@/components/product-gallery";
 import { ContactCTA, ContactBar, JsonLd, StockBadge } from "@/components/shared";
 import { getProductGalleryImages } from "@/data/product-images";
-import { getProductMeta } from "@/data/product-meta";
+import { getProductMeta, getProductEyebrow } from "@/data/product-meta";
 import { getProfessionalSpecs } from "@/data/product-specs";
 import { isQuotePreferredProduct } from "@/lib/product-commerce";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
-import { Breadcrumbs, SpecTable, IconList, MetaGrid, PriceDisplay, SectionHeader, DetailSection } from "@/components/store";
+import { Breadcrumbs, SpecTable, IconList, MetaGrid, PriceDisplay, SectionHeader, DetailSection, TrustStrip } from "@/components/store";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -103,7 +103,7 @@ export default async function ProductDetailPage({ params }: Props) {
             <div className="lg:col-span-5">
               <div className="card product-card-heavy p-6 md:p-8 lg:p-10 xl:p-12 lg:sticky lg:top-28">
                 <p className="text-orange-600 text-sm font-bold uppercase tracking-widest mb-3">
-                  {meta.tier} · {product.category}
+                  {getProductEyebrow(meta, product.category)}
                 </p>
                 <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-bold text-slate-900 mb-5 leading-tight tracking-tight">
                   {product.name}
@@ -120,14 +120,14 @@ export default async function ProductDetailPage({ params }: Props) {
                   { label: "Deployment", value: meta.deploymentType },
                   { label: "Typical use", value: meta.useCase },
                 ]} />
-                <div className="mt-8 space-y-3">
+                <div className="mt-8">
                   <BuyButtons slug={product.slug} stock={product.stock} quotePreferred={quotePreferred} />
-                  <Link
-                    href={`/contact?product=${slug}`}
-                    className="btn-outline-lg w-full text-center block"
-                  >
-                    Request Custom Quote
-                  </Link>
+                  <TrustStrip items={[
+                    "Standard configuration",
+                    "Pre-shipment testing",
+                    "Packed before export",
+                    "Custom rack quoted separately",
+                  ]} />
                 </div>
                 <div className="mt-6 p-5 md:p-6 rounded-xl bg-slate-50 border-2 border-slate-200">
                   <p className="font-bold text-slate-900 mb-2 text-base">Sales &amp; configuration</p>
