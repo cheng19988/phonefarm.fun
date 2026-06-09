@@ -3,7 +3,7 @@ import { ContactCTA } from "@/components/shared";
 import { buildMetadata } from "@/lib/seo";
 import { IMAGES } from "@/lib/images";
 import { CONTACT, SITE } from "@/lib/config";
-import { PageHero, SectionHeader, IconList } from "@/components/store";
+import { PageHero, SectionHeader, IconList, DeliveryTimeline } from "@/components/store";
 
 export const metadata = buildMetadata({
   title: "About PhoneFarm Fun — Guangzhou Hardware Team",
@@ -38,7 +38,7 @@ export default function AboutPage() {
   return (
     <>
       <PageHero
-        large
+        banner
         title="Guangzhou-Based Phone Farm Hardware Team"
         subtitle="We build phone farm boxes, motherboard arrays, and rack deployments for device labs, app testing teams, and automation workflows."
         eyebrow={`Since ${SITE.since} · ${SITE.location}`}
@@ -46,19 +46,19 @@ export default function AboutPage() {
         imageAlt="Phone farm hardware assembly workshop"
       />
 
-      <section className="section pt-12 md:pt-16">
+      <section className="inner-page-section">
         <div className="container-wide space-y-16 md:space-y-20">
-          <div className="max-w-4xl">
-            <SectionHeader title="What We Build" subtitle="Factory-assembled hardware for real-device phone farm and QA lab deployment." />
+          <div>
+            <SectionHeader title="What We Build" subtitle="Factory-assembled hardware for real-device phone farm and QA lab deployment." large />
             <IconList items={BUILD_ITEMS} large />
           </div>
 
           <div>
-            <SectionHeader title="Workshop & Assembly" subtitle="Photos from our Guangzhou facility — assembly, testing, packing, and rack configuration." />
-            <div className="grid md:grid-cols-2 gap-8 md:gap-10">
+            <SectionHeader title="Workshop & Assembly" subtitle="Photos from our Guangzhou facility — assembly, testing, packing, and rack configuration." large />
+            <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
               {WORKSHOP_PHOTOS.map((photo) => (
-                <figure key={photo.label} className="card overflow-hidden">
-                  <div className="relative aspect-[16/10] bg-slate-50">
+                <figure key={photo.label} className="card product-card-heavy overflow-hidden">
+                  <div className="relative aspect-[16/10] lg:aspect-[3/2] bg-slate-50">
                     <Image src={photo.src} alt={photo.label} fill className="object-cover" sizes="(max-width:768px) 100vw, 50vw" />
                   </div>
                   <figcaption className="p-5 md:p-6">
@@ -70,22 +70,12 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div>
-            <SectionHeader title="How We Work" />
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6">
-              {WORKFLOW.map((item) => (
-                <div key={item.step} className="card p-5 md:p-6">
-                  <span className="inline-flex w-10 h-10 rounded-full bg-orange-100 text-orange-600 font-bold text-sm items-center justify-center mb-4">
-                    {item.step}
-                  </span>
-                  <h3 className="font-bold text-slate-900 mb-2">{item.title}</h3>
-                  <p className="text-sm md:text-base text-slate-600 leading-relaxed">{item.desc}</p>
-                </div>
-              ))}
-            </div>
+          <div className="catalog-section-band">
+            <SectionHeader title="How We Work" subtitle="From requirement to remote setup — our standard hardware delivery path." large />
+            <DeliveryTimeline steps={WORKFLOW.map((w) => `${w.title} — ${w.desc}`)} />
           </div>
 
-          <div className="card p-6 md:p-8 text-base text-slate-600 max-w-3xl">
+          <div className="detail-section max-w-3xl">
             <p className="font-semibold text-slate-900 mb-3">Contact the team</p>
             <p>Phone: {CONTACT.phone} · WhatsApp: {CONTACT.whatsapp} · Telegram: {CONTACT.telegram}</p>
             <p className="mt-2">Email: {CONTACT.email} · {SITE.location}</p>

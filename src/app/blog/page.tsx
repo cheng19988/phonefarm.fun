@@ -30,20 +30,23 @@ export default function BlogPage() {
   return (
     <>
       <PageHero
-        large
+        banner
         title="Phone Farm Hardware Guides"
         subtitle="Choosing phone farm boxes, motherboard clusters, power and cooling, rack deployment, and remote operation workflows."
+        eyebrow="Procurement & deployment guides"
+        image={IMAGES.motherboardBox.hero}
+        imageAlt="Phone farm hardware guides"
       />
-      <section className="section pt-12 md:pt-16">
+      <section className="inner-page-section">
         <div className="container-wide">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-10">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
             {BLOG_POSTS.map((post) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="card overflow-hidden hover:border-orange-200 transition-colors group flex flex-col md:flex-row md:min-h-[220px]"
+                className="card product-card-heavy overflow-hidden hover:border-orange-200 transition-all group flex flex-col md:min-h-[280px]"
               >
-                <div className="relative aspect-[16/10] md:aspect-auto md:w-[42%] shrink-0 bg-slate-50 overflow-hidden">
+                <div className="relative aspect-[16/10] md:aspect-[2/1] bg-slate-50 overflow-hidden">
                   <Image
                     src={BLOG_IMAGES[post.slug] ?? IMAGES.phoneFarmBox.card}
                     alt=""
@@ -60,7 +63,7 @@ export default function BlogPage() {
                     <span>·</span>
                     <span>{readingTime(post.content)} min read</span>
                   </div>
-                  <h2 className="text-xl md:text-2xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors leading-snug mb-3">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors leading-snug mb-3">
                     {post.title}
                   </h2>
                   <p className="text-sm md:text-base text-slate-600 line-clamp-3 flex-1 leading-relaxed">{post.excerpt}</p>

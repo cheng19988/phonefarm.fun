@@ -13,6 +13,7 @@ export function PageHero({
   children,
   compact,
   large,
+  banner,
 }: {
   title: string;
   subtitle?: string;
@@ -22,25 +23,52 @@ export function PageHero({
   children?: ReactNode;
   compact?: boolean;
   large?: boolean;
+  /** Full-bleed catalog banner — image background, thick section */
+  banner?: boolean;
 }) {
+  if (banner) {
+    return (
+      <section className="catalog-hero">
+        {image ? (
+          <Image src={image} alt={imageAlt ?? title} fill className="object-cover object-center" sizes="100vw" priority />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" aria-hidden />
+        )}
+        <div className="catalog-hero-overlay" aria-hidden />
+        <div className="container-wide relative z-10 w-full py-16 md:py-20 lg:py-24">
+          {eyebrow && (
+            <p className="text-sm font-semibold text-orange-400 mb-4 uppercase tracking-widest">{eyebrow}</p>
+          )}
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[3.75rem] font-bold text-white leading-[1.05] mb-5 md:mb-6 tracking-tight max-w-4xl">
+            {title}
+          </h1>
+          {subtitle && (
+            <p className="text-lg md:text-xl lg:text-2xl text-slate-200 leading-relaxed max-w-3xl mb-8">{subtitle}</p>
+          )}
+          {children}
+        </div>
+      </section>
+    );
+  }
+
   const pad = compact ? "py-12 md:py-14" : large ? "py-16 md:py-24 lg:py-28" : "py-14 md:py-20 lg:py-24";
   const titleSize = large
-    ? "text-4xl sm:text-5xl lg:text-[3.25rem]"
+    ? "text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-6xl"
     : "text-3xl sm:text-4xl lg:text-[2.75rem]";
 
   return (
-    <section className="bg-gradient-to-b from-slate-50 to-white border-b border-slate-200">
+    <section className="bg-gradient-to-b from-slate-100 to-white border-b border-slate-200">
       <div className={`container-wide ${pad}`}>
-        <div className={`grid gap-10 lg:gap-14 items-center ${image ? "lg:grid-cols-2" : ""}`}>
-          <div>
+        <div className={`grid gap-10 lg:gap-16 items-center ${image ? "lg:grid-cols-[1fr_1.15fr]" : ""}`}>
+          <div className={image ? "lg:py-4" : ""}>
             {eyebrow && <p className="text-sm font-semibold text-orange-600 mb-3 uppercase tracking-wide">{eyebrow}</p>}
             <h1 className={`${titleSize} font-bold text-slate-900 leading-[1.08] mb-5 tracking-tight`}>{title}</h1>
-            {subtitle && <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mb-8">{subtitle}</p>}
+            {subtitle && <p className="text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed max-w-2xl mb-8">{subtitle}</p>}
             {children}
           </div>
           {image && (
-            <div className={`relative rounded-2xl lg:rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-lg ${large ? "aspect-[16/10] lg:min-h-[360px]" : "aspect-[4/3]"}`}>
-              <Image src={image} alt={imageAlt ?? title} fill className="object-cover" sizes="(max-width:1024px) 100vw, 50vw" priority />
+            <div className={`relative rounded-2xl lg:rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-xl ${large ? "aspect-[16/10] lg:min-h-[400px] xl:min-h-[460px]" : "aspect-[4/3] lg:min-h-[320px]"}`}>
+              <Image src={image} alt={imageAlt ?? title} fill className="object-cover" sizes="(max-width:1024px) 100vw, 58vw" priority />
             </div>
           )}
         </div>
@@ -71,17 +99,19 @@ export function SectionHeader({
   subtitle,
   center,
   className = "",
+  large,
 }: {
   title: string;
   subtitle?: string;
   center?: boolean;
   className?: string;
+  large?: boolean;
 }) {
   return (
-    <div className={`mb-10 md:mb-12 ${center ? "text-center" : ""} ${className}`}>
-      <h2 className={`text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-3 tracking-tight ${center ? "mx-auto" : ""}`}>{title}</h2>
+    <div className={`mb-10 md:mb-12 lg:mb-14 ${center ? "text-center" : ""} ${className}`}>
+      <h2 className={`font-bold text-slate-900 mb-3 tracking-tight ${large ? "text-3xl md:text-4xl lg:text-5xl" : "text-2xl md:text-3xl lg:text-4xl"} ${center ? "mx-auto" : ""}`}>{title}</h2>
       {subtitle && (
-        <p className={`text-slate-600 text-base md:text-lg lg:text-xl max-w-3xl leading-relaxed ${center ? "mx-auto" : ""}`}>{subtitle}</p>
+        <p className={`text-slate-600 max-w-3xl leading-relaxed ${large ? "text-lg md:text-xl lg:text-2xl" : "text-base md:text-lg lg:text-xl"} ${center ? "mx-auto" : ""}`}>{subtitle}</p>
       )}
     </div>
   );
@@ -126,33 +156,52 @@ export function CtaBlock({
 
 export function BuyingGuideBlock() {
   return (
-    <div className="card p-6 md:p-8 bg-slate-50 border-orange-100">
-      <h3 className="font-bold text-slate-900 text-lg mb-2">Need help choosing hardware?</h3>
-      <p className="text-slate-600 text-sm mb-4 max-w-2xl">
+    <div className="catalog-section-band catalog-section-band-accent mb-8 md:mb-12">
+      <h3 className="font-bold text-slate-900 text-xl md:text-2xl mb-3">Need help choosing hardware?</h3>
+      <p className="text-slate-600 text-base md:text-lg mb-6 max-w-3xl leading-relaxed">
         Share your node count, target Android version, device model preference, and shipping country. Our Guangzhou team will recommend a starter box, pro chassis, motherboard cluster, or custom rack layout.
       </p>
-      <div className="flex flex-wrap gap-3">
-        <Link href="/contact" className="btn-primary text-sm">Request a Quote</Link>
-        <Link href="/blog/how-to-choose-phone-farm-box" className="btn-outline text-sm">Buying Guide</Link>
+      <div className="flex flex-wrap gap-3 md:gap-4">
+        <Link href="/contact" className="btn-primary-lg">Request a Quote</Link>
+        <Link href="/blog/how-to-choose-phone-farm-box" className="btn-outline-lg">Buying Guide</Link>
       </div>
     </div>
+  );
+}
+
+export function DetailSection({
+  title,
+  subtitle,
+  children,
+  id,
+}: {
+  title: string;
+  subtitle?: string;
+  children: ReactNode;
+  id?: string;
+}) {
+  return (
+    <section id={id} className="detail-section scroll-mt-28">
+      <SectionHeader title={title} subtitle={subtitle} large />
+      {children}
+    </section>
   );
 }
 
 /* ── Data display ── */
 
 export function PriceDisplay({ amount, size = "md" }: { amount: number; size?: "sm" | "md" | "lg" | "xl" }) {
-  const sizes = { sm: "text-xl", md: "text-2xl", lg: "text-3xl", xl: "text-4xl" };
-  return <span className={`font-bold text-slate-900 ${sizes[size]}`}>${amount.toLocaleString()}</span>;
+  const sizes = { sm: "text-xl", md: "text-2xl", lg: "text-3xl md:text-4xl", xl: "text-4xl md:text-5xl" };
+  return <span className={`font-bold text-slate-900 tracking-tight ${sizes[size]}`}>${amount.toLocaleString()}</span>;
 }
 
 export function MetaGrid({ items, large }: { items: { label: string; value: string }[]; large?: boolean }) {
   return (
-    <div className={`grid grid-cols-2 sm:grid-cols-3 gap-3 ${large ? "md:gap-4" : ""}`}>
+    <div className={`grid grid-cols-2 gap-3 ${large ? "md:gap-4" : ""}`}>
       {items.map((item) => (
-        <div key={item.label} className={`card ${large ? "p-4 md:p-5" : "p-3"} text-sm`}>
-          <span className="text-slate-500 block text-xs uppercase tracking-wide mb-1">{item.label}</span>
-          <span className="text-slate-900 font-semibold text-sm md:text-base">{item.value}</span>
+        <div key={item.label} className={`rounded-xl border border-slate-200 bg-slate-50 ${large ? "p-4 md:p-5" : "p-3"}`}>
+          <span className="text-slate-500 block text-xs uppercase tracking-wide mb-1 font-semibold">{item.label}</span>
+          <span className="text-slate-900 font-bold text-sm md:text-base leading-snug">{item.value}</span>
         </div>
       ))}
     </div>
@@ -161,13 +210,13 @@ export function MetaGrid({ items, large }: { items: { label: string; value: stri
 
 export function SpecTable({ specs, large }: { specs: Record<string, string>; large?: boolean }) {
   return (
-    <div className="overflow-x-auto -mx-1 rounded-xl border border-slate-200 bg-white">
-      <table className={`w-full min-w-[320px] ${large ? "text-base" : "text-sm"}`}>
+    <div className="overflow-x-auto -mx-1 rounded-2xl border-2 border-slate-200 bg-white shadow-sm">
+      <table className={`w-full min-w-[320px] ${large ? "text-base md:text-lg" : "text-sm"}`}>
         <tbody>
-          {Object.entries(specs).map(([k, v]) => (
-            <tr key={k} className="border-b border-slate-100 last:border-0">
-              <td className={`py-4 px-4 md:px-5 text-slate-600 align-top font-medium w-[38%] sm:w-[34%] ${large ? "md:w-[32%]" : ""}`}>{k}</td>
-              <td className={`py-4 px-4 md:px-5 text-slate-900 align-top leading-relaxed ${large ? "md:pr-8" : ""}`}>{v}</td>
+          {Object.entries(specs).map(([k, v], i) => (
+            <tr key={k} className={`border-b border-slate-100 last:border-0 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/80"}`}>
+              <td className={`py-4 px-5 md:px-6 text-slate-600 align-top font-semibold w-[38%] sm:w-[34%] ${large ? "md:w-[32%]" : ""}`}>{k}</td>
+              <td className={`py-4 px-5 md:px-6 text-slate-900 align-top leading-relaxed font-medium ${large ? "md:pr-10" : ""}`}>{v}</td>
             </tr>
           ))}
         </tbody>
@@ -186,6 +235,43 @@ export function IconList({ items, icon = "✓", large }: { items: string[]; icon
         </li>
       ))}
     </ul>
+  );
+}
+
+export function CapabilityStrip({
+  items,
+}: {
+  items: { title: string; desc: string }[];
+}) {
+  return (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+      {items.map((item, i) => (
+        <div key={item.title} className="delivery-step flex-col sm:flex-row">
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-orange-600 text-white font-bold text-lg">
+            {i + 1}
+          </span>
+          <div>
+            <h3 className="font-bold text-slate-900 text-base md:text-lg mb-1">{item.title}</h3>
+            <p className="text-sm md:text-base text-slate-600 leading-relaxed">{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export function DeliveryTimeline({ steps }: { steps: string[] }) {
+  return (
+    <ol className="grid md:grid-cols-2 xl:grid-cols-5 gap-4 md:gap-5">
+      {steps.map((step, i) => (
+        <li key={step} className="delivery-step flex-col h-full">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white font-bold text-sm">
+            {i + 1}
+          </span>
+          <p className="text-sm md:text-base text-slate-700 leading-relaxed font-medium pt-1">{step}</p>
+        </li>
+      ))}
+    </ol>
   );
 }
 

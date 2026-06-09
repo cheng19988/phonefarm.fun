@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { Suspense, useState } from "react";
 import { ContactBar } from "@/components/shared";
 import { CONTACT, SITE } from "@/lib/config";
+import { IMAGES } from "@/lib/images";
 import { FormInput, FormLabel, FormSelect, FormTextarea, PageHero } from "@/components/store";
 
 const QUOTE_CHECKLIST = [
@@ -39,7 +40,7 @@ function ContactForm() {
   const defaultProduct = searchParams.get("product") || searchParams.get("service") || "";
 
   return (
-    <form onSubmit={handleSubmit} className="card p-6 md:p-8 lg:p-10 space-y-5">
+    <form onSubmit={handleSubmit} className="card product-card-heavy p-6 md:p-8 lg:p-10 xl:p-12 space-y-5">
       <div className="grid sm:grid-cols-2 gap-5">
         <div>
           <FormLabel required>Name</FormLabel>
@@ -113,12 +114,14 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        large
+        banner
         title="Request a Phone Farm Hardware Quote"
         subtitle="Share your node count, device models, shipping country, and setup requirements. Our Guangzhou sales team responds within one business day."
         eyebrow="B2B hardware inquiry"
+        image={IMAGES.phoneFarmBox.hero}
+        imageAlt="Phone farm hardware quote request"
       />
-      <section className="section pt-12 md:pt-16">
+      <section className="inner-page-section">
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
             <div className="lg:col-span-7">
@@ -126,14 +129,14 @@ export default function ContactPage() {
                 <ContactForm />
               </Suspense>
             </div>
-            <div className="lg:col-span-5 space-y-6">
-              <div className="card p-6 md:p-8">
-                <h2 className="font-bold text-slate-900 text-lg mb-4">Direct contact</h2>
+            <div className="lg:col-span-5 space-y-6 lg:space-y-8">
+              <div className="detail-section">
+                <h2 className="font-bold text-slate-900 text-xl md:text-2xl mb-4">Direct contact</h2>
                 <ContactBar />
                 <p className="text-orange-600 font-medium mt-4">{CONTACT.email}</p>
               </div>
-              <div className="card p-6 md:p-8 bg-slate-900 text-white">
-                <h3 className="font-bold text-lg mb-4">Before you request a quote</h3>
+              <div className="detail-section bg-slate-900 text-white border-slate-800">
+                <h3 className="font-bold text-xl md:text-2xl mb-4">Before you request a quote</h3>
                 <ul className="space-y-3">
                   {QUOTE_CHECKLIST.map((item) => (
                     <li key={item} className="flex gap-3 text-slate-300 text-sm md:text-base leading-relaxed">
@@ -143,8 +146,8 @@ export default function ContactPage() {
                   ))}
                 </ul>
               </div>
-              <div className="card p-6 md:p-8 bg-slate-50">
-                <h3 className="font-bold text-slate-900 mb-3">What happens next</h3>
+              <div className="detail-section bg-slate-50">
+                <h3 className="font-bold text-slate-900 text-xl mb-3">What happens next</h3>
                 <ol className="space-y-3 text-sm md:text-base text-slate-600 list-decimal list-inside leading-relaxed">
                   <li>We review your node count, SKU interest, and shipping region.</li>
                   <li>Sales replies with pricing, lead time, and configuration options.</li>
@@ -152,8 +155,8 @@ export default function ContactPage() {
                   <li>Standard SKUs can be added to cart; custom projects get a manual invoice.</li>
                 </ol>
               </div>
-              <div className="card p-6 md:p-8">
-                <h3 className="font-bold text-slate-900 mb-2">Response time</h3>
+              <div className="detail-section">
+                <h3 className="font-bold text-slate-900 text-xl mb-2">Response time</h3>
                 <p className="text-sm md:text-base text-slate-600">Within 24 hours on weekdays (Guangzhou time, UTC+8).</p>
                 <p className="text-sm text-slate-500 mt-2">{SITE.location}</p>
               </div>

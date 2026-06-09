@@ -66,7 +66,7 @@ export default async function ProductsPage({
       })))} />
 
       <PageHero
-        large
+        banner
         title="Phone Farm Hardware Catalog"
         subtitle="Phone farm boxes, motherboard arrays, rack solutions, and lab accessories — factory-built in Guangzhou with reference USD pricing, MOQ, and lead times."
         eyebrow="Factory-built · Guangzhou"
@@ -74,36 +74,53 @@ export default async function ProductsPage({
         imageAlt="Phone farm rack and hardware catalog"
       />
 
-      <section className="section pt-12 md:pt-16">
+      <div className="border-b border-slate-200 bg-white">
+        <div className="container-wide py-6 md:py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {[
+              { label: "Core SKUs", value: "Boxes · Arrays · Racks" },
+              { label: "Pricing", value: "Reference USD · MOQ shown" },
+              { label: "Lead time", value: "Quoted per deployment" },
+              { label: "Origin", value: "Guangzhou workshop" },
+            ].map((stat) => (
+              <div key={stat.label} className="rounded-xl border-2 border-slate-200 bg-slate-50 px-4 py-4 md:px-5 md:py-5">
+                <p className="text-xs uppercase tracking-widest text-slate-500 font-bold mb-1">{stat.label}</p>
+                <p className="text-sm md:text-base font-bold text-slate-900">{stat.value}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <section className="inner-page-section pb-0">
         <div className="container-wide">
           <SectionHeader
             title="Choose by deployment size"
             subtitle="Filter by deployment type or browse the full hardware catalog."
+            large
           />
 
-          <div className="mb-10">
+          <div className="mb-10 md:mb-12">
             <FilterPills items={DEPLOYMENT_FILTERS} active={params.category ?? ""} baseHref="/products" />
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-10 text-sm md:text-base">
-            <p className="text-slate-500 font-medium">{products.length} SKU{products.length !== 1 ? "s" : ""}</p>
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-10 md:mb-12 text-sm md:text-base pb-6 border-b border-slate-200">
+            <p className="text-slate-600 font-semibold text-base md:text-lg">{products.length} SKU{products.length !== 1 ? "s" : ""} in catalog</p>
             <div className="flex gap-4">
               <span className="text-slate-500">Sort:</span>
-              <Link href={sortQuery("price-asc")} className="text-slate-600 hover:text-orange-600 font-medium">Price Low</Link>
-              <Link href={sortQuery("price-desc")} className="text-slate-600 hover:text-orange-600 font-medium">Price High</Link>
+              <Link href={sortQuery("price-asc")} className="text-slate-700 hover:text-orange-600 font-semibold">Price Low</Link>
+              <Link href={sortQuery("price-desc")} className="text-slate-700 hover:text-orange-600 font-semibold">Price High</Link>
             </div>
           </div>
 
           {primaryProducts.length > 0 && (
-            <div className="mb-14 md:mb-16">
-              <div className="home-section-header mb-8 md:mb-10">
-                <div className="relative">
-                  <p className="text-orange-400 text-sm font-semibold uppercase tracking-wide mb-2">Core hardware</p>
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2">Primary Phone Farm SKUs</h2>
-                  <p className="text-slate-300 text-base md:text-lg max-w-2xl">Starter boxes, Pro chassis, motherboard clusters, and custom rack solutions.</p>
-                </div>
+            <div className="mb-16 md:mb-20 lg:mb-24">
+              <div className="catalog-section-band catalog-section-band-accent mb-10 md:mb-12">
+                <p className="text-orange-600 text-sm font-bold uppercase tracking-widest mb-2">Core hardware</p>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 tracking-tight">Primary Phone Farm SKUs</h2>
+                <p className="text-slate-600 text-lg md:text-xl max-w-3xl leading-relaxed">Starter boxes, Pro chassis, motherboard clusters, and custom rack solutions — built for B2B procurement.</p>
               </div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                 {primaryProducts.map((p) => {
                   const meta = getProductMeta(p!.slug);
                   return (
@@ -135,9 +152,10 @@ export default async function ProductsPage({
                 <SectionHeader
                   title="Accessories & additional SKUs"
                   subtitle="Power, cooling, USB, network modules, and expansion chassis."
+                  large
                 />
               )}
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8 mb-14">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 mb-16 md:mb-20">
                 {otherProducts.map((p) => {
                   const meta = getProductMeta(p.slug);
                   return (

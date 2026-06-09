@@ -3,6 +3,7 @@ import { ContactCTA, JsonLd } from "@/components/shared";
 import { FAQ_ITEMS } from "@/data/faq";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
 import { PageHero, SectionHeader } from "@/components/store";
+import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
   title: "Phone Farm FAQ — Hardware, Shipping, Payment & Support",
@@ -44,18 +45,21 @@ export default function FAQPage() {
     <>
       <JsonLd data={faqJsonLd(FAQ_ITEMS)} />
       <PageHero
-        large
+        banner
         title="Phone Farm Hardware FAQ"
         subtitle="Products, ordering, shipping, customization, and setup — answered by our Guangzhou hardware team."
+        eyebrow="B2B hardware support"
+        image={IMAGES.workshop}
+        imageAlt="Phone farm hardware FAQ"
       />
-      <section className="section pt-12 md:pt-16">
-        <div className="container-wide max-w-4xl space-y-14 md:space-y-16">
+      <section className="inner-page-section">
+        <div className="container-wide max-w-5xl space-y-12 md:space-y-16">
           {FAQ_CATEGORIES.map((cat) => {
             const items = cat.indices.map((i) => FAQ_ITEMS[i]).filter(Boolean);
             return (
-              <div key={cat.title} className="card p-6 md:p-10">
-                <SectionHeader title={cat.title} subtitle={cat.description} />
-                <FAQAccordion items={items} />
+              <div key={cat.title} className="detail-section">
+                <SectionHeader title={cat.title} subtitle={cat.description} large />
+                <FAQAccordion items={items} large />
               </div>
             );
           })}

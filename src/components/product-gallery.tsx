@@ -10,8 +10,8 @@ export function ProductGallery({ images, alt }: { images: string[]; alt: string 
   if (!main) return null;
 
   return (
-    <div className="space-y-4">
-      <div className="relative aspect-[4/3] lg:aspect-[16/11] rounded-2xl lg:rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-lg">
+    <div className="space-y-4 md:space-y-5">
+      <div className="relative aspect-[4/3] lg:aspect-[5/4] xl:aspect-[4/3] rounded-2xl lg:rounded-3xl overflow-hidden bg-slate-100 border-2 border-slate-200 shadow-xl">
         <Image
           src={main}
           alt={alt}
@@ -28,8 +28,8 @@ export function ProductGallery({ images, alt }: { images: string[]; alt: string 
               key={src}
               type="button"
               onClick={() => setActive(i)}
-              className={`relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-xl overflow-hidden border-2 transition-all snap-start ${
-                i === active ? "border-orange-500 ring-2 ring-orange-500/30" : "border-slate-200 hover:border-slate-300"
+              className={`relative shrink-0 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-xl overflow-hidden border-2 transition-all snap-start ${
+                i === active ? "border-orange-500 ring-2 ring-orange-500/30 shadow-md" : "border-slate-200 hover:border-slate-300"
               }`}
               aria-label={`View image ${i + 1}`}
             >

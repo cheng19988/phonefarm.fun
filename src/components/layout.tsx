@@ -9,32 +9,32 @@ export async function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-      <div className="hidden md:block bg-slate-50 border-b border-slate-200">
-        <div className="container-wide py-2 flex justify-between items-center text-xs text-slate-500">
-          <span>{SITE.location} · Real device hardware since {SITE.since}</span>
+      <div className="hidden md:block bg-slate-900 border-b border-slate-800">
+        <div className="container-wide py-2.5 flex justify-between items-center text-xs md:text-sm text-slate-300">
+          <span className="font-medium">{SITE.location} · Real device hardware since {SITE.since}</span>
           <ContactBar compact />
         </div>
       </div>
-      <div className="container-wide py-3 md:py-4 flex items-center justify-between gap-3">
-        <Link href="/" className="flex items-center gap-2 shrink-0 min-w-0">
-          <div className="w-9 h-9 rounded-lg bg-slate-900 flex items-center justify-center text-white font-bold text-sm shrink-0">
+      <div className="container-wide py-4 md:py-5 flex items-center justify-between gap-4">
+        <Link href="/" className="flex items-center gap-3 shrink-0 min-w-0">
+          <div className="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-slate-900 flex items-center justify-center text-white font-bold text-base shrink-0 shadow-md">
             PF
           </div>
           <div className="min-w-0 hidden xs:block sm:block">
-            <div className="font-bold text-slate-900 leading-tight truncate">{SITE.name}</div>
-            <div className="text-[10px] text-slate-500 leading-tight hidden sm:block truncate">{SITE.tagline}</div>
+            <div className="font-bold text-slate-900 leading-tight truncate text-base md:text-lg">{SITE.name}</div>
+            <div className="text-xs text-slate-500 leading-tight hidden sm:block truncate">{SITE.tagline}</div>
           </div>
         </Link>
-        <nav className="hidden lg:flex items-center gap-6">
+        <nav className="hidden lg:flex items-center gap-7 xl:gap-8">
           {NAV.map((item) => (
-            <Link key={item.href} href={item.href} className="text-sm text-slate-600 hover:text-slate-900 transition-colors">
+            <Link key={item.href} href={item.href} className="text-base font-medium text-slate-600 hover:text-slate-900 transition-colors">
               {item.label}
             </Link>
           ))}
         </nav>
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
           <CartButton />
-          <Link href="/products" className="btn-primary text-sm py-2 px-3">
+          <Link href="/products" className="btn-primary text-base py-2.5 px-5 md:px-6">
             Shop
           </Link>
           {session ? (
