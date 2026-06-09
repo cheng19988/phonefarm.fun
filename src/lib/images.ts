@@ -23,7 +23,10 @@ export const IMAGES = {
   /** Staged product shot for hero foreground */
   homeHeroProduct: r("phone-farm-box-1.webp"),
   /** Bottom CTA — motherboard cluster, reads well at wide aspect */
+  /** Bottom CTA — motherboard cluster, reads well at wide aspect */
   homeCtaBg: r("motherboard-box-real-1.webp"),
+  /** Products catalog hero — transparent chassis cutout */
+  productsHeroChassis: "/images/brand/products-hero-chassis.webp",
 
   phoneFarmBox: {
     card: r("phone-farm-box-card.webp"),
