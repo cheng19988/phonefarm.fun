@@ -18,10 +18,12 @@ export const FACTORY_GALLERY = Array.from({ length: 12 }, (_, i) =>
 );
 
 export const IMAGES = {
-  /** Dense rack / assembly — best for homepage hero background */
-  homeHeroBg: factory("factory-01.webp"),
+  /** Homepage hero — dense product rack photo (better crop than wide factory floor) */
+  homeHeroBg: r("phone-farm-box-3.webp"),
   /** Staged product shot for hero foreground */
   homeHeroProduct: r("phone-farm-box-1.webp"),
+  /** Bottom CTA — motherboard cluster, reads well at wide aspect */
+  homeCtaBg: r("motherboard-box-real-1.webp"),
 
   phoneFarmBox: {
     card: r("phone-farm-box-card.webp"),
