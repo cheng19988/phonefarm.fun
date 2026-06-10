@@ -1,5 +1,6 @@
 import { CONTACT, SITE } from "@/lib/config";
 import Link from "next/link";
+import { ContactIcon, ContactIconChip, ContactLinkLabel } from "./contact-icons";
 
 export function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
   return (
@@ -12,18 +13,18 @@ export function JsonLd({ data }: { data: Record<string, unknown> | Record<string
 
 export function ContactBar({ compact = false }: { compact?: boolean }) {
   return (
-    <div className={`flex flex-wrap items-center gap-3 ${compact ? "text-xs" : "text-sm"}`}>
-      <a href={`tel:${CONTACT.phone}`} className="text-zinc-600 hover:text-[var(--accent)] transition-colors">
-        📞 {CONTACT.phone}
+    <div className={`flex flex-wrap items-center gap-4 ${compact ? "text-xs" : "text-sm"}`}>
+      <a href={`tel:${CONTACT.phone}`} className="font-medium text-zinc-700 hover:text-orange-700 transition-colors">
+        <ContactLinkLabel kind="phone">{CONTACT.phone}</ContactLinkLabel>
       </a>
-      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-emerald-600 transition-colors">
-        WhatsApp
+      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-700 hover:text-[#128C7E] transition-colors">
+        <ContactLinkLabel kind="whatsapp">WhatsApp</ContactLinkLabel>
       </a>
-      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-sky-600 transition-colors">
-        Telegram
+      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-700 hover:text-[#229ED9] transition-colors">
+        <ContactLinkLabel kind="telegram">Telegram</ContactLinkLabel>
       </a>
-      <a href={`mailto:${CONTACT.email}`} className="text-zinc-600 hover:text-[var(--accent)] transition-colors">
-        {CONTACT.email}
+      <a href={`mailto:${CONTACT.email}`} className="font-medium text-zinc-700 hover:text-orange-700 transition-colors">
+        <ContactLinkLabel kind="email">{CONTACT.email}</ContactLinkLabel>
       </a>
     </div>
   );
@@ -40,10 +41,12 @@ export function ContactCTA({ title = "Talk to Our Sales Team" }: { title?: strin
             Share node count, device models, and shipping country. Our Guangzhou team responds with pricing and configuration guidance within 24 hours.
           </p>
           <div className="flex flex-wrap gap-3">
-            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
+            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-primary inline-flex items-center gap-2">
+              <ContactIcon kind="whatsapp" size={18} className="text-white" />
               WhatsApp Sales
             </a>
-            <Link href="/contact" className="btn-secondary">
+            <Link href="/contact" className="btn-secondary inline-flex items-center gap-2">
+              <ContactIcon kind="email" size={18} className="text-orange-700" />
               Send Inquiry
             </Link>
           </div>
@@ -57,21 +60,28 @@ export function ContactCTA({ title = "Talk to Our Sales Team" }: { title?: strin
 }
 
 export function MobileContactBar() {
+  const items = [
+    { kind: "phone" as const, label: "Call", href: `tel:${CONTACT.phone}` },
+    { kind: "whatsapp" as const, label: "WhatsApp", href: CONTACT.whatsappUrl, external: true },
+    { kind: "telegram" as const, label: "Telegram", href: CONTACT.telegramUrl, external: true },
+    { kind: "email" as const, label: "Email", href: `mailto:${CONTACT.email}` },
+  ];
+
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/95 border-t border-zinc-200 backdrop-blur-sm">
-      <div className="grid grid-cols-4 divide-x divide-zinc-200">
-        <a href={`tel:${CONTACT.phone}`} className="flex flex-col items-center py-3 text-xs text-zinc-600 hover:text-[var(--accent)]">
-          <span className="text-base mb-0.5">📞</span> Call
-        </a>
-        <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center py-3 text-xs text-zinc-600 hover:text-emerald-600">
-          <span className="text-base mb-0.5">💬</span> WhatsApp
-        </a>
-        <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center py-3 text-xs text-zinc-600 hover:text-sky-600">
-          <span className="text-base mb-0.5">✈️</span> Telegram
-        </a>
-        <a href={`mailto:${CONTACT.email}`} className="flex flex-col items-center py-3 text-xs text-zinc-600 hover:text-[var(--accent)]">
-          <span className="text-base mb-0.5">✉️</span> Email
-        </a>
+    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/98 border-t border-zinc-200 backdrop-blur-md shadow-[0_-8px_24px_-12px_rgba(0,0,0,0.15)]">
+      <div className="grid grid-cols-4 divide-x divide-zinc-200/80">
+        {items.map((item) => (
+          <a
+            key={item.kind}
+            href={item.href}
+            target={item.external ? "_blank" : undefined}
+            rel={item.external ? "noopener noreferrer" : undefined}
+            className="flex flex-col items-center gap-1.5 py-3 active:scale-[0.98] transition-transform"
+          >
+            <ContactIconChip kind={item.kind} size="sm" />
+            <span className="text-[11px] font-semibold text-zinc-800">{item.label}</span>
+          </a>
+        ))}
       </div>
     </div>
   );

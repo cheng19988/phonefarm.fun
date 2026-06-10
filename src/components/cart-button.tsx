@@ -24,7 +24,7 @@ export function CartButton({ inverted = false }: { inverted?: boolean }) {
       className={`relative inline-flex items-center justify-center w-10 h-10 rounded-lg border transition-colors ${
         inverted
           ? "border-white/25 text-white hover:bg-white/10"
-          : "border-zinc-200 text-zinc-700 hover:border-zinc-400"
+          : "border-orange-200 text-orange-700 bg-orange-50/80 hover:border-orange-400 hover:bg-orange-50"
       }`}
       aria-label={`Cart${count > 0 ? `, ${count} items` : ""}`}
     >

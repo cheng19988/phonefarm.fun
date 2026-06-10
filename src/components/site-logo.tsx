@@ -15,8 +15,9 @@ function LogoMark({ size, variant }: { size: number; variant: LogoVariant }) {
   const frame = isLight ? "#ffffff" : "#18181b";
   const slots = isLight ? "rgba(255,255,255,0.92)" : "#fafafa";
   const slotStroke = isLight ? "rgba(255,255,255,0.35)" : "#e4e4e7";
-  const accent = "#ea580c";
-  const port = isLight ? "#fb923c" : "#c2410c";
+  const accent = "#f97316";
+  const port = "#fdba74";
+  const railGlow = isLight ? 1 : 0.95;
 
   return (
     <svg
@@ -49,8 +50,8 @@ function LogoMark({ size, variant }: { size: number; variant: LogoVariant }) {
         );
       })}
       {/* USB / data rail accent */}
-      <rect x="8" y="36" width="32" height="3" rx="1.5" fill={accent} opacity={0.9} />
-      <circle cx="38" cy="37.5" r="2" fill={port} />
+      <rect x="8" y="36" width="32" height="3" rx="1.5" fill={accent} opacity={railGlow} />
+      <circle cx="38" cy="37.5" r="2.25" fill={port} />
     </svg>
   );
 }

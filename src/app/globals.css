@@ -509,7 +509,34 @@ body {
 }
 
 .step-badge {
-  @apply flex shrink-0 items-center justify-center rounded-xl bg-[var(--accent)] text-white font-bold shadow-sm;
+  @apply flex shrink-0 items-center justify-center rounded-xl text-white font-bold;
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  box-shadow: 0 4px 14px -4px rgba(194, 65, 12, 0.55);
+}
+
+.list-marker {
+  @apply inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-white;
+  background: linear-gradient(135deg, #f97316 0%, #c2410c 100%);
+  box-shadow: 0 2px 8px -2px rgba(194, 65, 12, 0.45);
+}
+
+.list-marker--check {
+  @apply h-5 w-5 rounded-full text-[10px];
+}
+
+.band-link-arrow {
+  @apply inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-bold transition-all;
+  color: var(--accent);
+  background: rgba(255, 247, 237, 0.95);
+  border: 1px solid rgba(251, 146, 60, 0.35);
+}
+
+.group:hover .band-link-arrow,
+.band-link:hover .band-link-arrow {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 4px 12px -4px rgba(194, 65, 12, 0.5);
 }
 
 .trust-stat-grid {
@@ -647,10 +674,6 @@ body {
 
 .band-link-price {
   @apply text-sm font-bold text-[var(--accent)] shrink-0 tabular-nums;
-}
-
-.band-link-arrow {
-  @apply text-zinc-400 shrink-0 text-sm group-hover:text-[var(--accent)] transition-colors;
 }
 
 .product-showcase-card {

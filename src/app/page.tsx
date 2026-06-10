@@ -88,9 +88,9 @@ export default async function HomePage() {
               app compatibility, automation, and multi-device workflows — with centralized power, USB, and network ports in factory-built chassis.
             </p>
             <ul className="space-y-2 text-sm text-zinc-700 mb-6">
-              <li className="flex gap-2"><span className="text-[var(--accent)]">→</span> QA teams running regression on real Android silicon</li>
-              <li className="flex gap-2"><span className="text-[var(--accent)]">→</span> Automation labs controlling 20+ devices via ADB</li>
-              <li className="flex gap-2"><span className="text-[var(--accent)]">→</span> Agencies validating apps across Samsung, OnePlus, Pixel SKUs</li>
+              <li className="flex gap-2"><span className="list-marker">→</span> QA teams running regression on real Android silicon</li>
+              <li className="flex gap-2"><span className="list-marker">→</span> Automation labs controlling 20+ devices via ADB</li>
+              <li className="flex gap-2"><span className="list-marker">→</span> Agencies validating apps across Samsung, OnePlus, Pixel SKUs</li>
             </ul>
             <div className="flex flex-wrap gap-3">
               <Link href="/about#what-is-phone-farm" className="btn-primary text-sm py-2.5">
@@ -248,7 +248,7 @@ export default async function HomePage() {
               <ul className="grid sm:grid-cols-2 gap-x-4 gap-y-2 mb-5">
                 {SOFTWARE_CAPABILITIES.map((item) => (
                   <li key={item} className="flex gap-2 text-zinc-700 text-xs md:text-sm">
-                    <span className="text-[var(--accent)] font-bold shrink-0">✓</span>
+                    <span className="list-marker list-marker--check shrink-0">✓</span>
                     <span>{item}</span>
                   </li>
                 ))}

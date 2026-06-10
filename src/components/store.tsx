@@ -251,7 +251,7 @@ export function IconList({ items, icon = "✓", large }: { items: string[]; icon
     <ul className={`space-y-3 ${large ? "md:space-y-4" : ""}`}>
       {items.map((item) => (
         <li key={item} className={`flex gap-3 text-zinc-600 ${large ? "text-base md:text-lg" : "text-sm"}`}>
-          <span className="text-[var(--accent)] shrink-0 font-bold">{icon}</span>
+          <span className="list-marker list-marker--check shrink-0 mt-0.5">{icon}</span>
           <span className="leading-relaxed">{item}</span>
         </li>
       ))}
@@ -448,7 +448,7 @@ export function TrustStrip({ items }: { items: string[] }) {
     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 pt-6 mt-6 border-t border-zinc-200">
       {items.map((item) => (
         <li key={item} className="flex gap-2.5 items-start text-sm text-zinc-600">
-          <span className="text-emerald-600 font-bold shrink-0 mt-0.5" aria-hidden>✓</span>
+          <span className="list-marker list-marker--check shrink-0 mt-0.5" aria-hidden>✓</span>
           <span>{item}</span>
         </li>
       ))}

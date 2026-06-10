@@ -1,4 +1,5 @@
 import { HeaderNav } from "./header-nav";
+import { ContactLinkLabel } from "./contact-icons";
 import Link from "next/link";
 import { CONTACT, SITE } from "@/lib/config";
 import { getSession } from "@/lib/auth";
@@ -47,10 +48,22 @@ export function Footer() {
         <div>
           <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contact</h3>
           <ul className="space-y-2.5 text-sm text-zinc-400">
-            <li><a href={`tel:${CONTACT.phone}`} className="hover:text-white">{CONTACT.phone}</a></li>
-            <li><a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400">WhatsApp</a></li>
-            <li><a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-sky-400">Telegram</a></li>
-            <li><a href={`mailto:${CONTACT.email}`} className="hover:text-[var(--accent)]">{CONTACT.email}</a></li>
+            <li><a href={`tel:${CONTACT.phone}`} className="hover:text-white"><ContactLinkLabel kind="phone">{CONTACT.phone}</ContactLinkLabel></a></li>
+            <li>
+              <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                <ContactLinkLabel kind="whatsapp">WhatsApp</ContactLinkLabel>
+              </a>
+            </li>
+            <li>
+              <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                <ContactLinkLabel kind="telegram">Telegram</ContactLinkLabel>
+              </a>
+            </li>
+            <li>
+              <a href={`mailto:${CONTACT.email}`} className="hover:text-[var(--accent)]">
+                <ContactLinkLabel kind="email">{CONTACT.email}</ContactLinkLabel>
+              </a>
+            </li>
           </ul>
           <p className="text-xs text-zinc-500 mt-4">{SITE.location}</p>
         </div>
