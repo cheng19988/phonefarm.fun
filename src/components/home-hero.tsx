@@ -37,17 +37,15 @@ export function HomeHero() {
           </div>
         </div>
 
-        <div className="relative z-10 hero-product-cutout lg:-mr-4">
-          <div className="hero-product-cutout-inner">
-            <Image
-              src={IMAGES.productsHeroChassis}
-              alt="20-node phone farm box chassis with USB, LAN1, LAN2 and OTG ports"
-              fill
-              className="object-contain object-center"
-              priority
-              sizes="(max-width:1024px) 100vw, 640px"
-            />
-          </div>
+        <div className="relative z-10 hero-product-photo lg:-mr-4">
+          <Image
+            src={IMAGES.productsHeroChassis}
+            alt="20-node phone farm box chassis with USB, LAN1, LAN2 and OTG ports"
+            fill
+            className="object-contain object-center"
+            priority
+            sizes="(max-width:1024px) 100vw, 640px"
+          />
         </div>
       </div>
 
