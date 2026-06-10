@@ -6,8 +6,17 @@ const REAL_BASE = "/images/real";
 const existingReal = new Set(realImageManifest as string[]);
 const galleryBySlug = realGalleryMap as Record<string, string[]>;
 
+function sortFilenames(names: string[]): string[] {
+  return [...names].sort((a, b) => {
+    const na = a.match(/(\d+)/)?.[1];
+    const nb = b.match(/(\d+)/)?.[1];
+    if (na && nb) return Number(na) - Number(nb);
+    return a.localeCompare(b);
+  });
+}
+
 function realPathsForSlug(slug: string): string[] {
-  const names = galleryBySlug[slug] ?? [];
+  const names = sortFilenames(galleryBySlug[slug] ?? []);
   return names
     .filter((name) => existingReal.has(name))
     .map((name) => `${REAL_BASE}/${name}`);
@@ -18,7 +27,7 @@ export function getProductGalleryImages(slug: string, fallback: string[]): strin
   const real = realPathsForSlug(slug);
   const own = [...real, ...fallback.filter(Boolean)];
   const unique = own.filter((src, i) => own.indexOf(src) === i);
-  return unique.slice(0, 8);
+  return unique.slice(0, 12);
 }
 
 export function getProductCardImage(slug: string, fallback: string): string {
@@ -33,6 +42,7 @@ export function getProductCardImage(slug: string, fallback: string): string {
 export const PRIMARY_CATALOG_SLUGS = [
   "android-phone-farm",
   "phone-farm-box",
+  "real-device-phone-farm",
   "motherboard-box",
   "custom-cabinet",
 ] as const;

@@ -4,7 +4,7 @@ import { getProductBySlug, getRelatedProducts } from "@/lib/products-server";
 import { BuyButtons, FAQAccordion, ProductCard } from "@/components/commerce";
 import { ProductGallery } from "@/components/product-gallery";
 import { ContactCTA, ContactBar, JsonLd, StockBadge } from "@/components/shared";
-import { getProductGalleryImages } from "@/data/product-images";
+import { getProductGalleryImages, getProductCardImage } from "@/data/product-images";
 import { DeviceModelGridAll } from "@/components/device-model-grid";
 import { getProductMeta, getProductEyebrow } from "@/data/product-meta";
 import { getProfessionalSpecs } from "@/data/product-specs";
@@ -31,6 +31,8 @@ export async function generateMetadata({ params }: Props) {
 function parseJson<T>(s: string, fallback: T): T {
   try { return JSON.parse(s); } catch { return fallback; }
 }
+
+const MODEL_GRID_SLUGS = new Set(["phone-farm-box", "android-phone-farm", "real-device-phone-farm"]);
 
 const DEFAULT_CHASSIS = [
   "Factory-assembled steel chassis with labeled device trays",
@@ -63,6 +65,7 @@ export default async function ProductDetailPage({ params }: Props) {
   const accessories = parseJson<string[]>(product.accessories, []);
   const delivery = parseJson<string[]>(product.delivery, []);
   const maintenance = parseJson<string[]>(product.maintenance, []);
+  const features = parseJson<string[]>(product.features, []);
   const faq = parseJson<{ q: string; a: string }[]>(product.faq, []);
   const faqItems = faq.map((f) => ({ question: f.q, answer: f.a }));
 
@@ -72,8 +75,10 @@ export default async function ProductDetailPage({ params }: Props) {
     product.imageCard,
   ]);
 
-  const chassisItems = accessories.length >= 2 ? accessories.slice(0, 3) : DEFAULT_CHASSIS;
-  const powerItems = maintenance.length >= 2 ? maintenance.slice(0, 3) : DEFAULT_POWER;
+  const chassisItems =
+    accessories.length >= 2 ? accessories.slice(0, 4) : features.length >= 2 ? features.slice(0, 4) : DEFAULT_CHASSIS;
+  const powerItems =
+    maintenance.length >= 2 ? maintenance.slice(0, 4) : features.length >= 2 ? features.slice(0, 4) : DEFAULT_POWER;
   const packingItems = delivery.length ? delivery.slice(0, 4) : DEFAULT_PACKING;
 
   return (
@@ -89,20 +94,20 @@ export default async function ProductDetailPage({ params }: Props) {
       ]} />
 
       <div className="bg-gradient-to-b from-slate-100 to-white border-b border-slate-200">
-        <div className="container-wide pt-8 md:pt-10 lg:pt-12 pb-12 md:pb-16 lg:pb-20">
+        <div className="container-wide pt-6 md:pt-8 pb-8 md:pb-10">
           <Breadcrumbs items={[
             { label: "Home", href: "/" },
             { label: "Products", href: "/products" },
             { label: product.name },
           ]} />
 
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 xl:gap-16">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10">
             <div className="lg:col-span-7">
               <ProductGallery images={gallery} alt={product.name} />
             </div>
 
             <div className="lg:col-span-5">
-              <div className="card product-card-heavy p-6 md:p-8 lg:p-10 xl:p-12 lg:sticky lg:top-28">
+              <div className="card product-card-heavy p-5 md:p-7 lg:sticky lg:top-28">
                 <p className="text-orange-600 text-sm font-bold uppercase tracking-widest mb-3">
                   {getProductEyebrow(meta, product.category)}
                 </p>
@@ -140,13 +145,23 @@ export default async function ProductDetailPage({ params }: Props) {
         </div>
       </div>
 
-      <div className="section pt-12 md:pt-16 lg:pt-20 pb-0">
+      <div className="section pt-8 md:pt-10 pb-0">
         <div className="container-wide">
-          <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 xl:gap-16 pb-16 md:pb-20 lg:pb-24">
-            <div className="lg:col-span-8 space-y-10 md:space-y-12">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 pb-10 md:pb-12">
+            <div className="lg:col-span-8 space-y-8">
               <DetailSection title="Overview">
-                <p className="text-slate-600 text-base md:text-lg lg:text-xl leading-relaxed">{product.description}</p>
-                <p className="mt-6 text-slate-700 text-base md:text-lg leading-relaxed">
+                <p className="text-slate-600 text-base md:text-lg leading-relaxed">{product.description}</p>
+                {features.length > 0 && (
+                  <ul className="mt-5 grid sm:grid-cols-2 gap-2.5">
+                    {features.map((item) => (
+                      <li key={item} className="flex gap-2 text-sm md:text-base text-slate-700 leading-relaxed">
+                        <span className="text-[var(--accent)] shrink-0">✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <p className="mt-5 text-slate-700 text-base leading-relaxed">
                   <span className="font-semibold text-slate-900">Best for: </span>
                   {meta.useCase}
                 </p>
@@ -214,8 +229,8 @@ export default async function ProductDetailPage({ params }: Props) {
             </div>
           </div>
 
-          {(slug === "phone-farm-box" || slug === "android-phone-farm") && (
-            <section className="pt-14 md:pt-16 border-t-2 border-slate-200">
+          {MODEL_GRID_SLUGS.has(slug) && (
+            <section className="pt-10 md:pt-12 border-t border-slate-200">
               <SectionHeader
                 title="Compatible Android Models"
                 subtitle="Full factory catalog with RAM, storage, and port routing from product detail images. Share your target device list when ordering."
@@ -226,9 +241,9 @@ export default async function ProductDetailPage({ params }: Props) {
           )}
 
           {related.length > 0 && (
-            <section className="pt-14 md:pt-16 lg:pt-20 pb-10 border-t-2 border-slate-200">
-              <SectionHeader title="Related Products" subtitle="Compatible hardware and accessories for your device lab." large />
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+            <section className="pt-10 md:pt-12 pb-8 border-t border-slate-200">
+              <SectionHeader title="Related Products" subtitle="Compatible hardware and accessories for your device lab." />
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {related.map((p) => {
                   const rMeta = getProductMeta(p.slug);
                   return (
@@ -239,7 +254,7 @@ export default async function ProductDetailPage({ params }: Props) {
                       shortDesc={p.shortDesc}
                       priceUsd={p.priceUsd}
                       stock={p.stock}
-                      imageCard={p.imageCard}
+                      imageCard={getProductCardImage(p.slug, p.imageCard)}
                       category={p.category}
                       tier={rMeta.tier}
                       nodeCount={rMeta.nodeCount}
@@ -254,7 +269,7 @@ export default async function ProductDetailPage({ params }: Props) {
             </section>
           )}
 
-          <div className="pb-10 md:pb-12">
+          <div className="pb-8">
             <ContactCTA title={`Quote for ${product.name}`} />
           </div>
         </div>

@@ -27,8 +27,72 @@
     "phone-farm-box-25.webp",
     "phone-farm-box-26.webp"
   ],
+  "android-phone-farm": [
+    "phone-farm-box-1.webp",
+    "phone-farm-box-2.webp",
+    "phone-farm-box-3.webp",
+    "phone-farm-box-4.webp",
+    "phone-farm-box-5.webp",
+    "phone-farm-box-6.webp"
+  ],
+  "real-device-phone-farm": [
+    "phone-farm-box-8.webp",
+    "phone-farm-box-9.webp",
+    "phone-farm-box-10.webp",
+    "phone-farm-box-11.webp",
+    "phone-farm-box-12.webp",
+    "phone-farm-box-13.webp"
+  ],
+  "iphone-phone-farm": [
+    "phone-farm-box-5.webp",
+    "phone-farm-box-6.webp",
+    "phone-farm-box-7.webp",
+    "phone-farm-box-15.webp",
+    "phone-farm-box-16.webp"
+  ],
+  "empty-box-chassis": [
+    "phone-farm-box-12.webp",
+    "phone-farm-box-13.webp",
+    "phone-farm-box-14.webp",
+    "phone-farm-box-15.webp"
+  ],
+  "usb-hub": [
+    "phone-farm-box-10.webp",
+    "phone-farm-box-11.webp",
+    "phone-farm-box-14.webp",
+    "phone-farm-box-17.webp"
+  ],
+  "power-supply-solution": [
+    "phone-farm-box-16.webp",
+    "phone-farm-box-17.webp",
+    "phone-farm-box-18.webp"
+  ],
+  "cooling-solution": [
+    "phone-farm-box-19.webp",
+    "phone-farm-box-20.webp",
+    "phone-farm-box-21.webp"
+  ],
+  "network-equipment": [
+    "phone-farm-box-22.webp",
+    "phone-farm-box-23.webp",
+    "phone-farm-box-24.webp"
+  ],
+  "custom-cabinet": [
+    "phone-farm-box-25.webp",
+    "phone-farm-box-26.webp",
+    "phone-farm-box-24.webp",
+    "phone-farm-box-23.webp"
+  ],
   "motherboard-box": [
     "motherboard-box-real-1.webp",
+    "motherboard-box-real-2.webp",
+    "motherboard-box-real-3.webp",
+    "motherboard-box-real-4.webp",
+    "motherboard-box-real-5.webp",
+    "motherboard-box-real-6.webp",
+    "motherboard-box-real-7.webp",
+    "motherboard-box-real-8.webp",
+    "motherboard-box-real-9.webp",
     "motherboard-box-real-10.webp",
     "motherboard-box-real-11.webp",
     "motherboard-box-real-12.webp",
@@ -39,24 +103,22 @@
     "motherboard-box-real-17.webp",
     "motherboard-box-real-18.webp",
     "motherboard-box-real-19.webp",
-    "motherboard-box-real-2.webp",
     "motherboard-box-real-20.webp",
     "motherboard-box-real-21.webp",
     "motherboard-box-real-22.webp",
     "motherboard-box-real-23.webp",
     "motherboard-box-real-24.webp",
-    "motherboard-box-real-3.webp",
-    "motherboard-box-real-4.webp",
-    "motherboard-box-real-5.webp",
-    "motherboard-box-real-6.webp",
-    "motherboard-box-real-7.webp",
-    "motherboard-box-real-8.webp",
-    "motherboard-box-real-9.webp"
-  ],
-  "android-phone-farm": [
-    "phone-farm-box-1.webp",
-    "phone-farm-box-2.webp",
-    "phone-farm-box-3.webp",
-    "phone-farm-box-4.webp"
+    "motherboard-box-real-25.webp",
+    "motherboard-box-real-26.webp",
+    "motherboard-box-real-27.webp",
+    "motherboard-box-real-28.webp",
+    "motherboard-box-real-29.webp",
+    "motherboard-box-real-30.webp",
+    "motherboard-box-real-31.webp",
+    "motherboard-box-real-32.webp",
+    "motherboard-box-real-33.webp",
+    "motherboard-box-real-34.webp",
+    "motherboard-box-real-35.webp",
+    "motherboard-box-real-36.webp"
   ]
 }

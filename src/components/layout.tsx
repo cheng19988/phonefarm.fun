@@ -25,10 +25,11 @@ export function Footer() {
         <div>
           <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Products</h3>
           <ul className="space-y-2.5 text-sm text-slate-400">
-            <li><Link href="/products/phone-farm-box" className="hover:text-[var(--accent)]">Phone Farm Box</Link></li>
+            <li><Link href="/products/android-phone-farm" className="hover:text-[var(--accent)]">Android Phone Farm (Starter)</Link></li>
+            <li><Link href="/products/phone-farm-box" className="hover:text-[var(--accent)]">Phone Farm Box Pro</Link></li>
+            <li><Link href="/products/real-device-phone-farm" className="hover:text-[var(--accent)]">Turnkey Lab Bundle</Link></li>
             <li><Link href="/products/motherboard-box" className="hover:text-[var(--accent)]">Motherboard Cluster</Link></li>
-            <li><Link href="/products/android-phone-farm" className="hover:text-[var(--accent)]">Android Phone Farm</Link></li>
-            <li><Link href="/products/iphone-phone-farm" className="hover:text-[var(--accent)]">iPhone Phone Farm</Link></li>
+            <li><Link href="/products/iphone-phone-farm" className="hover:text-[var(--accent)]">Multi-Device Lab Rack</Link></li>
             <li><Link href="/products/custom-cabinet" className="hover:text-[var(--accent)]">Custom Rack Solution</Link></li>
             <li><Link href="/products" className="hover:text-[var(--accent)] font-medium">Full Catalog →</Link></li>
           </ul>

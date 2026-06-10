@@ -404,7 +404,7 @@ body {
 }
 
 .inner-page-section {
-  @apply py-14 md:py-20;
+  @apply py-10 md:py-14;
 }
 
 .prose-content h2 {

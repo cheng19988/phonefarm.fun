@@ -112,7 +112,7 @@ export default async function ProductsPage({
               <div className="catalog-section-band catalog-section-band-accent mb-10 md:mb-12">
                 <p className="text-orange-600 text-sm font-bold uppercase tracking-widest mb-2">Core hardware</p>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 mb-3 tracking-tight">Primary Phone Farm SKUs</h2>
-                <p className="text-slate-600 text-lg md:text-xl max-w-3xl leading-relaxed">Starter boxes, Pro chassis, motherboard clusters, and custom rack solutions — built for B2B procurement.</p>
+                <p className="text-slate-600 text-lg md:text-xl max-w-3xl leading-relaxed">Starter, Pro, turnkey bundle, motherboard clusters, and custom rack solutions — built for B2B procurement.</p>
               </div>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
                 {primaryProducts.map((p) => {
@@ -144,8 +144,8 @@ export default async function ProductsPage({
             <>
               {showPrimarySection && (
                 <SectionHeader
-                  title="Accessories & additional SKUs"
-                  subtitle="Power, cooling, USB, network modules, and expansion chassis."
+                  title="Additional SKUs & accessories"
+                  subtitle="Mixed-device racks, expansion chassis, USB, power, cooling, and network modules."
                   large
                 />
               )}
