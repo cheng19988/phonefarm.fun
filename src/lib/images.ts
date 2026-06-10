@@ -25,7 +25,7 @@ export const IMAGES = {
   /** Bottom CTA — motherboard cluster, reads well at wide aspect */
   /** Bottom CTA — motherboard cluster, reads well at wide aspect */
   homeCtaBg: r("motherboard-box-real-1.webp"),
-  /** Products catalog hero — chassis on white background */
+  /** Hero chassis — transparent PNG; white page bg shows through */
   productsHeroChassis: "/images/brand/products-hero-chassis.webp",
 
   phoneFarmBox: {
