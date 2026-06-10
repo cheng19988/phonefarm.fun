@@ -20,13 +20,18 @@ async function main() {
 
   const { data, info } = await resized.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
 
-  for (let i = 0; i < data.length; i += 4) {
-    const r = data[i]!;
-    const g = data[i + 1]!;
-    const b = data[i + 2]!;
-    // Remove near-black background (exported as black instead of transparent)
-    if (r < 45 && g < 45 && b < 45) {
-      data[i + 3] = 0;
+  if (!meta.hasAlpha) {
+    for (let i = 0; i < data.length; i += 4) {
+      const r = data[i]!;
+      const g = data[i + 1]!;
+      const b = data[i + 2]!;
+      const lum = (r + g + b) / 3;
+      // Source was exported with solid black instead of alpha — key it out with a soft edge
+      if (lum < 40) {
+        data[i + 3] = 0;
+      } else if (lum < 72) {
+        data[i + 3] = Math.round(((lum - 40) / 32) * 255);
+      }
     }
   }
 
