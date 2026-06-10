@@ -23,52 +23,59 @@ export function PageHero({
   children?: ReactNode;
   compact?: boolean;
   large?: boolean;
-  /** Full-bleed catalog banner — image background, thick section */
+  /** Unified light page header — text + photo panel (matches homepage) */
   banner?: boolean;
 }) {
   if (banner) {
     return (
-      <section className="catalog-hero">
-        {image ? (
-          <Image src={image} alt={imageAlt ?? title} fill className="object-cover object-center" sizes="100vw" priority />
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" aria-hidden />
-        )}
-        <div className="catalog-hero-overlay" aria-hidden />
-        <div className="container-wide relative z-10 w-full py-16 md:py-20 lg:py-24">
-          {eyebrow && (
-            <p className="text-sm font-semibold text-[var(--accent)] mb-4 uppercase tracking-widest">{eyebrow}</p>
+      <section className="page-hero-banner">
+        <div className="page-hero-banner-pattern" aria-hidden />
+        <div className="container-wide page-hero-banner-grid">
+          <div className="max-w-xl">
+            {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] xl:text-5xl font-bold text-zinc-900 leading-tight tracking-tight mb-4">
+              {title}
+            </h1>
+            {subtitle && (
+              <p className="text-zinc-600 text-base md:text-lg leading-relaxed mb-6 max-w-xl">{subtitle}</p>
+            )}
+            {children}
+          </div>
+          {image && (
+            <div className="page-hero-banner-media">
+              <Image
+                src={image}
+                alt={imageAlt ?? title}
+                fill
+                className="object-cover object-center"
+                sizes="(max-width:1024px) 100vw, 560px"
+                priority
+              />
+            </div>
           )}
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-[3.75rem] font-bold text-white leading-[1.05] mb-5 md:mb-6 tracking-tight max-w-4xl">
-            {title}
-          </h1>
-          {subtitle && (
-            <p className="text-lg md:text-xl lg:text-2xl text-slate-200 leading-relaxed max-w-3xl mb-8">{subtitle}</p>
-          )}
-          {children}
         </div>
       </section>
     );
   }
 
-  const pad = compact ? "py-12 md:py-14" : large ? "py-16 md:py-24 lg:py-28" : "py-14 md:py-20 lg:py-24";
+  const pad = compact ? "py-10 md:py-12" : large ? "py-14 md:py-16 lg:py-20" : "py-12 md:py-16";
   const titleSize = large
     ? "text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-6xl"
     : "text-3xl sm:text-4xl lg:text-[2.75rem]";
 
   return (
-    <section className="bg-gradient-to-b from-slate-100 to-white border-b border-slate-200">
+    <section className="bg-gradient-to-b from-zinc-50 to-white border-b border-zinc-200">
       <div className={`container-wide ${pad}`}>
-        <div className={`grid gap-10 lg:gap-16 items-center ${image ? "lg:grid-cols-[1fr_1.15fr]" : ""}`}>
-          <div className={image ? "lg:py-4" : ""}>
-            {eyebrow && <p className="text-sm font-semibold text-orange-600 mb-3 uppercase tracking-wide">{eyebrow}</p>}
-            <h1 className={`${titleSize} font-bold text-slate-900 leading-[1.08] mb-5 tracking-tight`}>{title}</h1>
-            {subtitle && <p className="text-lg md:text-xl lg:text-2xl text-slate-600 leading-relaxed max-w-2xl mb-8">{subtitle}</p>}
+        <div className={`grid gap-8 lg:gap-12 items-center ${image ? "lg:grid-cols-[1fr_1.1fr]" : ""}`}>
+          <div className={image ? "lg:py-2" : ""}>
+            {eyebrow && <p className="eyebrow mb-3">{eyebrow}</p>}
+            <h1 className={`${titleSize} font-display font-bold text-zinc-900 leading-[1.08] mb-4 tracking-tight`}>{title}</h1>
+            {subtitle && <p className="text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl mb-6">{subtitle}</p>}
             {children}
           </div>
           {image && (
-            <div className={`relative rounded-2xl lg:rounded-3xl overflow-hidden bg-slate-100 border border-slate-200 shadow-xl ${large ? "aspect-[16/10] lg:min-h-[400px] xl:min-h-[460px]" : "aspect-[4/3] lg:min-h-[320px]"}`}>
-              <Image src={image} alt={imageAlt ?? title} fill className="object-cover" sizes="(max-width:1024px) 100vw, 58vw" priority />
+            <div className="relative rounded-2xl overflow-hidden bg-white border border-zinc-200/90 shadow-md aspect-[16/10] lg:min-h-[300px]">
+              <Image src={image} alt={imageAlt ?? title} fill className="object-cover object-center" sizes="(max-width:1024px) 100vw, 58vw" priority />
             </div>
           )}
         </div>
@@ -79,14 +86,14 @@ export function PageHero({
 
 export function Breadcrumbs({ items }: { items: { label: string; href?: string }[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="text-sm text-slate-500 mb-6 flex flex-wrap gap-1">
+    <nav aria-label="Breadcrumb" className="text-sm text-zinc-500 mb-5 flex flex-wrap gap-1">
       {items.map((item, i) => (
         <span key={i} className="flex items-center gap-1">
-          {i > 0 && <span className="text-slate-300">/</span>}
+          {i > 0 && <span className="text-zinc-300">/</span>}
           {item.href ? (
-            <Link href={item.href} className="hover:text-orange-600 transition-colors">{item.label}</Link>
+            <Link href={item.href} className="hover:text-[var(--accent)] transition-colors">{item.label}</Link>
           ) : (
-            <span className="text-slate-700 font-medium truncate max-w-[200px] sm:max-w-none">{item.label}</span>
+            <span className="text-zinc-800 font-medium truncate max-w-[200px] sm:max-w-none">{item.label}</span>
           )}
         </span>
       ))}
@@ -109,9 +116,9 @@ export function SectionHeader({
 }) {
   return (
     <div className={`mb-10 md:mb-12 lg:mb-14 ${center ? "text-center" : ""} ${className}`}>
-      <h2 className={`font-bold text-slate-900 mb-3 tracking-tight ${large ? "text-3xl md:text-4xl lg:text-5xl" : "text-2xl md:text-3xl lg:text-4xl"} ${center ? "mx-auto" : ""}`}>{title}</h2>
+      <h2 className={`font-bold text-zinc-900 mb-3 tracking-tight ${large ? "text-3xl md:text-4xl lg:text-5xl" : "text-2xl md:text-3xl lg:text-4xl"} ${center ? "mx-auto" : ""}`}>{title}</h2>
       {subtitle && (
-        <p className={`text-slate-600 max-w-3xl leading-relaxed ${large ? "text-lg md:text-xl lg:text-2xl" : "text-base md:text-lg lg:text-xl"} ${center ? "mx-auto" : ""}`}>{subtitle}</p>
+        <p className={`text-zinc-600 max-w-3xl leading-relaxed ${large ? "text-lg md:text-xl lg:text-2xl" : "text-base md:text-lg lg:text-xl"} ${center ? "mx-auto" : ""}`}>{subtitle}</p>
       )}
     </div>
   );

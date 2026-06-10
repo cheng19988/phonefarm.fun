@@ -84,12 +84,8 @@ export default async function HomePage() {
             <p className="eyebrow">New to phone farms?</p>
             <h2 className="section-title">What Is a Phone Farm?</h2>
             <p className="text-zinc-600 text-sm md:text-base leading-relaxed mb-4">
-              A <strong className="text-zinc-900">phone farm</strong> is a rack or box that runs many real Android phones together —
-              connected by USB and network ports for QA testing, app compatibility checks, automation scripts, and multi-device workflows.
-            </p>
-            <p className="text-zinc-600 text-sm md:text-base leading-relaxed mb-4">
-              Unlike cloud phones or emulators, our hardware uses <strong className="text-zinc-900">physical devices</strong> in factory-built chassis.
-              Each 20-node box provides power, cooling, and port routing (USB · LAN · OTG) so your lab can deploy, test, and scale reliably.
+              A <strong className="text-zinc-900">phone farm</strong> runs many real Android phones together for QA testing,
+              app compatibility, automation, and multi-device workflows — with centralized power, USB, and network ports in factory-built chassis.
             </p>
             <ul className="space-y-2 text-sm text-zinc-700 mb-6">
               <li className="flex gap-2"><span className="text-[var(--accent)]">→</span> QA teams running regression on real Android silicon</li>
@@ -119,26 +115,22 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Value proposition strip */}
-      <section className="value-strip section-tight">
-        <div className="container-wide grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-zinc-200">
-          {VALUE_PROPS.map((item) => (
-            <div key={item.title} className="value-strip-item">
-              <h2 className="font-display font-bold text-zinc-900 text-base mb-1.5">{item.title}</h2>
-              <p className="text-sm text-zinc-600 leading-relaxed">{item.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Track record — light band with context */}
-      <section className="bg-zinc-100 border-y border-zinc-200 section-tight">
+      {/* Value props + track record — single band */}
+      <section className="section-tight bg-zinc-50 border-y border-zinc-200">
         <div className="container-wide">
-          <p className="text-[10px] uppercase tracking-widest text-zinc-500 mb-4">Factory track record</p>
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8 pb-8 md:pb-10 mb-8 md:mb-10 border-b border-zinc-200/80">
+            {VALUE_PROPS.map((item) => (
+              <div key={item.title}>
+                <h2 className="font-display font-bold text-zinc-900 text-base mb-1.5">{item.title}</h2>
+                <p className="text-sm text-zinc-600 leading-relaxed">{item.description}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-[10px] uppercase tracking-widest text-zinc-500 mb-4 font-semibold">Factory track record</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {TRUST_STATS.map((s) => (
-              <div key={s.label} className="text-center lg:text-left">
-                <p className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-zinc-900 tabular-nums">{s.value}</p>
+              <div key={s.label}>
+                <p className="font-display text-2xl md:text-3xl font-bold text-zinc-900 tabular-nums">{s.value}</p>
                 <p className="text-xs md:text-sm text-zinc-600 mt-1">{s.label}</p>
               </div>
             ))}
@@ -410,18 +402,18 @@ export default async function HomePage() {
       </section>
 
       {/* Compact CTA — product image, not awkward full-bleed banner */}
-      <section className="cta-band">
+      <section className="cta-band-light">
         <div className="container-wide cta-band-grid">
           <div>
-            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3">
+            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-zinc-900 mb-3">
               Ready to deploy real-device hardware?
             </h2>
-            <p className="text-zinc-400 text-sm md:text-base mb-6 max-w-xl leading-relaxed">
+            <p className="text-zinc-600 text-sm md:text-base mb-6 max-w-xl leading-relaxed">
               Order standard SKUs with USDT checkout, or send your node count and shipping country for a factory quote within 24 hours.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="/products" className="btn-primary-lg">Shop Phone Farm Boxes</Link>
-              <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-outline-lg">
+              <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-outline-lg border-zinc-300 text-zinc-800 hover:bg-white">
                 WhatsApp Sales
               </a>
             </div>
@@ -429,7 +421,7 @@ export default async function HomePage() {
               {CONTACT.email} · {CONTACT.phone} · {SITE.location}
             </p>
           </div>
-          <div className="cta-product-stack">
+          <div className="cta-product-stack border-zinc-200/90">
             <Image
               src={IMAGES.phoneFarmBox.hero}
               alt="Configured phone farm box with Android devices"

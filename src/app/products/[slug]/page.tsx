@@ -4,7 +4,7 @@ import { getProductBySlug, getRelatedProducts } from "@/lib/products-server";
 import { BuyButtons, FAQAccordion, ProductCard } from "@/components/commerce";
 import { ProductGallery } from "@/components/product-gallery";
 import { ContactCTA, ContactBar, JsonLd, StockBadge } from "@/components/shared";
-import { getProductGalleryImages, getProductCardImage } from "@/data/product-images";
+import { getProductGalleryImages, getProductCardImage, isAccessorySlug, ACCESSORY_PHOTO_CAPTION } from "@/data/product-images";
 import { DeviceModelGridAll } from "@/components/device-model-grid";
 import { getProductMeta, getProductEyebrow } from "@/data/product-meta";
 import { getProfessionalSpecs } from "@/data/product-specs";
@@ -80,6 +80,8 @@ export default async function ProductDetailPage({ params }: Props) {
   const powerItems =
     maintenance.length >= 2 ? maintenance.slice(0, 4) : features.length >= 2 ? features.slice(0, 4) : DEFAULT_POWER;
   const packingItems = delivery.length ? delivery.slice(0, 4) : DEFAULT_PACKING;
+  const photoCaption =
+    product.category === "Accessory" || isAccessorySlug(slug) ? ACCESSORY_PHOTO_CAPTION : undefined;
 
   return (
     <>
@@ -101,21 +103,21 @@ export default async function ProductDetailPage({ params }: Props) {
             { label: product.name },
           ]} />
 
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10">
-            <div className="lg:col-span-7">
-              <ProductGallery images={gallery} alt={product.name} />
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12">
+            <div className="lg:col-span-7 xl:col-span-8">
+              <ProductGallery images={gallery} alt={product.name} caption={photoCaption} />
             </div>
 
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-5 xl:col-span-4">
               <div className="card product-card-heavy p-5 md:p-6 lg:sticky lg:top-28 shadow-md border-zinc-200/90">
-                <p className="text-orange-600 text-sm font-bold uppercase tracking-widest mb-3">
+                <p className="text-[var(--accent)] text-sm font-bold uppercase tracking-widest mb-3">
                   {getProductEyebrow(meta, product.category)}
                 </p>
-                <h1 className="text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl font-bold text-slate-900 mb-5 leading-tight tracking-tight">
+                <h1 className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-zinc-900 mb-4 leading-tight tracking-tight">
                   {product.name}
                 </h1>
-                <p className="text-base md:text-lg lg:text-xl text-slate-600 mb-8 leading-relaxed">{product.shortDesc}</p>
-                <div className="flex flex-wrap items-center gap-4 mb-8 pb-8 border-b-2 border-slate-200">
+                <p className="text-base md:text-lg text-zinc-600 mb-6 leading-relaxed">{product.shortDesc}</p>
+                <div className="flex flex-wrap items-center gap-4 mb-6 pb-6 border-b border-zinc-200">
                   <PriceDisplay amount={product.priceUsd} size="xl" />
                   <StockBadge stock={product.stock} />
                 </div>
@@ -135,8 +137,8 @@ export default async function ProductDetailPage({ params }: Props) {
                     "Custom rack quoted separately",
                   ]} />
                 </div>
-                <div className="mt-6 p-5 md:p-6 rounded-xl bg-slate-50 border-2 border-slate-200">
-                  <p className="font-bold text-slate-900 mb-2 text-base">Sales &amp; configuration</p>
+                <div className="mt-6 p-5 md:p-6 rounded-xl bg-zinc-50 border-2 border-zinc-200">
+                  <p className="font-bold text-zinc-900 mb-2 text-base">Sales &amp; configuration</p>
                   <ContactBar />
                 </div>
               </div>
@@ -150,19 +152,19 @@ export default async function ProductDetailPage({ params }: Props) {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-10 pb-10 md:pb-12">
             <div className="lg:col-span-8 space-y-8">
               <DetailSection title="Overview">
-                <p className="text-slate-600 text-base md:text-lg leading-relaxed">{product.description}</p>
+                <p className="text-zinc-600 text-base md:text-lg leading-relaxed">{product.description}</p>
                 {features.length > 0 && (
                   <ul className="mt-5 grid sm:grid-cols-2 gap-2.5">
                     {features.map((item) => (
-                      <li key={item} className="flex gap-2 text-sm md:text-base text-slate-700 leading-relaxed">
+                      <li key={item} className="flex gap-2 text-sm md:text-base text-zinc-700 leading-relaxed">
                         <span className="text-[var(--accent)] shrink-0">✓</span>
                         {item}
                       </li>
                     ))}
                   </ul>
                 )}
-                <p className="mt-5 text-slate-700 text-base leading-relaxed">
-                  <span className="font-semibold text-slate-900">Best for: </span>
+                <p className="mt-5 text-zinc-700 text-base leading-relaxed">
+                  <span className="font-semibold text-zinc-900">Best for: </span>
                   {meta.useCase}
                 </p>
               </DetailSection>
@@ -179,16 +181,16 @@ export default async function ProductDetailPage({ params }: Props) {
                 subtitle="Chassis layout, power and cooling, and pre-shipment verification — separate from the spec sheet above."
               >
                 <div className="grid md:grid-cols-2 gap-6 md:gap-8">
-                  <div className="rounded-xl border-2 border-slate-200 bg-slate-50 p-5 md:p-6">
-                    <h3 className="font-bold text-slate-900 text-lg mb-4">Chassis &amp; layout</h3>
+                  <div className="rounded-xl border-2 border-zinc-200 bg-zinc-50 p-5 md:p-6">
+                    <h3 className="font-bold text-zinc-900 text-lg mb-4">Chassis &amp; layout</h3>
                     <IconList items={chassisItems} large />
                   </div>
-                  <div className="rounded-xl border-2 border-slate-200 bg-slate-50 p-5 md:p-6">
-                    <h3 className="font-bold text-slate-900 text-lg mb-4">Power, cooling &amp; cabling</h3>
+                  <div className="rounded-xl border-2 border-zinc-200 bg-zinc-50 p-5 md:p-6">
+                    <h3 className="font-bold text-zinc-900 text-lg mb-4">Power, cooling &amp; cabling</h3>
                     <IconList items={powerItems} large />
                   </div>
-                  <div className="rounded-xl border-2 border-slate-200 bg-slate-50 p-5 md:p-6 md:col-span-2">
-                    <h3 className="font-bold text-slate-900 text-lg mb-4">Pre-shipment check &amp; packing</h3>
+                  <div className="rounded-xl border-2 border-zinc-200 bg-zinc-50 p-5 md:p-6 md:col-span-2">
+                    <h3 className="font-bold text-zinc-900 text-lg mb-4">Pre-shipment check &amp; packing</h3>
                     <IconList items={packingItems} icon="•" large />
                   </div>
                 </div>
@@ -200,7 +202,7 @@ export default async function ProductDetailPage({ params }: Props) {
               >
                 <ul className="grid sm:grid-cols-2 gap-4 md:gap-5">
                   {scenarios.map((s) => (
-                    <li key={s} className="rounded-xl border-2 border-slate-200 bg-white p-5 md:p-6 text-base md:text-lg text-slate-700 leading-relaxed font-medium">{s}</li>
+                    <li key={s} className="rounded-xl border-2 border-zinc-200 bg-white p-5 md:p-6 text-base md:text-lg text-zinc-700 leading-relaxed font-medium">{s}</li>
                   ))}
                 </ul>
               </DetailSection>
@@ -214,12 +216,12 @@ export default async function ProductDetailPage({ params }: Props) {
 
             <div className="lg:col-span-4 space-y-6 lg:space-y-8">
               <section className="detail-section lg:sticky lg:top-28">
-                <h3 className="text-2xl md:text-3xl font-bold text-slate-900 mb-5">What&apos;s Included</h3>
+                <h3 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-5">What&apos;s Included</h3>
                 <IconList items={accessories.length ? accessories : ["Factory-assembled hardware", "Power and USB cabling", "Setup documentation"]} icon="•" large />
               </section>
               <section className="detail-section bg-orange-50 border-orange-200">
-                <h3 className="font-bold text-slate-900 text-xl md:text-2xl mb-3">Need a custom layout?</h3>
-                <p className="text-base md:text-lg text-slate-600 mb-6 leading-relaxed">
+                <h3 className="font-bold text-zinc-900 text-xl md:text-2xl mb-3">Need a custom layout?</h3>
+                <p className="text-base md:text-lg text-zinc-600 mb-6 leading-relaxed">
                   Share node count, device models, shipping country, and remote setup requirements. We confirm configuration before production.
                 </p>
                 <Link href={`/contact?product=${slug}`} className="btn-primary-lg w-full text-center block">
@@ -230,7 +232,7 @@ export default async function ProductDetailPage({ params }: Props) {
           </div>
 
           {MODEL_GRID_SLUGS.has(slug) && (
-            <section className="pt-10 md:pt-12 border-t border-slate-200">
+            <section className="pt-10 md:pt-12 border-t border-zinc-200">
               <SectionHeader
                 title="Compatible Android Models"
                 subtitle="Full factory catalog with RAM, storage, and port routing from product detail images. Share your target device list when ordering."
@@ -241,7 +243,7 @@ export default async function ProductDetailPage({ params }: Props) {
           )}
 
           {related.length > 0 && (
-            <section className="pt-10 md:pt-12 pb-8 border-t border-slate-200">
+            <section className="pt-10 md:pt-12 pb-8 border-t border-zinc-200">
               <SectionHeader title="Related Products" subtitle="Compatible hardware and accessories for your device lab." />
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {related.map((p) => {

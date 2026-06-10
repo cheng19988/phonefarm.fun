@@ -47,6 +47,21 @@ export const PRIMARY_CATALOG_SLUGS = [
   "custom-cabinet",
 ] as const;
 
+export const ACCESSORY_SLUGS = new Set([
+  "empty-box-chassis",
+  "usb-hub",
+  "power-supply-solution",
+  "cooling-solution",
+  "network-equipment",
+]);
+
+export const ACCESSORY_PHOTO_CAPTION =
+  "Reference photo — shows compatible chassis routing / install context. Request a dedicated module photo before ordering if required.";
+
+export function isAccessorySlug(slug: string): boolean {
+  return ACCESSORY_SLUGS.has(slug);
+}
+
 export function getGalleryFallbackReport(): { slug: string; usesReal: boolean; imageCount: number }[] {
   return Object.keys(galleryBySlug).map((slug) => {
     const real = realPathsForSlug(slug);

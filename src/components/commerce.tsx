@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CONTACT } from "@/lib/config";
 import { isQuotePreferredProduct } from "@/lib/product-commerce";
+import { isAccessorySlug } from "@/data/product-images";
 import { AddToCartButton } from "./add-to-cart-button";
 import { StockBadge } from "./shared";
 import { PriceDisplay } from "./store";
@@ -55,6 +56,7 @@ export function ProductCard({
     .join(" · ");
 
   const ctaMinH = "min-h-[44px]";
+  const isAccessory = category === "Accessory" || isAccessorySlug(slug);
 
   return (
     <article
@@ -74,17 +76,22 @@ export function ProductCard({
           sizes={isCatalog ? "(max-width:768px) 100vw, 33vw" : "(max-width:768px) 100vw, 25vw"}
         />
         <span
-          className={`absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 font-semibold shadow-sm ${
+          className={`absolute top-3 left-3 bg-white/95 backdrop-blur-sm text-zinc-800 px-3 py-1.5 rounded-lg border border-zinc-200 font-semibold shadow-sm ${
             isCatalog ? "text-sm" : "text-xs"
           }`}
         >
           {tier ?? category}
         </span>
+        {isAccessory && (
+          <span className="absolute top-3 right-3 text-[10px] font-semibold uppercase tracking-wide bg-zinc-900/75 text-white px-2 py-1 rounded-md">
+            Ref. photo
+          </span>
+        )}
       </Link>
       <div className={`flex flex-col flex-1 ${compact ? "p-3" : isCatalog ? "p-6 md:p-7 lg:p-8" : featured ? "p-5 md:p-6" : "p-4 md:p-5"}`}>
         <Link href={`/products/${slug}`}>
           <h3
-            className={`font-bold text-slate-900 group-hover:text-orange-600 transition-colors mb-2 line-clamp-2 leading-snug ${
+            className={`font-bold text-zinc-900 group-hover:text-orange-600 transition-colors mb-2 line-clamp-2 leading-snug ${
               isCatalog ? "text-xl md:text-2xl lg:text-[1.65rem]" : featured ? "text-lg md:text-xl" : "text-base md:text-lg"
             }`}
           >
