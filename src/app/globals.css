@@ -117,12 +117,16 @@ body {
 }
 
 .shop-hero-grid {
-  @apply relative z-10 grid lg:grid-cols-[0.85fr_1.15fr] gap-6 lg:gap-8 items-center min-h-[460px] md:min-h-[500px] lg:min-h-[540px] py-10 md:py-12;
+  @apply relative z-10 grid lg:grid-cols-[0.78fr_1.22fr] gap-6 lg:gap-8 items-center min-h-[480px] md:min-h-[520px] lg:min-h-[580px] py-10 md:py-12;
 }
 
-/* Hero product photo — white-background asset, no cutout tricks */
+/* Hero product photo — transparent PNG on white hero */
 .hero-product-photo {
-  @apply relative w-full aspect-[16/10] min-h-[240px] md:min-h-[300px] lg:min-h-[360px];
+  @apply relative w-full aspect-[16/10] min-h-[280px] md:min-h-[360px] lg:min-h-[420px] overflow-visible;
+}
+
+.hero-product-photo-inner {
+  @apply absolute inset-0 scale-[1.15] md:scale-[1.22] lg:scale-[1.32] origin-center;
 }
 
 .shop-hero-bg {
