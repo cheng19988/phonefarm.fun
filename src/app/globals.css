@@ -34,7 +34,7 @@ body {
 }
 
 .container-wide {
-  @apply max-w-[1320px] mx-auto px-4 sm:px-6 lg:px-8;
+  @apply max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10;
 }
 
 .section {
@@ -511,6 +511,43 @@ body {
 
 .factory-grid-item {
   @apply relative aspect-[4/3] overflow-hidden rounded-lg;
+}
+
+/* Homepage factory band — unified light rows, not mixed dark + white cards */
+.factory-strip {
+  @apply grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-3;
+}
+
+.factory-strip-item {
+  @apply relative aspect-[4/3] rounded-xl overflow-hidden ring-1 ring-zinc-200/90 shadow-sm;
+}
+
+.band-link {
+  @apply flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl bg-zinc-50 border border-zinc-200/90 hover:bg-white hover:border-orange-200/80 hover:shadow-sm transition-all;
+}
+
+.band-link-thumb {
+  @apply relative w-14 h-14 md:w-[4.5rem] md:h-[4.5rem] shrink-0 rounded-lg overflow-hidden bg-white ring-1 ring-zinc-200/80;
+}
+
+.band-link-body {
+  @apply min-w-0 flex-1;
+}
+
+.band-link-title {
+  @apply font-semibold text-zinc-900 text-sm md:text-base leading-snug line-clamp-2;
+}
+
+.band-link-meta {
+  @apply text-xs text-zinc-500 mt-0.5 line-clamp-1;
+}
+
+.band-link-price {
+  @apply text-sm font-bold text-[var(--accent)] shrink-0 tabular-nums;
+}
+
+.band-link-arrow {
+  @apply text-zinc-400 shrink-0 text-sm group-hover:text-[var(--accent)] transition-colors;
 }
 
 .product-showcase-card {

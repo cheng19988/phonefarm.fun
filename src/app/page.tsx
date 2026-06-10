@@ -287,19 +287,17 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Factory + services — dense two-column */}
-      <section className="r-dark-band">
-        <div className="container-wide relative z-10">
-          <div className="grid lg:grid-cols-2 gap-8 items-start mb-8">
+      {/* Factory + services — unified light band */}
+      <section className="section bg-white border-y border-zinc-200">
+        <div className="container-wide">
+          <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-8 lg:gap-12 items-end mb-8 md:mb-10">
             <div>
-              <p className="eyebrow text-[var(--accent)]">Guangzhou factory</p>
-              <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
-                Real Devices. Real Assembly. Real Delivery.
-              </h2>
-              <p className="text-zinc-400 text-sm md:text-base leading-relaxed mb-5">
+              <p className="eyebrow">Guangzhou factory</p>
+              <h2 className="section-title mb-3">Real Devices. Real Assembly. Real Delivery.</h2>
+              <p className="text-zinc-600 text-sm md:text-base leading-relaxed mb-4 max-w-xl">
                 Physical Android devices in factory-built chassis — burn-in tested, export-packed, optional remote ADB setup before shipment.
               </p>
-              <div className="grid sm:grid-cols-2 gap-2 text-sm text-zinc-300 mb-5">
+              <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-zinc-700 mb-5">
                 <span>✓ 20-node starter &amp; pro boxes</span>
                 <span>✓ Motherboard clusters</span>
                 <span>✓ Power &amp; USB modules</span>
@@ -309,61 +307,69 @@ export default async function HomePage() {
                 About our workshop →
               </Link>
             </div>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="factory-strip lg:max-w-none">
               {FACTORY_SHOWCASE.map((src, i) => (
-                <div key={src} className="factory-grid-item ring-1 ring-white/10">
-                  <Image src={src} alt={`Factory ${i + 1}`} fill className="object-cover" sizes="15vw" />
+                <div key={src} className="factory-strip-item">
+                  <Image src={src} alt={`Factory production ${i + 1}`} fill className="object-cover" sizes="(max-width:1024px) 33vw, 200px" />
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 pt-6 border-t border-white/10">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 pt-8 border-t border-zinc-200">
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">Lab services</p>
+              <div className="flex items-end justify-between gap-4 mb-4">
+                <h3 className="font-display text-lg md:text-xl font-bold text-zinc-900">Lab services</h3>
+                <Link href="/services" className="text-xs font-semibold text-[var(--accent)] hover:underline shrink-0">
+                  All services →
+                </Link>
+              </div>
               <div className="space-y-2">
                 {featuredServices.map((svc) => (
-                  <Link
-                    key={svc.slug}
-                    href={`/services/${svc.slug}`}
-                    className="flex items-center justify-between gap-4 p-3 rounded-lg bg-white/5 border border-white/10 hover:border-[var(--accent)]/40 transition-colors"
-                  >
-                    <div className="min-w-0">
-                      <h3 className="font-semibold text-white text-sm">{svc.title}</h3>
-                      <p className="text-xs text-zinc-400 mt-0.5 line-clamp-1">{svc.description}</p>
+                  <Link key={svc.slug} href={`/services/${svc.slug}`} className="band-link group">
+                    <div className="band-link-body">
+                      <p className="band-link-title group-hover:text-[var(--accent)] transition-colors">{svc.title}</p>
+                      <p className="band-link-meta">{svc.description}</p>
                     </div>
                     {svc.priceUsd > 0 && (
-                      <span className="text-xs font-semibold text-[var(--accent)] shrink-0">From ${svc.priceUsd.toLocaleString()}</span>
+                      <span className="band-link-price">From ${svc.priceUsd.toLocaleString()}</span>
                     )}
+                    <span className="band-link-arrow" aria-hidden>→</span>
                   </Link>
                 ))}
               </div>
             </div>
             <div>
-              <p className="text-xs font-bold uppercase tracking-wider text-zinc-500 mb-3">Accessories &amp; modules</p>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="flex items-end justify-between gap-4 mb-4">
+                <h3 className="font-display text-lg md:text-xl font-bold text-zinc-900">Accessories &amp; modules</h3>
+                <Link href="/products?category=Accessory" className="text-xs font-semibold text-[var(--accent)] hover:underline shrink-0">
+                  All accessories →
+                </Link>
+              </div>
+              <div className="space-y-2">
                 {allProducts
                   .filter((p) => !FEATURED_SLUGS.includes(p.slug as (typeof FEATURED_SLUGS)[number]))
                   .slice(0, 4)
                   .map((p) => {
                     const meta = getProductMeta(p.slug);
                     return (
-                      <ProductCard
-                        key={p.id}
-                        slug={p.slug}
-                        name={p.name}
-                        shortDesc={p.shortDesc}
-                        priceUsd={p.priceUsd}
-                        stock={p.stock}
-                        imageCard={getProductCardImage(p.slug, p.imageCard)}
-                        category={p.category}
-                        tier={meta.tier}
-                        nodeCount={meta.nodeCount}
-                        deploymentType={meta.deploymentType}
-                        moq={meta.moq}
-                        leadTime={meta.leadTime}
-                        compact
-                      />
+                      <Link key={p.id} href={`/products/${p.slug}`} className="band-link group">
+                        <div className="band-link-thumb">
+                          <Image
+                            src={getProductCardImage(p.slug, p.imageCard)}
+                            alt={p.name}
+                            fill
+                            className="object-contain object-center p-0.5"
+                            sizes="80px"
+                          />
+                        </div>
+                        <div className="band-link-body">
+                          <p className="band-link-title group-hover:text-[var(--accent)] transition-colors">{p.name}</p>
+                          <p className="band-link-meta">{meta.nodeCount} · {meta.leadTime}</p>
+                        </div>
+                        <span className="band-link-price">${p.priceUsd.toLocaleString()}</span>
+                        <span className="band-link-arrow" aria-hidden>→</span>
+                      </Link>
                     );
                   })}
               </div>
