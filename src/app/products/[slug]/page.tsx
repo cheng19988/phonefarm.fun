@@ -93,8 +93,8 @@ export default async function ProductDetailPage({ params }: Props) {
         ...(faqItems.length > 0 ? [faqJsonLd(faqItems)] : []),
       ]} />
 
-      <div className="bg-gradient-to-b from-slate-100 to-white border-b border-slate-200">
-        <div className="container-wide pt-6 md:pt-8 pb-8 md:pb-10">
+      <div className="bg-gradient-to-b from-zinc-50 to-white border-b border-zinc-200">
+        <div className="container-wide pt-5 md:pt-7 pb-7 md:pb-9">
           <Breadcrumbs items={[
             { label: "Home", href: "/" },
             { label: "Products", href: "/products" },
@@ -107,7 +107,7 @@ export default async function ProductDetailPage({ params }: Props) {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="card product-card-heavy p-5 md:p-7 lg:sticky lg:top-28">
+              <div className="card product-card-heavy p-5 md:p-6 lg:sticky lg:top-28 shadow-md border-zinc-200/90">
                 <p className="text-orange-600 text-sm font-bold uppercase tracking-widest mb-3">
                   {getProductEyebrow(meta, product.category)}
                 </p>

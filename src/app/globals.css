@@ -117,16 +117,27 @@ body {
 }
 
 .shop-hero-grid {
-  @apply relative z-10 grid lg:grid-cols-[0.78fr_1.22fr] gap-6 lg:gap-8 items-center min-h-[480px] md:min-h-[520px] lg:min-h-[580px] py-10 md:py-12;
+  @apply relative z-10 grid lg:grid-cols-[0.82fr_1.18fr] gap-8 lg:gap-10 items-center min-h-0 py-8 md:py-10 lg:py-12;
 }
 
-/* Hero product photo — transparent PNG on white hero */
-.hero-product-photo {
-  @apply relative w-full aspect-[16/10] min-h-[280px] md:min-h-[360px] lg:min-h-[420px] overflow-visible;
+.hero-product-showcase {
+  @apply relative w-full flex flex-col items-center lg:items-end;
 }
 
-.hero-product-photo-inner {
-  @apply absolute inset-0 scale-[1.15] md:scale-[1.22] lg:scale-[1.32] origin-center;
+.hero-product-showcase-frame {
+  @apply relative w-full max-w-[760px] aspect-[16/10] min-h-[240px] md:min-h-[320px] lg:min-h-[380px] rounded-2xl overflow-hidden bg-white;
+  box-shadow:
+    0 24px 48px -16px rgba(15, 23, 42, 0.14),
+    0 0 0 1px rgba(228, 228, 231, 0.9);
+}
+
+.hero-product-showcase-frame img {
+  object-fit: contain;
+  object-position: center;
+}
+
+.hero-product-caption {
+  @apply mt-3 text-xs md:text-sm text-zinc-500 font-medium text-center lg:text-right w-full max-w-[760px];
 }
 
 .shop-hero-bg {
@@ -162,8 +173,9 @@ body {
 
 /* Unified product photography */
 .photo-stage {
-  @apply relative overflow-hidden;
-  background: linear-gradient(160deg, #f8fafc 0%, #eef2f6 50%, #e8edf2 100%);
+  @apply relative overflow-hidden rounded-xl;
+  background: linear-gradient(160deg, #ffffff 0%, #f4f4f5 100%);
+  box-shadow: inset 0 0 0 1px rgba(228, 228, 231, 0.7);
 }
 
 .photo-stage--card {
@@ -226,8 +238,8 @@ body {
 }
 
 .cta-product-stack {
-  @apply relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/10;
-  background: linear-gradient(160deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+  @apply relative aspect-[16/10] rounded-2xl overflow-hidden border border-white/15 bg-white;
+  box-shadow: 0 16px 32px -12px rgba(0, 0, 0, 0.35);
 }
 
 /* Catalog */
@@ -241,7 +253,7 @@ body {
 
 .catalog-card-image {
   @apply relative aspect-[4/3] border-b border-zinc-100;
-  background: linear-gradient(160deg, #f8fafc 0%, #eef2f6 50%, #e8edf2 100%);
+  background: linear-gradient(160deg, #ffffff 0%, #f4f4f5 100%);
 }
 
 .catalog-card-body {
@@ -259,7 +271,7 @@ body {
 
 .featured-product-image {
   @apply relative aspect-[4/3] border-b border-zinc-100;
-  background: linear-gradient(160deg, #f8fafc 0%, #eef2f6 50%, #e8edf2 100%);
+  background: linear-gradient(160deg, #ffffff 0%, #f4f4f5 100%);
 }
 
 .featured-product-body {
@@ -334,13 +346,25 @@ body {
 
 .shop-hero--light .shop-hero-bg-pattern {
   background:
-    radial-gradient(ellipse 55% 50% at 85% 35%, rgba(194, 65, 12, 0.06) 0%, transparent 55%),
-    radial-gradient(ellipse 45% 40% at 12% 70%, rgba(24, 24, 27, 0.03) 0%, transparent 50%),
-    linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+    radial-gradient(ellipse 50% 45% at 88% 38%, rgba(194, 65, 12, 0.07) 0%, transparent 58%),
+    radial-gradient(ellipse 40% 35% at 8% 72%, rgba(24, 24, 27, 0.025) 0%, transparent 52%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
 }
 
-.shop-hero--light .hero-product-photo img {
-  padding: 0;
+.catalog-hero--light {
+  @apply bg-white text-zinc-900 border-b border-zinc-200 min-h-0;
+}
+
+.catalog-hero-bg-pattern--light {
+  background:
+    radial-gradient(ellipse 55% 50% at 90% 30%, rgba(194, 65, 12, 0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+  @apply absolute inset-0;
+}
+
+.catalog-hero-stage--product {
+  @apply bg-white border-zinc-200/90;
+  box-shadow: 0 16px 32px -14px rgba(15, 23, 42, 0.12);
 }
 
 .shop-hero--clean {
@@ -400,7 +424,7 @@ body {
 }
 
 .detail-section {
-  @apply rounded-xl border border-zinc-200 bg-white p-6 md:p-8;
+  @apply rounded-2xl border border-zinc-200/90 bg-white p-5 md:p-7 shadow-sm;
 }
 
 .inner-page-section {
