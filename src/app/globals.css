@@ -348,6 +348,25 @@ body {
   @apply px-2 py-2 md:px-3 md:py-2.5 border-t border-white/10 bg-black/20;
 }
 
+.shop-hero--light {
+  @apply bg-white text-zinc-900 border-b border-zinc-200;
+}
+
+.shop-hero--light .shop-hero-bg-pattern {
+  background:
+    radial-gradient(ellipse 55% 50% at 85% 35%, rgba(194, 65, 12, 0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 40% at 12% 70%, rgba(24, 24, 27, 0.03) 0%, transparent 50%),
+    linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
+}
+
+.shop-hero--light .hero-product-cutout::after {
+  display: none;
+}
+
+.shop-hero--light .hero-product-cutout img {
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.14));
+}
+
 .shop-hero--clean {
   @apply bg-[var(--ink)];
 }

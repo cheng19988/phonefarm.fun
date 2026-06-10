@@ -31,17 +31,8 @@ export function HeaderNav({ sessionEmail, isAdmin }: { sessionEmail?: string | n
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
 
-  const onHome = pathname === "/";
-  const heroMode = onHome && !scrolled;
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const heroMode = false;
 
   useEffect(() => {
     setOpen(false);

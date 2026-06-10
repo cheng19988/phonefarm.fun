@@ -12,18 +12,18 @@ const ORDERING_FACTS = [
 
 export function HomeHero() {
   return (
-    <section className="shop-hero shop-hero--clean -mt-[120px] pt-[120px]">
+    <section className="shop-hero shop-hero--light">
       <div className="shop-hero-bg-pattern" aria-hidden />
 
       <div className="container-wide shop-hero-grid">
         <div className="relative z-10 max-w-xl">
-          <p className="eyebrow text-orange-400 mb-3">
+          <p className="eyebrow text-[var(--accent)] mb-3">
             {SITE.location} · Factory-built since {SITE.since}
           </p>
-          <h1 className="shop-hero-title text-3xl sm:text-4xl lg:text-5xl">
+          <h1 className="shop-hero-title text-3xl sm:text-4xl lg:text-5xl text-zinc-900">
             Professional Phone Farm Boxes &amp; Motherboard Arrays
           </h1>
-          <p className="shop-hero-lead text-base md:text-lg mt-4">
+          <p className="shop-hero-lead text-base md:text-lg mt-4 text-zinc-600">
             Real Android device farm hardware for QA labs, automation teams, and scalable deployment —
             20-node chassis, motherboard clusters, and custom racks assembled in Guangzhou.
           </p>
@@ -31,7 +31,7 @@ export function HomeHero() {
             <Link href="/products" className="btn-primary-lg shadow-lg shadow-orange-900/20">
               Start Shopping
             </Link>
-            <Link href="#phone-farm-intro" className="btn-ghost-light">
+            <Link href="#phone-farm-intro" className="btn-outline">
               What Is a Phone Farm?
             </Link>
           </div>
@@ -51,14 +51,14 @@ export function HomeHero() {
         </div>
       </div>
 
-      <div className="relative z-10 border-t border-white/10 bg-black/20 backdrop-blur-sm">
+      <div className="relative z-10 border-t border-zinc-200 bg-zinc-50">
         <div className="container-wide py-4">
-          <p className="text-[10px] uppercase tracking-widest text-zinc-400 mb-3">Ordering at a glance</p>
+          <p className="text-[10px] uppercase tracking-widest text-zinc-500 mb-3">Ordering at a glance</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
             {ORDERING_FACTS.map((item) => (
-              <div key={item.label} className="rounded-lg bg-white/5 px-3 py-2 border border-white/5">
-                <p className="font-semibold text-white text-sm">{item.value}</p>
-                <p className="text-xs text-zinc-400 mt-0.5">{item.label}</p>
+              <div key={item.label} className="rounded-lg bg-white px-3 py-2 border border-zinc-200 shadow-sm">
+                <p className="font-semibold text-zinc-900 text-sm">{item.value}</p>
+                <p className="text-xs text-zinc-500 mt-0.5">{item.label}</p>
               </div>
             ))}
           </div>
