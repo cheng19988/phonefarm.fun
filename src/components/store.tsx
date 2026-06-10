@@ -104,21 +104,24 @@ export function Breadcrumbs({ items }: { items: { label: string; href?: string }
 export function SectionHeader({
   title,
   subtitle,
+  eyebrow,
   center,
   className = "",
   large,
 }: {
   title: string;
   subtitle?: string;
+  eyebrow?: string;
   center?: boolean;
   className?: string;
   large?: boolean;
 }) {
   return (
-    <div className={`mb-10 md:mb-12 lg:mb-14 ${center ? "text-center" : ""} ${className}`}>
-      <h2 className={`font-bold text-zinc-900 mb-3 tracking-tight ${large ? "text-3xl md:text-4xl lg:text-5xl" : "text-2xl md:text-3xl lg:text-4xl"} ${center ? "mx-auto" : ""}`}>{title}</h2>
+    <div className={`section-head ${center ? "text-center mx-auto" : ""} ${className}`}>
+      {eyebrow && <p className="eyebrow">{eyebrow}</p>}
+      <h2 className={`section-title ${large ? "!text-3xl md:!text-4xl lg:!text-5xl" : ""} ${center ? "mx-auto" : ""}`}>{title}</h2>
       {subtitle && (
-        <p className={`text-zinc-600 max-w-3xl leading-relaxed ${large ? "text-lg md:text-xl lg:text-2xl" : "text-base md:text-lg lg:text-xl"} ${center ? "mx-auto" : ""}`}>{subtitle}</p>
+        <p className={`section-subtitle ${center ? "mx-auto" : ""} ${large ? "md:text-lg lg:text-xl" : ""}`}>{subtitle}</p>
       )}
     </div>
   );
@@ -142,10 +145,14 @@ export function CtaBlock({
   dark?: boolean;
 }) {
   return (
-    <section className={`rounded-2xl p-8 md:p-10 ${dark ? "bg-slate-900 text-white" : "bg-orange-50 border border-orange-100"}`}>
-      <h2 className={`text-2xl md:text-3xl font-bold mb-3 ${dark ? "text-white" : "text-slate-900"}`}>{title}</h2>
+    <section className={`rounded-2xl p-8 md:p-10 border ${
+      dark
+        ? "bg-zinc-900 text-white border-zinc-800"
+        : "bg-[var(--accent-soft)] border-orange-200/60"
+    }`}>
+      <h2 className={`section-title mb-3 ${dark ? "text-white" : ""}`}>{title}</h2>
       {description && (
-        <p className={`mb-6 max-w-2xl ${dark ? "text-slate-300" : "text-slate-600"}`}>{description}</p>
+        <p className={`mb-6 max-w-2xl text-sm md:text-base leading-relaxed ${dark ? "text-zinc-300" : "text-zinc-600"}`}>{description}</p>
       )}
       <div className="flex flex-wrap gap-3">
         {primaryHref.startsWith("http") ? (
@@ -164,13 +171,14 @@ export function CtaBlock({
 export function BuyingGuideBlock() {
   return (
     <div className="catalog-section-band catalog-section-band-accent mb-8 md:mb-12">
-      <h3 className="font-bold text-slate-900 text-xl md:text-2xl mb-3">Need help choosing hardware?</h3>
-      <p className="text-slate-600 text-base md:text-lg mb-6 max-w-3xl leading-relaxed">
+      <p className="eyebrow mb-2">Procurement support</p>
+      <h3 className="section-title text-2xl md:text-3xl mb-3">Need help choosing hardware?</h3>
+      <p className="text-zinc-600 text-sm md:text-base mb-6 max-w-3xl leading-relaxed">
         Share your node count, target Android version, device model preference, and shipping country. Our Guangzhou team will recommend a starter box, pro chassis, motherboard cluster, or custom rack layout.
       </p>
       <div className="flex flex-wrap gap-3 md:gap-4">
         <Link href="/contact" className="btn-primary-lg">Request a Quote</Link>
-        <Link href="/blog/how-to-choose-phone-farm-box" className="btn-outline-lg">Buying Guide</Link>
+        <Link href="/blog/how-to-choose-phone-farm-box" className="btn-secondary-lg">Buying Guide</Link>
       </div>
     </div>
   );
@@ -189,7 +197,10 @@ export function DetailSection({
 }) {
   return (
     <section id={id} className="detail-section scroll-mt-28">
-      <SectionHeader title={title} subtitle={subtitle} large />
+      <div className="section-head mb-6 md:mb-8">
+        <h2 className="section-title text-xl md:text-2xl">{title}</h2>
+        {subtitle && <p className="section-subtitle mb-0 text-sm md:text-base">{subtitle}</p>}
+      </div>
       {children}
     </section>
   );
@@ -199,16 +210,16 @@ export function DetailSection({
 
 export function PriceDisplay({ amount, size = "md" }: { amount: number; size?: "sm" | "md" | "lg" | "xl" }) {
   const sizes = { sm: "text-xl", md: "text-2xl", lg: "text-3xl md:text-4xl", xl: "text-4xl md:text-5xl" };
-  return <span className={`font-bold text-slate-900 tracking-tight ${sizes[size]}`}>${amount.toLocaleString()}</span>;
+  return <span className={`font-bold text-zinc-900 tracking-tight ${sizes[size]}`}>${amount.toLocaleString()}</span>;
 }
 
 export function MetaGrid({ items, large }: { items: { label: string; value: string }[]; large?: boolean }) {
   return (
     <div className={`grid grid-cols-2 gap-3 ${large ? "md:gap-4" : ""}`}>
       {items.map((item) => (
-        <div key={item.label} className={`rounded-xl border border-slate-200 bg-slate-50 ${large ? "p-4 md:p-5" : "p-3"}`}>
-          <span className="text-slate-500 block text-xs uppercase tracking-wide mb-1 font-semibold">{item.label}</span>
-          <span className="text-slate-900 font-bold text-sm md:text-base leading-snug">{item.value}</span>
+        <div key={item.label} className={`rounded-xl border border-zinc-200 bg-zinc-50 ${large ? "p-4 md:p-5" : "p-3"}`}>
+          <span className="text-zinc-500 block text-xs uppercase tracking-wide mb-1 font-semibold">{item.label}</span>
+          <span className="text-zinc-900 font-bold text-sm md:text-base leading-snug">{item.value}</span>
         </div>
       ))}
     </div>
@@ -218,14 +229,14 @@ export function MetaGrid({ items, large }: { items: { label: string; value: stri
 export function SpecTable({ specs, large }: { specs: Record<string, string>; large?: boolean }) {
   return (
     <div className="space-y-2">
-      <p className="text-xs text-slate-500 md:hidden">Swipe horizontally to view full spec table →</p>
-      <div className="overflow-x-auto -mx-1 rounded-2xl border-2 border-slate-200 bg-white shadow-sm">
+      <p className="text-xs text-zinc-500 md:hidden">Swipe horizontally to view full spec table →</p>
+      <div className="overflow-x-auto -mx-1 rounded-2xl border border-zinc-200 bg-white shadow-sm">
         <table className={`w-full min-w-[320px] ${large ? "text-base md:text-lg" : "text-sm"}`}>
           <tbody>
             {Object.entries(specs).map(([k, v], i) => (
-              <tr key={k} className={`border-b border-slate-100 last:border-0 ${i % 2 === 0 ? "bg-white" : "bg-slate-50/80"}`}>
-                <td className={`py-4 px-5 md:px-6 text-slate-600 align-top font-semibold w-[38%] sm:w-[34%] ${large ? "md:w-[32%]" : ""}`}>{k}</td>
-                <td className={`py-4 px-5 md:px-6 text-slate-900 align-top leading-relaxed font-medium ${large ? "md:pr-10" : ""}`}>{v}</td>
+              <tr key={k} className={`border-b border-zinc-100 last:border-0 ${i % 2 === 0 ? "bg-white" : "bg-zinc-50/80"}`}>
+                <td className={`py-4 px-5 md:px-6 text-zinc-600 align-top font-semibold w-[38%] sm:w-[34%] ${large ? "md:w-[32%]" : ""}`}>{k}</td>
+                <td className={`py-4 px-5 md:px-6 text-zinc-900 align-top leading-relaxed font-medium ${large ? "md:pr-10" : ""}`}>{v}</td>
               </tr>
             ))}
           </tbody>
@@ -239,8 +250,8 @@ export function IconList({ items, icon = "✓", large }: { items: string[]; icon
   return (
     <ul className={`space-y-3 ${large ? "md:space-y-4" : ""}`}>
       {items.map((item) => (
-        <li key={item} className={`flex gap-3 text-slate-600 ${large ? "text-base md:text-lg" : "text-sm"}`}>
-          <span className="text-orange-600 shrink-0 font-bold">{icon}</span>
+        <li key={item} className={`flex gap-3 text-zinc-600 ${large ? "text-base md:text-lg" : "text-sm"}`}>
+          <span className="text-[var(--accent)] shrink-0 font-bold">{icon}</span>
           <span className="leading-relaxed">{item}</span>
         </li>
       ))}
@@ -257,12 +268,12 @@ export function CapabilityStrip({
     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
       {items.map((item, i) => (
         <div key={item.title} className="capability-card">
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-white font-bold text-lg shadow-md">
+          <span className="step-badge h-12 w-12 text-lg">
             {i + 1}
           </span>
           <div>
-            <h3 className="font-bold text-slate-900 text-lg md:text-xl mb-2">{item.title}</h3>
-            <p className="text-sm md:text-base text-slate-600 leading-relaxed">{item.desc}</p>
+            <h3 className="font-bold text-zinc-900 text-lg md:text-xl mb-2">{item.title}</h3>
+            <p className="text-sm md:text-base text-zinc-600 leading-relaxed">{item.desc}</p>
           </div>
         </div>
       ))}
@@ -275,10 +286,10 @@ export function DeliveryTimeline({ steps }: { steps: string[] }) {
     <ol className="grid md:grid-cols-2 xl:grid-cols-5 gap-4 md:gap-5">
       {steps.map((step, i) => (
         <li key={step} className="delivery-step flex-col h-full">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white font-bold text-sm">
+          <span className="step-badge h-10 w-10 text-sm rounded-full">
             {i + 1}
           </span>
-          <p className="text-sm md:text-base text-slate-700 leading-relaxed font-medium pt-1">{step}</p>
+          <p className="text-sm md:text-base text-zinc-700 leading-relaxed font-medium pt-1">{step}</p>
         </li>
       ))}
     </ol>
@@ -289,7 +300,7 @@ export function DeliveryTimeline({ steps }: { steps: string[] }) {
 
 export function FormLabel({ children, required }: { children: ReactNode; required?: boolean }) {
   return (
-    <label className="block text-sm font-medium text-slate-700 mb-1">
+    <label className="block text-sm font-medium text-zinc-700 mb-1">
       {children}
       {required && <span className="text-orange-600 ml-0.5">*</span>}
     </label>
@@ -300,7 +311,7 @@ export function FormInput(props: React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <input
       {...props}
-      className={`w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 text-base ${props.className ?? ""}`}
+      className={`w-full bg-white border border-zinc-300 rounded-lg px-4 py-3 text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 text-base ${props.className ?? ""}`}
     />
   );
 }
@@ -309,7 +320,7 @@ export function FormTextarea(props: React.TextareaHTMLAttributes<HTMLTextAreaEle
   return (
     <textarea
       {...props}
-      className={`w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 text-base ${props.className ?? ""}`}
+      className={`w-full bg-white border border-zinc-300 rounded-lg px-4 py-3 text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 text-base ${props.className ?? ""}`}
     />
   );
 }
@@ -327,15 +338,15 @@ export function FormSelect(props: React.SelectHTMLAttributes<HTMLSelectElement>)
 
 export function AuthShell({ title, subtitle, children }: { title: string; subtitle?: string; children: ReactNode }) {
   return (
-    <div className="section bg-slate-50 min-h-[60vh]">
+    <div className="section bg-zinc-50 min-h-[60vh]">
       <div className="container-wide max-w-lg">
         <div className="text-center mb-8">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-3">{title}</h1>
-          {subtitle && <p className="text-slate-600 text-base">{subtitle}</p>}
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-zinc-900 mb-3">{title}</h1>
+          {subtitle && <p className="text-zinc-600 text-base">{subtitle}</p>}
         </div>
         <div className="card p-6 md:p-8 lg:p-10">{children}</div>
-        <p className="text-center text-sm text-slate-500 mt-6">
-          <Link href="/products" className="text-orange-600 hover:text-orange-500">← Back to Shop</Link>
+        <p className="text-center text-sm text-zinc-500 mt-6">
+          <Link href="/products" className="text-[var(--accent)] hover:text-[var(--accent-hover)]">← Back to Shop</Link>
         </p>
       </div>
     </div>
@@ -412,7 +423,7 @@ export function FilterPills({
             className={`px-4 py-2.5 md:px-5 md:py-3 rounded-lg text-sm md:text-base font-semibold border-2 transition-all ${
               isActive
                 ? "border-orange-500 text-orange-700 bg-orange-50 shadow-sm"
-                : "border-slate-200 text-slate-700 hover:border-slate-300 bg-white hover:bg-slate-50"
+                : "border-zinc-200 text-zinc-700 hover:border-zinc-300 bg-white hover:bg-zinc-50"
             }`}
           >
             {item.label}
@@ -426,7 +437,7 @@ export function FilterPills({
 
   return (
     <div className="catalog-filter-bar">
-      <p className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3 md:mb-4">Filter by deployment type</p>
+      <p className="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-3 md:mb-4">Filter by deployment type</p>
       {pills}
     </div>
   );
@@ -434,9 +445,9 @@ export function FilterPills({
 
 export function TrustStrip({ items }: { items: string[] }) {
   return (
-    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 pt-6 mt-6 border-t border-slate-200">
+    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2.5 pt-6 mt-6 border-t border-zinc-200">
       {items.map((item) => (
-        <li key={item} className="flex gap-2.5 items-start text-sm text-slate-600">
+        <li key={item} className="flex gap-2.5 items-start text-sm text-zinc-600">
           <span className="text-emerald-600 font-bold shrink-0 mt-0.5" aria-hidden>✓</span>
           <span>{item}</span>
         </li>

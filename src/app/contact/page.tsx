@@ -27,7 +27,7 @@ export default async function ContactPage({ searchParams }: Props) {
         image={IMAGES.banners.contact}
         imageAlt="Phone farm hardware quote request"
       />
-      <section className="inner-page-section">
+      <section className="inner-page-section section-band--white">
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14">
             <div className="lg:col-span-7">
@@ -35,55 +35,55 @@ export default async function ContactPage({ searchParams }: Props) {
             </div>
             <div className="lg:col-span-5 space-y-6 lg:space-y-8">
               <div className="detail-section">
-                <h2 className="font-bold text-slate-900 text-xl md:text-2xl mb-5">Direct contact</h2>
+                <h2 className="section-title text-xl md:text-2xl mb-5">Direct contact</h2>
                 <dl className="space-y-4">
                   <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Email</dt>
+                    <dt className="eyebrow !mb-1 !text-zinc-500">Email</dt>
                     <dd>
-                      <a href={`mailto:${CONTACT.email}`} className="text-base md:text-lg font-semibold text-orange-600 hover:text-orange-500">
+                      <a href={`mailto:${CONTACT.email}`} className="text-base md:text-lg font-semibold text-[var(--accent)] hover:text-[var(--accent-hover)]">
                         {CONTACT.email}
                       </a>
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Phone</dt>
+                    <dt className="eyebrow !mb-1 !text-zinc-500">Phone</dt>
                     <dd>
-                      <a href={`tel:${CONTACT.phone}`} className="text-base font-semibold text-slate-800 hover:text-orange-600">
+                      <a href={`tel:${CONTACT.phone}`} className="text-base font-semibold text-zinc-800 hover:text-[var(--accent)]">
                         {CONTACT.phone}
                       </a>
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">WhatsApp / Telegram</dt>
+                    <dt className="eyebrow !mb-1 !text-zinc-500">WhatsApp / Telegram</dt>
                     <dd className="flex flex-wrap gap-4 text-base font-semibold">
-                      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-slate-800 hover:text-green-700">
+                      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-800 hover:text-emerald-700">
                         WhatsApp
                       </a>
-                      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-slate-800 hover:text-blue-700">
+                      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-800 hover:text-sky-700">
                         Telegram
                       </a>
                     </dd>
                   </div>
                   <div>
-                    <dt className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1">Location</dt>
-                    <dd className="text-base text-slate-700">{SITE.location}</dd>
+                    <dt className="eyebrow !mb-1 !text-zinc-500">Location</dt>
+                    <dd className="text-base text-zinc-700">{SITE.location}</dd>
                   </div>
                 </dl>
               </div>
-              <div className="detail-section bg-slate-900 text-white border-slate-800">
-                <h3 className="font-bold text-xl md:text-2xl mb-4">Before you request a quote</h3>
+              <div className="detail-section-accent">
+                <h3 className="section-title text-xl md:text-2xl mb-4">Before you request a quote</h3>
                 <ul className="space-y-3.5">
                   {QUOTE_CHECKLIST.map((item) => (
-                    <li key={item} className="flex gap-3 text-slate-100 text-sm md:text-base leading-relaxed">
-                      <span className="text-orange-400 shrink-0 font-bold">✓</span>
+                    <li key={item} className="flex gap-3 text-zinc-800 text-sm md:text-base leading-relaxed">
+                      <span className="text-[var(--accent)] shrink-0 font-bold">✓</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="detail-section bg-slate-50">
-                <h3 className="font-bold text-slate-900 text-xl mb-3">What happens next</h3>
-                <ol className="space-y-3 text-sm md:text-base text-slate-600 list-decimal list-inside leading-relaxed">
+              <div className="detail-section bg-zinc-50 border-zinc-200/80">
+                <h3 className="section-title text-xl mb-3">What happens next</h3>
+                <ol className="space-y-3 text-sm md:text-base text-zinc-600 list-decimal list-inside leading-relaxed">
                   <li>We review your node count, SKU interest, and shipping region.</li>
                   <li>Sales replies with pricing, lead time, and configuration options.</li>
                   <li>For custom racks, we schedule a short scoping call if needed.</li>
@@ -91,9 +91,9 @@ export default async function ContactPage({ searchParams }: Props) {
                 </ol>
               </div>
               <div className="detail-section">
-                <h3 className="font-bold text-slate-900 text-xl mb-2">Response time</h3>
-                <p className="text-sm md:text-base text-slate-600">Within 24 hours on weekdays (Guangzhou time, UTC+8).</p>
-                <p className="text-sm text-slate-500 mt-2">{SITE.location}</p>
+                <h3 className="section-title text-xl mb-2">Response time</h3>
+                <p className="text-sm md:text-base text-zinc-600">Within 24 hours on weekdays (Guangzhou time, UTC+8).</p>
+                <p className="text-sm text-zinc-500 mt-2">{SITE.location}</p>
               </div>
             </div>
           </div>

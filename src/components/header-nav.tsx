@@ -48,18 +48,18 @@ export function HeaderNav({ sessionEmail, isAdmin }: { sessionEmail?: string | n
       {/* Top contact strip */}
       <div
         className={`hidden lg:block border-b transition-colors ${
-          heroMode ? "bg-black/40 border-white/10 backdrop-blur-sm" : "bg-zinc-950 border-white/5"
+          heroMode ? "bg-black/40 border-white/10 backdrop-blur-sm" : "bg-zinc-50 border-zinc-200"
         }`}
       >
         <div className="container-wide py-2 flex justify-between items-center text-[11px] tracking-wide">
-          <span className={heroMode ? "text-zinc-300" : "text-zinc-400"}>
+          <span className={heroMode ? "text-zinc-300" : "text-zinc-600"}>
             {SITE.location} · Est. {SITE.since} · Factory-direct Android device farm hardware
           </span>
-          <div className={`flex items-center gap-5 ${heroMode ? "text-zinc-300" : "text-zinc-400"}`}>
-            <a href={`tel:${CONTACT.phone}`} className="hover:text-white transition-colors">{CONTACT.phone}</a>
-            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400">WhatsApp</a>
-            <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-sky-400">Telegram</a>
-            <a href={`mailto:${CONTACT.email}`} className="hover:text-orange-400">{CONTACT.email}</a>
+          <div className={`flex items-center gap-5 ${heroMode ? "text-zinc-300" : "text-zinc-600"}`}>
+            <a href={`tel:${CONTACT.phone}`} className={`transition-colors ${heroMode ? "hover:text-white" : "hover:text-zinc-900"}`}>{CONTACT.phone}</a>
+            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-emerald-600">WhatsApp</a>
+            <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-sky-600">Telegram</a>
+            <a href={`mailto:${CONTACT.email}`} className="hover:text-[var(--accent)]">{CONTACT.email}</a>
           </div>
         </div>
       </div>

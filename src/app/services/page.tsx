@@ -69,7 +69,7 @@ export default function ServicesPage() {
         imageAlt="Phone farm hardware assembly services"
       />
 
-      <section className="inner-page-section">
+      <section className="inner-page-section section-band--white">
         <div className="container-wide space-y-16 md:space-y-20 lg:space-y-24">
           <div>
             <SectionHeader

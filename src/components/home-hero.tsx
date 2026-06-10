@@ -54,12 +54,12 @@ export function HomeHero() {
 
       <div className="relative z-10 border-t border-zinc-200/80 bg-zinc-50/90">
         <div className="container-wide py-4 md:py-5">
-          <p className="text-[10px] uppercase tracking-widest text-zinc-500 mb-3 font-semibold">Ordering at a glance</p>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+          <p className="eyebrow !text-zinc-500 !tracking-widest mb-3">Ordering at a glance</p>
+          <div className="trust-stat-grid">
             {ORDERING_FACTS.map((item) => (
-              <div key={item.label} className="rounded-xl bg-white px-3 py-2.5 md:px-4 md:py-3 border border-zinc-200/90 shadow-sm">
-                <p className="font-semibold text-zinc-900 text-sm">{item.value}</p>
-                <p className="text-xs text-zinc-500 mt-0.5">{item.label}</p>
+              <div key={item.label} className="trust-stat-card">
+                <p className="trust-stat-value">{item.value}</p>
+                <p className="trust-stat-label">{item.label}</p>
               </div>
             ))}
           </div>

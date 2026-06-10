@@ -104,27 +104,27 @@ export function ProductCard({
             {(commerceLine1 || commerceLine2) && (
               <div className={`mb-4 space-y-1.5 ${isCatalog ? "text-base" : "text-sm"}`}>
                 {commerceLine1 && (
-                  <p className="text-slate-700 font-medium leading-snug">{commerceLine1}</p>
+                  <p className="text-zinc-700 font-medium leading-snug">{commerceLine1}</p>
                 )}
                 {commerceLine2 && (
-                  <p className="text-slate-500 leading-snug">{commerceLine2}</p>
+                  <p className="text-zinc-500 leading-snug">{commerceLine2}</p>
                 )}
               </div>
             )}
             {isCatalog && (
-              <p className="text-slate-600 mb-4 line-clamp-2 text-base leading-relaxed">{shortDesc}</p>
+              <p className="text-zinc-600 mb-4 line-clamp-2 text-base leading-relaxed">{shortDesc}</p>
             )}
             {!isCatalog && (
-              <p className={`text-slate-600 mb-3 line-clamp-2 flex-1 ${featured ? "text-sm md:text-base" : "text-sm"}`}>
+              <p className={`text-zinc-600 mb-3 line-clamp-2 flex-1 ${featured ? "text-sm md:text-base" : "text-sm"}`}>
                 {shortDesc}
               </p>
             )}
           </>
         )}
 
-        <div className="flex flex-wrap items-end justify-between gap-3 mb-4 md:mb-5 border-t-2 border-slate-100 pt-4 md:pt-5 mt-auto">
+        <div className="flex flex-wrap items-end justify-between gap-3 mb-4 md:mb-5 border-t-2 border-zinc-100 pt-4 md:pt-5 mt-auto">
           <div>
-            <p className="text-xs uppercase tracking-wide text-slate-500 font-semibold mb-1">Reference price</p>
+            <p className="text-xs uppercase tracking-wide text-zinc-500 font-semibold mb-1">Reference price</p>
             <PriceDisplay amount={priceUsd} size={isCatalog ? "xl" : compact ? "sm" : "lg"} />
           </div>
           <StockBadge stock={stock} />
@@ -198,17 +198,17 @@ export function ServiceCard({
 }) {
   return (
     <article className={`card overflow-hidden flex flex-col h-full hover:border-orange-200 transition-all group ${large ? "product-card-heavy" : ""}`}>
-      <Link href={`/services/${slug}`} className={`block relative overflow-hidden bg-slate-100 ${large ? "aspect-[16/10]" : "aspect-[4/3]"}`}>
+      <Link href={`/services/${slug}`} className={`block relative overflow-hidden bg-zinc-100 ${large ? "aspect-[16/10]" : "aspect-[4/3]"}`}>
         <Image src={image} alt={title} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" sizes={large ? "(max-width:768px) 100vw, 40vw" : "(max-width:768px) 100vw, 33vw"} />
         {quoteOnly && (
-          <span className="absolute top-3 left-3 text-xs md:text-sm bg-slate-900 text-white px-3 py-1.5 rounded-lg font-semibold">Quote Required</span>
+          <span className="absolute top-3 left-3 text-xs md:text-sm bg-zinc-900 text-white px-3 py-1.5 rounded-lg font-semibold">Quote Required</span>
         )}
       </Link>
       <div className={`flex flex-col flex-1 ${large ? "p-6 md:p-7" : "p-5"}`}>
         <Link href={`/services/${slug}`}>
-          <h3 className={`font-bold text-slate-900 group-hover:text-orange-600 transition-colors mb-2 ${large ? "text-xl md:text-2xl" : ""}`}>{title}</h3>
+          <h3 className={`font-bold text-zinc-900 group-hover:text-orange-600 transition-colors mb-2 ${large ? "text-xl md:text-2xl" : ""}`}>{title}</h3>
         </Link>
-        <p className={`text-slate-600 mb-4 line-clamp-3 flex-1 ${large ? "text-base md:text-lg leading-relaxed" : "text-sm"}`}>{description}</p>
+        <p className={`text-zinc-600 mb-4 line-clamp-3 flex-1 ${large ? "text-base md:text-lg leading-relaxed" : "text-sm"}`}>{description}</p>
         <p className={`font-semibold text-orange-600 mb-5 ${large ? "text-base" : "text-sm"}`}>
           {quoteOnly ? "Custom quote — contact sales" : `$${priceUsd.toLocaleString()}`} · {timeline}
         </p>
@@ -229,21 +229,21 @@ export function FAQAccordion({ items, large }: { items: { question: string; answ
       {items.map((item, i) => (
         <details
           key={i}
-          className={`group rounded-xl border-2 border-slate-200 bg-white overflow-hidden transition-colors hover:border-slate-300 open:border-orange-200 open:shadow-md ${
+          className={`group rounded-xl border-2 border-zinc-200 bg-white overflow-hidden transition-colors hover:border-zinc-300 open:border-orange-200 open:shadow-md ${
             large ? "open:shadow-lg" : ""
           }`}
         >
           <summary
-            className={`font-semibold text-slate-900 cursor-pointer list-none flex justify-between items-start gap-4 px-5 py-4 md:px-6 md:py-5 bg-slate-50/80 group-open:bg-orange-50/50 group-open:border-b group-open:border-slate-200 ${
+            className={`font-semibold text-zinc-900 cursor-pointer list-none flex justify-between items-start gap-4 px-5 py-4 md:px-6 md:py-5 bg-zinc-50/80 group-open:bg-orange-50/50 group-open:border-b group-open:border-zinc-200 ${
               large ? "text-base md:text-lg" : "text-sm md:text-base"
             }`}
           >
             <span className="leading-snug">{item.question}</span>
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white border border-slate-200 text-orange-600 group-open:rotate-45 transition-transform text-lg leading-none shadow-sm">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white border border-zinc-200 text-orange-600 group-open:rotate-45 transition-transform text-lg leading-none shadow-sm">
               +
             </span>
           </summary>
-          <p className={`px-5 py-4 md:px-6 md:py-5 text-slate-600 leading-relaxed ${large ? "text-base md:text-lg" : "text-sm"}`}>
+          <p className={`px-5 py-4 md:px-6 md:py-5 text-zinc-600 leading-relaxed ${large ? "text-base md:text-lg" : "text-sm"}`}>
             {item.answer}
           </p>
         </details>
@@ -276,7 +276,7 @@ export function BuyButtons({
           href={CONTACT.whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-full text-center text-sm font-medium text-slate-500 hover:text-green-700 py-2 transition-colors"
+          className="block w-full text-center text-sm font-medium text-zinc-500 hover:text-green-700 py-2 transition-colors"
         >
           WhatsApp sales →
         </a>
@@ -300,7 +300,7 @@ export function BuyButtons({
         href={CONTACT.whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="block w-full text-center text-sm font-medium text-slate-500 hover:text-green-700 py-2 transition-colors"
+        className="block w-full text-center text-sm font-medium text-zinc-500 hover:text-green-700 py-2 transition-colors"
       >
         WhatsApp sales →
       </a>

@@ -52,19 +52,19 @@ export default function FAQPage() {
         image={IMAGES.banners.faq}
         imageAlt="Phone farm hardware FAQ"
       />
-      <section className="inner-page-section">
-        <div className="container-wide max-w-5xl space-y-12 md:space-y-16">
+      <section className="inner-page-section section-band--white">
+        <div className="container-wide max-w-5xl space-y-12 md:space-y-14">
           {FAQ_CATEGORIES.map((cat, idx) => {
             const items = cat.indices.map((i) => FAQ_ITEMS[i]).filter(Boolean);
             return (
-              <div key={cat.title} className="detail-section">
-                <div className="flex items-start gap-4 mb-8 pb-5 border-b border-slate-200">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-orange-100 text-orange-700 font-bold text-sm">
+              <div key={cat.title} className="pb-10 md:pb-12 border-b border-zinc-200 last:border-0 last:pb-0">
+                <div className="flex items-start gap-4 mb-6 md:mb-8">
+                  <span className="step-badge h-10 w-10 text-sm rounded-lg">
                     {idx + 1}
                   </span>
                   <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mb-1">{cat.title}</h2>
-                    <p className="text-slate-600 text-base md:text-lg">{cat.description}</p>
+                    <h2 className="section-title text-xl md:text-2xl mb-1">{cat.title}</h2>
+                    <p className="text-zinc-600 text-sm md:text-base">{cat.description}</p>
                   </div>
                 </div>
                 <FAQAccordion items={items} large />

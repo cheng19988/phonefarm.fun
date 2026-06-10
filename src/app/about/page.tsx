@@ -46,7 +46,7 @@ export default function AboutPage() {
         imageAlt="Phone farm hardware assembly workshop"
       />
 
-      <section className="inner-page-section">
+      <section className="inner-page-section section-band--white">
         <div className="container-wide space-y-16 md:space-y-20">
           <div id="what-is-phone-farm" className="grid lg:grid-cols-2 gap-10 items-start scroll-mt-24">
             <div>
@@ -92,12 +92,12 @@ export default function AboutPage() {
             <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
               {WORKSHOP_PHOTOS.map((photo) => (
                 <figure key={photo.label} className="card product-card-heavy overflow-hidden">
-                  <div className="relative aspect-[16/10] lg:aspect-[3/2] bg-slate-50">
+                  <div className="relative aspect-[16/10] lg:aspect-[3/2] bg-zinc-50">
                     <Image src={photo.src} alt={photo.label} fill className="object-cover" sizes="(max-width:768px) 100vw, 50vw" />
                   </div>
                   <figcaption className="p-5 md:p-6">
-                    <h3 className="font-bold text-slate-900 text-lg mb-2">{photo.label}</h3>
-                    <p className="text-slate-600 text-sm md:text-base leading-relaxed">{photo.caption}</p>
+                    <h3 className="font-bold text-zinc-900 text-lg mb-2">{photo.label}</h3>
+                    <p className="text-zinc-600 text-sm md:text-base leading-relaxed">{photo.caption}</p>
                   </figcaption>
                 </figure>
               ))}
@@ -110,7 +110,7 @@ export default function AboutPage() {
           </div>
 
           <div className="detail-section max-w-3xl">
-            <p className="font-semibold text-slate-900 mb-3">Contact the team</p>
+            <p className="font-semibold text-zinc-900 mb-3">Contact the team</p>
             <p>Phone: {CONTACT.phone} · WhatsApp: {CONTACT.whatsapp} · Telegram: {CONTACT.telegram}</p>
             <p className="mt-2">Email: {CONTACT.email} · {SITE.location}</p>
           </div>

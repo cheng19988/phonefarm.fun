@@ -77,8 +77,8 @@ export default async function HomePage() {
       <JsonLd data={faqJsonLd(previewFaq)} />
       <HomeHero />
 
-      {/* What is a phone farm — intro (no duplicate chassis image from hero) */}
-      <section className="section bg-white border-b border-zinc-200" id="phone-farm-intro">
+      {/* What is a phone farm — intro */}
+      <section className="section section-band--white" id="phone-farm-intro">
         <div className="container-wide grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <div>
             <p className="eyebrow">New to phone farms?</p>
@@ -115,8 +115,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Value props + track record — single band */}
-      <section className="section-tight bg-zinc-50 border-y border-zinc-200">
+      {/* Value props + track record */}
+      <section className="section-tight section-band--soft">
         <div className="container-wide">
           <div className="grid md:grid-cols-3 gap-6 md:gap-8 pb-8 md:pb-10 mb-8 md:mb-10 border-b border-zinc-200/80">
             {VALUE_PROPS.map((item) => (
@@ -126,7 +126,7 @@ export default async function HomePage() {
               </div>
             ))}
           </div>
-          <p className="text-[10px] uppercase tracking-widest text-zinc-500 mb-4 font-semibold">Factory track record</p>
+          <p className="eyebrow !text-zinc-500 !tracking-widest mb-4">Factory track record</p>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {TRUST_STATS.map((s) => (
               <div key={s.label}>
@@ -139,7 +139,7 @@ export default async function HomePage() {
       </section>
 
       {/* Core hardware SKUs */}
-      <section className="section bg-white">
+      <section className="section section-band--white">
         <div className="container-wide">
           <SectionHead
             eyebrow="Shop hardware"
@@ -149,32 +149,23 @@ export default async function HomePage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
             {featured.map((p) => {
               const meta = getProductMeta(p!.slug);
-              const cardImage = getProductCardImage(p!.slug, p!.imageCard);
               return (
-                <Link key={p!.id} href={`/products/${p!.slug}`} className="featured-product group">
-                  <div className="featured-product-image">
-                    <Image
-                      src={cardImage}
-                      alt={p!.name}
-                      fill
-                      className="photo-fit group-hover:scale-[1.02] transition-transform duration-500"
-                      sizes="(max-width:768px) 100vw, 33vw"
-                    />
-                    <span className="absolute top-3 left-3 bg-white/95 text-zinc-800 text-[10px] font-semibold px-2 py-1 rounded-md border border-zinc-200">
-                      {meta.tier ?? p!.category}
-                    </span>
-                  </div>
-                  <div className="featured-product-body p-5 md:p-6">
-                    <h3 className="font-display text-lg font-bold text-zinc-900 mb-1.5 group-hover:text-[var(--accent)] transition-colors">
-                      {p!.name}
-                    </h3>
-                    <p className="text-zinc-600 text-sm leading-relaxed mb-3 flex-1 line-clamp-2">{p!.shortDesc}</p>
-                    <div className="flex items-center justify-between pt-3 border-t border-zinc-100 mt-auto">
-                      <span className="text-base font-bold text-zinc-900">${p!.priceUsd.toLocaleString()}</span>
-                      <span className="text-sm font-semibold text-[var(--accent)]">Details →</span>
-                    </div>
-                  </div>
-                </Link>
+                <ProductCard
+                  key={p!.id}
+                  slug={p!.slug}
+                  name={p!.name}
+                  shortDesc={p!.shortDesc}
+                  priceUsd={p!.priceUsd}
+                  stock={p!.stock}
+                  imageCard={getProductCardImage(p!.slug, p!.imageCard)}
+                  category={p!.category}
+                  tier={meta.tier}
+                  nodeCount={meta.nodeCount}
+                  deploymentType={meta.deploymentType}
+                  moq={meta.moq}
+                  leadTime={meta.leadTime}
+                  featured
+                />
               );
             })}
           </div>
@@ -185,7 +176,7 @@ export default async function HomePage() {
       </section>
 
       {/* Recommended models + why choose — side by side on large screens */}
-      <section className="section bg-[var(--surface)]">
+      <section className="section section-band--muted">
         <div className="container-wide">
           <div className="grid xl:grid-cols-[1.1fr_0.9fr] gap-8 xl:gap-10 items-start">
             <div>
@@ -234,7 +225,7 @@ export default async function HomePage() {
       </section>
 
       {/* Applications + remote control — combined row */}
-      <section className="section bg-white">
+      <section className="section section-band--white">
         <div className="container-wide">
           <SectionHead
             eyebrow="Applications"
@@ -243,14 +234,14 @@ export default async function HomePage() {
           />
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
             {USE_CASES.map((uc) => (
-              <div key={uc.title} className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 md:p-5 h-full">
+              <div key={uc.title} className="rounded-2xl border border-zinc-200/90 bg-white p-4 md:p-5 h-full shadow-sm">
                 <h3 className="font-display font-bold text-zinc-900 text-sm md:text-base mb-2">{uc.title}</h3>
                 <p className="text-xs md:text-sm text-zinc-600 leading-relaxed">{uc.description}</p>
               </div>
             ))}
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center rounded-2xl border border-zinc-200 bg-[var(--surface)] p-5 md:p-8">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 items-center rounded-2xl border border-zinc-200/90 bg-white p-5 md:p-8 shadow-sm">
             <div>
               <p className="eyebrow mb-2">Device lab control</p>
               <h3 className="font-display text-xl md:text-2xl font-bold text-zinc-900 mb-3">Batch Control &amp; Remote Operation</h3>
@@ -280,7 +271,7 @@ export default async function HomePage() {
       </section>
 
       {/* Factory + services — unified light band */}
-      <section className="section bg-white border-y border-zinc-200">
+      <section className="section section-band--muted">
         <div className="container-wide">
           <div className="grid lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-8 lg:gap-12 items-end mb-8 md:mb-10">
             <div>
@@ -371,7 +362,7 @@ export default async function HomePage() {
       </section>
 
       {/* FAQ + Guides — two columns */}
-      <section className="section bg-white">
+      <section className="section section-band--white">
         <div className="container-wide grid lg:grid-cols-2 gap-8 lg:gap-12">
           <div>
             <SectionHead eyebrow="Support" title="Frequently Asked Questions" />

@@ -2,17 +2,22 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0f172a;
+  --foreground: #18181b;
   --ink: #09090b;
   --ink-soft: #18181b;
   --accent: #c2410c;
   --accent-hover: #9a3412;
   --accent-soft: #fff7ed;
-  --muted: #64748b;
-  --surface: #f4f4f5;
-  --stage: #eef2f6;
+  --muted: #71717a;
+  --surface: #fafafa;
+  --surface-muted: #f4f4f5;
+  --stage: #f4f4f5;
   --line: #e4e4e7;
   --hero-overlay: linear-gradient(90deg, rgba(9, 9, 11, 0.94) 0%, rgba(9, 9, 11, 0.78) 42%, rgba(9, 9, 11, 0.35) 100%);
+  --surface-pattern:
+    radial-gradient(ellipse 52% 48% at 88% 32%, rgba(194, 65, 12, 0.06) 0%, transparent 58%),
+    radial-gradient(ellipse 38% 34% at 6% 78%, rgba(24, 24, 27, 0.02) 0%, transparent 52%),
+    linear-gradient(180deg, #ffffff 0%, var(--surface) 100%);
 }
 
 @theme inline {
@@ -43,6 +48,18 @@ body {
 
 .section-tight {
   @apply py-8 md:py-10 lg:py-12;
+}
+
+.section-band--white {
+  @apply bg-white border-y border-zinc-200/90;
+}
+
+.section-band--muted {
+  @apply bg-[var(--surface)] border-y border-zinc-200/90;
+}
+
+.section-band--soft {
+  @apply bg-zinc-50 border-y border-zinc-200/90;
 }
 
 .section-head {
@@ -76,6 +93,14 @@ body {
 
 .btn-outline-lg {
   @apply inline-flex items-center justify-center px-8 py-3.5 rounded-lg border border-white/40 text-white font-semibold hover:bg-white/10 transition-colors;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-6 py-3 rounded-lg border border-zinc-300 bg-white text-zinc-800 font-semibold hover:border-zinc-900 hover:bg-zinc-50 transition-colors;
+}
+
+.btn-secondary-lg {
+  @apply inline-flex items-center justify-center px-8 py-3.5 rounded-lg border border-zinc-300 bg-white text-zinc-800 font-semibold hover:border-zinc-900 hover:bg-zinc-50 transition-colors;
 }
 
 .btn-ghost-light {
@@ -228,16 +253,19 @@ body {
   @apply text-xs text-zinc-400;
 }
 
+/* Shared light marketing surface pattern (heroes) */
+.surface-pattern {
+  background: var(--surface-pattern);
+}
+
 /* Unified light inner-page hero (About, FAQ, Contact, …) */
 .page-hero-banner {
   @apply relative overflow-hidden bg-white border-b border-zinc-200;
 }
 
 .page-hero-banner-pattern {
-  background:
-    radial-gradient(ellipse 50% 45% at 88% 35%, rgba(194, 65, 12, 0.06) 0%, transparent 58%),
-    linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
   @apply absolute inset-0;
+  background: var(--surface-pattern);
 }
 
 .page-hero-banner-grid {
@@ -248,9 +276,17 @@ body {
   @apply relative w-full aspect-[16/10] min-h-[220px] md:min-h-[280px] rounded-2xl overflow-hidden border border-zinc-200/90 shadow-md bg-zinc-100;
 }
 
-/* CTA band — light variant (homepage) */
+/* CTA band — light variant (homepage + inner pages) */
 .cta-band-light {
-  @apply bg-zinc-50 text-zinc-900 border-t border-zinc-200;
+  @apply bg-gradient-to-b from-zinc-50 to-[var(--surface)] text-zinc-900 border-t border-zinc-200;
+}
+
+.page-cta-band {
+  @apply bg-gradient-to-b from-zinc-50 to-[var(--surface)] text-zinc-900 border border-zinc-200;
+}
+
+.page-cta-band .page-cta-inner {
+  @apply max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-10 py-10 md:py-12 lg:py-14;
 }
 
 .cta-band-light .btn-outline-lg {
@@ -383,10 +419,7 @@ body {
 }
 
 .shop-hero--light .shop-hero-bg-pattern {
-  background:
-    radial-gradient(ellipse 50% 45% at 88% 38%, rgba(194, 65, 12, 0.07) 0%, transparent 58%),
-    radial-gradient(ellipse 40% 35% at 8% 72%, rgba(24, 24, 27, 0.025) 0%, transparent 52%),
-    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  background: var(--surface-pattern);
 }
 
 .catalog-hero--light {
@@ -394,10 +427,8 @@ body {
 }
 
 .catalog-hero-bg-pattern--light {
-  background:
-    radial-gradient(ellipse 55% 50% at 90% 30%, rgba(194, 65, 12, 0.06) 0%, transparent 55%),
-    linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
   @apply absolute inset-0;
+  background: var(--surface-pattern);
 }
 
 .catalog-hero-stage--product {
@@ -466,7 +497,35 @@ body {
 }
 
 .inner-page-section {
-  @apply py-10 md:py-14;
+  @apply py-10 md:py-12 lg:py-14;
+}
+
+.inner-page-section--muted {
+  @apply py-10 md:py-12 lg:py-14 bg-[var(--surface)] border-y border-zinc-200/90;
+}
+
+.detail-section-accent {
+  @apply rounded-2xl border border-orange-200/70 bg-[var(--accent-soft)] p-5 md:p-7 shadow-sm;
+}
+
+.step-badge {
+  @apply flex shrink-0 items-center justify-center rounded-xl bg-[var(--accent)] text-white font-bold shadow-sm;
+}
+
+.trust-stat-grid {
+  @apply grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4;
+}
+
+.trust-stat-card {
+  @apply rounded-xl bg-white px-3 py-2.5 md:px-4 md:py-3 border border-zinc-200/90 shadow-sm;
+}
+
+.trust-stat-value {
+  @apply font-semibold text-zinc-900 text-sm md:text-base;
+}
+
+.trust-stat-label {
+  @apply text-xs text-zinc-500 mt-0.5;
 }
 
 .prose-content h2 {
@@ -498,7 +557,13 @@ body {
 }
 
 .catalog-section-band {
-  @apply rounded-xl border border-zinc-200 bg-zinc-50 p-8 md:p-10;
+  @apply rounded-2xl border border-zinc-200 bg-zinc-50 p-6 md:p-8 lg:p-10;
+}
+
+.catalog-section-band-accent {
+  background:
+    linear-gradient(135deg, rgba(255, 247, 237, 0.85) 0%, rgba(250, 250, 250, 0.95) 55%, #fafafa 100%);
+  @apply border-orange-200/60;
 }
 
 .catalog-filter-bar {
@@ -514,7 +579,7 @@ body {
 }
 
 .capability-card {
-  @apply flex flex-col gap-3 p-6 rounded-xl border border-zinc-200 bg-white min-h-[160px];
+  @apply flex flex-col gap-3 p-6 rounded-2xl border border-zinc-200/90 bg-white min-h-[160px] shadow-sm;
 }
 
 .home-section-header {
