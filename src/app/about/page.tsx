@@ -111,7 +111,7 @@ export default function AboutPage() {
 
           <div className="detail-section max-w-3xl">
             <p className="font-semibold text-zinc-900 mb-3">Contact the team</p>
-            <p>Phone: {CONTACT.phone} · WhatsApp: {CONTACT.whatsapp} · Telegram: {CONTACT.telegram}</p>
+            <p>Telegram: {CONTACT.telegram} · WhatsApp: {CONTACT.whatsapp}</p>
             <p className="mt-2">Email: {CONTACT.email} · {SITE.location}</p>
           </div>
 

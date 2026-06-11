@@ -46,21 +46,18 @@ export default async function ContactPage({ searchParams }: Props) {
                     </dd>
                   </div>
                   <div>
-                    <dt className="eyebrow !mb-1 !text-zinc-500">Phone</dt>
+                    <dt className="eyebrow !mb-1 !text-zinc-500">Telegram</dt>
                     <dd>
-                      <a href={`tel:${CONTACT.phone}`} className="text-base font-semibold text-zinc-800 hover:text-[var(--accent)]">
-                        {CONTACT.phone}
+                      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-base md:text-lg font-semibold text-zinc-800 hover:text-sky-700">
+                        {CONTACT.telegram}
                       </a>
                     </dd>
                   </div>
                   <div>
-                    <dt className="eyebrow !mb-1 !text-zinc-500">WhatsApp / Telegram</dt>
-                    <dd className="flex flex-wrap gap-4 text-base font-semibold">
-                      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-800 hover:text-emerald-700">
-                        WhatsApp
-                      </a>
-                      <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-800 hover:text-sky-700">
-                        Telegram
+                    <dt className="eyebrow !mb-1 !text-zinc-500">WhatsApp</dt>
+                    <dd>
+                      <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-base md:text-lg font-semibold text-zinc-800 hover:text-emerald-700">
+                        {CONTACT.whatsapp}
                       </a>
                     </dd>
                   </div>

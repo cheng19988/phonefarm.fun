@@ -12,13 +12,11 @@ export const SITE = {
 } as const;
 
 export const CONTACT = {
-  phone: "13059502618",
   telegram: "@huicheng1998",
   telegramUrl: "https://t.me/huicheng1998",
-  whatsapp: "+852 6215 5642",
+  whatsapp: "+85262155642",
   whatsappUrl: "https://wa.me/85262155642",
-  /** Public-facing sales address shown on the website */
-  email: "sales@phonefarm.fun",
+  email: "qiuxui646@gmail.com",
 } as const;
 
 export const PAYMENT = {

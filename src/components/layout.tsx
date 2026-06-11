@@ -48,15 +48,14 @@ export function Footer() {
         <div>
           <h3 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contact</h3>
           <ul className="space-y-2.5 text-sm text-zinc-400">
-            <li><a href={`tel:${CONTACT.phone}`} className="hover:text-white"><ContactLinkLabel kind="phone">{CONTACT.phone}</ContactLinkLabel></a></li>
             <li>
-              <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">
-                <ContactLinkLabel kind="whatsapp">WhatsApp</ContactLinkLabel>
+              <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                <ContactLinkLabel kind="telegram">{CONTACT.telegram}</ContactLinkLabel>
               </a>
             </li>
             <li>
-              <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">
-                <ContactLinkLabel kind="telegram">Telegram</ContactLinkLabel>
+              <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                <ContactLinkLabel kind="whatsapp">{CONTACT.whatsapp}</ContactLinkLabel>
               </a>
             </li>
             <li>

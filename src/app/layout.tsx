@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Instrument_Sans } from "next/font/google";
 import { Header, Footer } from "@/components/layout";
-import { MobileContactBar } from "@/components/shared";
+import { FloatingContact } from "@/components/shared";
 import { JsonLd } from "@/components/shared";
 import { organizationJsonLd } from "@/lib/seo";
 import { SITE } from "@/lib/config";
@@ -35,12 +35,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${instrumentSans.variable} h-full`}>
-      <body className="min-h-full flex flex-col antialiased pb-16 md:pb-0">
+      <body className="min-h-full flex flex-col antialiased">
         <JsonLd data={organizationJsonLd()} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
-        <MobileContactBar />
+        <FloatingContact />
       </body>
     </html>
   );

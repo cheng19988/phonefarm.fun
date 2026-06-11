@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE } from "./config";
+import { CONTACT, SITE } from "./config";
 
 type SEOInput = {
   title: string;
@@ -68,10 +68,10 @@ export function organizationJsonLd() {
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+86-13059502618",
-      email: "sales@phonefarm.fun",
+      email: CONTACT.email,
       contactType: "sales",
       areaServed: "Worldwide",
+      availableLanguage: ["English", "Chinese"],
     },
   };
 }

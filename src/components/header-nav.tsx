@@ -3,10 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { CONTACT, SITE } from "@/lib/config";
 import { CartButton } from "./cart-button";
 import { SiteLogo } from "./site-logo";
-import { ContactIcon, ContactLinkLabel } from "./contact-icons";
 
 const MAIN_NAV = [
   {
@@ -46,33 +44,6 @@ export function HeaderNav({ sessionEmail, isAdmin }: { sessionEmail?: string | n
 
   return (
     <header className={heroMode ? "site-header site-header--hero" : "site-header site-header--solid"}>
-      {/* Top contact strip */}
-      <div
-        className={`hidden lg:block border-b transition-colors ${
-          heroMode ? "bg-black/40 border-white/10 backdrop-blur-sm" : "bg-zinc-50 border-zinc-200"
-        }`}
-      >
-        <div className="container-wide py-2 flex justify-between items-center text-[11px] tracking-wide">
-          <span className={heroMode ? "text-zinc-300" : "text-zinc-600"}>
-            {SITE.location} · Est. {SITE.since} · Factory-direct Android device farm hardware
-          </span>
-          <div className={`flex items-center gap-5 ${heroMode ? "text-zinc-300" : "text-zinc-700"}`}>
-            <a href={`tel:${CONTACT.phone}`} className={`font-medium transition-colors ${heroMode ? "hover:text-white" : "hover:text-orange-700"}`}>
-              <ContactLinkLabel kind="phone">{CONTACT.phone}</ContactLinkLabel>
-            </a>
-            <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-[#128C7E] transition-colors">
-              <ContactLinkLabel kind="whatsapp">WhatsApp</ContactLinkLabel>
-            </a>
-            <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="font-medium hover:text-[#229ED9] transition-colors">
-              <ContactLinkLabel kind="telegram">Telegram</ContactLinkLabel>
-            </a>
-            <a href={`mailto:${CONTACT.email}`} className="font-medium hover:text-orange-700 transition-colors">
-              <ContactLinkLabel kind="email">{CONTACT.email}</ContactLinkLabel>
-            </a>
-          </div>
-        </div>
-      </div>
-
       <div className="container-wide h-[72px] md:h-[76px] flex items-center justify-between gap-6">
         <SiteLogo variant={heroMode ? "hero" : "default"} size="md" />
 

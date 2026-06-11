@@ -409,7 +409,7 @@ export default async function HomePage() {
               </a>
             </div>
             <p className="text-xs text-zinc-500 mt-4">
-              {CONTACT.email} · {CONTACT.phone} · {SITE.location}
+              {CONTACT.telegram} · {CONTACT.whatsapp} · {CONTACT.email}
             </p>
           </div>
           <div className="cta-product-stack border-zinc-200/90">
