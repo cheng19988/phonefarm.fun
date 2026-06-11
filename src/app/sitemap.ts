@@ -5,7 +5,7 @@ import { PRODUCT_SEEDS } from "@/data/products";
 import { SERVICES } from "@/data/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/products", "/services", "/about", "/faq", "/contact", "/blog", "/privacy", "/terms", "/shipping", "/warranty", "/compare"].map(
+  const staticPages = ["", "/products", "/services", "/about", "/faq", "/glossary", "/contact", "/blog", "/privacy", "/terms", "/shipping", "/warranty", "/compare"].map(
     (path) => ({
       url: `${SITE.url}${path}`,
       lastModified: new Date(),
@@ -35,5 +35,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
-  return [...staticPages, ...productPages, ...servicePages, ...blogPages];
+  const specSheets = PRODUCT_SEEDS.map((p) => ({
+    url: `${SITE.url}/products/${p.slug}/spec-sheet`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.65,
+  }));
+
+  return [...staticPages, ...productPages, ...servicePages, ...blogPages, ...specSheets];
 }

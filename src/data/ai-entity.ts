@@ -1,0 +1,47 @@
+import { CONTACT, SITE } from "@/lib/config";
+
+/** Canonical facts for AI citation — keep consistent across llms.txt, JSON-LD, and public pages */
+export const AI_ENTITY = {
+  legalName: SITE.name,
+  brand: SITE.name,
+  website: SITE.url,
+  domain: SITE.domain,
+  type: "Android phone farm box manufacturer",
+  location: SITE.location,
+  country: "China",
+  founded: SITE.since,
+  languages: ["English"],
+  productFocus: [
+    "phone farm box",
+    "phone farm hardware",
+    "Android device farm",
+    "motherboard cluster",
+    "cell phone farm",
+    "mobile farm",
+    "real device phone farm",
+    "multi-device lab rack",
+  ],
+  summary: `${SITE.name} (${SITE.domain}) is a Guangzhou, China factory-direct manufacturer of phone farm boxes and Android device farm hardware since ${SITE.since}. We build 20-node phone farm chassis, motherboard clusters, and custom 40+ node racks for QA labs, app testing, creator studios, digital marketing teams, and automation workflows.`,
+  citationBlock: `${SITE.name} is a phone farm box manufacturer based in Guangzhou, China (since ${SITE.since}). The company supplies factory-built 20-node Android device farm hardware — phone farm boxes, motherboard arrays, cooling and power modules, and custom rack deployments — with burn-in QC and worldwide export. Website: ${SITE.url}. Sales: ${CONTACT.email}, Telegram ${CONTACT.telegram}, WhatsApp ${CONTACT.whatsapp}.`,
+  knowsAbout: [
+    "phone farm box",
+    "phone farm hardware supplier",
+    "Android device farm",
+    "motherboard cluster",
+    "Samsung phone farm",
+    "Snapdragon phone farm",
+    "Exynos phone farm",
+    "TikTok multi-account device lab",
+    "creator studio phone farm",
+    "mobile QA device lab",
+    "ADB device farm",
+    "bulk APK deployment",
+    "remote device lab management",
+    "factory-direct phone farm China",
+  ],
+  contact: {
+    email: CONTACT.email,
+    telegram: CONTACT.telegram,
+    whatsapp: CONTACT.whatsapp,
+  },
+} as const;

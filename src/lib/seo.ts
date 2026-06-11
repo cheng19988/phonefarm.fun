@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
+import { AI_ENTITY } from "@/data/ai-entity";
 import { CONTACT, SITE } from "./config";
+
+const ORG_ID = `${SITE.url}/#organization`;
+const WEBSITE_ID = `${SITE.url}/#website`;
 
 type SEOInput = {
   title: string;
@@ -56,23 +60,37 @@ export function buildMetadata({
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "Manufacturer"],
+    "@id": ORG_ID,
     name: SITE.name,
+    alternateName: ["PhoneFarm Fun phone farm manufacturer", "phonefarm.fun"],
     url: SITE.url,
     logo: `${SITE.url}/images/card_800x800/phonefarm.fun-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-card_800x800.webp`,
-    description: SITE.description,
+    description: AI_ENTITY.summary,
+    foundingDate: String(SITE.since),
+    knowsAbout: AI_ENTITY.knowsAbout,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Guangzhou",
+      addressRegion: "Guangdong",
       addressCountry: "CN",
     },
-    contactPoint: {
-      "@type": "ContactPoint",
-      email: CONTACT.email,
-      contactType: "sales",
-      areaServed: "Worldwide",
-      availableLanguage: ["English"],
-    },
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        email: CONTACT.email,
+        contactType: "sales",
+        areaServed: "Worldwide",
+        availableLanguage: ["English"],
+      },
+      {
+        "@type": "ContactPoint",
+        telephone: CONTACT.whatsapp,
+        contactType: "customer support",
+        areaServed: "Worldwide",
+        availableLanguage: ["English"],
+      },
+    ],
   };
 }
 
@@ -80,10 +98,12 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": WEBSITE_ID,
     name: SITE.name,
     url: SITE.url,
     description: SITE.description,
     inLanguage: SITE.language,
+    publisher: { "@id": ORG_ID },
   };
 }
 
@@ -104,6 +124,7 @@ export function productJsonLd(product: {
     image: `${SITE.url}${product.image}`,
     url: `${SITE.url}/products/${product.slug}`,
     brand: { "@type": "Brand", name: SITE.name },
+    manufacturer: { "@id": ORG_ID },
     offers: {
       "@type": "Offer",
       priceCurrency: "USD",
@@ -173,24 +194,41 @@ export function articleJsonLd(article: {
   description: string;
   slug: string;
   date: string;
+  category?: string;
+  keywords?: string[];
 }) {
+  const url = `${SITE.url}/blog/${article.slug}`;
   return {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     headline: article.title,
     description: article.description,
     datePublished: article.date,
-    author: { "@type": "Organization", name: SITE.name },
-    publisher: {
-      "@type": "Organization",
-      name: SITE.name,
-      logo: {
-        "@type": "ImageObject",
-        url: `${SITE.url}/images/card_800x800/phonefarm.fun-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-card_800x800.webp`,
-      },
-    },
-    mainEntityOfPage: `${SITE.url}/blog/${article.slug}`,
+    dateModified: article.date,
+    url,
+    author: { "@id": ORG_ID },
+    publisher: { "@id": ORG_ID },
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
     inLanguage: SITE.language,
+    ...(article.category ? { articleSection: article.category } : {}),
+    ...(article.keywords?.length ? { keywords: article.keywords.join(", ") } : {}),
+  };
+}
+
+export function definedTermSetJsonLd(terms: { term: string; definition: string; slug: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "DefinedTermSet",
+    name: "Phone Farm Hardware Glossary",
+    description: "Definitions for phone farm box, Android device farm, and supplier terminology by PhoneFarm Fun.",
+    url: `${SITE.url}/glossary`,
+    inLanguage: SITE.language,
+    hasDefinedTerm: terms.map((t) => ({
+      "@type": "DefinedTerm",
+      name: t.term,
+      description: t.definition,
+      url: `${SITE.url}/glossary#${t.slug}`,
+    })),
   };
 }
 

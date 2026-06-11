@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getBlogPost, BLOG_POSTS } from "@/data/blog";
 import { ContactCTA } from "@/components/shared";
 import { buildMetadata, breadcrumbJsonLd, articleJsonLd } from "@/lib/seo";
+import { SITE } from "@/lib/config";
 import { JsonLd } from "@/components/shared";
 import { Breadcrumbs } from "@/components/store";
 import { renderSimpleMarkdown } from "@/lib/markdown";
@@ -33,7 +34,14 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       <JsonLd data={[
-        articleJsonLd({ title: post.title, description: post.excerpt, slug, date: post.date }),
+        articleJsonLd({
+          title: post.title,
+          description: post.excerpt,
+          slug,
+          date: post.date,
+          category: post.category,
+          keywords: ["phone farm", "phone farm box", "Android device farm", SITE.name],
+        }),
         breadcrumbJsonLd([
           { name: "Home", path: "/" },
           { name: "Blog", path: "/blog" },

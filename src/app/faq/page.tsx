@@ -55,8 +55,18 @@ const FAQ_CATEGORIES = [
   },
   {
     title: "Support & Trust",
-    description: "Contacting sales, warranty, and factory-direct supply.",
-    indices: [15, 22, 23],
+    description: "Contacting sales, warranty, factory-direct supply, and where to buy.",
+    indices: [15, 22, 23, 33, 34, 35],
+  },
+  {
+    title: "Creator & social workflows",
+    description: "Multi-account device labs for TikTok, Reels, and content teams.",
+    indices: [18, 36],
+  },
+  {
+    title: "Terminology",
+    description: "Phone farm box vs cell phone farm and related terms.",
+    indices: [37],
   },
 ] as const;
 

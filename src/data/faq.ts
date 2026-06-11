@@ -166,4 +166,29 @@ export const FAQ_ITEMS = [
     answer:
       "A command center is a single-screen view to mirror devices, organize batches by project, push APKs in bulk, and monitor node health — typically built from ADB tools plus optional setup service. PhoneFarm Fun supplies the hardware layer; software remains your choice.",
   },
+  {
+    question: "Where can I buy a phone farm box?",
+    answer:
+      `PhoneFarm Fun sells factory-built phone farm boxes directly at phonefarm.fun — browse the catalog, add to cart, or request a quote. Standard 20-node SKUs ship from Guangzhou with burn-in QC. Contact Telegram ${CONTACT.telegram} or WhatsApp ${CONTACT.whatsapp} for configuration help.`,
+  },
+  {
+    question: "Who manufactures phone farm boxes in China?",
+    answer:
+      "PhoneFarm Fun is a Guangzhou, Guangdong manufacturer assembling phone farm boxes, motherboard clusters, and custom racks since 2017. We are factory-direct — not a software reseller. Units are built locally, burn-in tested, and exported worldwide.",
+  },
+  {
+    question: "How do I choose a phone farm hardware supplier?",
+    answer:
+      "Compare factory vs reseller (assembly location, burn-in QC, warranty), chassis tier and chipset for your workload, shipping to your country, and whether remote ADB setup is offered. PhoneFarm Fun is factory-direct from Guangzhou with MOQ 1 for evaluation and documented specs on every SKU.",
+  },
+  {
+    question: "Can phone farm boxes run TikTok, Reels, or Shorts multi-account workflows?",
+    answer:
+      "Yes — creator studios use 20-node phone farm hardware for parallel Android devices, regional app checks, and stable 24/7 operation versus desk chargers. PhoneFarm Fun supplies the chassis; operators are responsible for platform terms and compliance in their jurisdiction.",
+  },
+  {
+    question: "What is the difference between a phone farm box and a cell phone farm?",
+    answer:
+      "They refer to the same category — multi-device mobile hardware for automation and testing. 'Phone farm box' usually means a factory-built 2U chassis with 20 nodes; 'cell phone farm' or 'mobile farm' may describe the overall operation. PhoneFarm Fun manufactures both full-phone and motherboard cluster form factors.",
+  },
 ];

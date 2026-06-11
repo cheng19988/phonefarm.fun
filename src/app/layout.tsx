@@ -44,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang={SITE.language} className={`${geistSans.variable} ${geistMono.variable} ${instrumentSans.variable} h-full`}>
       <head>
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM site summary" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLM extended site guide" />
       </head>
       <body className="min-h-full flex flex-col antialiased pb-[5.75rem] md:pb-0">
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />

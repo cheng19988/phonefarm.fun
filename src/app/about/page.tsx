@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { ContactCTA } from "@/components/shared";
 import { CertBadgeStrip, CaseStudyCards } from "@/components/trust-sections";
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/shared";
+import { buildMetadata, organizationJsonLd } from "@/lib/seo";
 import { IMAGES } from "@/lib/images";
 import { CONTACT, SITE } from "@/lib/config";
 import { PageHero, SectionHeader, IconList, DeliveryTimeline } from "@/components/store";
@@ -40,6 +41,7 @@ const FACTORY_GALLERY_EXTRA = IMAGES.factoryGallery.slice(0, 4);
 export default function AboutPage() {
   return (
     <>
+      <JsonLd data={organizationJsonLd()} />
       <PageHero
         banner
         title="Guangzhou-Based Phone Farm Hardware Team"

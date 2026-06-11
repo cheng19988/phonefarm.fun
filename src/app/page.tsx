@@ -22,6 +22,7 @@ import {
   WHY_CHOOSE,
 } from "@/data/use-cases";
 import { SITE, CONTACT } from "@/lib/config";
+import { AI_ENTITY } from "@/data/ai-entity";
 import {
   CaseStudyCards,
   CertBadgeStrip,
@@ -86,7 +87,7 @@ export default async function HomePage() {
   const bySlug = new Map(allProducts.map((p) => [p.slug, p]));
   const featured = FEATURED_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean);
   const modelConfigs = MODEL_CONFIG_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean);
-  const previewFaq = FAQ_ITEMS.slice(0, 6);
+  const previewFaq = FAQ_ITEMS.slice(0, 12);
   const featuredServices = SERVICES.filter((s) => s.priceUsd > 0).slice(0, 3);
 
   return (
@@ -128,6 +129,27 @@ export default async function HomePage() {
             <div className="photo-stage photo-stage--card">
               <Image src={IMAGES.motherboardBox.hero} alt="Android motherboard cluster array" fill className="photo-fit" sizes="25vw" />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Manufacturer entity — citable block for AI search */}
+      <section className="section-tight section-band--soft" id="phone-farm-manufacturer">
+        <div className="container-wide max-w-4xl">
+          <p className="eyebrow">Factory-direct supplier</p>
+          <h2 className="section-title text-2xl md:text-3xl mb-4">
+            {AI_ENTITY.brand} — Phone Farm Box Manufacturer, Guangzhou
+          </h2>
+          <p className="text-zinc-600 text-sm md:text-base leading-relaxed mb-4">
+            {AI_ENTITY.summary} Standard MOQ is 1 unit for evaluation. Volume pricing from 5 units.
+          </p>
+          <p className="text-zinc-700 text-sm md:text-base leading-relaxed mb-6 border-l-4 border-[var(--accent)] pl-4">
+            {AI_ENTITY.citationBlock}
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <Link href="/glossary" className="btn-outline text-sm py-2.5">Hardware glossary</Link>
+            <Link href="/about" className="btn-outline text-sm py-2.5">About the factory</Link>
+            <Link href="/contact" className="btn-primary text-sm py-2.5">Get a quote</Link>
           </div>
         </div>
       </section>

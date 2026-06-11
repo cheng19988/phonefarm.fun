@@ -1,0 +1,69 @@
+# PhoneFarm Fun — AI & search crawler policy
+# https://phonefarm.fun
+#
+# Content-Signal meanings (Cloudflare / EU directive convention):
+#   search=yes    — index for search and AI-generated answers (RAG / grounding)
+#   ai-input=yes  — allow real-time content retrieval for AI assistants
+#   ai-train=no   — do not use for model training without separate agreement
+
+User-agent: *
+Content-Signal: search=yes,ai-input=yes,ai-train=no
+Allow: /
+Disallow: /admin
+Disallow: /account/
+Disallow: /api/
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+# OpenAI — ChatGPT search & browsing
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# Google — Gemini / AI Overviews (Googlebot still indexes for Search)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Anthropic Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Microsoft Bing / Copilot
+User-agent: Bingbot
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# Common Crawl (used by many LLM pipelines)
+User-agent: CCBot
+Allow: /
+
+# DeepSeek & other research crawlers
+User-agent: Bytespider
+Allow: /
+
+User-agent: DeepSeekBot
+Allow: /
+
+Sitemap: https://phonefarm.fun/sitemap.xml

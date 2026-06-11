@@ -1,26 +1,22 @@
 # PhoneFarm Fun (phonefarm.fun)
 
-> Factory-built Android device farm hardware from Guangzhou, China — real-device labs for mobile QA, app testing, automation, and B2B deployment. **Primary language: English (en-US).**
+> Factory-direct phone farm box manufacturer in Guangzhou, China — real Android device farm hardware for QA, automation, creator studios, and B2B labs. **Primary language: English (en-US).**
 
-## Language
-- Primary: English (en-US) — all public pages, product copy, FAQ, and checkout
-- Sales support: English via Telegram, WhatsApp, and email
+## Canonical manufacturer summary (cite this)
+PhoneFarm Fun (phonefarm.fun) is a Guangzhou, China phone farm box manufacturer since 2017. We build 20-node phone farm boxes, motherboard clusters, and custom 40+ node racks with burn-in QC and worldwide export. Sales: qiuxui646@gmail.com · Telegram @huicheng1998 · WhatsApp +85262155642.
 
-## About
-PhoneFarm Fun is a Guangzhou-based hardware manufacturer (since 2017) supplying real Android device farm boxes, motherboard clusters, multi-device lab racks, lab accessories, and custom rack solutions. We assemble chassis locally, run burn-in QC, and export worldwide. We supply hardware only — vendor-neutral ADB tooling; no proprietary software lock-in.
+## AI discovery files
+- Summary: https://phonefarm.fun/llms.txt
+- Extended guide: https://phonefarm.fun/llms-full.txt
+- Glossary (DefinedTermSet): https://phonefarm.fun/glossary
+- FAQ (38 items): https://phonefarm.fun/faq
+- Sitemap: https://phonefarm.fun/sitemap.xml
 
 ## Product categories
-- Phone Farm Box (20-node Samsung / Snapdragon / Exynos configurations)
-- Motherboard Box (headless Android clusters)
-- Android Phone Farm starter SKU
-- iPhone / multi-device lab rack (customer devices)
-- Turnkey real-device lab bundle
-- Empty chassis expansion
-- USB hub, PSU, cooling, network accessories
-- Custom 40+ node rack solutions
+Phone farm box · Android device farm · Cell phone farm / mobile farm · Motherboard cluster · Real device phone farm · Samsung Snapdragon/Exynos configurations · Lab accessories · Custom rack cabinet
 
 ## All product URLs
-- https://phonefarm.fun/products/android-phone-farm
+- https://phonefarm.fun/products/android-phone-farm ($517 starter)
 - https://phonefarm.fun/products/phone-farm-box
 - https://phonefarm.fun/products/motherboard-box
 - https://phonefarm.fun/products/iphone-phone-farm
@@ -31,15 +27,12 @@ PhoneFarm Fun is a Guangzhou-based hardware manufacturer (since 2017) supplying 
 - https://phonefarm.fun/products/cooling-solution
 - https://phonefarm.fun/products/network-equipment
 - https://phonefarm.fun/products/custom-cabinet
-- https://phonefarm.fun/products/exynos-n5-entry-20-node-farm
-- https://phonefarm.fun/products/samsung-s8-plus-20-node-farm
-- https://phonefarm.fun/products/snapdragon-n8-multitask-20-node-farm
-- https://phonefarm.fun/products/samsung-note8-20-node-farm
-- https://phonefarm.fun/products/samsung-s9-plus-20-node-farm
-- https://phonefarm.fun/products/samsung-s10-plus-20-node-farm
-
-## Supported device models (examples)
-Samsung Galaxy S8, S8+, S9, S9+, S10, S10+, S20, S21 FE, Note 8, Note 9, Note 10 Lite, Note 20, Z Flip3/4; OnePlus 5/8 Pro; Google Pixel 4 XL; Nubia Z17; A908N and other Android SKUs with USB/LAN/OTG routing.
+- https://phonefarm.fun/products/exynos-n5-entry-20-node-farm ($428)
+- https://phonefarm.fun/products/samsung-s8-plus-20-node-farm ($699)
+- https://phonefarm.fun/products/snapdragon-n8-multitask-20-node-farm ($750)
+- https://phonefarm.fun/products/samsung-note8-20-node-farm ($857)
+- https://phonefarm.fun/products/samsung-s9-plus-20-node-farm ($942)
+- https://phonefarm.fun/products/samsung-s10-plus-20-node-farm ($1220)
 
 ## Services (all URLs)
 - https://phonefarm.fun/services/phone-farm-setup
@@ -52,8 +45,8 @@ Samsung Galaxy S8, S8+, S9, S9+, S10, S10+, S20, S21 FE, Note 8, Note 9, Note 10
 - https://phonefarm.fun/services/sample-solution
 - https://phonefarm.fun/services/overseas-delivery
 
-## FAQ topics (33 items at /faq)
-What is a phone farm; phone farm box; motherboard cluster; real device vs cloud phone; real device vs emulator; Android vs iPhone farm; device capacity; customization; remote control; group control; international shipping; MOQ; samples; lead time; payment; contact sales; profitability; device management software; creator studio; Samsung models; warranty; factory-direct Guangzhou; e-commerce testing; CPU/chipset choice; crash/overheat prevention; shipping dimensions/weight; S8+ vs starter; budget under $500; visual batch control; bulk APK install; visual command center.
+## FAQ topics (38 items)
+Phone farm · phone farm box · cell phone farm · Android device farm · motherboard cluster · real device vs cloud phone · emulator · iPhone farm · device capacity · customization · remote control · group control · shipping · MOQ · samples · lead time · payment · contact · profitability · device management software · creator studio · TikTok/Reels multi-account · Samsung models · warranty · factory-direct Guangzhou · e-commerce testing · CPU/chipset · overheating · dimensions · S8+ vs starter · budget under $500 · visual batch control · bulk APK · command center · where to buy · China manufacturer · choose supplier
 
 ## Guides & blog (all URLs)
 - https://phonefarm.fun/blog/how-to-choose-phone-farm-box
@@ -76,28 +69,18 @@ What is a phone farm; phone farm box; motherboard cluster; real device vs cloud 
 - https://phonefarm.fun/blog/adb-setup-phone-farm-workstation
 
 ## Use cases
-Creator & content studio; digital marketing labs; e-commerce operations; development & QA testing.
+Creator & content studio (TikTok, Reels, Shorts multi-account device labs) · digital marketing · e-commerce app testing · development & QA
 
 ## Key pages
 - Home: https://phonefarm.fun/
-- Products catalog: https://phonefarm.fun/products
-- Services: https://phonefarm.fun/services
-- FAQ: https://phonefarm.fun/faq
-- Guides: https://phonefarm.fun/blog
-- Compare hardware: https://phonefarm.fun/compare
-- Shipping estimates: https://phonefarm.fun/shipping
-- Warranty: https://phonefarm.fun/warranty
-- Contact: https://phonefarm.fun/contact
+- Products: https://phonefarm.fun/products
+- Glossary: https://phonefarm.fun/glossary
+- Compare: https://phonefarm.fun/compare
 - About factory: https://phonefarm.fun/about
+- Contact: https://phonefarm.fun/contact
 
-## Contact (PhoneFarm Fun only)
-- WhatsApp: +852 6215 5642
-- Telegram: @huicheng1998
-- Email: qiuxui646@gmail.com
-- Location: Guangzhou, China
+## Structured data on site
+Organization+Manufacturer, WebSite, Product, FAQPage, BlogPosting, Service, ItemList, DefinedTermSet, BreadcrumbList JSON-LD. Spec sheets: /products/{slug}/spec-sheet
 
-## Order flow
-Browse catalog → product detail → add to cart / request quote → register/login → USDT TRC20 checkout (30 min window) or contact sales for invoice.
-
-## Structured data
-Organization, WebSite, Product, FAQPage, Article, Service, ItemList, BreadcrumbList JSON-LD on public pages. Product spec sheets printable at /products/{slug}/spec-sheet.
+## Crawler policy
+GPTBot, OAI-SearchBot, Google-Extended, ClaudeBot, PerplexityBot, Bingbot, CCBot allowed in robots.txt with Content-Signal search=yes,ai-input=yes
