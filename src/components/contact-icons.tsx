@@ -37,10 +37,10 @@ export const CONTACT_ICON_TONE: Record<IconKind, string> = {
 };
 
 export const CONTACT_ICON_CHIP: Record<IconKind, string> = {
-  phone: "bg-gradient-to-br from-orange-500 to-orange-700 text-white shadow-md shadow-orange-500/35",
-  whatsapp: "bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white shadow-md shadow-emerald-500/35",
-  telegram: "bg-gradient-to-br from-[#37AEE2] to-[#229ED9] text-white shadow-md shadow-sky-500/35",
-  email: "bg-gradient-to-br from-zinc-700 to-zinc-900 text-white shadow-md shadow-zinc-500/30",
+  phone: "bg-gradient-to-br from-orange-500 to-orange-700 text-white shadow-lg shadow-orange-500/40",
+  whatsapp: "bg-gradient-to-br from-[#25D366] to-[#128C7E] text-white shadow-lg shadow-emerald-500/40",
+  telegram: "bg-gradient-to-br from-[#37AEE2] to-[#229ED9] text-white shadow-lg shadow-sky-500/40",
+  email: "bg-gradient-to-br from-zinc-600 to-zinc-900 text-white shadow-lg shadow-zinc-500/35",
 };
 
 export function ContactIcon({
@@ -70,13 +70,20 @@ export function ContactIconChip({
   size = "md",
 }: {
   kind: IconKind;
-  size?: "sm" | "md";
+  size?: "sm" | "md" | "lg" | "xl";
 }) {
-  const dim = size === "sm" ? "h-8 w-8" : "h-10 w-10";
-  const iconSize = size === "sm" ? 16 : 18;
+  const spec = {
+    sm: { dim: "h-9 w-9", icon: 18, radius: "rounded-xl" },
+    md: { dim: "h-11 w-11", icon: 22, radius: "rounded-xl" },
+    lg: { dim: "h-14 w-14", icon: 28, radius: "rounded-2xl" },
+    xl: { dim: "h-16 w-16", icon: 32, radius: "rounded-2xl" },
+  }[size];
+
   return (
-    <span className={`inline-flex items-center justify-center rounded-xl ${dim} ${CONTACT_ICON_CHIP[kind]}`}>
-      <ContactIcon kind={kind} size={iconSize} />
+    <span
+      className={`inline-flex items-center justify-center ${spec.dim} ${spec.radius} ${CONTACT_ICON_CHIP[kind]} ring-1 ring-white/25`}
+    >
+      <ContactIcon kind={kind} size={spec.icon} />
     </span>
   );
 }

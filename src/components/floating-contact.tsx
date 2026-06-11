@@ -27,7 +27,13 @@ const CHANNELS = [
   },
 ] as const;
 
-function ChannelIconLink({ item, size = "sm" }: { item: (typeof CHANNELS)[number]; size?: "sm" | "md" }) {
+function ChannelIconLink({
+  item,
+  size,
+}: {
+  item: (typeof CHANNELS)[number];
+  size: "lg" | "xl";
+}) {
   return (
     <a
       href={item.href}
@@ -35,9 +41,14 @@ function ChannelIconLink({ item, size = "sm" }: { item: (typeof CHANNELS)[number
       rel={item.external ? "noopener noreferrer" : undefined}
       aria-label={`${item.title}: ${item.label}`}
       title={item.title}
-      className="inline-flex items-center justify-center rounded-xl transition-transform hover:scale-105 active:scale-95"
+      className="floating-contact-btn group inline-flex flex-col items-center gap-1.5"
     >
-      <ContactIconChip kind={item.kind} size={size} />
+      <span className="transition-transform duration-200 group-hover:scale-110 group-active:scale-95">
+        <ContactIconChip kind={item.kind} size={size} />
+      </span>
+      <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 group-hover:text-zinc-800 transition-colors">
+        {item.title}
+      </span>
     </a>
   );
 }
@@ -45,27 +56,23 @@ function ChannelIconLink({ item, size = "sm" }: { item: (typeof CHANNELS)[number
 export function FloatingContact() {
   return (
     <>
-      {/* Mobile — icon bar only */}
-      <div
-        className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-white/98 border-t border-zinc-200 backdrop-blur-md shadow-[0_-6px_20px_-10px_rgba(0,0,0,0.12)]"
-        role="navigation"
-        aria-label="Contact sales"
-      >
-        <div className="flex items-center justify-center gap-5 py-3">
+      {/* Mobile — larger icon dock */}
+      <div className="floating-contact-mobile md:hidden" role="navigation" aria-label="Contact sales">
+        <div className="flex items-end justify-center gap-8 sm:gap-10 px-6 pt-3 pb-4">
           {CHANNELS.map((item) => (
-            <ChannelIconLink key={item.kind} item={item} />
+            <ChannelIconLink key={item.kind} item={item} size="lg" />
           ))}
         </div>
       </div>
 
-      {/* Desktop — stacked icons only */}
-      <aside
-        className="hidden md:flex fixed bottom-6 right-6 z-50 flex-col gap-2.5 p-2 rounded-2xl border border-zinc-200/90 bg-white/95 backdrop-blur-md shadow-lg shadow-zinc-900/10"
-        aria-label="Contact sales"
-      >
-        {CHANNELS.map((item) => (
-          <ChannelIconLink key={item.kind} item={item} size="md" />
-        ))}
+      {/* Desktop — vertical dock */}
+      <aside className="floating-contact-dock hidden md:flex" aria-label="Contact sales">
+        <p className="floating-contact-dock-label">Sales</p>
+        <div className="flex flex-col gap-4">
+          {CHANNELS.map((item) => (
+            <ChannelIconLink key={item.kind} item={item} size="xl" />
+          ))}
+        </div>
       </aside>
     </>
   );
