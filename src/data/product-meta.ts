@@ -97,6 +97,54 @@ export const PRODUCT_META: Record<string, ProductMeta> = {
     moq: 1,
     leadTime: "Quote-based (2–4 weeks)",
   },
+  "exynos-n5-entry-20-node-farm": {
+    tier: "Starter",
+    nodeCount: "20 nodes",
+    useCase: "Budget entry automation & first lab",
+    deploymentType: "Phone Farm Box",
+    moq: 1,
+    leadTime: "3–5 business days",
+  },
+  "samsung-s8-plus-20-node-farm": {
+    tier: "Pro",
+    nodeCount: "20 nodes",
+    useCase: "Snapdragon 835 · 24/7 stable runs",
+    deploymentType: "Phone Farm Box",
+    moq: 1,
+    leadTime: "3–5 business days",
+  },
+  "snapdragon-n8-multitask-20-node-farm": {
+    tier: "Pro",
+    nodeCount: "20 nodes",
+    useCase: "Multi-app parallel workloads",
+    deploymentType: "Phone Farm Box",
+    moq: 1,
+    leadTime: "3–5 business days",
+  },
+  "samsung-note8-20-node-farm": {
+    tier: "Pro",
+    nodeCount: "20 nodes",
+    useCase: "High-capacity continuous ops",
+    deploymentType: "Phone Farm Box",
+    moq: 1,
+    leadTime: "3–5 business days",
+  },
+  "samsung-s9-plus-20-node-farm": {
+    tier: "Pro",
+    nodeCount: "20 nodes",
+    useCase: "Snapdragon 845 heavy QA",
+    deploymentType: "Phone Farm Box",
+    moq: 1,
+    leadTime: "3–5 business days",
+  },
+  "samsung-s10-plus-20-node-farm": {
+    tier: "Pro",
+    nodeCount: "20 nodes",
+    useCase: "Snapdragon 855 dev & regression",
+    deploymentType: "Phone Farm Box",
+    moq: 1,
+    leadTime: "5–7 business days",
+  },
 };
 
 export const RELATED_BY_SLUG: Record<string, string[]> = {
@@ -111,6 +159,12 @@ export const RELATED_BY_SLUG: Record<string, string[]> = {
   "cooling-solution": ["power-supply-solution", "phone-farm-box", "motherboard-box"],
   "network-equipment": ["usb-hub", "phone-farm-box", "real-device-phone-farm"],
   "custom-cabinet": ["motherboard-box", "phone-farm-box", "real-device-phone-farm"],
+  "exynos-n5-entry-20-node-farm": ["android-phone-farm", "samsung-s8-plus-20-node-farm", "usb-hub"],
+  "samsung-s8-plus-20-node-farm": ["phone-farm-box", "samsung-s9-plus-20-node-farm", "cooling-solution"],
+  "snapdragon-n8-multitask-20-node-farm": ["samsung-s8-plus-20-node-farm", "phone-farm-box", "network-equipment"],
+  "samsung-note8-20-node-farm": ["samsung-s8-plus-20-node-farm", "real-device-phone-farm", "power-supply-solution"],
+  "samsung-s9-plus-20-node-farm": ["samsung-s10-plus-20-node-farm", "samsung-s8-plus-20-node-farm", "motherboard-box"],
+  "samsung-s10-plus-20-node-farm": ["samsung-s9-plus-20-node-farm", "phone-farm-box", "custom-cabinet"],
 };
 
 export function getProductMeta(slug: string): ProductMeta {

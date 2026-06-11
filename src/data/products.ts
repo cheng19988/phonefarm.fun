@@ -1,5 +1,6 @@
 import { CONTACT } from "@/lib/config";
 import { IMAGES } from "@/lib/images";
+import { MODEL_CONFIG_PRODUCTS } from "./model-config-products";
 
 export type ProductSeed = {
   slug: string;
@@ -512,6 +513,7 @@ export const PRODUCT_SEEDS: ProductSeed[] = [
       ],
     }
   ),
+  ...MODEL_CONFIG_PRODUCTS,
 ];
 
 export function getProductSeed(slug: string) {

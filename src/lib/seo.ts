@@ -94,12 +94,13 @@ export function productJsonLd(product: {
   priceUsd: number;
   stock: number;
   image: string;
+  longDescription?: string;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
     name: product.name,
-    description: product.description,
+    description: product.longDescription ?? product.description,
     image: `${SITE.url}${product.image}`,
     url: `${SITE.url}/products/${product.slug}`,
     brand: { "@type": "Brand", name: SITE.name },
@@ -189,5 +190,32 @@ export function articleJsonLd(article: {
       },
     },
     mainEntityOfPage: `${SITE.url}/blog/${article.slug}`,
+    inLanguage: SITE.language,
+  };
+}
+
+export function serviceJsonLd(service: {
+  title: string;
+  description: string;
+  slug: string;
+  priceUsd: number;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.title,
+    description: service.description,
+    url: `${SITE.url}/services/${service.slug}`,
+    provider: { "@type": "Organization", name: SITE.name, url: SITE.url },
+    areaServed: "Worldwide",
+    ...(service.priceUsd > 0
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "USD",
+            price: service.priceUsd,
+          },
+        }
+      : {}),
   };
 }

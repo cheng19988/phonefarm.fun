@@ -7,6 +7,7 @@ import { ContactCTA, ContactBar, JsonLd, StockBadge } from "@/components/shared"
 import { getProductGalleryImages, getProductCardImage, isAccessorySlug, ACCESSORY_PHOTO_CAPTION } from "@/data/product-images";
 import { DeviceModelGridAll } from "@/components/device-model-grid";
 import { getProductMeta, getProductEyebrow } from "@/data/product-meta";
+import { getProductHighlight } from "@/data/product-highlights";
 import { getProfessionalSpecs } from "@/data/product-specs";
 import { isQuotePreferredProduct } from "@/lib/product-commerce";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
@@ -86,7 +87,7 @@ export default async function ProductDetailPage({ params }: Props) {
   return (
     <>
       <JsonLd data={[
-        productJsonLd({ name: product.name, description: product.shortDesc, slug: product.slug, priceUsd: product.priceUsd, stock: product.stock, image: product.imageHero }),
+        productJsonLd({ name: product.name, description: product.shortDesc, longDescription: product.description, slug: product.slug, priceUsd: product.priceUsd, stock: product.stock, image: product.imageHero }),
         breadcrumbJsonLd([
           { name: "Home", path: "/" },
           { name: "Products", path: "/products" },
@@ -113,9 +114,14 @@ export default async function ProductDetailPage({ params }: Props) {
                 <p className="text-[var(--accent)] text-sm font-bold uppercase tracking-widest mb-3">
                   {getProductEyebrow(meta, product.category)}
                 </p>
-                <h1 className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-zinc-900 mb-4 leading-tight tracking-tight">
+                <h1 className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold text-zinc-900 mb-3 leading-tight tracking-tight">
                   {product.name}
                 </h1>
+                {getProductHighlight(slug) && (
+                  <p className="text-sm text-zinc-600 mb-4 leading-relaxed border-l-2 border-orange-400 pl-3">
+                    {getProductHighlight(slug)}
+                  </p>
+                )}
                 <p className="text-base md:text-lg text-zinc-600 mb-6 leading-relaxed">{product.shortDesc}</p>
                 <div className="flex flex-wrap items-center gap-4 mb-6 pb-6 border-b border-zinc-200">
                   <PriceDisplay amount={product.priceUsd} size="xl" />

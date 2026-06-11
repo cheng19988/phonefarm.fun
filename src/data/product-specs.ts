@@ -13,6 +13,8 @@ export const PRODUCT_HW_SPECS: Record<string, Record<string, string>> = {
     "Typical deployment": "Small QA team pilot lab, compatibility testing, first phone farm setup",
     "Customization options": "Device model, Android version, and tray spacing — confirmed before production",
     "Packing / shipping note": "Foam-lined export crate; express or sea freight from Guangzhou",
+    "Dimensions (W×D×H)": "21.26 × 14.37 × 7.28 in (540 × 365 × 185 mm)",
+    "Shipping weight": "≈13 lb (6 kg) typical",
   },
   "phone-farm-box": {
     "Node capacity": "20-node Pro configuration — typical 24/7 testing layout",
@@ -27,6 +29,8 @@ export const PRODUCT_HW_SPECS: Record<string, Record<string, string>> = {
     "Typical deployment": "Production QA lab, automation R&D, remote device operation teams",
     "Customization options": "Tray layout, node count adjustments — quoted for non-standard builds",
     "Packing / shipping note": "Extended burn-in before export; QC report included",
+    "Dimensions (W×D×H)": "21.26 × 14.37 × 7.28 in (540 × 365 × 185 mm)",
+    "Shipping weight": "≈13 lb (6 kg) typical",
   },
   "motherboard-box": {
     "Node capacity": "20-node high-density motherboard cluster",
@@ -157,7 +161,9 @@ export const PRODUCT_HW_SPECS: Record<string, Record<string, string>> = {
 };
 
 export function getProfessionalSpecs(slug: string, dbSpecs: Record<string, string>): Record<string, string> {
-  const template = PRODUCT_HW_SPECS[slug];
-  if (template) return template;
+  const template =
+    PRODUCT_HW_SPECS[slug] ??
+    (slug.endsWith("-20-node-farm") ? PRODUCT_HW_SPECS["phone-farm-box"] : undefined);
+  if (template) return { ...template, ...dbSpecs };
   return dbSpecs;
 }

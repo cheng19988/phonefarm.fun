@@ -32,6 +32,15 @@ import {
 
 const FEATURED_SLUGS = ["phone-farm-box", "motherboard-box", "custom-cabinet"] as const;
 
+const MODEL_CONFIG_SLUGS = [
+  "exynos-n5-entry-20-node-farm",
+  "samsung-s8-plus-20-node-farm",
+  "samsung-s9-plus-20-node-farm",
+  "samsung-s10-plus-20-node-farm",
+  "samsung-note8-20-node-farm",
+  "snapdragon-n8-multitask-20-node-farm",
+] as const;
+
 const RECOMMENDED_MODELS = getFeaturedCatalogModels(8);
 
 const FACTORY_SHOWCASE = [
@@ -76,6 +85,7 @@ export default async function HomePage() {
   const allProducts = await getPublishedProducts();
   const bySlug = new Map(allProducts.map((p) => [p.slug, p]));
   const featured = FEATURED_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean);
+  const modelConfigs = MODEL_CONFIG_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean);
   const previewFaq = FAQ_ITEMS.slice(0, 6);
   const featuredServices = SERVICES.filter((s) => s.priceUsd > 0).slice(0, 3);
 
@@ -178,6 +188,39 @@ export default async function HomePage() {
           </div>
           <div className="text-center mt-8">
             <Link href="/products" className="btn-primary">Browse Full Catalog</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Samsung / chipset model configurations — reference-style SKU row */}
+      <section className="section-tight section-band--muted">
+        <div className="container-wide">
+          <SectionHead
+            eyebrow="Samsung &amp; chipset builds"
+            title="Recommended Phone Farm Box Configurations"
+            subtitle="Factory-configured 20-node clusters by silicon tier — Snapdragon 835/845/855 and Exynos entry kits with reference USD pricing."
+          />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+            {modelConfigs.map((p) => {
+              const meta = getProductMeta(p!.slug);
+              return (
+                <ProductCard
+                  key={p!.id}
+                  slug={p!.slug}
+                  name={p!.name}
+                  shortDesc={p!.shortDesc}
+                  priceUsd={p!.priceUsd}
+                  stock={p!.stock}
+                  imageCard={getProductCardImage(p!.slug, p!.imageCard)}
+                  category={p!.category}
+                  tier={meta.tier}
+                  nodeCount={meta.nodeCount}
+                  deploymentType={meta.deploymentType}
+                  moq={meta.moq}
+                  leadTime={meta.leadTime}
+                />
+              );
+            })}
           </div>
         </div>
       </section>

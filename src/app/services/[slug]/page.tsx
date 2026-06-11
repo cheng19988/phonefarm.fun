@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ServiceBuyButtons, FAQAccordion } from "@/components/commerce";
 import { ContactBar, JsonLd } from "@/components/shared";
 import { getService, SERVICES } from "@/data/services";
-import { buildMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { buildMetadata, breadcrumbJsonLd, serviceJsonLd } from "@/lib/seo";
 import { Breadcrumbs, PriceDisplay, SectionHeader, IconList } from "@/components/store";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -44,11 +44,19 @@ export default async function ServiceDetailPage({ params }: Props) {
   return (
     <>
       <JsonLd
-        data={breadcrumbJsonLd([
+        data={[
+          serviceJsonLd({
+            title: service.title,
+            description: service.description,
+            slug: service.slug,
+            priceUsd: service.priceUsd,
+          }),
+          breadcrumbJsonLd([
           { name: "Home", path: "/" },
           { name: "Services", path: "/services" },
           { name: service.title, path: `/services/${slug}` },
-        ])}
+        ]),
+        ]}
       />
       <div className="section pt-10 md:pt-14">
         <div className="container-wide">

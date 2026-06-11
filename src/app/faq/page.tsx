@@ -41,7 +41,17 @@ const FAQ_CATEGORIES = [
   {
     title: "Software & Compatibility",
     description: "Device management tools, Samsung models, and Android vs iPhone labs.",
-    indices: [17, 20, 21],
+    indices: [17, 20, 21, 31, 32],
+  },
+  {
+    title: "Model & chipset selection",
+    description: "CPU choice, S8+ vs starter, budget builds, dimensions for freight.",
+    indices: [25, 26, 27, 28, 29],
+  },
+  {
+    title: "Operations & batch control",
+    description: "Stability, bulk APK install, visual command center workflows.",
+    indices: [30],
   },
   {
     title: "Support & Trust",

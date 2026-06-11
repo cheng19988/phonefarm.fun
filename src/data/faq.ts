@@ -126,4 +126,44 @@ export const FAQ_ITEMS = [
     answer:
       "Yes. E-commerce teams test seller apps, payment SDKs, and regional builds on real devices representing different Android versions. Physical labs catch OEM-specific issues that emulators miss before production releases.",
   },
+  {
+    question: "What CPU or chipset should I choose for a phone farm box?",
+    answer:
+      "Match silicon to your workload: Exynos 7420 / Android 7 entry tiers for budget pilots; Snapdragon 835 (S8+ class) for efficient 24/7 runs; Snapdragon 845–855 (S9+/S10+ class) for heavier QA and dev labs. Share your app list and we recommend a SKU.",
+  },
+  {
+    question: "How do I prevent phone farm crashes, overheating, and instability?",
+    answer:
+      "Use factory chassis with centralized PSU and active cooling — not desk chargers. Keep ambient lab temperature reasonable, clean fan intakes, replace worn USB cables, and run a 24-hour burn-in before production workloads. Our boxes are burn-in tested before export.",
+  },
+  {
+    question: "What are the shipping dimensions and weight of a 20-node box?",
+    answer:
+      "Standard 2U 20-node chassis typically measures 21.26 × 14.37 × 7.28 in (540 × 365 × 185 mm) and ships at roughly 13 lb (6 kg) before devices. Confirm on your quote — custom racks differ.",
+  },
+  {
+    question: "Samsung S8+ cluster vs entry starter box — which should I buy?",
+    answer:
+      "Choose the entry N5/Exynos starter ($428–517 class) for first lab pilots and light automation. Choose the S8+ Snapdragon 835 cluster ($699 class) when you need enhanced cooling and 24/7 stability for heavier parallel workloads.",
+  },
+  {
+    question: "Can I build a budget phone farm under $500?",
+    answer:
+      "Yes. Our Exynos N5 entry 20-node configuration starts at $428 USD reference pricing for the chassis tier — plus shipping and any device configuration fees. See the cheap phone farm setup guide on our blog for a full budget checklist.",
+  },
+  {
+    question: "Is visual batch device control software included?",
+    answer:
+      "Hardware ships ADB-ready for your existing toolchain. Optional remote workstation setup configures grouping, mirroring, and batch APK workflows using vendor-neutral tools — we do not bundle proprietary lock-in dashboards.",
+  },
+  {
+    question: "How do I bulk install APKs on all devices in a farm?",
+    answer:
+      "Connect the chassis USB hub to your control PC, confirm all serials with adb devices, then loop adb install across serials or use your CI runner. See our bulk APK deployment guide for step-by-step commands and best practices.",
+  },
+  {
+    question: "What is a visual Android device command center?",
+    answer:
+      "A command center is a single-screen view to mirror devices, organize batches by project, push APKs in bulk, and monitor node health — typically built from ADB tools plus optional setup service. PhoneFarm Fun supplies the hardware layer; software remains your choice.",
+  },
 ];
