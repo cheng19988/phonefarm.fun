@@ -3,6 +3,7 @@ import { getCart } from "@/lib/cart";
 import { resolveCartItems } from "@/lib/cart-resolve";
 import { getSession } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
+import { CONTACT } from "@/lib/config";
 import { CheckoutAccess } from "@/components/checkout-access";
 import { PageHero, PriceDisplay } from "@/components/store";
 
@@ -58,7 +59,7 @@ export default async function CheckoutPage() {
                 </p>
                 <p className="text-base text-slate-600 mt-4 leading-relaxed">
                   For bank transfer (T/T), Wise, or PayPal invoice, contact{" "}
-                  <a href="mailto:sales@phonefarm.fun" className="text-orange-600 font-medium">sales@phonefarm.fun</a> before checkout.
+                  <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="text-orange-600 font-medium">{CONTACT.email}</a> before checkout.
                 </p>
               </div>
 

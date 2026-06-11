@@ -100,7 +100,7 @@ export function ContactForm({ defaultProduct = "" }: { defaultProduct?: string }
           <p>Failed to send. Please contact us directly:</p>
           <ul className="space-y-1 font-medium">
             <li>
-              <a href={`mailto:${CONTACT.email}`} className="text-orange-700 hover:underline">{CONTACT.email}</a>
+              <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="text-orange-700 hover:underline">{CONTACT.email}</a>
             </li>
             <li>
               <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-orange-700 hover:underline">WhatsApp</a>

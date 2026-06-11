@@ -1,3 +1,5 @@
+import { CONTACT } from "@/lib/config";
+
 export const FAQ_ITEMS = [
   {
     question: "What is an Android device farm?",
@@ -72,12 +74,12 @@ export const FAQ_ITEMS = [
   {
     question: "How do I pay?",
     answer:
-      "Online checkout accepts USDT (TRC20) at the USD amount shown. Bank transfer (T/T), Wise, and PayPal are available via manual invoice — contact sales@phonefarm.fun. Card payments are not supported on this site.",
+      `Online checkout accepts USDT (TRC20) at the USD amount shown. Bank transfer (T/T), Wise, and PayPal are available via manual invoice — contact ${CONTACT.email}. Card payments are not supported on this site.`,
   },
   {
     question: "How do I contact sales?",
     answer:
-      "Reach us via Telegram (@huicheng1998), WhatsApp (+85262155642), or email qiuxui646@gmail.com. We respond within 24 hours on business days (Guangzhou time, UTC+8).",
+      `Reach us via Telegram (${CONTACT.telegram}), WhatsApp (${CONTACT.whatsapp}), or email ${CONTACT.email}. We respond within 24 hours on business days (Guangzhou time, UTC+8).`,
   },
   {
     question: "Is phone farming still profitable in 2026?",

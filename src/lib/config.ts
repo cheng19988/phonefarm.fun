@@ -11,12 +11,18 @@ export const SITE = {
     "PhoneFarm Fun supplies factory-built Android device farm hardware from Guangzhou — starter and pro testing boxes, motherboard clusters, rack solutions, and lab accessories for mobile QA and automation teams.",
 } as const;
 
+const SALES_EMAIL = "qiuxui646@gmail.com";
+const SALES_EMAIL_SUBJECT = "PhoneFarm Fun Inquiry";
+
 export const CONTACT = {
   telegram: "@huicheng1998",
   telegramUrl: "https://t.me/huicheng1998",
   whatsapp: "+85262155642",
   whatsappUrl: "https://wa.me/85262155642",
-  email: "qiuxui646@gmail.com",
+  email: SALES_EMAIL,
+  /** Opens Gmail compose — reliable when OS has no default mail client */
+  emailUrl: `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(SALES_EMAIL)}&su=${encodeURIComponent(SALES_EMAIL_SUBJECT)}`,
+  emailMailto: `mailto:${SALES_EMAIL}?subject=${encodeURIComponent(SALES_EMAIL_SUBJECT)}`,
 } as const;
 
 export const PAYMENT = {

@@ -40,10 +40,10 @@ export const USE_CASES = [
 ] as const;
 
 export const TRUST_STATS = [
-  { value: "50,000+", label: "Device slots deployed worldwide" },
-  { value: "8,000+", label: "B2B clients since 2017" },
-  { value: "400+", label: "Custom lab configurations delivered" },
+  { value: "Since 2017", label: "Guangzhou hardware factory" },
+  { value: "11 SKUs", label: "Boxes, clusters & accessories" },
   { value: "20 nodes", label: "Per standard 2U chassis" },
+  { value: "Global export", label: "DHL · FedEx · sea freight" },
 ] as const;
 
 export const SOFTWARE_CAPABILITIES = [

@@ -1,5 +1,5 @@
 import { buildMetadata } from "@/lib/seo";
-import { SITE } from "@/lib/config";
+import { CONTACT, SITE } from "@/lib/config";
 
 export const metadata = buildMetadata({
   title: "Privacy Policy",
@@ -20,7 +20,10 @@ export default function PrivacyPage() {
         <h2>Data Security</h2>
         <p>We implement industry-standard security measures to protect your data. Order and payment records are stored securely in our database.</p>
         <h2>Contact</h2>
-        <p>For privacy inquiries, email sales@phonefarm.fun.</p>
+        <p>
+          For privacy inquiries, email{" "}
+          <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">{CONTACT.email}</a>.
+        </p>
       </div>
     </div>
   );

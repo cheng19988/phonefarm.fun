@@ -22,7 +22,7 @@ export function ContactBar({ compact = false }: { compact?: boolean }) {
       <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-700 hover:text-[#128C7E] transition-colors">
         <ContactLinkLabel kind="whatsapp">{CONTACT.whatsapp}</ContactLinkLabel>
       </a>
-      <a href={`mailto:${CONTACT.email}`} className="font-medium text-zinc-700 hover:text-orange-700 transition-colors">
+      <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="font-medium text-zinc-700 hover:text-orange-700 transition-colors">
         <ContactLinkLabel kind="email">{CONTACT.email}</ContactLinkLabel>
       </a>
     </div>

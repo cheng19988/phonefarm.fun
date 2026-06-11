@@ -1,3 +1,4 @@
+import { CONTACT } from "@/lib/config";
 import { IMAGES } from "@/lib/images";
 
 export type ServiceItem = {
@@ -83,7 +84,7 @@ export const SERVICES: ServiceItem[] = [
       "Lab operations documentation",
     ],
     faq: [
-      { q: "Why is there no fixed price?", a: "Large deployments are scoped per project. Contact sales@phonefarm.fun with your node count and timeline." },
+      { q: "Why is there no fixed price?", a: `Large deployments are scoped per project. Contact ${CONTACT.email} with your node count and timeline.` },
     ],
   },
   {
@@ -100,7 +101,7 @@ export const SERVICES: ServiceItem[] = [
       "Prototype or sample unit (if scoped)",
       "Production timeline estimate",
     ],
-    faq: [{ q: "How do I get a quote?", a: "Submit node count, device models, and shipping country via the contact form or email sales@phonefarm.fun." }],
+    faq: [{ q: "How do I get a quote?", a: `Submit node count, device models, and shipping country via the contact form or email ${CONTACT.email}.` }],
   },
   {
     slug: "enterprise-deployment",

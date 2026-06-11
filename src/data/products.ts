@@ -1,3 +1,4 @@
+import { CONTACT } from "@/lib/config";
 import { IMAGES } from "@/lib/images";
 
 export type ProductSeed = {
@@ -43,7 +44,7 @@ const DEFAULT_FAQ: ProductSeed["faq"] = [
   },
   {
     q: "What payment options are available?",
-    a: "Online checkout accepts USDT (TRC20) at the USD amount shown. Bank transfer (T/T), Wise, and PayPal are available via manual invoice — contact sales@phonefarm.fun. Card payments are not supported on this site.",
+    a: `Online checkout accepts USDT (TRC20) at the USD amount shown. Bank transfer (T/T), Wise, and PayPal are available via manual invoice — contact ${CONTACT.email}. Card payments are not supported on this site.`,
   },
 ];
 

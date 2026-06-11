@@ -1,3 +1,5 @@
+import { CONTACT } from "@/lib/config";
+
 export const BLOG_POSTS = [
   {
     slug: "how-to-choose-phone-farm-box",
@@ -23,7 +25,7 @@ Verify USB debugging access, hub stability, and your test runner requirements be
 **5. Include shipping and lead time in project planning**
 In-stock SKUs typically ship in 3–5 business days from Guangzhou. Custom racks require a scoping call first.
 
-Contact sales@phonefarm.fun with your node count, target Android version, and shipping country for a sizing recommendation.`,
+Contact ${CONTACT.email} with your node count, target Android version, and shipping country for a sizing recommendation.`,
   },
   {
     slug: "real-device-vs-cloud-phone",
@@ -73,7 +75,7 @@ Enable USB debugging on each device, install test APKs, and configure your autom
 **Step 5: First test run**
 Execute a simple test script across all nodes. Monitor temperature and connection stability over 24 hours before production workloads.
 
-Need setup help? Contact us via WhatsApp or sales@phonefarm.fun for remote handoff support.`,
+Need setup help? Contact us via WhatsApp or ${CONTACT.email} for remote handoff support.`,
   },
   {
     slug: "motherboard-box-vs-phone-box",
@@ -150,7 +152,7 @@ Factory-assembled chassis, power, cooling, and USB routing from Guangzhou. Buyer
 **What we do not promise**
 Passive income schemes, account farming guarantees, or cloud phone subscriptions. Evaluate ROI based on your testing or operations model — not generic online claims.
 
-Contact sales@phonefarm.fun with your use case for sizing guidance.`,
+Contact ${CONTACT.email} with your use case for sizing guidance.`,
   },
   {
     slug: "creator-studio-device-farm-setup",
@@ -209,7 +211,7 @@ PhoneFarm Fun supplies hardware configured for your model list. Software groupin
 **Factory process**
 We confirm tray spacing, port routing, and burn-in checklist before assembly. Model-specific product photos in our catalog show representative configurations — your order is built to the device list you provide.
 
-Browse compatible model examples on the homepage or contact sales@phonefarm.fun.`,
+Browse compatible model examples on the homepage or contact ${CONTACT.email}.`,
   },
   {
     slug: "remote-device-lab-management",
@@ -274,7 +276,7 @@ PhoneFarm Fun hardware ships from Guangzhou with export packing. Lead time for i
 **Pre-shipment testing**
 Factory burn-in under load catches weak PSU rails and fan failures before export.
 
-For rack projects above 40 nodes, contact sales@phonefarm.fun with your floor plan, device list, and expected duty cycle for an engineering proposal.`,
+For rack projects above 40 nodes, contact ${CONTACT.email} with your floor plan, device list, and expected duty cycle for an engineering proposal.`,
   },
 ];
 

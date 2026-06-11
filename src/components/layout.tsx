@@ -19,7 +19,7 @@ export function Footer() {
           <p className="text-zinc-400 text-sm mb-4 leading-relaxed max-w-xs">
             Factory-built phone farm boxes, motherboard arrays, and rack hardware from Guangzhou — real Android devices for QA and automation labs.
           </p>
-          <a href={`mailto:${CONTACT.email}`} className="text-sm text-[var(--accent)] hover:underline font-medium">
+          <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-[var(--accent)] hover:underline font-medium">
             {CONTACT.email}
           </a>
         </div>
@@ -43,6 +43,8 @@ export function Footer() {
             <li><Link href="/faq" className="hover:text-[var(--accent)]">FAQ</Link></li>
             <li><Link href="/about" className="hover:text-[var(--accent)]">About Factory</Link></li>
             <li><Link href="/contact" className="hover:text-[var(--accent)]">Contact Sales</Link></li>
+            <li><Link href="/terms" className="hover:text-[var(--accent)]">Terms of Use</Link></li>
+            <li><Link href="/privacy" className="hover:text-[var(--accent)]">Privacy Policy</Link></li>
           </ul>
         </div>
         <div>
@@ -59,7 +61,7 @@ export function Footer() {
               </a>
             </li>
             <li>
-              <a href={`mailto:${CONTACT.email}`} className="hover:text-[var(--accent)]">
+              <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="hover:text-[var(--accent)]">
                 <ContactLinkLabel kind="email">{CONTACT.email}</ContactLinkLabel>
               </a>
             </li>

@@ -19,6 +19,11 @@ const FAQ_CATEGORIES = [
     indices: [0, 1, 2, 3, 4, 5, 6],
   },
   {
+    title: "Customization & Setup",
+    description: "Custom hardware, remote control, and lab management configuration.",
+    indices: [7, 8, 9],
+  },
+  {
     title: "Ordering & Payment",
     description: "MOQ, samples, and payment methods.",
     indices: [11, 12, 14],
@@ -29,14 +34,19 @@ const FAQ_CATEGORIES = [
     indices: [10, 13],
   },
   {
-    title: "Customization",
-    description: "Custom hardware and remote operation options.",
-    indices: [7, 8],
+    title: "Workflows & Use Cases",
+    description: "Creator studios, group control, profitability, and e-commerce testing.",
+    indices: [16, 18, 19, 24],
   },
   {
-    title: "Setup & Support",
-    description: "Lab management setup and contacting sales.",
-    indices: [9, 15],
+    title: "Software & Compatibility",
+    description: "Device management tools, Samsung models, and Android vs iPhone labs.",
+    indices: [17, 20, 21],
+  },
+  {
+    title: "Support & Trust",
+    description: "Contacting sales, warranty, and factory-direct supply.",
+    indices: [15, 22, 23],
   },
 ] as const;
 

@@ -22,8 +22,8 @@ const CHANNELS = [
     kind: "email" as const,
     title: "Email",
     label: CONTACT.email,
-    href: `mailto:${CONTACT.email}`,
-    external: false,
+    href: CONTACT.emailUrl,
+    external: true,
   },
 ] as const;
 

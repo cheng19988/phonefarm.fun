@@ -40,7 +40,7 @@ export default async function ContactPage({ searchParams }: Props) {
                   <div>
                     <dt className="eyebrow !mb-1 !text-zinc-500">Email</dt>
                     <dd>
-                      <a href={`mailto:${CONTACT.email}`} className="text-base md:text-lg font-semibold text-[var(--accent)] hover:text-[var(--accent-hover)]">
+                      <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="text-base md:text-lg font-semibold text-[var(--accent)] hover:text-[var(--accent-hover)]">
                         {CONTACT.email}
                       </a>
                     </dd>

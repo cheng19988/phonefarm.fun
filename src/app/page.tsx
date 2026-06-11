@@ -207,6 +207,7 @@ export default async function HomePage() {
                     <tr>
                       <th>Capability</th>
                       <th className="bg-orange-50 text-[var(--accent)]">{SITE.name}</th>
+                      <th>Typical alternatives</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -214,6 +215,7 @@ export default async function HomePage() {
                       <tr key={row.label}>
                         <td className="font-medium text-zinc-900">{row.label}</td>
                         <td className="bg-orange-50/50 text-zinc-800">{row.us}</td>
+                        <td className="text-zinc-600">{row.them}</td>
                       </tr>
                     ))}
                   </tbody>
