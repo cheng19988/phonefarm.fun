@@ -5,7 +5,7 @@ import { PRODUCT_SEEDS } from "@/data/products";
 import { SERVICES } from "@/data/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/products", "/services", "/about", "/faq", "/contact", "/blog", "/privacy", "/terms"].map(
+  const staticPages = ["", "/products", "/services", "/about", "/faq", "/contact", "/blog", "/privacy", "/terms", "/shipping", "/warranty", "/compare"].map(
     (path) => ({
       url: `${SITE.url}${path}`,
       lastModified: new Date(),

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ContactCTA } from "@/components/shared";
+import { CertBadgeStrip, CaseStudyCards } from "@/components/trust-sections";
 import { buildMetadata } from "@/lib/seo";
 import { IMAGES } from "@/lib/images";
 import { CONTACT, SITE } from "@/lib/config";
@@ -33,6 +34,8 @@ const WORKFLOW = [
   { step: "4", title: "Pack & ship", desc: "Export packaging from Guangzhou via express or sea freight." },
   { step: "5", title: "Remote setup support", desc: "Optional ADB and workstation configuration after delivery." },
 ];
+
+const FACTORY_GALLERY_EXTRA = IMAGES.factoryGallery.slice(0, 4);
 
 export default function AboutPage() {
   return (
@@ -88,6 +91,16 @@ export default function AboutPage() {
           </div>
 
           <div>
+            <SectionHeader title="Quality & Compliance" subtitle="Factory QC, export packaging, and compliance marks for international B2B buyers." large />
+            <div className="mb-8">
+              <CertBadgeStrip />
+            </div>
+            <p className="text-sm text-zinc-500 max-w-2xl">
+              Units are burn-in tested before foam packing. Share your destination country on the contact form for freight and clearance guidance.
+            </p>
+          </div>
+
+          <div>
             <SectionHeader title="Workshop & Assembly" subtitle="Photos from our Guangzhou facility — assembly, testing, packing, and rack configuration." large />
             <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
               {WORKSHOP_PHOTOS.map((photo) => (
@@ -102,6 +115,18 @@ export default function AboutPage() {
                 </figure>
               ))}
             </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mt-8">
+              {FACTORY_GALLERY_EXTRA.map((src, i) => (
+                <div key={src} className="relative aspect-[4/3] rounded-xl overflow-hidden border border-zinc-200">
+                  <Image src={src} alt={`Guangzhou factory floor ${i + 1}`} fill className="object-cover" sizes="200px" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <SectionHeader title="Representative projects" subtitle="Anonymized B2B deployments using PhoneFarm Fun hardware." large />
+            <CaseStudyCards />
           </div>
 
           <div className="catalog-section-band">

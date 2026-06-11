@@ -22,6 +22,13 @@ import {
   WHY_CHOOSE,
 } from "@/data/use-cases";
 import { SITE, CONTACT } from "@/lib/config";
+import {
+  CaseStudyCards,
+  CertBadgeStrip,
+  ClientLogoWall,
+  TestimonialStrip,
+  TrustSectionLinks,
+} from "@/components/trust-sections";
 
 const FEATURED_SLUGS = ["phone-farm-box", "motherboard-box", "custom-cabinet"] as const;
 
@@ -221,6 +228,9 @@ export default async function HomePage() {
                   </tbody>
                 </table>
               </div>
+              <Link href="/compare" className="inline-block mt-3 text-sm font-semibold text-[var(--accent)] hover:underline">
+                Full 4-way comparison →
+              </Link>
             </div>
           </div>
         </div>
@@ -358,6 +368,52 @@ export default async function HomePage() {
                     );
                   })}
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust — certifications, segments, cases, reviews */}
+      <section className="section section-band--white">
+        <div className="container-wide space-y-14 md:space-y-16">
+          <div className="text-center max-w-2xl mx-auto">
+            <SectionHead
+              eyebrow="Factory trust"
+              title="Built in Guangzhou, Shipped Worldwide"
+              subtitle="Quality badges, B2B deployment segments, and representative lab projects — factory photos replace video walkthroughs for procurement review."
+              center
+            />
+            <div className="mt-8">
+              <CertBadgeStrip />
+            </div>
+          </div>
+
+          <div>
+            <SectionHead
+              eyebrow="Who we build for"
+              title="B2B Device Lab Segments"
+              subtitle="Our chassis mark represents the hardware layer — QA labs, automation teams, and ops groups running real Android silicon."
+              center
+            />
+            <div className="mt-8">
+              <ClientLogoWall />
+            </div>
+          </div>
+
+          <div>
+            <SectionHead eyebrow="Case studies" title="Representative Deployments" subtitle="Anonymized B2B projects — hardware scope and outcomes." />
+            <div className="mt-8">
+              <CaseStudyCards />
+            </div>
+          </div>
+
+          <div>
+            <SectionHead eyebrow="Client feedback" title="What Lab Teams Say" center />
+            <div className="mt-8">
+              <TestimonialStrip />
+            </div>
+            <div className="mt-6 flex justify-center">
+              <TrustSectionLinks />
             </div>
           </div>
         </div>

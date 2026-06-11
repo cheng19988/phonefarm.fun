@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { buildMetadata } from "@/lib/seo";
 import { CONTACT, SITE } from "@/lib/config";
 
@@ -21,9 +22,16 @@ export default function TermsPage() {
           <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">{CONTACT.email}</a>. Credit card and automated PayPal checkout are not available on this website.
         </p>
         <h2 id="shipping">Shipping</h2>
-        <p>International shipping is available worldwide. Delivery times vary by method (express 3–7 days, sea freight 15–30 days). Import duties and taxes are the buyer&apos;s responsibility.</p>
+        <p>
+          International shipping is available worldwide. See our dedicated{" "}
+          <Link href="/shipping" className="text-[var(--accent)] hover:underline">shipping &amp; freight estimates</Link>{" "}
+          page for methods, reference USD costs, and receiving instructions.
+        </p>
         <h2 id="warranty">Warranty</h2>
-        <p>Hardware carries a 12-month warranty against manufacturing defects. Misuse, unauthorized modifications, and normal wear are excluded.</p>
+        <p>
+          Hardware carries a 12-month warranty against manufacturing defects. Full DOA, returns, and RMA details are on our{" "}
+          <Link href="/warranty" className="text-[var(--accent)] hover:underline">warranty policy</Link> page.
+        </p>
         <h2>Contact</h2>
         <p>
           Questions about these terms:{" "}

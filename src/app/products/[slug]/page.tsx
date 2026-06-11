@@ -174,6 +174,13 @@ export default async function ProductDetailPage({ params }: Props) {
                 subtitle="Hardware parameters for procurement review. Configurable values confirmed before production."
               >
                 <SpecTable specs={specs} large />
+                <Link
+                  href={`/products/${slug}/spec-sheet`}
+                  target="_blank"
+                  className="inline-flex items-center gap-2 mt-5 text-sm font-semibold text-[var(--accent)] hover:underline"
+                >
+                  Download spec sheet (PDF) →
+                </Link>
               </DetailSection>
 
               <DetailSection

@@ -67,7 +67,7 @@ export function FloatingContact() {
 
       {/* Desktop — vertical dock */}
       <aside className="floating-contact-dock hidden md:flex" aria-label="Contact sales">
-        <p className="floating-contact-dock-label">Sales</p>
+        <p className="floating-contact-dock-label">Live chat</p>
         <div className="flex flex-col gap-4">
           {CHANNELS.map((item) => (
             <ChannelIconLink key={item.kind} item={item} size="xl" />

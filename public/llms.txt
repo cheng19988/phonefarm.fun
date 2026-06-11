@@ -46,6 +46,9 @@ Creator & content studio; digital marketing labs; e-commerce operations; develop
 - Guides: https://phonefarm.fun/blog
 - Contact: https://phonefarm.fun/contact
 - About: https://phonefarm.fun/about
+- Shipping: https://phonefarm.fun/shipping
+- Warranty: https://phonefarm.fun/warranty
+- Compare: https://phonefarm.fun/compare
 
 ## Order flow
 Browse catalog → product detail → add to cart / request quote → register/login → USDT TRC20 checkout (30 min window) or contact sales for invoice.

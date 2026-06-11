@@ -43,6 +43,7 @@ export default async function ContactPage({ searchParams }: Props) {
                       <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="text-base md:text-lg font-semibold text-[var(--accent)] hover:text-[var(--accent-hover)]">
                         {CONTACT.email}
                       </a>
+                      <p className="text-sm text-zinc-500 mt-1">Official B2B sales inbox — opens Gmail compose</p>
                     </dd>
                   </div>
                   <div>

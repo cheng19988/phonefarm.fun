@@ -41,11 +41,12 @@ export function Footer() {
             <li><Link href="/services" className="hover:text-[var(--accent)]">Services</Link></li>
             <li><Link href="/blog" className="hover:text-[var(--accent)]">Guides &amp; Blog</Link></li>
             <li><Link href="/faq" className="hover:text-[var(--accent)]">FAQ</Link></li>
+            <li><Link href="/compare" className="hover:text-[var(--accent)]">Hardware Comparison</Link></li>
             <li><Link href="/about" className="hover:text-[var(--accent)]">About Factory</Link></li>
             <li><Link href="/contact" className="hover:text-[var(--accent)]">Contact Sales</Link></li>
+            <li><Link href="/shipping" className="hover:text-[var(--accent)]">Shipping &amp; Freight</Link></li>
+            <li><Link href="/warranty" className="hover:text-[var(--accent)]">Warranty &amp; Returns</Link></li>
             <li><Link href="/terms" className="hover:text-[var(--accent)]">Terms of Use</Link></li>
-            <li><Link href="/terms#shipping" className="hover:text-[var(--accent)]">Shipping Policy</Link></li>
-            <li><Link href="/terms#warranty" className="hover:text-[var(--accent)]">Warranty</Link></li>
             <li><Link href="/privacy" className="hover:text-[var(--accent)]">Privacy Policy</Link></li>
           </ul>
         </div>
