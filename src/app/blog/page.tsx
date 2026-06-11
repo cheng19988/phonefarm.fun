@@ -46,27 +46,27 @@ export default function BlogPage() {
                 href={`/blog/${post.slug}`}
                 className="card product-card-heavy overflow-hidden hover:border-orange-200 transition-all group flex flex-col md:min-h-[280px]"
               >
-                <div className="relative aspect-[16/10] md:aspect-[2/1] bg-slate-50 overflow-hidden">
+                <div className="relative aspect-[16/10] md:aspect-[2/1] bg-zinc-50 overflow-hidden">
                   <Image
                     src={BLOG_IMAGES[post.slug] ?? IMAGES.phoneFarmBox.card}
-                    alt=""
+                    alt={post.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                     sizes="(max-width:768px) 100vw, 40vw"
                   />
                 </div>
                 <div className="p-6 md:p-8 flex flex-col flex-1">
-                  <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm text-slate-500 mb-3">
+                  <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm text-zinc-500 mb-3">
                     <span className="text-orange-600 font-semibold">{post.category}</span>
                     <span>·</span>
                     <span>{post.date}</span>
                     <span>·</span>
                     <span>{readingTime(post.content)} min read</span>
                   </div>
-                  <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900 group-hover:text-orange-600 transition-colors leading-snug mb-3">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-zinc-900 group-hover:text-orange-600 transition-colors leading-snug mb-3">
                     {post.title}
                   </h2>
-                  <p className="text-sm md:text-base text-slate-600 line-clamp-3 flex-1 leading-relaxed">{post.excerpt}</p>
+                  <p className="text-sm md:text-base text-zinc-600 line-clamp-3 flex-1 leading-relaxed">{post.excerpt}</p>
                 </div>
               </Link>
             ))}

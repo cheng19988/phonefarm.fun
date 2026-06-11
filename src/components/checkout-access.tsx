@@ -20,30 +20,30 @@ export function CheckoutAccess({
         <div className="container-wide max-w-3xl space-y-8">
           {lines.length > 0 ? (
             <div className="card p-6 md:p-8">
-              <h2 className="text-xl font-bold text-slate-900 mb-5">Order summary</h2>
+              <h2 className="text-xl font-bold text-zinc-900 mb-5">Order summary</h2>
               <div className="space-y-4 mb-6">
                 {lines.map((line) => (
                   <div
                     key={`${line.type}-${line.slug}`}
-                    className="flex justify-between text-base gap-4 py-2 border-b border-slate-100 last:border-0"
+                    className="flex justify-between text-base gap-4 py-2 border-b border-zinc-100 last:border-0"
                   >
-                    <span className="text-slate-700">
+                    <span className="text-zinc-700">
                       {line.name} × {line.quantity}
                     </span>
-                    <span className="text-slate-900 font-semibold shrink-0">
+                    <span className="text-zinc-900 font-semibold shrink-0">
                       ${(line.priceUsd * line.quantity).toLocaleString()}
                     </span>
                   </div>
                 ))}
               </div>
-              <div className="flex justify-between items-center pt-5 border-t border-slate-200">
-                <span className="text-lg font-bold text-slate-900">Total (USD reference)</span>
+              <div className="flex justify-between items-center pt-5 border-t border-zinc-200">
+                <span className="text-lg font-bold text-zinc-900">Total (USD reference)</span>
                 <PriceDisplay amount={total} size="lg" />
               </div>
             </div>
           ) : (
             <div className="card p-6 md:p-8 text-center">
-              <p className="text-slate-600 text-base mb-2">Your cart is empty or has no purchasable items.</p>
+              <p className="text-zinc-600 text-base mb-2">Your cart is empty or has no purchasable items.</p>
               <Link href="/products" className="text-orange-600 font-medium hover:text-orange-500">
                 Browse products →
               </Link>
@@ -57,7 +57,7 @@ export function CheckoutAccess({
             <Link href="/cart" className="btn-outline w-full text-center block py-3.5 text-base min-h-[44px] leading-[44px]">
               Back to Cart
             </Link>
-            <p className="text-center text-sm text-slate-500 pt-2">
+            <p className="text-center text-sm text-zinc-500 pt-2">
               Need a custom rack or mixed SKU quote?{" "}
               <Link href="/contact" className="text-orange-600 font-medium hover:text-orange-500">
                 Request Custom Quote

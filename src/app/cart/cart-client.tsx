@@ -62,13 +62,12 @@ export default function CartPageClient() {
   if (loading) return <CartLoadingSkeleton />;
 
   return (
-    <div className="section">
+    <div className="section pt-8 md:pt-10">
       <div className="container-wide max-w-4xl">
-        <h1 className="section-title">Shopping Cart</h1>
         {lines.length === 0 ? (
           <div className="card p-10 md:p-14 text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">Your cart is empty</h2>
-            <p className="text-base text-slate-500 mb-8 max-w-md mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-zinc-900 mb-3">Your cart is empty</h2>
+            <p className="text-base text-zinc-500 mb-8 max-w-md mx-auto">
               Browse phone farm boxes or request a custom quote.
             </p>
             <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-3">
@@ -87,18 +86,18 @@ export default function CartPageClient() {
                 <div key={`${line.type}-${line.slug}`} className="card p-5 md:p-6">
                   <div className="flex flex-col sm:flex-row gap-5">
                     {line.image && (
-                      <div className="relative w-full sm:w-36 md:w-44 h-48 sm:h-36 md:h-44 rounded-xl overflow-hidden shrink-0 bg-slate-50 border border-slate-200">
+                      <div className="relative w-full sm:w-36 md:w-44 h-48 sm:h-36 md:h-44 rounded-xl overflow-hidden shrink-0 bg-zinc-50 border border-zinc-200">
                         <Image src={line.image} alt={line.name} fill className="object-cover" sizes="176px" />
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
                       <Link
                         href={line.type === "product" ? `/products/${line.slug}` : `/services/${line.slug}`}
-                        className="font-semibold text-lg text-slate-900 hover:text-orange-600 line-clamp-2"
+                        className="font-semibold text-lg text-zinc-900 hover:text-orange-600 line-clamp-2"
                       >
                         {line.name}
                       </Link>
-                      <p className="text-sm text-slate-500 capitalize mt-1">{line.type}</p>
+                      <p className="text-sm text-zinc-500 capitalize mt-1">{line.type}</p>
                       {!line.purchasable && (
                         <p className="text-sm text-amber-800 mt-3 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 inline-block">
                           Requires quote — remove to checkout other items
@@ -107,12 +106,12 @@ export default function CartPageClient() {
                       <div className="flex flex-wrap items-center justify-between gap-4 mt-5">
                         <div className="flex items-center gap-3">
                           <button type="button" className="btn-outline px-4 py-2 text-base min-w-[44px] min-h-[44px]" onClick={() => updateQty(line.type, line.slug, line.quantity - 1)} aria-label="Decrease quantity">−</button>
-                          <span className="text-slate-900 w-10 text-center font-semibold text-lg">{line.quantity}</span>
+                          <span className="text-zinc-900 w-10 text-center font-semibold text-lg">{line.quantity}</span>
                           <button type="button" className="btn-outline px-4 py-2 text-base min-w-[44px] min-h-[44px]" onClick={() => updateQty(line.type, line.slug, line.quantity + 1)} aria-label="Increase quantity">+</button>
                         </div>
                         <PriceDisplay amount={line.priceUsd * line.quantity} size="md" />
                       </div>
-                      <button type="button" onClick={() => remove(line.type, line.slug)} className="text-sm text-slate-500 hover:text-red-600 mt-4">
+                      <button type="button" onClick={() => remove(line.type, line.slug)} className="text-sm text-zinc-500 hover:text-red-600 mt-4">
                         Remove
                       </button>
                     </div>
@@ -122,7 +121,7 @@ export default function CartPageClient() {
             </div>
             <div className="card p-6 md:p-8 space-y-5">
               <div className="flex justify-between items-center">
-                <span className="text-xl font-bold text-slate-900">Total (USD)</span>
+                <span className="text-xl font-bold text-zinc-900">Total (USD)</span>
                 <PriceDisplay amount={total} size="lg" />
               </div>
               <Link href="/checkout" className="btn-primary w-full text-center block py-3.5 text-base min-h-[44px] leading-[44px]">

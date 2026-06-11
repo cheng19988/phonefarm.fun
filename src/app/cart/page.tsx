@@ -1,4 +1,5 @@
 import { buildMetadata } from "@/lib/seo";
+import { PageHero } from "@/components/store";
 import CartPageClient from "./cart-client";
 
 export const metadata = buildMetadata({
@@ -9,5 +10,10 @@ export const metadata = buildMetadata({
 });
 
 export default function CartPage() {
-  return <CartPageClient />;
+  return (
+    <>
+      <PageHero title="Shopping Cart" subtitle="Review hardware and services before checkout." compact />
+      <CartPageClient />
+    </>
+  );
 }

@@ -20,9 +20,9 @@ export default function TermsPage() {
           All prices are listed in USD. Online checkout accepts USDT (TRC20) payment at the amount shown on your order page, within the stated time window. Orders expire if payment is not received in time. Bank transfer (T/T), Wise, and PayPal are available by manual invoice — contact{" "}
           <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">{CONTACT.email}</a>. Credit card and automated PayPal checkout are not available on this website.
         </p>
-        <h2>Shipping</h2>
+        <h2 id="shipping">Shipping</h2>
         <p>International shipping is available worldwide. Delivery times vary by method (express 3–7 days, sea freight 15–30 days). Import duties and taxes are the buyer&apos;s responsibility.</p>
-        <h2>Warranty</h2>
+        <h2 id="warranty">Warranty</h2>
         <p>Hardware carries a 12-month warranty against manufacturing defects. Misuse, unauthorized modifications, and normal wear are excluded.</p>
         <h2>Contact</h2>
         <p>

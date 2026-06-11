@@ -329,7 +329,7 @@ export function FormSelect(props: React.SelectHTMLAttributes<HTMLSelectElement>)
   return (
     <select
       {...props}
-      className={`w-full bg-white border border-slate-300 rounded-lg px-4 py-3 text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 text-base ${props.className ?? ""}`}
+      className={`w-full bg-white border border-zinc-300 rounded-lg px-4 py-3 text-zinc-900 focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 text-base ${props.className ?? ""}`}
     />
   );
 }
@@ -358,10 +358,10 @@ export function LoadingBlock({ label = "Loading..." }: { label?: string }) {
     <div className="section">
       <div className="container-wide max-w-3xl">
         <div className="card p-8 animate-pulse space-y-4">
-          <div className="h-6 bg-slate-200 rounded w-1/3" />
-          <div className="h-4 bg-slate-100 rounded w-full" />
-          <div className="h-4 bg-slate-100 rounded w-2/3" />
-          <p className="text-sm text-slate-500 pt-2">{label}</p>
+          <div className="h-6 bg-zinc-200 rounded w-1/3" />
+          <div className="h-4 bg-zinc-100 rounded w-full" />
+          <div className="h-4 bg-zinc-100 rounded w-2/3" />
+          <p className="text-sm text-zinc-500 pt-2">{label}</p>
         </div>
       </div>
     </div>
@@ -372,26 +372,26 @@ export function CartLoadingSkeleton() {
   return (
     <div className="section">
       <div className="container-wide max-w-4xl">
-        <div className="h-9 bg-slate-200 rounded w-48 mb-8 animate-pulse" />
+        <div className="h-9 bg-zinc-200 rounded w-48 mb-8 animate-pulse" />
         <div className="space-y-5">
           {[1, 2].map((i) => (
             <div key={i} className="card p-5 md:p-6 animate-pulse">
               <div className="flex flex-col sm:flex-row gap-5">
-                <div className="w-full sm:w-36 h-48 sm:h-36 bg-slate-100 rounded-xl" />
+                <div className="w-full sm:w-36 h-48 sm:h-36 bg-zinc-100 rounded-xl" />
                 <div className="flex-1 space-y-4">
-                  <div className="h-6 bg-slate-200 rounded w-3/4" />
-                  <div className="h-4 bg-slate-100 rounded w-1/4" />
-                  <div className="h-10 bg-slate-100 rounded w-32" />
+                  <div className="h-6 bg-zinc-200 rounded w-3/4" />
+                  <div className="h-4 bg-zinc-100 rounded w-1/4" />
+                  <div className="h-10 bg-zinc-100 rounded w-32" />
                 </div>
               </div>
             </div>
           ))}
         </div>
         <div className="card p-6 md:p-8 mt-10 animate-pulse space-y-4">
-          <div className="h-6 bg-slate-200 rounded w-1/3" />
-          <div className="h-12 bg-slate-100 rounded w-full" />
+          <div className="h-6 bg-zinc-200 rounded w-1/3" />
+          <div className="h-12 bg-zinc-100 rounded w-full" />
         </div>
-        <p className="text-sm text-slate-500 text-center mt-6">Loading your hardware cart...</p>
+        <p className="text-sm text-zinc-500 text-center mt-6">Loading your hardware cart...</p>
       </div>
     </div>
   );

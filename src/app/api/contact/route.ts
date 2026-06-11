@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { formatContactSubmission, notifyTelegram } from "@/lib/notify";
 
 export async function POST(req: NextRequest) {
   const form = await req.formData();
@@ -18,5 +19,6 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Name and email required" }, { status: 400 });
   }
   await prisma.contactSubmission.create({ data });
+  void notifyTelegram(formatContactSubmission(data));
   return NextResponse.json({ ok: true });
 }

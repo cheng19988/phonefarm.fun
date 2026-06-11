@@ -10,8 +10,8 @@ export function renderSimpleMarkdown(content: string) {
     if (trimmed.startsWith("```")) {
       const code = trimmed.replace(/^```\n?/, "").replace(/\n?```$/, "");
       return (
-        <pre key={bi} className="bg-slate-100 border border-slate-200 rounded-lg p-4 text-sm overflow-x-auto mb-4">
-          <code className="text-slate-800 font-mono whitespace-pre-wrap break-words">{code}</code>
+        <pre key={bi} className="bg-zinc-100 border border-zinc-200 rounded-lg p-4 text-sm overflow-x-auto mb-4">
+          <code className="text-zinc-800 font-mono whitespace-pre-wrap break-words">{code}</code>
         </pre>
       );
     }
@@ -19,7 +19,7 @@ export function renderSimpleMarkdown(content: string) {
     if (/^\*\*[^*]+\*\*$/.test(trimmed)) {
       const heading = trimmed.replace(/^\*\*|\*\*$/g, "");
       return (
-        <h2 key={bi} className="text-xl font-bold text-slate-900 mt-8 mb-3 first:mt-0">
+        <h2 key={bi} className="text-xl font-bold text-zinc-900 mt-8 mb-3 first:mt-0">
           {heading}
         </h2>
       );
@@ -28,7 +28,7 @@ export function renderSimpleMarkdown(content: string) {
     if (/^-\s/.test(trimmed)) {
       const items = trimmed.split("\n").filter((l) => l.startsWith("- "));
       return (
-        <ul key={bi} className="list-disc list-inside text-slate-600 space-y-2 mb-4 ml-1">
+        <ul key={bi} className="list-disc list-inside text-zinc-600 space-y-2 mb-4 ml-1">
           {items.map((item, i) => (
             <li key={i}>{formatInline(item.replace(/^-\s*/, ""))}</li>
           ))}
@@ -37,7 +37,7 @@ export function renderSimpleMarkdown(content: string) {
     }
 
     return (
-      <p key={bi} className="text-slate-600 leading-relaxed mb-4">
+      <p key={bi} className="text-zinc-600 leading-relaxed mb-4">
         {formatInline(trimmed)}
       </p>
     );
@@ -48,10 +48,10 @@ function formatInline(text: string) {
   const parts = text.split(/(\*\*[^*]+\*\*|`[^`]+`|\[[^\]]+\]\([^)]+\))/g);
   return parts.map((part, i) => {
     if (part.startsWith("**") && part.endsWith("**")) {
-      return <strong key={i} className="font-semibold text-slate-900">{part.slice(2, -2)}</strong>;
+      return <strong key={i} className="font-semibold text-zinc-900">{part.slice(2, -2)}</strong>;
     }
     if (part.startsWith("`") && part.endsWith("`")) {
-      return <code key={i} className="bg-slate-100 px-1.5 py-0.5 rounded text-sm font-mono text-slate-800">{part.slice(1, -1)}</code>;
+      return <code key={i} className="bg-zinc-100 px-1.5 py-0.5 rounded text-sm font-mono text-zinc-800">{part.slice(1, -1)}</code>;
     }
     const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (linkMatch) {

@@ -111,8 +111,15 @@ export default function AboutPage() {
 
           <div className="detail-section max-w-3xl">
             <p className="font-semibold text-zinc-900 mb-3">Contact the team</p>
-            <p>Telegram: {CONTACT.telegram} · WhatsApp: {CONTACT.whatsapp}</p>
-            <p className="mt-2">Email: {CONTACT.email} · {SITE.location}</p>
+            <p>
+              <a href={CONTACT.telegramUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">Telegram {CONTACT.telegram}</a>
+              {" · "}
+              <a href={CONTACT.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">WhatsApp {CONTACT.whatsapp}</a>
+            </p>
+            <p className="mt-2">
+              <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] hover:underline">{CONTACT.email}</a>
+              {" · "}{SITE.location}
+            </p>
           </div>
 
           <ContactCTA title="Discuss Your Device Lab Requirements" />

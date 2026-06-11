@@ -50,6 +50,13 @@ const FAQ_CATEGORIES = [
   },
 ] as const;
 
+const FAQ_COVERED = FAQ_CATEGORIES.flatMap((cat) => cat.indices);
+if (new Set(FAQ_COVERED).size !== FAQ_ITEMS.length) {
+  throw new Error(
+    `FAQ page categories must cover all ${FAQ_ITEMS.length} items (currently ${new Set(FAQ_COVERED).size})`,
+  );
+}
+
 export default function FAQPage() {
   return (
     <>

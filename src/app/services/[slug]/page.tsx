@@ -60,7 +60,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
           <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 mb-16">
             <div className="lg:col-span-7">
-              <div className="relative aspect-[16/10] lg:aspect-[4/3] rounded-2xl lg:rounded-3xl overflow-hidden bg-slate-50 border border-slate-200 shadow-lg">
+              <div className="relative aspect-[16/10] lg:aspect-[4/3] rounded-2xl lg:rounded-3xl overflow-hidden bg-zinc-50 border border-zinc-200 shadow-lg">
                 <Image src={service.image} alt={service.title} fill className="object-cover" priority sizes="(max-width:1024px) 100vw, 58vw" />
               </div>
             </div>
@@ -69,17 +69,17 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <p className="text-orange-600 text-sm font-semibold uppercase tracking-wide mb-2">
                   {quoteOnly ? "Quote-based service" : "Fixed-price service"}
                 </p>
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-4 leading-tight">{service.title}</h1>
-                <p className="text-base md:text-lg text-slate-600 mb-4 leading-relaxed">{service.description}</p>
-                <p className="text-sm md:text-base text-slate-500 mb-6">Timeline: {service.timeline}</p>
+                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-zinc-900 mb-4 leading-tight">{service.title}</h1>
+                <p className="text-base md:text-lg text-zinc-600 mb-4 leading-relaxed">{service.description}</p>
+                <p className="text-sm md:text-base text-zinc-500 mb-6">Timeline: {service.timeline}</p>
                 {quoteOnly ? (
-                  <p className="text-2xl md:text-3xl font-bold text-slate-900 mb-8">Custom quote required</p>
+                  <p className="text-2xl md:text-3xl font-bold text-zinc-900 mb-8">Custom quote required</p>
                 ) : (
                   <div className="mb-8"><PriceDisplay amount={service.priceUsd} size="xl" /></div>
                 )}
                 <ServiceBuyButtons slug={service.slug} priceUsd={service.priceUsd} />
-                <div className="mt-6 p-4 md:p-5 rounded-xl bg-slate-50 border border-slate-200 text-sm">
-                  <p className="font-semibold text-slate-900 mb-2">Sales contact</p>
+                <div className="mt-6 p-4 md:p-5 rounded-xl bg-zinc-50 border border-zinc-200 text-sm">
+                  <p className="font-semibold text-zinc-900 mb-2">Sales contact</p>
                   <ContactBar />
                 </div>
               </div>
@@ -91,7 +91,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               <SectionHeader title="Deliverables" />
               <ul className="grid sm:grid-cols-1 gap-4">
                 {service.deliverables.map((d) => (
-                  <li key={d} className="card p-5 text-sm md:text-base text-slate-600 leading-relaxed">{d}</li>
+                  <li key={d} className="card p-5 text-sm md:text-base text-zinc-600 leading-relaxed">{d}</li>
                 ))}
               </ul>
             </section>

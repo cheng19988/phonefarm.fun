@@ -47,17 +47,17 @@ export default async function BlogPostPage({ params }: Props) {
             { label: "Blog", href: "/blog" },
             { label: post.title },
           ]} />
-          <div className="flex flex-wrap items-center gap-2 text-sm text-slate-500 mb-4">
+          <div className="flex flex-wrap items-center gap-2 text-sm text-zinc-500 mb-4">
             <span className="text-orange-600 font-medium">{post.category}</span>
             <span>·</span>
             <time dateTime={post.date}>{post.date}</time>
             <span>·</span>
             <span>{readingTime(post.content)} min read</span>
           </div>
-          <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-slate-900 leading-tight mb-5 tracking-tight">{post.title}</h1>
-          <p className="text-lg md:text-xl text-slate-600 mb-10 md:mb-12 leading-relaxed border-b border-slate-200 pb-8 md:pb-10">{post.excerpt}</p>
+          <h1 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-zinc-900 leading-tight mb-5 tracking-tight">{post.title}</h1>
+          <p className="text-lg md:text-xl text-zinc-600 mb-10 md:mb-12 leading-relaxed border-b border-zinc-200 pb-8 md:pb-10">{post.excerpt}</p>
           <div className="article-body prose-content text-base md:text-lg">{renderSimpleMarkdown(post.content)}</div>
-          <div className="mt-12 pt-8 border-t border-slate-200">
+          <div className="mt-12 pt-8 border-t border-zinc-200">
             <Link href="/blog" className="text-orange-600 text-sm hover:text-orange-500">← All guides</Link>
           </div>
           <div className="mt-12">
