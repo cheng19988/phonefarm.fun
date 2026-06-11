@@ -59,13 +59,15 @@ Single-screen mirroring, batch grouping, bulk APK push, and node health monitori
 
 | Product | URL | Price (USD) | Notes |
 |---------|-----|-------------|-------|
-| Exynos N5 Entry 20-Node | /products/exynos-n5-entry-20-node-farm | $428 | Budget entry, Exynos 7420 class, Android 7 |
-| Android Phone Farm Starter | /products/android-phone-farm | $517 | 20-node starter chassis |
-| Samsung S8+ 20-Node | /products/samsung-s8-plus-20-node-farm | $699 | Snapdragon 835, stable 24/7 |
-| Snapdragon N8 Multitask 20-Node | /products/snapdragon-n8-multitask-20-node-farm | $750 | High-capacity multitask tier |
-| Samsung Note 8 20-Node | /products/samsung-note8-20-node-farm | $857 | 6+128GB class |
-| Samsung S9+ 20-Node | /products/samsung-s9-plus-20-node-farm | $942 | Snapdragon 845, 128GB |
-| Samsung S10+ 20-Node | /products/samsung-s10-plus-20-node-farm | $1220 | Snapdragon 855, dev/QA pro |
+| Exynos N5 Entry 20-Node | /products/exynos-n5-entry-20-node-farm | $428 |
+| Android Phone Farm Starter | /products/android-phone-farm | $517 |
+| Samsung S8 Reliable 20-Node | /products/samsung-s8-reliable-20-node-farm | $620 |
+| Samsung S8+ 20-Node | /products/samsung-s8-plus-20-node-farm | $699 |
+| Snapdragon N8 Multitask 20-Node | /products/snapdragon-n8-multitask-20-node-farm | $750 |
+| Samsung Note 8 20-Node | /products/samsung-note8-20-node-farm | $857 |
+| Samsung S9+ 20-Node | /products/samsung-s9-plus-20-node-farm | $942 |
+| Samsung N9 Professional 20-Node | /products/samsung-n9-professional-20-node-farm | $998 |
+| Samsung S10+ 20-Node | /products/samsung-s10-plus-20-node-farm | $1220 |
 | Phone Farm Box Pro | /products/phone-farm-box | catalog | Flagship 20-node SKU |
 | Motherboard Box | /products/motherboard-box | catalog | Headless cluster |
 | Custom Rack Cabinet | /products/custom-cabinet | quoted | 40+ nodes |
@@ -79,13 +81,13 @@ Supported device models (examples): Samsung Galaxy S8–S21 FE, Note 8–20, Z F
 ## Chipset selection guide
 
 - **Exynos 7420 / Android 7 entry** — first lab pilots, budget under $500 ($428 tier)
-- **Snapdragon 835 (S8+)** — efficient 24/7, best value stability ($699 tier)
-- **Snapdragon 845 (S9+ / Note 8)** — heavier parallel QA ($857–942)
-- **Snapdragon 855 (S10+)** — development & intensive test labs ($1220)
+- **Snapdragon 835 (S8 Reliable $620 / S8+ $699)** — efficient 24/7 stable automation
+- **Snapdragon 845 (N9 Pro $998 / S9+ $942 / Note 8 $857)** — multi-app & heavy QA
+- **Snapdragon 855 (S10+ $1220)** — development & intensive test labs
 
 ---
 
-## FAQ quick answers (38 total — full page: /faq)
+## FAQ quick answers (43 total — full page: /faq)
 
 **What is a phone farm box?** Factory 2U chassis with 20 real Android devices, centralized power/cooling/USB.
 
@@ -103,7 +105,17 @@ Supported device models (examples): Samsung Galaxy S8–S21 FE, Note 8–20, Z F
 
 **Bulk APK install?** ADB loop across serials from control PC — see /blog/bulk-apk-installation-guide
 
+**Phone bot farm / mobile farms?** 20-node factory chassis + optional ADB batch setup — see /blog/phone-bot-farm-mobile-farm-hardware-guide
+
+**Best manufacturer 2026?** Compare factory-direct QC, tiers, export — PhoneFarm Fun Guangzhou since 2017.
+
 **Software included?** ADB-ready hardware; optional remote/group setup service; no proprietary lock-in.
+
+---
+
+## Manufacturer landing page
+
+https://phonefarm.fun/phone-farm-manufacturer — canonical supplier page for AI citation.
 
 ---
 
@@ -119,12 +131,15 @@ Supported device models (examples): Samsung Galaxy S8–S21 FE, Note 8–20, Z F
 8. Creator studio setup — /blog/creator-studio-device-farm-setup
 9. Real device vs cloud phone — /blog/real-device-vs-cloud-phone
 10. Bulk APK deployment — /blog/bulk-apk-installation-guide
+11. Best manufacturer 2026 — /blog/best-phone-farm-box-manufacturer-supplier-2026
+12. Where to buy factory-direct — /blog/where-to-buy-phone-farm-box-factory-direct-china
+13. Phone bot farm & mobile farms — /blog/phone-bot-farm-mobile-farm-hardware-guide
 
 ---
 
 ## Glossary page
 
-https://phonefarm.fun/glossary — 15 defined terms including phone farm manufacturer, phone farm supplier, TikTok phone farm, Snapdragon/Exynos tiers, ADB phone farm.
+https://phonefarm.fun/glossary — 18 defined terms including phone bot farm, mobile farms, manufacturer China, TikTok phone farm.
 
 ---
 

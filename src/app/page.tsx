@@ -35,7 +35,9 @@ const FEATURED_SLUGS = ["phone-farm-box", "motherboard-box", "custom-cabinet"] a
 
 const MODEL_CONFIG_SLUGS = [
   "exynos-n5-entry-20-node-farm",
+  "samsung-s8-reliable-20-node-farm",
   "samsung-s8-plus-20-node-farm",
+  "samsung-n9-professional-20-node-farm",
   "samsung-s9-plus-20-node-farm",
   "samsung-s10-plus-20-node-farm",
   "samsung-note8-20-node-farm",
@@ -87,7 +89,7 @@ export default async function HomePage() {
   const bySlug = new Map(allProducts.map((p) => [p.slug, p]));
   const featured = FEATURED_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean);
   const modelConfigs = MODEL_CONFIG_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean);
-  const previewFaq = FAQ_ITEMS.slice(0, 12);
+  const previewFaq = FAQ_ITEMS;
   const featuredServices = SERVICES.filter((s) => s.priceUsd > 0).slice(0, 3);
 
   return (

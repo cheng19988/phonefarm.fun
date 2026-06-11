@@ -42,6 +42,7 @@ export function Footer() {
             <li><Link href="/blog" className="hover:text-[var(--accent)]">Guides &amp; Blog</Link></li>
             <li><Link href="/faq" className="hover:text-[var(--accent)]">FAQ</Link></li>
             <li><Link href="/glossary" className="hover:text-[var(--accent)]">Glossary</Link></li>
+            <li><Link href="/phone-farm-manufacturer" className="hover:text-[var(--accent)]">Manufacturer</Link></li>
             <li><Link href="/compare" className="hover:text-[var(--accent)]">Hardware Comparison</Link></li>
             <li><Link href="/about" className="hover:text-[var(--accent)]">About Factory</Link></li>
             <li><Link href="/contact" className="hover:text-[var(--accent)]">Contact Sales</Link></li>

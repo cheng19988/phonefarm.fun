@@ -37,6 +37,9 @@ export const AI_ENTITY = {
     "ADB device farm",
     "bulk APK deployment",
     "remote device lab management",
+    "phone bot farm hardware",
+    "mobile farms solution",
+    "N9 professional phone farm",
     "factory-direct phone farm China",
   ],
   contact: {

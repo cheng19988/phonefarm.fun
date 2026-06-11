@@ -232,6 +232,26 @@ export function definedTermSetJsonLd(terms: { term: string; definition: string; 
   };
 }
 
+export function blogItemListJsonLd(posts: { title: string; slug: string; date: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Phone Farm Hardware Guides",
+    url: `${SITE.url}/blog`,
+    itemListElement: posts.map((post, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${SITE.url}/blog/${post.slug}`,
+      item: {
+        "@type": "BlogPosting",
+        headline: post.title,
+        url: `${SITE.url}/blog/${post.slug}`,
+        datePublished: post.date,
+      },
+    })),
+  };
+}
+
 export function serviceJsonLd(service: {
   title: string;
   description: string;

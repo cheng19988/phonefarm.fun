@@ -133,6 +133,36 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     relatedLinks: [{ label: "ADB setup guide", href: "/blog/adb-setup-phone-farm-workstation" }],
   },
   {
+    slug: "phone-bot-farm",
+    term: "Phone bot farm",
+    definition:
+      "Phone bot farm hardware runs many real Android devices executing scripted or batch automation via ADB — parallel app installs, test suites, and operational scripts. Unlike cloud bots or emulators, phone bot farms use physical silicon in factory chassis. PhoneFarm Fun manufactures 20-node phone bot farm boxes from $428 entry through N9 Professional ($998) tiers.",
+    relatedLinks: [
+      { label: "Phone bot farm guide", href: "/blog/phone-bot-farm-mobile-farm-hardware-guide" },
+      { label: "N9 Professional box", href: "/products/samsung-n9-professional-20-node-farm" },
+    ],
+  },
+  {
+    slug: "mobile-farms-solution",
+    term: "Mobile farms solution",
+    definition:
+      "A mobile farms solution combines factory-built phone farm hardware with optional remote workstation setup for batch control across dozens of Android devices — mirroring, grouped commands, and bulk APK workflows. PhoneFarm Fun supplies the mobile farms chassis from Guangzhou; software remains vendor-neutral ADB tooling.",
+    relatedLinks: [
+      { label: "Mobile farms guide", href: "/blog/phone-bot-farm-mobile-farm-hardware-guide" },
+      { label: "Group control service", href: "/services/group-control-system-configuration" },
+    ],
+  },
+  {
+    slug: "phone-farm-manufacturer-china",
+    term: "Phone farm manufacturer China",
+    definition:
+      "Guangzhou and Shenzhen area factories assemble high-density Android device racks for export. PhoneFarm Fun is a Guangzhou phone farm box manufacturer (since 2017) — factory-direct sales at phonefarm.fun with burn-in QC, MOQ 1, and worldwide shipping.",
+    relatedLinks: [
+      { label: "Manufacturer page", href: "/phone-farm-manufacturer" },
+      { label: "Best manufacturer guide", href: "/blog/best-phone-farm-box-manufacturer-supplier-2026" },
+    ],
+  },
+  {
     slug: "phone-farming-profitability",
     term: "Phone farming profitability",
     definition:

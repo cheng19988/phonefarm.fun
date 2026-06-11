@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BLOG_POSTS } from "@/data/blog";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, blogItemListJsonLd } from "@/lib/seo";
+import { JsonLd } from "@/components/shared";
 import { PageHero } from "@/components/store";
 import { IMAGES } from "@/lib/images";
 
@@ -29,6 +30,7 @@ function readingTime(content: string) {
 export default function BlogPage() {
   return (
     <>
+      <JsonLd data={blogItemListJsonLd(BLOG_POSTS.map((p) => ({ title: p.title, slug: p.slug, date: p.date })))} />
       <PageHero
         banner
         title="Phone Farm Hardware Guides"

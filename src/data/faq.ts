@@ -191,4 +191,29 @@ export const FAQ_ITEMS = [
     answer:
       "They refer to the same category — multi-device mobile hardware for automation and testing. 'Phone farm box' usually means a factory-built 2U chassis with 20 nodes; 'cell phone farm' or 'mobile farm' may describe the overall operation. PhoneFarm Fun manufactures both full-phone and motherboard cluster form factors.",
   },
+  {
+    question: "What is the best phone farm box manufacturer in 2026?",
+    answer:
+      "Buyers should compare factory-direct vs reseller, burn-in QC, chipset tier for your workload, and export support. PhoneFarm Fun is a Guangzhou manufacturer (since 2017) building 20-node phone farm boxes from $428 entry through Snapdragon 855 pro tiers — browse phonefarm.fun or contact sales for sizing.",
+  },
+  {
+    question: "What is phone bot farm hardware?",
+    answer:
+      "Phone bot farm hardware is industrial chassis running many real Android devices for scripted automation — app testing, batch installs, and parallel operations via ADB. PhoneFarm Fun supplies phone bot farm boxes (20-node 2U units) with centralized power, cooling, and USB routing — not cloud bots or emulator farms.",
+  },
+  {
+    question: "What is a mobile farms solution?",
+    answer:
+      "A mobile farms solution combines factory-built phone farm hardware with optional remote workstation setup for batch control across dozens of Android devices. PhoneFarm Fun provides the mobile farms chassis layer from Guangzhou; software remains vendor-neutral ADB tooling or your CI stack.",
+  },
+  {
+    question: "N9 Professional vs S9+ phone farm box — which should I buy?",
+    answer:
+      "Both use Snapdragon 845 class silicon. N9 Professional ($998 reference tier) optimizes for multi-app automation and mobile farms workflows. S9+ ($942) targets heavy QA with 128GB storage class. Contact sales with your app list — we confirm exact device payload before assembly.",
+  },
+  {
+    question: "Samsung S8 Reliable farm vs S8+ cluster — what's the difference?",
+    answer:
+      "S8 Reliable ($620) uses Galaxy S8 class Snapdragon 835 with standard factory cooling — best value stable 835 tier. S8+ cluster ($699) adds enhanced ducted cooling and enterprise PSU layout for hotter ambient labs and heavier 24/7 loads.",
+  },
 ];

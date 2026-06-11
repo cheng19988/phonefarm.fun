@@ -45,18 +45,18 @@ const FAQ_CATEGORIES = [
   },
   {
     title: "Model & chipset selection",
-    description: "CPU choice, S8+ vs starter, budget builds, dimensions for freight.",
-    indices: [25, 26, 27, 28, 29],
+    description: "CPU choice, S8+ vs starter, budget builds, N9 vs S9+, S8 Reliable vs S8+.",
+    indices: [25, 26, 27, 28, 29, 41, 42],
   },
   {
     title: "Operations & batch control",
-    description: "Stability, bulk APK install, visual command center workflows.",
-    indices: [30],
+    description: "Stability, bulk APK install, visual command center, phone bot & mobile farms.",
+    indices: [30, 39, 40],
   },
   {
     title: "Support & Trust",
-    description: "Contacting sales, warranty, factory-direct supply, and where to buy.",
-    indices: [15, 22, 23, 33, 34, 35],
+    description: "Contacting sales, warranty, factory-direct supply, where to buy, best manufacturer.",
+    indices: [15, 22, 23, 33, 34, 35, 38],
   },
   {
     title: "Creator & social workflows",

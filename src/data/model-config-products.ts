@@ -249,6 +249,78 @@ Recommended when your scripts, video pipelines, or multi-layer test stacks need 
     }
   ),
   modelBox(
+    "samsung-s8-reliable-20-node-farm",
+    "Samsung S8 Reliable 20-Node Stable Automation Hub",
+    "Snapdragon 835 · 4+64GB · cost-optimized S8 tier for dependable 24/7 phone farm runs.",
+    620,
+    12,
+    {
+      description: `The S8 Reliable tier sits between entry Exynos kits and the full S8+ Pro cluster — **Snapdragon 835 on Galaxy S8 class hardware** with factory cooling and PSU sized for continuous automation at a lower price point than the S8+ enhanced chassis.
+
+Built for teams that need 835 efficiency and 24/7 stability without the premium S8+ cooling upgrade. Same 20-node 2U layout, centralized USB backplane, and burn-in QC before export from Guangzhou.`,
+      features: [
+        "20× Galaxy S8 class (Snapdragon 835, 4+64GB typical)",
+        "Stable automation hub — reliable PSU & cooling",
+        "Single control PC USB attachment",
+        "ADB-ready · optional batch setup service",
+        "MOQ 1 · volume pricing from 5 units",
+      ],
+      specs: {
+        "Node Count": "20",
+        "Device Model": "Samsung Galaxy S8 class",
+        "SoC": "Qualcomm Snapdragon 835",
+        "RAM / Storage": "4GB + 64GB typical",
+        "Form Factor": "2U chassis",
+        "Dimensions": "21.26 × 14.37 × 7.28 in (540 × 365 × 185 mm)",
+        "Weight": "≈13 lb (6 kg)",
+        "Power": "450W centralized PSU",
+        "Cooling": "Multi-fan active airflow",
+      },
+      scenarios: [
+        "Cost-optimized 835 automation vs S8+ Pro tier",
+        "Stable 24/7 parallel app runs",
+        "Upgrade path from Exynos entry kits",
+      ],
+      accessories: ["2U chassis", "PSU & cooling", "USB hub module", "Burn-in report"],
+    }
+  ),
+  modelBox(
+    "samsung-n9-professional-20-node-farm",
+    "Samsung N9 Professional 20-Node Mobile Farms Box",
+    "Snapdragon 845 · 128GB class · professional multi-app automation for marketing and QA teams.",
+    998,
+    8,
+    {
+      description: `N9 Professional tier targets **automated multi-app operations** — parallel social clients, ad verification stacks, and layered QA harnesses on Snapdragon 845 silicon with 128GB-class storage. Positioned between S9+ and heavy multitask N8 layouts for teams needing pro-grade continuous operations without S10+ flagship cost.
+
+Factory-assembled mobile farms solution: 2U chassis, ducted 4-fan cooling, OVP/OCP PSU, structured USB backplane, extended burn-in. Confirm device SKU list before production.`,
+      features: [
+        "20-node Snapdragon 845 professional configuration",
+        "128GB storage class for multi-app workloads",
+        "Mobile farms / phone bot farm ready chassis",
+        "Pro thermal path & industrial PSU",
+        "Optional visual batch control setup",
+      ],
+      specs: {
+        "Node Count": "20",
+        "SoC": "Snapdragon 845",
+        "RAM / Storage": "6GB + 128GB typical",
+        "Form Factor": "2U Pro chassis",
+        "Dimensions": "21.26 × 14.37 × 7.28 in",
+        "Weight": "≈13 lb (6 kg)",
+        "Power": "550W industrial PSU",
+        "Cooling": "4-fan ducted",
+      },
+      scenarios: [
+        "Professional multi-app automation",
+        "Digital marketing device labs",
+        "Phone bot farm hardware at scale",
+        "Mid-flagship upgrade from S8+/N8 tiers",
+      ],
+      accessories: ["Pro 2U chassis", "Enhanced cooling", "Industrial PSU", "QC documentation"],
+    }
+  ),
+  modelBox(
     "samsung-s10-plus-20-node-farm",
     "Samsung Galaxy S10+ 20-Node Development & Testing Farm",
     "Snapdragon 855 · 8+128GB · top-tier silicon for development, regression, and pro automation labs.",
