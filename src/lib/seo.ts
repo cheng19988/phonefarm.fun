@@ -40,7 +40,7 @@ export function buildMetadata({
       url,
       siteName: SITE.name,
       images: [{ url: ogImage, width: 1600, height: 900, alt: title }],
-      locale: "en_US",
+      locale: SITE.locale,
       type: "website",
     },
     twitter: {
@@ -71,8 +71,19 @@ export function organizationJsonLd() {
       email: CONTACT.email,
       contactType: "sales",
       areaServed: "Worldwide",
-      availableLanguage: ["English", "Chinese"],
+      availableLanguage: ["English"],
     },
+  };
+}
+
+export function websiteJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE.name,
+    url: SITE.url,
+    description: SITE.description,
+    inLanguage: SITE.language,
   };
 }
 

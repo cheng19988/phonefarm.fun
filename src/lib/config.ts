@@ -2,6 +2,9 @@ export const SITE = {
   name: "PhoneFarm Fun",
   domain: "phonefarm.fun",
   url: "https://phonefarm.fun",
+  /** Primary site language — all public pages are English */
+  language: "en",
+  locale: "en_US",
   tagline: "Android Device Farm Hardware for QA & Automation",
   intro:
     "Factory-built Android phone farm boxes, motherboard clusters, and real-device lab hardware for QA testing, app compatibility, remote operation, and scalable deployment.",

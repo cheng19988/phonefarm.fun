@@ -1,8 +1,10 @@
 # PhoneFarm Fun (phonefarm.fun)
 
-> Factory-built Android device farm hardware from Guangzhou, China — real-device labs for mobile QA, app testing, automation, and B2B deployment.
+> Factory-built Android device farm hardware from Guangzhou, China — real-device labs for mobile QA, app testing, automation, and B2B deployment. **Primary language: English (en-US).**
 
-## About
+## Language
+- Primary: English (en-US) — all public pages, product copy, FAQ, and checkout
+- Sales support: English via Telegram, WhatsApp, and email
 PhoneFarm Fun is a Guangzhou-based hardware manufacturer (since 2017) supplying real Android device farm boxes, motherboard clusters, multi-device lab racks, lab accessories, and custom rack solutions. We assemble chassis locally, run burn-in QC, and export worldwide.
 
 ## Products

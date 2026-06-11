@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Instrument_Sans } from "next/font/google";
 import { Header, Footer } from "@/components/layout";
 import { FloatingContact } from "@/components/shared";
 import { JsonLd } from "@/components/shared";
-import { organizationJsonLd } from "@/lib/seo";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SITE } from "@/lib/config";
 import "./globals.css";
 
@@ -30,13 +30,20 @@ export const metadata: Metadata = {
   },
   description: SITE.description,
   metadataBase: new URL(SITE.url),
+  openGraph: {
+    locale: SITE.locale,
+    type: "website",
+  },
+  other: {
+    "content-language": SITE.language,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${instrumentSans.variable} h-full`}>
+    <html lang={SITE.language} className={`${geistSans.variable} ${geistMono.variable} ${instrumentSans.variable} h-full`}>
       <body className="min-h-full flex flex-col antialiased pb-[5.75rem] md:pb-0">
-        <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
