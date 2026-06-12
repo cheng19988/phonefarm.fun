@@ -1,18 +1,24 @@
 import { FAQAccordion } from "@/components/commerce";
 import { ContactCTA, JsonLd } from "@/components/shared";
+import { ProcurementQuickRef } from "@/components/procurement-quick-ref";
 import { FAQ_ITEMS } from "@/data/faq";
 import { buildMetadata, faqJsonLd } from "@/lib/seo";
 import { PageHero } from "@/components/store";
 import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm FAQ — Hardware, Shipping, Payment & Support",
+  title: "Phone Farm FAQ — Size, Power, Models, Lead Time & Warranty",
   description:
-    "Answers about phone farm boxes, motherboard arrays, ordering, shipping, customization, payment, and setup support.",
+    "B2B answers: chassis dimensions, weight, voltage, power draw, supported phone models, packaging, lead time, warranty, remote setup, and pre-shipment photos.",
   path: "/faq",
 });
 
 const FAQ_CATEGORIES = [
+  {
+    title: "Procurement & physical specs",
+    description: "Dimensions, weight, voltage, power draw, packaging, PC scaling, pre-shipment photos, and lead time.",
+    indices: [27, 43, 44, 45, 46, 47, 13],
+  },
   {
     title: "Products & Hardware",
     description: "Phone farm boxes, motherboard clusters, and real-device lab hardware.",
@@ -31,12 +37,12 @@ const FAQ_CATEGORIES = [
   {
     title: "Shipping & Lead Time",
     description: "International delivery and production timelines.",
-    indices: [10, 13],
+    indices: [10],
   },
   {
     title: "Workflows & Use Cases",
     description: "Creator studios, group control, profitability, and e-commerce testing.",
-    indices: [16, 18, 19, 24],
+    indices: [16, 19, 24],
   },
   {
     title: "Software & Compatibility",
@@ -46,7 +52,7 @@ const FAQ_CATEGORIES = [
   {
     title: "Model & chipset selection",
     description: "CPU choice, S8+ vs starter, budget builds, N9 vs S9+, S8 Reliable vs S8+.",
-    indices: [25, 26, 27, 28, 29, 41, 42],
+    indices: [25, 26, 28, 29, 41, 42],
   },
   {
     title: "Operations & batch control",
@@ -55,8 +61,8 @@ const FAQ_CATEGORIES = [
   },
   {
     title: "Support & Trust",
-    description: "Contacting sales, warranty, factory-direct supply, where to buy, best manufacturer.",
-    indices: [15, 22, 23, 33, 34, 35, 38],
+    description: "Warranty, RMA, remote setup, factory-direct supply, where to buy.",
+    indices: [15, 22, 23, 33, 34, 35, 38, 48, 49],
   },
   {
     title: "Creator & social workflows",
@@ -91,6 +97,7 @@ export default function FAQPage() {
       />
       <section className="inner-page-section section-band--white">
         <div className="container-wide max-w-5xl space-y-12 md:space-y-14">
+          <ProcurementQuickRef />
           {FAQ_CATEGORIES.map((cat, idx) => {
             const items = cat.indices.map((i) => FAQ_ITEMS[i]).filter(Boolean);
             return (

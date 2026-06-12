@@ -172,6 +172,16 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       { label: "Choose a box guide", href: "/blog/how-to-choose-phone-farm-box" },
     ],
   },
+  {
+    slug: "phone-farm-power-consumption",
+    term: "Phone farm power consumption",
+    definition:
+      "A standard 20-node PhoneFarm Fun chassis uses a 450–550W centralized PSU on 110V–220V AC input. Typical continuous draw at full load is roughly 280–380W depending on Samsung SoC tier and whether devices run screen-on tests vs headless automation. Plan one dedicated 10–16A circuit per box in continuous lab operation.",
+    relatedLinks: [
+      { label: "Buyer checklist", href: "/blog/phone-farm-box-buyer-checklist" },
+      { label: "FAQ — power & voltage", href: "/faq" },
+    ],
+  },
 ];
 
 export function getGlossaryTerm(slug: string) {

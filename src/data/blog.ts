@@ -478,6 +478,55 @@ Exynos N5 entry $428 · Android starter $517 · S8 Reliable $620 · S8+ $699 · 
 
 PhoneFarm Fun sells hardware for legitimate testing and automation. Compare at /compare · Quote at phonefarm.fun/contact`,
   },
+  {
+    slug: "phone-farm-box-buyer-checklist",
+    title: "Phone Farm Box Buyer Checklist: Size, Power, Models & Lead Time",
+    category: "Buying Guides",
+    date: "2026-06-08",
+    excerpt:
+      "Twelve B2B questions every procurement team asks before ordering a 20-node phone farm box — dimensions, voltage, power draw, packaging, warranty, and remote setup.",
+    content: `Before you sign a PO for a **phone farm box**, run through this factory-direct checklist. PhoneFarm Fun (Guangzhou) publishes reference specs on every SKU — confirm your configuration on quote.
+
+**1. Chassis dimensions**
+Standard 20-node 2U box: **21.26 × 14.37 × 7.28 in** (540 × 365 × 185 mm). Plan bench depth and rack clearance before freight arrives.
+
+**2. Shipping weight**
+Empty chassis is roughly **13 lb (6 kg)**. Loaded weight depends on device tier — ask sales for your SKU.
+
+**3. Input voltage**
+**110V–220V AC** universal input. We supply a region-appropriate plug for your destination country.
+
+**4. Power consumption**
+PSU is rated **450–550W**. Typical continuous draw at full 20-node load is **≈280–380W** depending on SoC tier and screen-on vs headless workflows. Use a dedicated **10–16A circuit** per box.
+
+**5. Supported phone models**
+We build around Samsung Galaxy tiers from entry Exynos N5 through S10+ Snapdragon clusters. See /products and /faq for the full model matrix.
+
+**6. Control PC scaling**
+Each box connects through **one upstream USB3 port** to a control PC. Most teams run **one box per PC**; two boxes on one workstation is possible with a powered hub and strong CPU — contact sales for your node count.
+
+**7. Lead time**
+In-stock SKUs: **3–5 business days** assembly from Guangzhou. Custom 40+ racks: **2–4 weeks** after quote approval.
+
+**8. Export packaging**
+Foam-lined **export plywood crate**, slot labels, burn-in QC sheet, and commercial invoice for customs. Express (DHL/FedEx/UPS) or sea freight — see /shipping.
+
+**9. Warranty**
+**12-month** manufacturing defect warranty from delivery. Assembly, PSU, fans, and USB backplane covered — not customer-supplied device wear.
+
+**10. DOA and RMA**
+Report transit damage or DOA within **7 days** with photos. In-warranty failures: contact sales with order number and slot ID — remote troubleshoot, parts, or RMA per /warranty.
+
+**11. Pre-shipment photos**
+Yes — request **factory photos or short video** after burn-in before dispatch. Check the box on our contact form or message Telegram/WhatsApp before production starts.
+
+**12. Remote installation**
+Optional **remote workstation setup** after you unbox locally — ADB paths, grouping, batch APK workflows. On-site install quoted separately for enterprise racks. See /services/remote-control-configuration.
+
+**Quick reference table:** /faq (procurement section at top)
+
+Contact ${CONTACT.email} · Telegram @huicheng1998 · WhatsApp +85262155642 with shipping country and node count for a freight-inclusive quote.`,
+  },
 ];
 
 export function getBlogPost(slug: string) {

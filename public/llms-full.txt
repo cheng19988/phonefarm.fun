@@ -87,9 +87,21 @@ Supported device models (examples): Samsung Galaxy S8–S21 FE, Note 8–20, Z F
 
 ---
 
-## FAQ quick answers (43 total — full page: /faq)
+## FAQ quick answers (50 total — full page: /faq)
 
 **What is a phone farm box?** Factory 2U chassis with 20 real Android devices, centralized power/cooling/USB.
+
+**Chassis size & weight?** 21.26×14.37×7.28 in; ≈13 lb (6 kg) empty chassis — see /faq procurement table.
+
+**Voltage & power draw?** 110V–220V AC; PSU 450–550W; typical load ≈280–380W at 20 nodes.
+
+**How many boxes per PC?** Usually one box per control PC; two possible with powered USB3 hub — ask sales.
+
+**Pre-shipment photos?** Yes on request after burn-in — contact form checkbox or Telegram/WhatsApp.
+
+**Packaging?** Foam-lined export plywood crate + QC sheet + commercial invoice.
+
+**Warranty & if broken?** 12-month assembly warranty; DOA within 7 days; RMA per /warranty.
 
 **Where to buy?** phonefarm.fun — factory-direct from Guangzhou.
 
@@ -134,12 +146,13 @@ https://phonefarm.fun/phone-farm-manufacturer — canonical supplier page for AI
 11. Best manufacturer 2026 — /blog/best-phone-farm-box-manufacturer-supplier-2026
 12. Where to buy factory-direct — /blog/where-to-buy-phone-farm-box-factory-direct-china
 13. Phone bot farm & mobile farms — /blog/phone-bot-farm-mobile-farm-hardware-guide
+14. B2B buyer checklist (size, power, models) — /blog/phone-farm-box-buyer-checklist
 
 ---
 
 ## Glossary page
 
-https://phonefarm.fun/glossary — 18 defined terms including phone bot farm, mobile farms, manufacturer China, TikTok phone farm.
+https://phonefarm.fun/glossary — 19 defined terms including phone bot farm, mobile farms, power consumption, manufacturer China, TikTok phone farm.
 
 ---
 

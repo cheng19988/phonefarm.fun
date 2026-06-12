@@ -216,4 +216,39 @@ export const FAQ_ITEMS = [
     answer:
       "S8 Reliable ($620) uses Galaxy S8 class Snapdragon 835 with standard factory cooling — best value stable 835 tier. S8+ cluster ($699) adds enhanced ducted cooling and enterprise PSU layout for hotter ambient labs and heavier 24/7 loads.",
   },
+  {
+    question: "What AC voltage does a phone farm box require?",
+    answer:
+      "Standard PhoneFarm Fun chassis accepts 110V–220V AC universal input. We supply a region-appropriate power cable for your destination country. Confirm local plug type on the contact form before assembly.",
+  },
+  {
+    question: "What is the typical power consumption of a 20-node phone farm box?",
+    answer:
+      "Centralized PSU is rated 450–550W. Typical continuous draw at full 20-node load is roughly 280–380W depending on SoC tier (Exynos entry vs Snapdragon pro) and whether devices run screen-on tests vs headless automation. We recommend a dedicated 10–16A circuit per box with stable lab cooling below 30°C ambient.",
+  },
+  {
+    question: "How are phone farm boxes packaged for international shipping?",
+    answer:
+      "Each unit is burn-in tested, then foam-lined inside an export plywood crate with slot labels and a QC checklist. Commercial invoice and export documentation are included for customs. Express courier (DHL/FedEx/UPS) or sea freight is arranged from Guangzhou — see /shipping for reference freight.",
+  },
+  {
+    question: "How many phone farm boxes can one control PC manage?",
+    answer:
+      "Each 20-node box connects to your control PC through one upstream USB3 port (or Ethernet ADB path on supported builds). Most teams run one box per PC for stable bandwidth. Two boxes on one workstation are possible with a powered USB3 hub and a strong CPU — contact sales with your node count for a recommended hub and PC spec. Larger labs use one PC per chassis or network-segmented ADB hosts.",
+  },
+  {
+    question: "Can I request photos or video before shipment?",
+    answer:
+      "Yes. After configuration is confirmed and burn-in completes, we can provide pre-shipment photos or a short factory video of your assembled chassis on request — ask on the contact form or via Telegram/WhatsApp before production starts. Catalog images are representative; your order is built to your device list.",
+  },
+  {
+    question: "Do you provide remote installation and setup after delivery?",
+    answer:
+      "Yes — optional remote installation is available as a paid service (not included in hardware price). We configure ADB paths, device grouping, batch APK workflows, and control PC shortcuts over screen-share after you unbox locally. On-site physical installation is quoted separately for enterprise rack projects. See /services/remote-control-configuration.",
+  },
+  {
+    question: "What should I do if hardware arrives damaged or fails in operation?",
+    answer:
+      "Inspect the export crate on delivery and note carrier damage if allowed. Report DOA or transit damage within 7 days with photos to sales. In-warranty assembly defects within 12 months: contact us with order number, slot ID, and photos/video — we arrange remote troubleshooting, replacement parts (PSU, fan, USB module), or RMA per /warranty. Customer-supplied device failures and misuse are not covered.",
+  },
 ];

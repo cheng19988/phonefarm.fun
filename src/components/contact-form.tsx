@@ -20,6 +20,7 @@ export function ContactForm({ defaultProduct = "" }: { defaultProduct?: string }
       form.get("whatsapp") && `WhatsApp/Telegram: ${form.get("whatsapp")}`,
       form.get("phone") && `Phone: ${form.get("phone")}`,
       form.get("budget") && `Budget: ${form.get("budget")}`,
+      form.get("preShipmentPhotos") === "on" && "Request pre-shipment photos/video before dispatch",
     ].filter(Boolean).join("\n");
 
     const message = [form.get("message"), extras].filter(Boolean).join("\n\n");
@@ -84,7 +85,7 @@ export function ContactForm({ defaultProduct = "" }: { defaultProduct?: string }
             onClick={() => setShowOptional((v) => !v)}
             className="text-sm font-medium text-zinc-600 hover:text-[var(--accent)]"
           >
-            {showOptional ? "− Hide optional fields" : "+ Add optional details (WhatsApp, budget, remote setup…)"}
+            {showOptional ? "− Hide optional fields" : "+ Add optional details (WhatsApp, budget, pre-shipment photos…)"}
           </button>
           {showOptional && (
             <div className="grid sm:grid-cols-2 gap-5 mt-5 pt-5 border-t border-zinc-100">
@@ -117,6 +118,17 @@ export function ContactForm({ defaultProduct = "" }: { defaultProduct?: string }
                   <option value="Full lab management">Full lab management setup</option>
                   <option value="Not sure">Not sure — need recommendation</option>
                 </FormSelect>
+              </div>
+              <div className="sm:col-span-2 flex items-start gap-3 pt-1">
+                <input
+                  type="checkbox"
+                  id="preShipmentPhotos"
+                  name="preShipmentPhotos"
+                  className="mt-1 h-4 w-4 rounded border-zinc-300 text-[var(--accent)] focus:ring-[var(--accent)]"
+                />
+                <label htmlFor="preShipmentPhotos" className="text-sm text-zinc-700 leading-relaxed">
+                  Request pre-shipment photos or factory video after burn-in (before dispatch)
+                </label>
               </div>
             </div>
           )}
