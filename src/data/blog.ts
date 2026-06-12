@@ -556,6 +556,90 @@ Hardware and setup are separate line items. Add /services/remote-control-configu
 
 Contact ${CONTACT.email} · RFQ at https://www.phonefarm.fun/contact`,
   },
+  {
+    slug: "what-is-android-phone-farm-hardware-factory-guide",
+    title: "What Is Android Phone Farm Hardware? Factory B2B Guide",
+    category: "Buying Guides",
+    date: "2026-06-13",
+    excerpt:
+      "Define Android phone farm hardware for procurement teams — phone farm boxes, motherboard clusters, rackmount racks, and how factory-direct chassis differ from desk setups and cloud phones.",
+    content: `**Android phone farm hardware** means physical multi-device lab equipment — not emulators or cloud VMs. PhoneFarm Fun (Guangzhou) builds and exports this hardware factory-direct since 2017.
+
+**Core components**
+- **Phone farm box** — 2U factory chassis with up to 20 real Android devices, centralized PSU, active cooling, labeled USB/ADB paths
+- **Motherboard cluster** — headless Android boards for dense headless QA
+- **Accessories** — USB hubs, PSU modules, cooling kits, network baseline
+- **Custom rackmount** — 40+ node cabinets engineered per layout
+
+**Who buys Android device farm hardware**
+Mobile app QA teams, automation labs, digital marketing device labs, e-commerce app testers, and B2B ops groups scaling beyond desk chargers.
+
+**Factory-direct vs reseller**
+Guangzhou assembly with burn-in QC before export. MOQ **1** on standard SKUs; volume pricing from **5 units**.
+
+**vs cloud phone services**
+Real hardware gives authentic OEM builds, sensors, and thermal behavior you control locally. Cloud phones suit elastic burst tests; device farms suit release validation and 24/7 labs.
+
+**Next steps**
+Browse /products · Compare tiers at /compare · RFQ at /contact · Buyer checklist at /blog/phone-farm-box-buyer-checklist`,
+  },
+  {
+    slug: "phone-farm-box-wholesale-bulk-order-moq-lead-time",
+    title: "Phone Farm Box Wholesale & Bulk Order: MOQ and Lead Time",
+    category: "Buying Guides",
+    date: "2026-06-13",
+    excerpt:
+      "How phone farm box wholesale and bulk orders work at PhoneFarm Fun — MOQ 1 evaluation units, volume pricing from 5 chassis, lead times, and sea vs express freight.",
+    content: `B2B buyers search **phone farm wholesale** and **phone farm box bulk order** when scaling labs. PhoneFarm Fun (Guangzhou) publishes reference pricing and lead times on every SKU.
+
+**MOQ**
+- Standard 20-node phone farm boxes: **MOQ 1** for evaluation and first lab
+- Volume / wholesale pricing: typically from **5 units** — contact sales with node count and shipping country
+
+**Lead time**
+- In-stock SKUs: **3–5 business days** assembly from Guangzhou
+- Custom rackmount 40+ nodes: **2–4 weeks** after quote approval
+
+**Bulk freight**
+- **Express** (DHL/FedEx/UPS): samples, urgent POs, 1–2 chassis
+- **Sea freight**: economical for wholesale rollouts of multiple chassis — commercial invoice included
+
+**Payment**
+USDT TRC20 online checkout for standard SKUs; T/T, Wise, PayPal invoice for bulk POs.
+
+**What to send sales**
+Node count, Samsung/device tier, quantity, shipping country, remote setup needs — /contact
+
+See also /faq · /shipping · /blog/phone-farm-box-buyer-checklist`,
+  },
+  {
+    slug: "phone-farm-equipment-vs-phone-farm-box-buyers-guide",
+    title: "Phone Farm Equipment vs Phone Farm Box: What Buyers Mean",
+    category: "Buying Guides",
+    date: "2026-06-13",
+    excerpt:
+      "Procurement teams use phone farm equipment and phone farm box interchangeably — here is how factory catalogs separate chassis, accessories, and full lab rollouts.",
+    content: `Search queries mix **phone farm equipment** (broad) and **phone farm box** (specific SKU). This guide clarifies what PhoneFarm Fun lists in each category.
+
+**Phone farm equipment (category)**
+All hardware for multi-device Android labs: chassis, devices (customer-specified or factory-recommended), PSU, cooling, USB routing, network gear, export crating.
+
+**Phone farm box (SKU)**
+A complete factory-built **2U 20-node unit** with integrated PSU, cooling, and USB backplane — from $428 Exynos entry through $1,220 S10+ tiers.
+
+**Related SKUs buyers often add**
+- Motherboard box (headless cluster)
+- USB hub / PSU spare / cooling kit (accessories)
+- Custom cabinet (40+ rackmount)
+
+**When buyers say "equipment" on RFQ**
+They may mean one box, multiple boxes, or a full lab rollout including network and setup services. Specify node count and device list on /contact for an accurate quote.
+
+**FAQ alignment**
+See FAQ: "What is phone farm equipment vs a phone farm box?" at /faq
+
+Factory catalog: /products · Glossary: /glossary#phone-farm-equipment`,
+  },
 ];
 
 export function getBlogPost(slug: string) {

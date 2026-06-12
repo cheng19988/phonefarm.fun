@@ -11,6 +11,7 @@ import { getProductHighlight } from "@/data/product-highlights";
 import { getProfessionalSpecs } from "@/data/product-specs";
 import { isQuotePreferredProduct } from "@/lib/product-commerce";
 import { getProductProcurementRows } from "@/lib/product-procurement";
+import { buildProductPageDescription } from "@/lib/product-seo";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { Breadcrumbs, SpecTable, IconList, MetaGrid, PriceDisplay, SectionHeader, DetailSection, TrustStrip } from "@/components/store";
 
@@ -23,8 +24,8 @@ export async function generateMetadata({ params }: Props) {
   const product = await getProductBySlug(slug);
   if (!product) return {};
   return buildMetadata({
-    title: product.name,
-    description: product.shortDesc,
+    title: `${product.name} — Buy Phone Farm Box`,
+    description: buildProductPageDescription(product.name, product.shortDesc, slug),
     path: `/products/${slug}`,
     image: product.imageHero,
   });

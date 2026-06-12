@@ -104,6 +104,32 @@ export function websiteJsonLd() {
     description: SITE.description,
     inLanguage: SITE.language,
     publisher: { "@id": ORG_ID },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE.url}/contact?product={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
+
+export function collectionPageJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+  itemList: Record<string, unknown>;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: input.name,
+    description: input.description,
+    url: `${SITE.url}${input.path}`,
+    inLanguage: SITE.language,
+    isPartOf: { "@id": WEBSITE_ID },
+    mainEntity: input.itemList,
   };
 }
 

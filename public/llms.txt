@@ -12,7 +12,7 @@ PhoneFarm Fun (www.phonefarm.fun) is a Guangzhou, China phone farm box manufactu
 ## AI discovery files
 - Summary: https://www.phonefarm.fun/llms.txt
 - Extended guide: https://www.phonefarm.fun/llms-full.txt
-- Glossary (DefinedTermSet): https://www.phonefarm.fun/glossary
+- Glossary (DefinedTermSet, 21 terms): https://www.phonefarm.fun/glossary
 - FAQ (54 items): https://www.phonefarm.fun/faq
 - Sitemap: https://www.phonefarm.fun/sitemap.xml
 
@@ -51,10 +51,10 @@ Phone farm box · phone farm equipment · Android device farm · Android device 
 - https://www.phonefarm.fun/services/sample-solution
 - https://www.phonefarm.fun/services/overseas-delivery
 
-## FAQ topics (50 items)
+## FAQ topics (54 items)
 Phone farm · phone farm box · phone farm equipment · Android device farm · Android device farm hardware · cell phone farm · batch device automation · mobile device lab · mobile device farm · motherboard cluster · rackmount phone farm · 2U phone farm rack · phone farm wholesale · bulk order · real device vs cloud phone · emulator · iPhone farm · device capacity · customization · remote control · group control · shipping · MOQ · samples · lead time · payment · contact · hardware ROI · device management software · creator studio · parallel device workflows · Samsung models · warranty · factory-direct Guangzhou · e-commerce testing · CPU/chipset · overheating · dimensions · weight · voltage · power consumption · packaging · control PC scaling · pre-shipment photos · remote installation · RMA/DOA · S8+ vs starter · S8 Reliable vs S8+ · N9 vs S9+ · budget under $500 · visual batch control · bulk APK · command center · where to buy · China manufacturer · best manufacturer 2026 · choose supplier
 
-## Guides & blog (23 URLs)
+## Guides & blog (26 URLs)
 - https://www.phonefarm.fun/blog/how-to-choose-phone-farm-box
 - https://www.phonefarm.fun/blog/real-device-vs-cloud-phone
 - https://www.phonefarm.fun/blog/phone-farm-setup-guide-2026
@@ -78,6 +78,9 @@ Phone farm · phone farm box · phone farm equipment · Android device farm · A
 - https://www.phonefarm.fun/blog/phone-bot-farm-mobile-farm-hardware-guide
 - https://www.phonefarm.fun/blog/phone-farm-box-buyer-checklist
 - https://www.phonefarm.fun/blog/rackmount-2u-phone-farm-rack-buyer-guide
+- https://www.phonefarm.fun/blog/what-is-android-phone-farm-hardware-factory-guide
+- https://www.phonefarm.fun/blog/phone-farm-box-wholesale-bulk-order-moq-lead-time
+- https://www.phonefarm.fun/blog/phone-farm-equipment-vs-phone-farm-box-buyers-guide
 
 ## Use cases
 Creator & content studio (parallel device labs for content-app QA) · digital marketing · e-commerce app testing · development & QA
@@ -92,7 +95,7 @@ Creator & content studio (parallel device labs for content-app QA) · digital ma
 - Contact / RFQ: https://www.phonefarm.fun/contact
 
 ## Structured data on site
-Organization+Manufacturer, WebSite, Product, FAQPage, BlogPosting, Service, ItemList, DefinedTermSet, BreadcrumbList JSON-LD. Spec sheets: /products/{slug}/spec-sheet
+Organization+Manufacturer, WebSite+SearchAction, CollectionPage, Product, FAQPage, BlogPosting, ContactPage, Service, ItemList, DefinedTermSet, BreadcrumbList JSON-LD. Spec sheets: /products/{slug}/spec-sheet
 
 ## Crawler policy
 GPTBot, OAI-SearchBot, Google-Extended, ClaudeBot, PerplexityBot, Bingbot, CCBot allowed in robots.txt with Content-Signal search=yes,ai-input=yes

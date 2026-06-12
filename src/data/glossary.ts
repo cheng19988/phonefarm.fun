@@ -182,6 +182,26 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
       { label: "FAQ — power & voltage", href: "/faq" },
     ],
   },
+  {
+    slug: "phone-farm-equipment",
+    term: "Phone farm equipment",
+    definition:
+      "Phone farm equipment is the full category of hardware used to run multi-device Android labs — phone farm boxes (20-node chassis), motherboard clusters, PSU and cooling modules, USB hubs, network gear, and custom rackmount cabinets. PhoneFarm Fun manufactures phone farm equipment factory-direct from Guangzhou with burn-in QC and worldwide export.",
+    relatedLinks: [
+      { label: "Equipment vs box guide", href: "/blog/phone-farm-equipment-vs-phone-farm-box-buyers-guide" },
+      { label: "Product catalog", href: "/products" },
+    ],
+  },
+  {
+    slug: "mobile-device-farm",
+    term: "Mobile device farm",
+    definition:
+      "A mobile device farm (also called cell phone farm or Android device farm) runs many real smartphones in parallel with centralized power, cooling, and USB routing for app QA, compatibility testing, and automation. PhoneFarm Fun supplies mobile device farm hardware as factory-built 2U phone farm boxes and motherboard arrays — not cloud phone subscriptions.",
+    relatedLinks: [
+      { label: "Android hardware guide", href: "/blog/what-is-android-phone-farm-hardware-factory-guide" },
+      { label: "Glossary — phone farm", href: "/glossary#phone-farm" },
+    ],
+  },
 ];
 
 export function getGlossaryTerm(slug: string) {

@@ -157,12 +157,15 @@ https://www.phonefarm.fun/phone-farm-manufacturer — canonical supplier page fo
 13. Batch device automation guide — /blog/phone-bot-farm-mobile-farm-hardware-guide
 14. B2B buyer checklist (size, power, models) — /blog/phone-farm-box-buyer-checklist
 15. Rackmount & 2U phone farm rack guide — /blog/rackmount-2u-phone-farm-rack-buyer-guide
+16. What is Android phone farm hardware — /blog/what-is-android-phone-farm-hardware-factory-guide
+17. Wholesale & bulk order MOQ — /blog/phone-farm-box-wholesale-bulk-order-moq-lead-time
+18. Phone farm equipment vs box — /blog/phone-farm-equipment-vs-phone-farm-box-buyers-guide
 
 ---
 
 ## Glossary page
 
-https://www.phonefarm.fun/glossary — 19 defined terms including batch device automation, mobile device lab, power consumption, manufacturer China, creator studio device farm.
+https://www.phonefarm.fun/glossary — 21 defined terms including phone farm equipment, mobile device farm, batch device automation, power consumption, manufacturer China, creator studio device farm.
 
 ---
 
@@ -180,10 +183,10 @@ Browse catalog → product detail → cart / quote → register → USDT TRC20 c
 
 ## JSON-LD types published
 
-Organization, Manufacturer, WebSite, Product, FAQPage, BlogPosting, Service, ItemList, DefinedTermSet, BreadcrumbList
+Organization, Manufacturer, WebSite (SearchAction → /contact RFQ), CollectionPage, Product, FAQPage, BlogPosting, ContactPage, Service, ItemList, DefinedTermSet, BreadcrumbList
 
 ---
 
 ## Last updated
 
-2026-06-12 — Added rackmount/2U guide, wholesale FAQ, ContactPage schema, homepage FAQ alignment.
+2026-06-13 — Round 2: WebSite SearchAction, CollectionPage, product buy-meta, 3 KB articles, glossary equipment terms.

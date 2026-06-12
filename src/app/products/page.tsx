@@ -4,15 +4,15 @@ import { ProductCard } from "@/components/commerce";
 import { JsonLd } from "@/components/shared";
 import { PRIMARY_CATALOG_SLUGS, getProductCardImage } from "@/data/product-images";
 import { getProductMeta } from "@/data/product-meta";
-import { buildMetadata, itemListJsonLd } from "@/lib/seo";
+import { buildMetadata, collectionPageJsonLd, itemListJsonLd } from "@/lib/seo";
 import { ProductsCatalogHero } from "@/components/products-catalog-hero";
 import { FilterPills, BuyingGuideBlock, SectionHeader } from "@/components/store";
 import { DeviceModelGridAll } from "@/components/device-model-grid";
 
 export const metadata = buildMetadata({
-  title: "Factory Hardware Catalog — Phone Farm Boxes & Clusters",
+  title: "Phone Farm Equipment & Android Device Farm Hardware Catalog",
   description:
-    "Guangzhou factory catalog: phone farm boxes, motherboard arrays, custom racks, and accessories. Reference USD pricing, MOQ 1, lead times, and export specs for B2B procurement.",
+    "Factory-direct phone farm equipment catalog: phone farm boxes, Android device farm hardware, motherboard clusters, 2U rackmount racks, and accessories. MOQ 1, reference USD pricing, export shipping from Guangzhou.",
   path: "/products",
 });
 
@@ -57,14 +57,29 @@ export default async function ProductsPage({
     ? products.filter((p) => !primarySet.has(p.slug))
     : products;
 
+  const productList = itemListJsonLd(
+    products.map((p) => ({
+      name: p.name,
+      slug: p.slug,
+      priceUsd: p.priceUsd,
+      imageCard: p.imageCard,
+    })),
+  );
+
   return (
     <>
-      <JsonLd data={itemListJsonLd(products.map((p) => ({
-        name: p.name,
-        slug: p.slug,
-        priceUsd: p.priceUsd,
-        imageCard: p.imageCard,
-      })))} />
+      <JsonLd
+        data={[
+          collectionPageJsonLd({
+            name: "Phone Farm Equipment & Android Device Farm Hardware",
+            description:
+              "Factory catalog of phone farm boxes, motherboard clusters, rackmount solutions, and lab accessories from PhoneFarm Fun Guangzhou.",
+            path: "/products",
+            itemList: productList,
+          }),
+          productList,
+        ]}
+      />
 
       <ProductsCatalogHero />
 

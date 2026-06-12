@@ -40,6 +40,12 @@ export function ProcurementQuickRef() {
         <Link href="/services/remote-control-configuration" className="text-zinc-600 hover:text-[var(--accent)]">
           Remote setup service →
         </Link>
+        <Link href="/blog/what-is-android-phone-farm-hardware-factory-guide" className="text-zinc-600 hover:text-[var(--accent)]">
+          Android hardware guide →
+        </Link>
+        <Link href="/blog/rackmount-2u-phone-farm-rack-buyer-guide" className="text-zinc-600 hover:text-[var(--accent)]">
+          Rackmount / 2U guide →
+        </Link>
       </div>
     </div>
   );
