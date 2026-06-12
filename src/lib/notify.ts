@@ -5,7 +5,10 @@ type ContactPayload = {
   phone: string;
   email: string;
   deviceQuantity: string;
+  quantity?: string;
   productInterest: string;
+  platform?: string;
+  connectionMode?: string;
   budget: string;
   message: string;
 };
@@ -24,16 +27,19 @@ function line(label: string, value: string) {
 
 export function formatContactSubmission(data: ContactPayload) {
   return [
-    "<b>New contact inquiry — PhoneFarm Fun</b>",
+    "<b>New B2B quote request — PhoneFarm Fun</b>",
     "",
     ...[
       line("Name", data.name),
       line("Email", data.email),
       line("WhatsApp / Telegram", data.whatsapp),
       line("Phone", data.phone),
-      line("Country", data.country),
-      line("Quantity", data.deviceQuantity),
+      line("Shipping country", data.country),
       line("Product interest", data.productInterest),
+      line("Node count", data.deviceQuantity),
+      line("Units / chassis", data.quantity ?? ""),
+      line("Platform", data.platform ?? ""),
+      line("Connection mode", data.connectionMode ?? ""),
       line("Budget", data.budget),
       line("Message", data.message),
     ].filter(Boolean),

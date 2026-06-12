@@ -6,6 +6,7 @@ import { buildMetadata } from "@/lib/seo";
 import { CONTACT } from "@/lib/config";
 import { getPaymentSettings } from "@/lib/payment-settings";
 import { formatUsdtAmount, usdToUsdt } from "@/lib/payment";
+import { RfqFirstBanner } from "@/components/pricing-rfq";
 import { CheckoutAccess } from "@/components/checkout-access";
 import { CheckoutSteps, OrderHowItWorks } from "@/components/checkout-flow";
 import { PageHero, PriceDisplay } from "@/components/store";
@@ -35,6 +36,7 @@ export default async function CheckoutPage() {
       <section className="section pt-10 md:pt-12">
         <div className="container-wide max-w-3xl">
           <CheckoutSteps active={3} />
+          <RfqFirstBanner className="mb-8" />
           <div className="mb-8">
             <OrderHowItWorks compact />
           </div>
@@ -73,18 +75,20 @@ export default async function CheckoutPage() {
               <div className="card p-6 md:p-8 mb-8 bg-orange-50 border-orange-100">
                 <h3 className="text-lg font-bold text-zinc-900 mb-3">Payment method</h3>
                 <p className="text-base text-zinc-600 leading-relaxed">
-                  After placing your order, pay <strong className="text-zinc-900">{formatUsdtAmount(usdtDue)} USDT</strong> on{" "}
-                  <strong className="text-zinc-900">Tron TRC20</strong> on the order page (1:1 with USD for standard SKUs).
-                  This site does not accept credit cards or automatic PayPal checkout.
+                  Cart checkout is for <strong className="text-zinc-900">confirmed standard SKUs</strong> at reference price. Pay{" "}
+                  <strong className="text-zinc-900">{formatUsdtAmount(usdtDue)} USDT</strong> on{" "}
+                  <strong className="text-zinc-900">Tron TRC20</strong> after placing the order — final amount locked on the order page.
                 </p>
                 <p className="text-base text-zinc-600 mt-4 leading-relaxed">
-                  For bank transfer (T/T), Wise, or PayPal invoice, contact{" "}
-                  <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="text-orange-600 font-medium">{CONTACT.email}</a> before checkout.
+                  Custom racks, bulk rollouts, or unconfirmed configs:{" "}
+                  <a href="/contact" className="text-orange-600 font-medium hover:underline">request a factory quote</a> first.
+                  Bank transfer (T/T), Wise, or PayPal via{" "}
+                  <a href={CONTACT.emailUrl} target="_blank" rel="noopener noreferrer" className="text-orange-600 font-medium">{CONTACT.email}</a>.
                 </p>
               </div>
 
               <form action="/api/checkout" method="POST">
-                <button type="submit" className="btn-primary w-full py-3.5 text-base">Place Order</button>
+                <button type="submit" className="btn-primary w-full py-3.5 text-base">Place Order (Standard SKU)</button>
               </form>
               <Link href="/cart" className="block text-center text-sm text-zinc-500 mt-5 hover:text-orange-600">← Back to cart</Link>
             </>

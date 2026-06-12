@@ -56,11 +56,11 @@ export function OrderHowItWorks({ compact }: { compact?: boolean }) {
     <div className={`rounded-xl border border-zinc-200 bg-zinc-50/90 ${compact ? "p-4 md:p-5" : "p-5 md:p-6"}`}>
       <h3 className="font-display font-bold text-zinc-900 text-base mb-3">How factory checkout works</h3>
       <ol className="space-y-2.5 text-sm text-zinc-600 list-decimal list-inside leading-relaxed">
-        <li>Add in-stock SKUs to cart (custom racks → <Link href="/contact" className="text-[var(--accent)] hover:underline">request quote</Link> instead).</li>
+        <li>Request a factory quote for custom racks, bulk orders, or unconfirmed device tiers.</li>
+        <li>Standard in-stock SKUs: browse catalog → add to cart after configuration is clear.</li>
         <li>Login or register — order history stays in your account.</li>
-        <li>Place order → you receive a <strong className="text-zinc-800">USDT (TRC20)</strong> payment page with wallet address.</li>
-        <li>Send exact USDT within <strong className="text-zinc-800">30 minutes</strong>; paste TXID to speed up verification.</li>
-        <li>After payment confirmed, Guangzhou team confirms lead time and export freight.</li>
+        <li>Place order → pay reference USDT (TRC20) within 30 minutes on the order page.</li>
+        <li>After payment confirmed, Guangzhou team confirms burn-in QC, lead time, and export freight.</li>
       </ol>
     </div>
   );

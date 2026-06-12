@@ -4,10 +4,10 @@ import { IMAGES } from "@/lib/images";
 import { SITE } from "@/lib/config";
 
 const ORDERING_FACTS = [
+  { value: "RFQ-first", label: "Written quote" },
   { value: "From 1 unit", label: "MOQ" },
   { value: "3–7 business days", label: "Standard lead time" },
-  { value: "USDT · TRC20", label: "Checkout" },
-  { value: "DHL · FedEx · Sea", label: "Export freight" },
+  { value: "Burn-in QC", label: "Before export" },
 ] as const;
 
 export function HomeHero() {
@@ -28,16 +28,19 @@ export function HomeHero() {
             20-node chassis, motherboard clusters, and rackmount racks with export shipping and optional remote setup.
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
-            <Link href="/products" className="btn-primary-lg shadow-lg shadow-orange-900/15">
-              Start Shopping
-            </Link>
-            <Link href="/contact" className="btn-outline">
+            <Link href="/contact" className="btn-primary-lg shadow-lg shadow-orange-900/15">
               Get Factory Quote
+            </Link>
+            <Link href="/products" className="btn-outline">
+              Browse Standard SKUs
             </Link>
             <Link href="#phone-farm-intro" className="btn-outline">
               What Is a Phone Farm?
             </Link>
           </div>
+          <p className="text-xs text-zinc-500 mt-4 max-w-lg leading-relaxed">
+            Reference USD pricing on catalog — final quote confirmed before payment. Custom racks and enterprise deployments are quote-only.
+          </p>
         </div>
 
         <div className="relative z-10 hero-product-showcase">

@@ -143,7 +143,10 @@ export default function CartPageClient() {
                   <span className="text-lg font-bold text-zinc-900">Total (USD)</span>
                   <PriceDisplay amount={total} size="lg" />
                 </div>
-                <p className="text-xs text-zinc-500">Reference USD price. USDT amount shown on next step.</p>
+                <p className="text-xs text-zinc-500 leading-relaxed">
+                  Reference USD total — final quote confirmed before payment. USDT due on checkout.{" "}
+                  <Link href="/contact" className="text-[var(--accent)] hover:underline">Request quote</Link> for custom configs.
+                </p>
                 <Link href="/checkout" className="btn-primary w-full text-center block py-3.5 text-base min-h-[44px] leading-[44px]">
                   Proceed to Checkout
                 </Link>

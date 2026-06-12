@@ -13,7 +13,8 @@ import { isQuotePreferredProduct } from "@/lib/product-commerce";
 import { getProductProcurementRows } from "@/lib/product-procurement";
 import { buildProductPageDescription } from "@/lib/product-seo";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
-import { Breadcrumbs, SpecTable, IconList, MetaGrid, PriceDisplay, SectionHeader, DetailSection, TrustStrip } from "@/components/store";
+import { ReferencePriceDisplay } from "@/components/pricing-rfq";
+import { Breadcrumbs, SpecTable, IconList, MetaGrid, SectionHeader, DetailSection, TrustStrip } from "@/components/store";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -126,8 +127,8 @@ export default async function ProductDetailPage({ params }: Props) {
                   </p>
                 )}
                 <p className="text-base md:text-lg text-zinc-600 mb-6 leading-relaxed">{product.shortDesc}</p>
-                <div className="flex flex-wrap items-center gap-4 mb-6 pb-6 border-b border-zinc-200">
-                  <PriceDisplay amount={product.priceUsd} size="xl" />
+                <div className="flex flex-wrap items-start gap-4 mb-6 pb-6 border-b border-zinc-200">
+                  <ReferencePriceDisplay amount={product.priceUsd} size="xl" />
                   <StockBadge stock={product.stock} />
                 </div>
                 <MetaGrid large items={[

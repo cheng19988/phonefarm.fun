@@ -40,16 +40,19 @@ export function ProductsCatalogHero() {
             Phone Farm Hardware Catalog
           </h1>
           <p className="text-zinc-600 text-base md:text-lg leading-relaxed max-w-xl mb-5">
-            Complete range: phone farm boxes, motherboard arrays, rack solutions, and 20+ Android model configurations with reference USD pricing.
+            Factory-direct catalog: 20-node phone farm boxes, Samsung Snapdragon/Exynos tiers, motherboard clusters, 2U rackmount, and accessories — reference USD pricing; final quote confirmed before payment.
           </p>
           <div className="flex flex-wrap gap-2 text-xs mb-5">
-            {["20-node box", "Motherboard cluster", "Custom 40+ rack", "USDT checkout"].map((tag) => (
+            {["RFQ-first", "20-node box", "2U rackmount", "Burn-in QC"].map((tag) => (
               <span key={tag} className="px-2.5 py-1 rounded-md bg-white text-zinc-700 border border-zinc-200 shadow-sm">
                 {tag}
               </span>
             ))}
           </div>
-          <Link href="/about#what-is-phone-farm" className="text-[var(--accent)] hover:text-[var(--accent-hover)] text-sm font-semibold">
+          <Link href="/contact" className="text-[var(--accent)] hover:text-[var(--accent-hover)] text-sm font-semibold mr-4">
+            Get factory quote →
+          </Link>
+          <Link href="/about#what-is-phone-farm" className="text-zinc-600 hover:text-[var(--accent)] text-sm font-semibold">
             What is a phone farm? →
           </Link>
         </div>

@@ -8,6 +8,7 @@ import { isAccessorySlug } from "@/data/product-images";
 import { AddToCartButton } from "./add-to-cart-button";
 import { StockBadge } from "./shared";
 import { PriceDisplay } from "./store";
+import { ReferencePriceDisplay } from "./pricing-rfq";
 
 type ProductCardProps = {
   slug: string;
@@ -123,10 +124,7 @@ export function ProductCard({
         )}
 
         <div className="flex flex-wrap items-end justify-between gap-3 mb-4 md:mb-5 border-t-2 border-zinc-100 pt-4 md:pt-5 mt-auto">
-          <div>
-            <p className="text-xs uppercase tracking-wide text-zinc-500 font-semibold mb-1">Reference price</p>
-            <PriceDisplay amount={priceUsd} size={isCatalog ? "xl" : compact ? "sm" : "lg"} />
-          </div>
+          <ReferencePriceDisplay amount={priceUsd} size={isCatalog ? "xl" : compact ? "sm" : "lg"} compact={compact} />
           <StockBadge stock={stock} />
         </div>
 
@@ -152,23 +150,23 @@ export function ProductCard({
             </>
           ) : (
             <>
+              <Link
+                href={`/contact?product=${slug}`}
+                className={`btn-primary text-center w-full ${ctaMinH} flex items-center justify-center ${
+                  isCatalog ? "btn-primary-lg !py-3 !text-base" : "text-sm md:text-base py-2.5"
+                }`}
+              >
+                Request Quote
+              </Link>
               <AddToCartButton
                 type="product"
                 slug={slug}
                 disabled={outOfStock}
-                className={`btn-primary text-center w-full disabled:opacity-50 flex items-center justify-center ${ctaMinH} ${
-                  isCatalog ? "btn-primary-lg !py-3 !text-base" : "text-sm md:text-base py-2.5"
-                }`}
-                label={outOfStock ? "Out of Stock" : "Add to Cart"}
-              />
-              <Link
-                href={`/products/${slug}`}
-                className={`btn-outline text-center flex items-center justify-center ${ctaMinH} ${
+                className={`btn-outline text-center w-full disabled:opacity-50 flex items-center justify-center ${ctaMinH} ${
                   isCatalog ? "btn-outline-lg !py-3 !text-base" : "text-sm md:text-base py-2.5"
                 }`}
-              >
-                View Details
-              </Link>
+                label={outOfStock ? "Out of Stock" : "Standard SKU cart"}
+              />
             </>
           )}
         </div>
@@ -270,8 +268,11 @@ export function BuyButtons({
           href={`/contact?product=${slug}`}
           className="btn-primary-lg w-full text-center block min-h-[48px] leading-[48px]"
         >
-          Request Quote
+          Request Factory Quote
         </Link>
+        <p className="text-xs text-zinc-500 text-center leading-relaxed px-1">
+          Custom rack / quoted lead time — written BOM and proforma before payment.
+        </p>
         <a
           href={CONTACT.whatsappUrl}
           target="_blank"
@@ -286,16 +287,24 @@ export function BuyButtons({
 
   return (
     <div className="space-y-3">
-      <AddToCartButton
-        type="product"
-        slug={slug}
-        disabled={disabled}
-        className="btn-primary-lg w-full disabled:opacity-50 disabled:cursor-not-allowed text-center justify-center min-h-[48px]"
-        label={disabled ? "Out of Stock" : "Add to Cart"}
-      />
-      <Link href={`/contact?product=${slug}`} className="btn-outline-lg w-full text-center block min-h-[48px] leading-[48px]">
-        Request Quote
+      <Link
+        href={`/contact?product=${slug}`}
+        className="btn-primary-lg w-full text-center block min-h-[48px] leading-[48px]"
+      >
+        Request Factory Quote
       </Link>
+      {!quotePreferred && (
+        <AddToCartButton
+          type="product"
+          slug={slug}
+          disabled={disabled}
+          className="btn-outline-lg w-full disabled:opacity-50 disabled:cursor-not-allowed text-center justify-center min-h-[48px]"
+          label={disabled ? "Out of Stock" : "Add Standard SKU to Cart"}
+        />
+      )}
+      <p className="text-xs text-zinc-500 text-center leading-relaxed px-1">
+        Reference price only — final quote confirmed before payment. Cart checkout for confirmed standard SKUs.
+      </p>
       <a
         href={CONTACT.whatsappUrl}
         target="_blank"
