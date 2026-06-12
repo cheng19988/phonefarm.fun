@@ -2,22 +2,22 @@ import { SITE } from "@/lib/config";
 
 export const CERTIFICATIONS = [
   {
-    id: "iso9001",
-    title: "ISO 9001",
-    subtitle: "Quality management",
-    image: "/images/trust/iso9001.svg",
-  },
-  {
-    id: "ce",
-    title: "CE",
-    subtitle: "Export compliance mark",
-    image: "/images/trust/ce.svg",
-  },
-  {
     id: "qc",
     title: "Burn-in QC",
     subtitle: "Pre-export hardware test",
     image: "/images/trust/qc-passed.svg",
+  },
+  {
+    id: "factory",
+    title: "Factory assembly",
+    subtitle: "Guangzhou workshop since 2017",
+    image: "/images/trust/iso9001.svg",
+  },
+  {
+    id: "export",
+    title: "Export packing",
+    subtitle: "Foam crate + commercial invoice",
+    image: "/images/trust/ce.svg",
   },
 ] as const;
 

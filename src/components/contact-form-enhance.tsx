@@ -20,25 +20,11 @@ export function ContactFormEnhance({ children, sent = false }: Props) {
       return;
     }
     setStatus("loading");
-    const form = new FormData(formEl);
-
-    const extras = [
-      form.get("platform") && `Platform / use case: ${form.get("platform")}`,
-      form.get("connectionMode") && `Connection mode: ${form.get("connectionMode")}`,
-      form.get("quantity") && `Units / chassis quantity: ${form.get("quantity")}`,
-      form.get("phone") && `Phone: ${form.get("phone")}`,
-      form.get("preShipmentPhotos") === "on" && "Request pre-shipment photos/video before dispatch",
-    ]
-      .filter(Boolean)
-      .join("\n");
-
-    const message = [form.get("message"), extras].filter(Boolean).join("\n\n");
-    form.set("message", message);
 
     const res = await fetch("/api/contact", {
       method: "POST",
       headers: { Accept: "application/json" },
-      body: form,
+      body: new FormData(formEl),
     });
     setStatus(res.ok ? "success" : "error");
     if (res.ok) formEl.reset();

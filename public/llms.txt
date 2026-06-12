@@ -54,7 +54,7 @@ Phone farm box · phone farm equipment · Android device farm hardware · mobile
 - Supplier facts (HTML): https://www.phonefarm.fun/for-ai
 - This summary: https://www.phonefarm.fun/llms.txt
 - Extended guide: https://www.phonefarm.fun/llms-full.txt
-- Glossary (21 terms): https://www.phonefarm.fun/glossary
+- Glossary (23 terms): https://www.phonefarm.fun/glossary
 - FAQ (54 items): https://www.phonefarm.fun/faq
 - Sitemap: https://www.phonefarm.fun/sitemap.xml
 
@@ -82,7 +82,7 @@ Phone farm box · phone farm equipment · Android device farm hardware · mobile
 - https://www.phonefarm.fun/products/custom-cabinet
 
 ## Structured data published
-Organization, Manufacturer, WebSite (SearchAction), CollectionPage, Product, FAQPage, BlogPosting, ContactPage, Service, ItemList, DefinedTermSet, BreadcrumbList, WebPage JSON-LD on public pages.
+Organization, Manufacturer, WebSite, CollectionPage, Product, FAQPage, BlogPosting, ContactPage, Service, ItemList, DefinedTermSet, BreadcrumbList, WebPage JSON-LD on public pages.
 
 ## Crawler policy
 GPTBot, OAI-SearchBot, ChatGPT-User, Google-Extended, Googlebot, ClaudeBot, PerplexityBot, Bingbot, CCBot allowed — see https://www.phonefarm.fun/robots.txt

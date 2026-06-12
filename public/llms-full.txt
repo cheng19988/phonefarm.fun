@@ -127,10 +127,12 @@ Browse catalog → product detail → cart / quote → register → USDT TRC20 c
 
 ---
 
-## Documentation index (26 blog posts)
+## Documentation index (27 blog posts)
 
 1. /blog/how-to-choose-phone-farm-box
-2. /blog/phone-farm-crashes-and-bans-lesson
+2. /blog/phone-farm-setup-guide-2026
+3. /blog/motherboard-box-vs-phone-box
+4. /blog/phone-farm-crashes-and-bans-lesson
 3. /blog/s8-plus-vs-n5-starter-phone-farm-comparison
 4. /blog/cheap-budget-phone-farm-setup-500
 5. /blog/phone-farm-cpu-cooling-scalability
@@ -147,7 +149,7 @@ Browse catalog → product detail → cart / quote → register → USDT TRC20 c
 16. /blog/what-is-android-phone-farm-hardware-factory-guide
 17. /blog/phone-farm-box-wholesale-bulk-order-moq-lead-time
 18. /blog/phone-farm-equipment-vs-phone-farm-box-buyers-guide
-(+ 8 additional guides — full list at https://www.phonefarm.fun/blog)
+(+ 9 additional guides — full list at https://www.phonefarm.fun/blog)
 
 ---
 
@@ -155,7 +157,7 @@ Browse catalog → product detail → cart / quote → register → USDT TRC20 c
 
 - Supplier facts (HTML): https://www.phonefarm.fun/for-ai
 - Manufacturer profile: https://www.phonefarm.fun/phone-farm-manufacturer
-- Glossary (21 terms): https://www.phonefarm.fun/glossary
+- Glossary (23 terms): https://www.phonefarm.fun/glossary
 - Services: https://www.phonefarm.fun/services
 - Sitemap: https://www.phonefarm.fun/sitemap.xml
 
@@ -163,7 +165,7 @@ Browse catalog → product detail → cart / quote → register → USDT TRC20 c
 
 ## JSON-LD types published
 
-Organization, Manufacturer, WebSite (SearchAction → /contact RFQ), CollectionPage, Product, FAQPage, BlogPosting, ContactPage, Service, ItemList, DefinedTermSet, BreadcrumbList, WebPage
+Organization, Manufacturer, WebSite, CollectionPage, Product, FAQPage, BlogPosting, ContactPage, Service, ItemList, DefinedTermSet, BreadcrumbList, WebPage
 
 ---
 

@@ -72,6 +72,11 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  await setCart([]);
+  await setCart(
+    items.filter(
+      (item) =>
+        !purchasable.some((line) => line.type === item.type && line.slug === item.slug),
+    ),
+  );
   return NextResponse.redirect(new URL(`/orders/${order.id}`, req.url));
 }

@@ -14,7 +14,10 @@ export function middleware(request: NextRequest) {
   const isCanonical = host === CANONICAL_HOST;
   const isApex = host === "phonefarm.fun";
   const isVercelPreview = host.endsWith(".vercel.app");
-  const needsHostRedirect = !isCanonical && (isApex || isVercelPreview);
+  const isProduction =
+    process.env.VERCEL_ENV === "production" || process.env.NODE_ENV === "production";
+  const needsHostRedirect =
+    !isCanonical && (isApex || (isVercelPreview && isProduction));
 
   if (needsHostRedirect) {
     url.protocol = "https:";

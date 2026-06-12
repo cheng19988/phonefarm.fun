@@ -16,6 +16,7 @@ function parseContactForm(form: FormData) {
     connectionMode: String(form.get("connectionMode") || "").trim(),
     budget: String(form.get("budget") || "").trim(),
     message: String(form.get("message") || "").trim(),
+    preShipmentPhotos: form.get("preShipmentPhotos") === "on",
     privacyConsent: form.get("privacyConsent") === "yes",
   };
 }
@@ -52,6 +53,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.redirect(new URL("/contact?error=missing", req.url));
   }
 
+  const messageBody = [
+    data.message,
+    data.quantity && `Units / chassis: ${data.quantity}`,
+    data.platform && `Platform: ${data.platform}`,
+    data.connectionMode && `Connection mode: ${data.connectionMode}`,
+    data.preShipmentPhotos && "Request pre-shipment photos/video before dispatch",
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
   await prisma.contactSubmission.create({
     data: {
       name: data.name,
@@ -62,14 +73,7 @@ export async function POST(req: NextRequest) {
       productInterest: data.productInterest,
       deviceQuantity: data.deviceQuantity,
       budget: data.budget,
-      message: [
-        data.message,
-        data.quantity && `Units / chassis: ${data.quantity}`,
-        data.platform && `Platform: ${data.platform}`,
-        data.connectionMode && `Connection mode: ${data.connectionMode}`,
-      ]
-        .filter(Boolean)
-        .join("\n\n"),
+      message: messageBody,
     },
   });
 

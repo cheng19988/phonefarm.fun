@@ -23,6 +23,7 @@ type Trc20Transfer = {
   to: string;
   value: string;
   block_timestamp: number;
+  contract_address?: string;
   token_info?: { symbol?: string; address?: string };
 };
 
@@ -76,6 +77,7 @@ async function fetchTxByHash(txHash: string): Promise<Trc20Transfer | null> {
     to: evt.result.to ?? "",
     value: evt.result.value ?? "0",
     block_timestamp: evt.block_timestamp,
+    contract_address: evt.contract_address,
   };
 }
 
@@ -83,11 +85,20 @@ function evaluateTransfer(
   raw: Trc20Transfer,
   address: string,
   expectedAmount: number,
-  since: Date
+  since: Date,
+  usdtContract?: string
 ): EvaluatedTransfer | { error: string } {
   const amount = parseUsdtAmount(raw.value);
   const toMatch = raw.to?.toLowerCase() === address.toLowerCase();
   const timeOk = raw.block_timestamp >= since.getTime() - 60_000;
+  const contract = usdtContract?.toLowerCase();
+  const tokenOk =
+    !contract ||
+    !raw.contract_address ||
+    raw.contract_address.toLowerCase() === contract ||
+    raw.token_info?.address?.toLowerCase() === contract;
+
+  if (!tokenOk) return { error: "wrong_token" };
 
   if (!toMatch) return { error: "wrong_address" };
   if (!timeOk) return { error: "invalid_tx" };
@@ -113,7 +124,7 @@ export async function verifyTronPayment(
   const usdtContract = contract ?? settings.usdtContract;
   const transfers = await fetchTrc20Transfers(address, since.getTime(), usdtContract);
   for (const raw of transfers) {
-    const result = evaluateTransfer(raw, address, expectedAmount, since);
+    const result = evaluateTransfer(raw, address, expectedAmount, since, usdtContract);
     if ("error" in result) continue;
     return result;
   }
@@ -135,7 +146,7 @@ export async function verifyTronPaymentByTxHash(
   const raw = await fetchTxByHash(txHash);
   if (!raw) return { result: null, error: "invalid_tx" };
 
-  const evaluated = evaluateTransfer(raw, address, expectedAmount, since);
+  const evaluated = evaluateTransfer(raw, address, expectedAmount, since, contract);
   if ("error" in evaluated) return { result: null, error: evaluated.error };
   return { result: evaluated };
 }

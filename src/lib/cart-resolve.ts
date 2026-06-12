@@ -1,3 +1,5 @@
+import { getProductMeta } from "@/data/product-meta";
+import { isQuotePreferredProduct } from "./product-commerce";
 import { getProductBySlug } from "./products-server";
 import { getService } from "@/data/services";
 import type { CartItem } from "./cart";
@@ -19,6 +21,8 @@ export async function resolveCartItems(items: CartItem[]): Promise<ResolvedCartL
     if (item.type === "product") {
       const product = await getProductBySlug(item.slug);
       if (!product) continue;
+      const meta = getProductMeta(item.slug);
+      const quoteOnly = isQuotePreferredProduct(item.slug, meta.leadTime, meta.deploymentType);
       lines.push({
         type: "product",
         slug: item.slug,
@@ -27,7 +31,7 @@ export async function resolveCartItems(items: CartItem[]): Promise<ResolvedCartL
         stock: product.stock,
         quantity: item.quantity,
         image: product.imageCard,
-        purchasable: product.priceUsd > 0 && product.stock > 0,
+        purchasable: product.priceUsd > 0 && product.stock > 0 && !quoteOnly,
       });
     } else {
       const service = getService(item.slug);

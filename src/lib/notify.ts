@@ -11,6 +11,7 @@ type ContactPayload = {
   connectionMode?: string;
   budget: string;
   message: string;
+  preShipmentPhotos?: boolean;
 };
 
 function escapeHtml(value: string) {
@@ -41,6 +42,7 @@ export function formatContactSubmission(data: ContactPayload) {
       line("Platform", data.platform ?? ""),
       line("Connection mode", data.connectionMode ?? ""),
       line("Budget", data.budget),
+      data.preShipmentPhotos ? line("Pre-shipment photos", "Requested") : null,
       line("Message", data.message),
     ].filter(Boolean),
   ].join("\n");

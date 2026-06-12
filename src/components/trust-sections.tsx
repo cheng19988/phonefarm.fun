@@ -63,7 +63,11 @@ export function CaseStudyCards() {
 
 export function TestimonialStrip() {
   return (
-    <div className="grid md:grid-cols-3 gap-6">
+    <div>
+      <p className="text-xs text-zinc-500 mb-4 leading-relaxed">
+        Representative buyer feedback — anonymized roles/regions; not verified third-party reviews.
+      </p>
+      <div className="grid md:grid-cols-3 gap-6">
       {TESTIMONIALS.map((t) => (
         <blockquote key={t.quote.slice(0, 40)} className="rounded-2xl border border-zinc-200 bg-zinc-50 p-6 md:p-7">
           <p className="text-sm md:text-base text-zinc-700 leading-relaxed italic">&ldquo;{t.quote}&rdquo;</p>
@@ -73,6 +77,7 @@ export function TestimonialStrip() {
           </footer>
         </blockquote>
       ))}
+      </div>
     </div>
   );
 }

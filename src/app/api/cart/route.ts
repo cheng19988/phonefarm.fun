@@ -7,6 +7,9 @@ import {
   updateCartQuantity,
   type CartItem,
 } from "@/lib/cart";
+import { getProductMeta } from "@/data/product-meta";
+import { isQuotePreferredProduct } from "@/lib/product-commerce";
+import { getService } from "@/data/services";
 
 export async function GET() {
   const items = await getCart();
@@ -19,6 +22,18 @@ export async function POST(req: NextRequest) {
   const slug = String(body.slug || "");
   const quantity = Math.max(1, Number(body.quantity) || 1);
   if (!slug) return NextResponse.json({ error: "slug required" }, { status: 400 });
+
+  if (type === "product") {
+    const meta = getProductMeta(slug);
+    if (isQuotePreferredProduct(slug, meta.leadTime, meta.deploymentType)) {
+      return NextResponse.json({ error: "This SKU requires a factory quote before purchase." }, { status: 400 });
+    }
+  } else {
+    const service = getService(slug);
+    if (!service || service.priceUsd <= 0) {
+      return NextResponse.json({ error: "This service requires a quote." }, { status: 400 });
+    }
+  }
 
   const items = mergeCartItem(await getCart(), { type, slug, quantity });
   await setCart(items);

@@ -104,14 +104,6 @@ export function websiteJsonLd() {
     description: SITE.description,
     inLanguage: SITE.language,
     publisher: { "@id": ORG_ID },
-    potentialAction: {
-      "@type": "SearchAction",
-      target: {
-        "@type": "EntryPoint",
-        urlTemplate: `${SITE.url}/contact?product={search_term_string}`,
-      },
-      "query-input": "required name=search_term_string",
-    },
   };
 }
 

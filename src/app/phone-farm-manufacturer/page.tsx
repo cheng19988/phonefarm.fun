@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ContactCTA, JsonLd } from "@/components/shared";
+import { FAQAccordion } from "@/components/commerce";
 import { AI_ENTITY } from "@/data/ai-entity";
 import { PRODUCT_SEEDS } from "@/data/products";
 import { buildMetadata, organizationJsonLd, faqJsonLd, itemListJsonLd, breadcrumbJsonLd } from "@/lib/seo";
@@ -131,6 +132,11 @@ export default function PhoneFarmManufacturerPage() {
               <p>Batch device automation via ADB</p>
               <p>Mobile device lab batch control with optional remote setup</p>
             </div>
+          </div>
+
+          <div>
+            <SectionHeader title="Manufacturer FAQ" large />
+            <FAQAccordion items={MANUFACTURER_FAQ} large />
           </div>
 
           <div>

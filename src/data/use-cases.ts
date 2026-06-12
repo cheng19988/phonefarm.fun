@@ -41,7 +41,7 @@ export const USE_CASES = [
 
 export const TRUST_STATS = [
   { value: "Since 2017", label: "Guangzhou hardware factory" },
-  { value: "11 SKUs", label: "Boxes, clusters & accessories" },
+  { value: "19+ SKUs", label: "Boxes, tiers & accessories" },
   { value: "20 nodes", label: "Per standard 2U chassis" },
   { value: "Global export", label: "DHL · FedEx · sea freight" },
 ] as const;
