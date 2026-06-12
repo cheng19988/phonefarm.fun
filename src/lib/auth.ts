@@ -40,6 +40,7 @@ export async function createSession(user: SessionUser) {
     sameSite: "lax",
     maxAge: 60 * 60 * 24 * 7,
     path: "/",
+    ...(process.env.NODE_ENV === "production" ? { domain: ".phonefarm.fun" } : {}),
   });
 }
 

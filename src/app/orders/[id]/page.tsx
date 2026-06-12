@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { CONTACT } from "@/lib/config";
+import { CheckoutSteps } from "@/components/checkout-flow";
 import { FormInput, FormLabel, LoadingBlock, PriceDisplay } from "@/components/store";
 
 type PaymentInfo = {
@@ -36,7 +37,7 @@ function StatusBadge({ status }: { status: string }) {
     Expired: "bg-red-50 text-red-800 border-red-200",
   };
   return (
-    <span className={`inline-block text-sm font-medium px-3 py-1 rounded-full border ${styles[status] ?? "bg-slate-100 text-slate-700 border-slate-200"}`}>
+    <span className={`inline-block text-sm font-medium px-3 py-1 rounded-full border ${styles[status] ?? "bg-zinc-100 text-zinc-700 border-zinc-200"}`}>
       {status}
     </span>
   );
@@ -121,40 +122,42 @@ export default function OrderPage() {
   return (
     <div className="section">
       <div className="container-wide max-w-3xl">
+        <CheckoutSteps active={4} />
         <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900">Order {order.orderNumber}</h1>
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-zinc-900">Order {order.orderNumber}</h1>
           <StatusBadge status={order.status} />
         </div>
 
         <div className="card p-6 md:p-8 mb-8">
-          <h2 className="text-lg font-bold text-slate-900 mb-5">Order items</h2>
+          <h2 className="text-lg font-bold text-zinc-900 mb-5">Order items</h2>
           {order.items.map((item, i) => (
-            <div key={i} className="flex justify-between text-sm py-3 border-b border-slate-100 last:border-0 gap-4">
-              <span className="text-slate-700">{item.product.name}</span>
-              <span className="text-slate-900 font-medium shrink-0">${item.unitPrice} × {item.quantity}</span>
+            <div key={i} className="flex justify-between text-sm py-3 border-b border-zinc-100 last:border-0 gap-4">
+              <span className="text-zinc-700">{item.product.name}</span>
+              <span className="text-zinc-900 font-medium shrink-0">${item.unitPrice} × {item.quantity}</span>
             </div>
           ))}
-          <div className="flex justify-between items-center mt-4 pt-4 border-t border-slate-200">
-            <span className="font-bold text-slate-900">Total (USD)</span>
+          <div className="flex justify-between items-center mt-4 pt-4 border-t border-zinc-200">
+            <span className="font-bold text-zinc-900">Total (USD)</span>
             <PriceDisplay amount={order.totalUsd} size="md" />
           </div>
         </div>
 
         {payment && order.status === "Waiting for Payment" && (
           <div className="card p-6 md:p-8 mb-8 border-orange-200 bg-orange-50/50">
-            <h2 className="text-lg font-bold text-slate-900 mb-3">USDT payment instructions</h2>
-            <p className="text-base text-slate-600 mb-5 leading-relaxed">
-              Pay the exact amount below in {payment.paymentCurrency} on {payment.paymentNetwork}. Card and PayPal checkout are not available — contact {CONTACT.email} for manual invoice options.
+            <h2 className="text-lg font-bold text-zinc-900 mb-2">Step 4 — Pay with USDT (TRC20)</h2>
+            <p className="text-base text-zinc-600 mb-5 leading-relaxed">
+              Send the exact amount below on <strong className="text-zinc-900">Tron TRC20</strong> within the timer.
+              Wrong network or amount delays confirmation. No card/PayPal on this page — email {CONTACT.email} for bank invoice.
             </p>
-            <div className="space-y-4 text-base bg-white rounded-xl p-5 md:p-6 border border-slate-200">
-              <div className="flex justify-between gap-4"><span className="text-slate-500">Amount due</span><span className="text-slate-900 font-mono font-bold">{payment.expectedAmount} {payment.paymentCurrency}</span></div>
-              <div className="flex justify-between gap-4"><span className="text-slate-500">Network</span><span className="text-slate-900">{payment.paymentNetwork}</span></div>
+            <div className="space-y-4 text-base bg-white rounded-xl p-5 md:p-6 border border-zinc-200">
+              <div className="flex justify-between gap-4"><span className="text-zinc-500">Amount due</span><span className="text-zinc-900 font-mono font-bold">{payment.expectedAmount} {payment.paymentCurrency}</span></div>
+              <div className="flex justify-between gap-4"><span className="text-zinc-500">Network</span><span className="text-zinc-900">{payment.paymentNetwork}</span></div>
               <div>
-                <span className="text-slate-500 block mb-1">Wallet address</span>
-                <code className="block bg-slate-50 border border-slate-200 p-4 rounded-lg text-orange-700 text-sm break-all font-mono">{payment.paymentAddress}</code>
+                <span className="text-zinc-500 block mb-1">Wallet address (copy exactly)</span>
+                <code className="block bg-zinc-50 border border-zinc-200 p-4 rounded-lg text-orange-700 text-sm break-all font-mono">{payment.paymentAddress}</code>
               </div>
-              <div className="flex justify-between gap-4"><span className="text-slate-500">Expires in</span><span className="text-amber-700 font-medium">{timeLeft}</span></div>
-              <div className="flex justify-between gap-4"><span className="text-slate-500">Verification</span><span className="text-slate-700">{payment.verificationStatus}</span></div>
+              <div className="flex justify-between gap-4"><span className="text-zinc-500">Pay within</span><span className="text-amber-700 font-medium">{timeLeft}</span></div>
+              <div className="flex justify-between gap-4"><span className="text-zinc-500">Status</span><span className="text-zinc-700">{payment.verificationStatus}</span></div>
               {payment.failureReason && (
                 <p className="text-red-800 text-sm bg-red-50 border border-red-200 rounded-lg p-4 leading-relaxed">
                   Payment issue: {payment.failureReason.replace(/_/g, " ")}. Double-check amount, network, and address, then submit your TXID below or contact {CONTACT.email}.
@@ -172,7 +175,7 @@ export default function OrderPage() {
                 />
                 <button type="submit" className="btn-primary sm:shrink-0 px-8 py-3">Verify TXID</button>
               </div>
-              {txStatus && <p className="text-sm text-slate-600">{txStatus}</p>}
+              {txStatus && <p className="text-sm text-zinc-600">{txStatus}</p>}
             </form>
           </div>
         )}

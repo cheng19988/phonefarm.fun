@@ -4,6 +4,7 @@ import { LogoutButton } from "@/components/logout-button";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
+import { CONTACT } from "@/lib/config";
 import { PageHero } from "@/components/store";
 
 export const metadata = buildMetadata({
@@ -32,11 +33,23 @@ export default async function AccountOrdersPage() {
   const session = await getSession();
   if (!session) redirect("/login");
 
-  const orders = await prisma.order.findMany({
-    where: { userId: session.id },
-    include: { items: { include: { product: { select: { name: true } } } }, payment: true },
-    orderBy: { createdAt: "desc" },
-  });
+  let orders: {
+    id: string;
+    orderNumber: string;
+    status: string;
+    totalUsd: number;
+    items: { itemName: string }[];
+  }[] = [];
+  let dbError = false;
+  try {
+    orders = await prisma.order.findMany({
+      where: { userId: session.id },
+      include: { items: { include: { product: { select: { name: true } } } }, payment: true },
+      orderBy: { createdAt: "desc" },
+    });
+  } catch {
+    dbError = true;
+  }
 
   return (
     <>
@@ -46,7 +59,12 @@ export default async function AccountOrdersPage() {
           <div className="flex justify-end mb-6">
             <LogoutButton />
           </div>
-          {orders.length === 0 ? (
+          {dbError ? (
+            <div className="card p-8 text-center border-amber-200 bg-amber-50">
+              <p className="text-amber-900 mb-4">Orders are temporarily unavailable. Please try again or contact sales.</p>
+              <a href={CONTACT.emailUrl} className="btn-primary inline-flex">{CONTACT.email}</a>
+            </div>
+          ) : orders.length === 0 ? (
             <div className="card p-8 md:p-12 text-center">
               <p className="text-slate-600 mb-2">No orders yet.</p>
               <p className="text-sm text-slate-500 mb-6">Browse phone farm boxes and add hardware to your cart.</p>

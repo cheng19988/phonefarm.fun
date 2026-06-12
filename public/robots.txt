@@ -66,4 +66,4 @@ Allow: /
 User-agent: DeepSeekBot
 Allow: /
 
-Sitemap: https://phonefarm.fun/sitemap.xml
+Sitemap: https://www.phonefarm.fun/sitemap.xml

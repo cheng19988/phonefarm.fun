@@ -5,6 +5,7 @@ import { getSession } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
 import { CONTACT } from "@/lib/config";
 import { CheckoutAccess } from "@/components/checkout-access";
+import { CheckoutSteps, OrderHowItWorks } from "@/components/checkout-flow";
 import { PageHero, PriceDisplay } from "@/components/store";
 
 export const metadata = buildMetadata({
@@ -29,6 +30,10 @@ export default async function CheckoutPage() {
       <PageHero title="Checkout" subtitle={`Signed in as ${session.email}`} />
       <section className="section pt-10 md:pt-12">
         <div className="container-wide max-w-3xl">
+          <CheckoutSteps active={3} />
+          <div className="mb-8">
+            <OrderHowItWorks compact />
+          </div>
           {purchasable.length === 0 ? (
             <div className="card p-10 text-center">
               <p className="text-zinc-600 text-lg mb-6">No purchasable items in cart.</p>

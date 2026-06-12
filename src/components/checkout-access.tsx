@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ResolvedCartLine } from "@/lib/cart-resolve";
 import { PageHero, PriceDisplay } from "@/components/store";
+import { CheckoutSteps } from "@/components/checkout-flow";
 
 export function CheckoutAccess({
   lines,
@@ -18,6 +19,7 @@ export function CheckoutAccess({
       />
       <section className="section pt-10 md:pt-12">
         <div className="container-wide max-w-3xl space-y-8">
+          <CheckoutSteps active={2} />
           {lines.length > 0 ? (
             <div className="card p-6 md:p-8">
               <h2 className="text-xl font-bold text-zinc-900 mb-5">Order summary</h2>

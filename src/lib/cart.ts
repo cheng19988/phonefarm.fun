@@ -28,6 +28,7 @@ export async function setCart(items: CartItem[]) {
     sameSite: "lax",
     maxAge: 60 * 60 * 24 * 14,
     path: "/",
+    ...(process.env.NODE_ENV === "production" ? { domain: ".phonefarm.fun" } : {}),
   });
 }
 

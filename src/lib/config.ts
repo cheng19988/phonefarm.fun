@@ -1,7 +1,8 @@
 export const SITE = {
   name: "PhoneFarm Fun",
-  domain: "phonefarm.fun",
-  url: "https://phonefarm.fun",
+  domain: "www.phonefarm.fun",
+  /** Canonical public URL — must match live redirect target (www). */
+  url: "https://www.phonefarm.fun",
   /** Primary site language — all public pages are English */
   language: "en",
   locale: "en_US",
