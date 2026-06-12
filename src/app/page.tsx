@@ -6,7 +6,7 @@ import { ProductCard, FAQAccordion } from "@/components/commerce";
 import { HomeHero } from "@/components/home-hero";
 import { buildMetadata, faqJsonLd, naverSiteVerificationMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/shared";
-import { FAQ_ITEMS } from "@/data/faq";
+import { FAQ_ITEMS, getHomePageFaqItems } from "@/data/faq";
 import { BLOG_POSTS } from "@/data/blog";
 import { SERVICES } from "@/data/services";
 import { getProductMeta } from "@/data/product-meta";
@@ -89,7 +89,7 @@ export default async function HomePage() {
   const bySlug = new Map(allProducts.map((p) => [p.slug, p]));
   const featured = FEATURED_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean);
   const modelConfigs = MODEL_CONFIG_SLUGS.map((slug) => bySlug.get(slug)).filter(Boolean);
-  const previewFaq = FAQ_ITEMS;
+  const previewFaq = getHomePageFaqItems();
   const featuredServices = SERVICES.filter((s) => s.priceUsd > 0).slice(0, 3);
 
   return (

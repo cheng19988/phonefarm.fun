@@ -21,15 +21,18 @@ export function HomeHero() {
             {SITE.location} · Factory-built since {SITE.since}
           </p>
           <h1 className="shop-hero-title text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-5xl text-zinc-900">
-            Professional Phone Farm Boxes &amp; Motherboard Arrays
+            Factory-Direct Phone Farm Boxes &amp; Motherboard Arrays
           </h1>
           <p className="shop-hero-lead text-base md:text-lg mt-4 text-zinc-600">
-            Real Android device farm hardware for QA labs, automation teams, and scalable deployment —
-            20-node chassis, motherboard clusters, and custom racks assembled in Guangzhou.
+            Guangzhou phone farm box manufacturer — real Android device farm hardware for B2B QA labs and automation teams.
+            20-node chassis, motherboard clusters, and rackmount racks with export shipping and optional remote setup.
           </p>
           <div className="flex flex-wrap gap-3 mt-6">
             <Link href="/products" className="btn-primary-lg shadow-lg shadow-orange-900/15">
               Start Shopping
+            </Link>
+            <Link href="/contact" className="btn-outline">
+              Get Factory Quote
             </Link>
             <Link href="#phone-farm-intro" className="btn-outline">
               What Is a Phone Farm?

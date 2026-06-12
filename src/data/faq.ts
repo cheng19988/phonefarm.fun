@@ -251,4 +251,31 @@ export const FAQ_ITEMS = [
     answer:
       "Inspect the export crate on delivery and note carrier damage if allowed. Report DOA or transit damage within 7 days with photos to sales. In-warranty assembly defects within 12 months: contact us with order number, slot ID, and photos/video — we arrange remote troubleshooting, replacement parts (PSU, fan, USB module), or RMA per /warranty. Customer-supplied device failures and misuse are not covered.",
   },
+  {
+    question: "What is the difference between a 2U phone farm rack and a desk phone farm setup?",
+    answer:
+      "A standard 2U phone farm box is a factory chassis with centralized PSU, active cooling, and labeled USB backplane — sized for 20 nodes and rack-friendly mounting. Desk setups scatter phones on chargers with no engineered airflow or power budget. For 40+ nodes, we quote custom rackmount cabinets with engineered PDU, cooling, and cable paths. See /products/custom-cabinet and /blog/rackmount-2u-phone-farm-rack-buyer-guide.",
+  },
+  {
+    question: "What is phone farm equipment vs a phone farm box?",
+    answer:
+      "Phone farm equipment is the broad category — chassis, devices, PSU, cooling, USB hubs, and network gear. A phone farm box is a complete factory-built 2U unit housing up to 20 real Android devices with integrated power and cooling. Accessories (USB hub, PSU module, cooling kit) are sold separately for expansion or spare inventory.",
+  },
+  {
+    question: "Do you offer phone farm box wholesale or bulk order pricing?",
+    answer:
+      "Yes. MOQ is 1 unit for standard SKUs — suitable for evaluation. Volume pricing applies from 5 units and for multi-chassis lab rollouts; contact sales with node count, model list, and shipping country for a bulk quote. Sea freight is typical for bulk orders; express courier for samples and urgent POs.",
+  },
+  {
+    question: "Can I buy a phone farm box with remote setup included?",
+    answer:
+      "Hardware and remote setup are quoted separately. Add Remote Control Configuration or Group Control System Configuration from /services when ordering — our team configures ADB paths, device grouping, and batch workflows on your control PC after delivery. Mention remote setup on the /contact form or in cart notes.",
+  },
 ];
+
+/** Homepage FAQ — JSON-LD and visible accordion (procurement + definition subset). */
+export const HOME_PAGE_FAQ_INDICES = [1, 11, 13, 14, 23, 27, 34, 35, 43, 50] as const;
+
+export function getHomePageFaqItems() {
+  return HOME_PAGE_FAQ_INDICES.map((i) => FAQ_ITEMS[i]).filter(Boolean);
+}

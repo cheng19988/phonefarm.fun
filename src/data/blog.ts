@@ -133,7 +133,7 @@ Contact support if you need help integrating PhoneFarm Fun hardware with your ex
   },
   {
     slug: "is-phone-farming-still-profitable",
-    title: "Is Phone Farming Still Profitable? Hardware vs Cloud in 2026",
+    title: "Phone Farm Hardware ROI: Real Devices vs Cloud in 2026",
     category: "Applications & Use Cases",
     date: "2026-02-28",
     excerpt:
@@ -156,7 +156,7 @@ Contact ${CONTACT.email} with your use case for sizing guidance.`,
   },
   {
     slug: "creator-studio-device-farm-setup",
-    title: "Creator Studio Device Farm: Multi-Account Android Workflows",
+    title: "Creator Studio Device Farm: Parallel Android Device Workflows",
     category: "Applications & Use Cases",
     date: "2026-04-02",
     excerpt:
@@ -177,7 +177,7 @@ PhoneFarm Fun boxes ship from Guangzhou with pre-shipment burn-in. Optional remo
   },
   {
     slug: "digital-marketing-device-lab",
-    title: "Digital Marketing Labs: Real Devices for Ad & App Verification",
+    title: "Digital Marketing Labs: Real Devices for Mobile Ad QA",
     category: "Applications & Use Cases",
     date: "2026-03-05",
     excerpt:
@@ -526,6 +526,35 @@ Optional **remote workstation setup** after you unbox locally — ADB paths, gro
 **Quick reference table:** /faq (procurement section at top)
 
 Contact ${CONTACT.email} · Telegram @huicheng1998 · WhatsApp +85262155642 with shipping country and node count for a freight-inclusive quote.`,
+  },
+  {
+    slug: "rackmount-2u-phone-farm-rack-buyer-guide",
+    title: "Rackmount & 2U Phone Farm Rack Buyer Guide",
+    category: "Buying Guides",
+    date: "2026-06-12",
+    excerpt:
+      "Compare standard 2U phone farm boxes, bench chassis, and custom rackmount cabinets — dimensions, power, node scaling, and when to quote a 40+ node rack.",
+    content: `Procurement teams search for **rackmount phone farm** and **2U phone farm rack** when moving from desk pilots to engineered labs. This guide explains what PhoneFarm Fun (Guangzhou) ships at each tier.
+
+**Standard 2U phone farm box (20 nodes)**
+Factory 2U chassis: **21.26 × 14.37 × 7.28 in**, ~**13 lb** empty, **110V–220V** input, **450–550W** PSU. Fits bench or rack ears. Reference SKUs from $428 (Exynos entry) through $1,220 (S10+). MOQ **1**; in-stock lead time **3–5 business days**.
+
+**2U vs desk phone farm**
+Desk chargers lack centralized cooling and power budgeting — common cause of disconnects and thermal throttling. A 2U phone farm box replaces scattered phones with labeled USB paths and burn-in QC before export.
+
+**When to quote custom rackmount (40+ nodes)**
+Multi-chassis labs, datacenter-style layouts, or mixed motherboard + full-phone tiers need engineered PDU, ducted cooling, and cable CAD. Lead time typically **2–4 weeks** after quote approval. See /products/custom-cabinet.
+
+**Motherboard cluster vs full-phone 2U box**
+Headless motherboard arrays maximize density for headless app QA. Full-phone 2U boxes include sensors, SIM paths, and display workflows for compatibility testing. Compare at /blog/motherboard-box-vs-phone-box.
+
+**Bulk / wholesale orders**
+Volume pricing from **5 units** — contact sales with shipping country and node count. Sea freight typical for bulk; express for samples.
+
+**Remote setup add-on**
+Hardware and setup are separate line items. Add /services/remote-control-configuration when you need ADB grouping and batch workflows on delivery.
+
+Contact ${CONTACT.email} · RFQ at https://www.phonefarm.fun/contact`,
   },
 ];
 

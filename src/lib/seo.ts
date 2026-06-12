@@ -252,6 +252,19 @@ export function blogItemListJsonLd(posts: { title: string; slug: string; date: s
   };
 }
 
+export function contactPageJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Request a Phone Farm Hardware Quote",
+    description:
+      "Factory-direct B2B quote for phone farm boxes and custom racks from PhoneFarm Fun Guangzhou — email, WhatsApp, Telegram.",
+    url: `${SITE.url}/contact`,
+    inLanguage: SITE.language,
+    mainEntity: { "@id": ORG_ID },
+  };
+}
+
 export function serviceJsonLd(service: {
   title: string;
   description: string;

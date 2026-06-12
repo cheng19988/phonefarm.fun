@@ -17,7 +17,7 @@ const FAQ_CATEGORIES = [
   {
     title: "Procurement & physical specs",
     description: "Dimensions, weight, voltage, power draw, packaging, PC scaling, pre-shipment photos, and lead time.",
-    indices: [27, 43, 44, 45, 46, 47, 13],
+    indices: [27, 43, 44, 45, 46, 47, 13, 50, 51],
   },
   {
     title: "Products & Hardware",
@@ -27,12 +27,12 @@ const FAQ_CATEGORIES = [
   {
     title: "Customization & Setup",
     description: "Custom hardware, remote control, and lab management configuration.",
-    indices: [7, 8, 9],
+    indices: [7, 8, 9, 53],
   },
   {
     title: "Ordering & Payment",
     description: "MOQ, samples, and payment methods.",
-    indices: [11, 12, 14],
+    indices: [11, 12, 14, 52],
   },
   {
     title: "Shipping & Lead Time",

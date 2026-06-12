@@ -1,4 +1,5 @@
-import { buildMetadata } from "@/lib/seo";
+import { JsonLd } from "@/components/shared";
+import { buildMetadata, contactPageJsonLd } from "@/lib/seo";
 
 export const metadata = buildMetadata({
   title: "Factory Quote — PhoneFarm Fun Guangzhou",
@@ -8,5 +9,10 @@ export const metadata = buildMetadata({
 });
 
 export default function ContactLayout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <JsonLd data={contactPageJsonLd()} />
+      {children}
+    </>
+  );
 }
