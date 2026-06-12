@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
+import { getPaymentSettings } from "@/lib/payment-settings";
+import { formatUsdtAmount, isAutoPaymentVerificationEnabled, usdToUsdt, usdtMatchesOrderTotal } from "@/lib/payment";
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -21,6 +23,10 @@ export async function GET(_req: Request, { params }: Params) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
 
+  const settings = await getPaymentSettings();
+  const expectedUsdt = order.payment?.expectedAmount ?? usdToUsdt(order.totalUsd, settings.minAmount);
+  const amountsAligned = usdtMatchesOrderTotal(order.totalUsd, expectedUsdt, settings.minAmount);
+
   return NextResponse.json({
     ...order,
     items: order.items.map((item) => ({
@@ -29,5 +35,12 @@ export async function GET(_req: Request, { params }: Params) {
       itemType: item.itemType,
       product: item.product ?? { name: item.itemName, slug: item.itemSlug },
     })),
+    paymentMeta: {
+      autoVerifyEnabled: isAutoPaymentVerificationEnabled(),
+      expectedUsdt: formatUsdtAmount(expectedUsdt),
+      totalUsd: formatUsdtAmount(order.totalUsd),
+      amountsAligned,
+      minUsdt: settings.minAmount,
+    },
   });
 }

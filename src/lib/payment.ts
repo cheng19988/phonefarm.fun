@@ -1,6 +1,11 @@
 import { PAYMENT } from "./config";
 import { prisma } from "./prisma";
 import { getPaymentSettings } from "./payment-settings";
+import {
+  PAYMENT_STATUS,
+  classifyUsdtAmount,
+  isAutoPaymentVerificationEnabled,
+} from "./payment-status";
 
 const USDT_DECIMALS = 1_000_000;
 
@@ -19,6 +24,11 @@ type Trc20Transfer = {
   value: string;
   block_timestamp: number;
   token_info?: { symbol?: string; address?: string };
+};
+
+type EvaluatedTransfer = {
+  tx: TronTransaction;
+  classification: "paid" | "underpaid" | "overpaid";
 };
 
 function parseUsdtAmount(value: string) {
@@ -69,24 +79,28 @@ async function fetchTxByHash(txHash: string): Promise<Trc20Transfer | null> {
   };
 }
 
-function matchTransfer(
-  tx: Trc20Transfer,
+function evaluateTransfer(
+  raw: Trc20Transfer,
   address: string,
   expectedAmount: number,
-  since: Date,
-  contract: string
-): TronTransaction | null {
-  const amount = parseUsdtAmount(tx.value);
-  const toMatch = tx.to?.toLowerCase() === address.toLowerCase();
-  const timeOk = tx.block_timestamp >= since.getTime() - 60_000;
-  if (!toMatch || !timeOk || amount + 0.000001 < expectedAmount - 0.01) return null;
-  return {
-    txHash: tx.transaction_id,
+  since: Date
+): EvaluatedTransfer | { error: string } {
+  const amount = parseUsdtAmount(raw.value);
+  const toMatch = raw.to?.toLowerCase() === address.toLowerCase();
+  const timeOk = raw.block_timestamp >= since.getTime() - 60_000;
+
+  if (!toMatch) return { error: "wrong_address" };
+  if (!timeOk) return { error: "invalid_tx" };
+
+  const tx: TronTransaction = {
+    txHash: raw.transaction_id,
     amount,
-    to: tx.to,
-    from: tx.from,
+    to: raw.to,
+    from: raw.from,
     confirmed: true,
   };
+
+  return { tx, classification: classifyUsdtAmount(amount, expectedAmount) };
 }
 
 export async function verifyTronPayment(
@@ -94,13 +108,14 @@ export async function verifyTronPayment(
   expectedAmount: number,
   since: Date,
   contract?: string
-): Promise<TronTransaction | null> {
+): Promise<EvaluatedTransfer | null> {
   const settings = await getPaymentSettings();
   const usdtContract = contract ?? settings.usdtContract;
   const transfers = await fetchTrc20Transfers(address, since.getTime(), usdtContract);
-  for (const tx of transfers) {
-    const matched = matchTransfer(tx, address, expectedAmount, since, usdtContract);
-    if (matched) return matched;
+  for (const raw of transfers) {
+    const result = evaluateTransfer(raw, address, expectedAmount, since);
+    if ("error" in result) continue;
+    return result;
   }
   return null;
 }
@@ -111,26 +126,77 @@ export async function verifyTronPaymentByTxHash(
   expectedAmount: number,
   since: Date,
   contract?: string
-): Promise<{ tx: TronTransaction | null; error?: string }> {
-  const settings = await getPaymentSettings();
-  const usdtContract = contract ?? settings.usdtContract;
-
+): Promise<{ result: EvaluatedTransfer | null; error?: string }> {
   const used = await prisma.payment.findFirst({
-    where: { txHash: txHash, paymentStatus: "paid" },
+    where: { txHash: txHash, paymentStatus: PAYMENT_STATUS.paid },
   });
-  if (used) return { tx: null, error: "duplicate_tx" };
+  if (used) return { result: null, error: "duplicate_tx" };
 
   const raw = await fetchTxByHash(txHash);
-  if (!raw) return { tx: null, error: "invalid_tx" };
+  if (!raw) return { result: null, error: "invalid_tx" };
 
-  const matched = matchTransfer(raw, address, expectedAmount, since, usdtContract);
-  if (!matched) {
-    const amount = parseUsdtAmount(raw.value);
-    if (raw.to?.toLowerCase() !== address.toLowerCase()) return { tx: null, error: "wrong_address" };
-    if (amount + 0.000001 < expectedAmount - 0.01) return { tx: null, error: "amount_mismatch" };
-    return { tx: null, error: "invalid_tx" };
+  const evaluated = evaluateTransfer(raw, address, expectedAmount, since);
+  if ("error" in evaluated) return { result: null, error: evaluated.error };
+  return { result: evaluated };
+}
+
+async function applyPaymentOutcome(
+  paymentId: string,
+  orderId: string,
+  tx: TronTransaction,
+  classification: "paid" | "underpaid" | "overpaid"
+) {
+  const now = new Date();
+
+  const duplicate = await prisma.payment.findFirst({
+    where: { txHash: tx.txHash, id: { not: paymentId }, paymentStatus: PAYMENT_STATUS.paid },
+  });
+  if (duplicate) {
+    await prisma.payment.update({
+      where: { id: paymentId },
+      data: {
+        paymentStatus: PAYMENT_STATUS.manual_review,
+        verificationStatus: "duplicate_tx",
+        failureReason: "duplicate_tx",
+        submittedTxHash: tx.txHash,
+        receivedAmount: tx.amount,
+      },
+    });
+    await prisma.order.update({ where: { id: orderId }, data: { status: "Manual Review" } });
+    return { status: PAYMENT_STATUS.manual_review, reason: "duplicate_tx" };
   }
-  return { tx: matched };
+
+  if (classification === "paid") {
+    await prisma.payment.update({
+      where: { id: paymentId },
+      data: {
+        paymentStatus: PAYMENT_STATUS.paid,
+        verificationStatus: "verified",
+        receivedAmount: tx.amount,
+        txHash: tx.txHash,
+        paidAt: now,
+        failureReason: null,
+      },
+    });
+    await prisma.order.update({ where: { id: orderId }, data: { status: "Paid" } });
+    return { status: PAYMENT_STATUS.paid };
+  }
+
+  const paymentStatus =
+    classification === "underpaid" ? PAYMENT_STATUS.underpaid : PAYMENT_STATUS.overpaid;
+
+  await prisma.payment.update({
+    where: { id: paymentId },
+    data: {
+      paymentStatus,
+      verificationStatus: classification,
+      receivedAmount: tx.amount,
+      txHash: tx.txHash,
+      failureReason: classification,
+    },
+  });
+  await prisma.order.update({ where: { id: orderId }, data: { status: "Manual Review" } });
+  return { status: paymentStatus, reason: classification };
 }
 
 export async function checkAndUpdatePayment(paymentId: string) {
@@ -142,50 +208,95 @@ export async function checkAndUpdatePayment(paymentId: string) {
 
   const settings = await getPaymentSettings();
   const now = new Date();
+  const autoVerify = isAutoPaymentVerificationEnabled();
 
   await prisma.payment.update({
     where: { id: paymentId },
     data: { lastCheckedAt: now },
   });
 
-  if (now > payment.expiresAt && payment.paymentStatus === "pending") {
+  if (now > payment.expiresAt && payment.paymentStatus === PAYMENT_STATUS.pending) {
     await prisma.payment.update({
       where: { id: paymentId },
-      data: { paymentStatus: "expired", verificationStatus: "expired", failureReason: "Payment window expired" },
+      data: {
+        paymentStatus: PAYMENT_STATUS.expired,
+        verificationStatus: "expired",
+        failureReason: "Payment window expired",
+      },
     });
     await prisma.order.update({
       where: { id: payment.orderId },
       data: { status: "Expired" },
     });
-    return { status: "expired" as const };
+    return { status: PAYMENT_STATUS.expired };
   }
 
-  if (payment.paymentStatus === "paid") {
-    return { status: "paid" as const, payment };
+  if (payment.paymentStatus === PAYMENT_STATUS.paid) {
+    return { status: PAYMENT_STATUS.paid, payment };
   }
 
-  let tx: TronTransaction | null = null;
+  if (
+    payment.paymentStatus === PAYMENT_STATUS.underpaid ||
+    payment.paymentStatus === PAYMENT_STATUS.overpaid ||
+    payment.paymentStatus === PAYMENT_STATUS.manual_review ||
+    payment.paymentStatus === PAYMENT_STATUS.expired
+  ) {
+    return { status: payment.paymentStatus, payment };
+  }
+
+  if (!autoVerify) {
+    if (payment.submittedTxHash && payment.paymentStatus === PAYMENT_STATUS.pending) {
+      await prisma.payment.update({
+        where: { id: paymentId },
+        data: {
+          paymentStatus: PAYMENT_STATUS.manual_review,
+          verificationStatus: "awaiting_manual",
+          failureReason: null,
+        },
+      });
+      await prisma.order.update({
+        where: { id: payment.orderId },
+        data: { status: "Manual Review" },
+      });
+      return { status: PAYMENT_STATUS.manual_review, payment };
+    }
+    return { status: PAYMENT_STATUS.pending, payment, manualConfirmation: true };
+  }
+
+  let evaluated: EvaluatedTransfer | null = null;
 
   if (payment.submittedTxHash) {
-    const result = await verifyTronPaymentByTxHash(
+    const byHash = await verifyTronPaymentByTxHash(
       payment.submittedTxHash,
       payment.paymentAddress,
       payment.expectedAmount,
       payment.createdAt,
       settings.usdtContract
     );
-    if (result.error && !result.tx) {
+    if (byHash.error && !byHash.result) {
+      if (byHash.error === "duplicate_tx") {
+        await prisma.payment.update({
+          where: { id: paymentId },
+          data: {
+            paymentStatus: PAYMENT_STATUS.manual_review,
+            verificationStatus: "duplicate_tx",
+            failureReason: "duplicate_tx",
+          },
+        });
+        await prisma.order.update({ where: { id: payment.orderId }, data: { status: "Manual Review" } });
+        return { status: PAYMENT_STATUS.manual_review, reason: "duplicate_tx", payment };
+      }
       await prisma.payment.update({
         where: { id: paymentId },
-        data: { verificationStatus: result.error, failureReason: result.error },
+        data: { verificationStatus: byHash.error, failureReason: byHash.error },
       });
-      return { status: "failed" as const, reason: result.error, payment };
+      return { status: "failed" as const, reason: byHash.error, payment };
     }
-    tx = result.tx;
+    evaluated = byHash.result;
   }
 
-  if (!tx) {
-    tx = await verifyTronPayment(
+  if (!evaluated) {
+    evaluated = await verifyTronPayment(
       payment.paymentAddress,
       payment.expectedAmount,
       payment.createdAt,
@@ -193,37 +304,17 @@ export async function checkAndUpdatePayment(paymentId: string) {
     );
   }
 
-  if (tx) {
-    const duplicate = await prisma.payment.findFirst({
-      where: { txHash: tx.txHash, id: { not: paymentId }, paymentStatus: "paid" },
-    });
-    if (duplicate) {
-      await prisma.payment.update({
-        where: { id: paymentId },
-        data: { verificationStatus: "duplicate_tx", failureReason: "duplicate_tx" },
-      });
-      return { status: "failed" as const, reason: "duplicate_tx", payment };
-    }
-
-    await prisma.payment.update({
-      where: { id: paymentId },
-      data: {
-        paymentStatus: "paid",
-        verificationStatus: "verified",
-        receivedAmount: tx.amount,
-        txHash: tx.txHash,
-        paidAt: now,
-        failureReason: null,
-      },
-    });
-    await prisma.order.update({
-      where: { id: payment.orderId },
-      data: { status: "Paid" },
-    });
-    return { status: "paid" as const, payment };
+  if (evaluated) {
+    const outcome = await applyPaymentOutcome(
+      paymentId,
+      payment.orderId,
+      evaluated.tx,
+      evaluated.classification
+    );
+    return { ...outcome, payment };
   }
 
-  return { status: "pending" as const, payment };
+  return { status: PAYMENT_STATUS.pending, payment };
 }
 
 export function createPaymentExpiry(minutes?: number) {
@@ -231,7 +322,14 @@ export function createPaymentExpiry(minutes?: number) {
   return new Date(Date.now() + mins * 60 * 1000);
 }
 
+/** USD list price → USDT due (1:1 rounded, floored at configured minimum). */
 export function usdToUsdt(usd: number, minAmount?: number) {
   const min = minAmount ?? PAYMENT.minAmount;
   return Math.max(min, Math.round(usd * 100) / 100);
 }
+
+export function usdtMatchesOrderTotal(totalUsd: number, expectedUsdt: number, minAmount?: number) {
+  return usdToUsdt(totalUsd, minAmount) === expectedUsdt;
+}
+
+export { isAutoPaymentVerificationEnabled, formatUsdtAmount } from "./payment-status";

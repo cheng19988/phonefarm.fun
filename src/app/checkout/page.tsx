@@ -4,6 +4,8 @@ import { resolveCartItems } from "@/lib/cart-resolve";
 import { getSession } from "@/lib/auth";
 import { buildMetadata } from "@/lib/seo";
 import { CONTACT } from "@/lib/config";
+import { getPaymentSettings } from "@/lib/payment-settings";
+import { formatUsdtAmount, usdToUsdt } from "@/lib/payment";
 import { CheckoutAccess } from "@/components/checkout-access";
 import { CheckoutSteps, OrderHowItWorks } from "@/components/checkout-flow";
 import { PageHero, PriceDisplay } from "@/components/store";
@@ -20,6 +22,8 @@ export default async function CheckoutPage() {
   const lines = await resolveCartItems(await getCart());
   const purchasable = lines.filter((l) => l.purchasable);
   const total = purchasable.reduce((s, l) => s + l.priceUsd * l.quantity, 0);
+  const settings = await getPaymentSettings();
+  const usdtDue = usdToUsdt(total, settings.minAmount);
 
   if (!session) {
     return <CheckoutAccess lines={purchasable} total={total} />;
@@ -52,15 +56,26 @@ export default async function CheckoutPage() {
                   ))}
                 </div>
                 <div className="flex justify-between items-center pt-5 border-t border-zinc-200">
-                  <span className="text-lg font-bold text-zinc-900">Total (USD reference)</span>
+                  <span className="text-lg font-bold text-zinc-900">Order total (USD)</span>
                   <PriceDisplay amount={total} size="lg" />
                 </div>
+                <div className="flex justify-between items-center pt-4 mt-4 border-t border-dashed border-zinc-200">
+                  <span className="text-base font-semibold text-zinc-800">USDT due at payment (TRC20)</span>
+                  <span className="text-lg font-mono font-bold text-zinc-900">{formatUsdtAmount(usdtDue)} USDT</span>
+                </div>
+                {usdtDue !== Math.round(total * 100) / 100 && (
+                  <p className="text-xs text-amber-800 mt-3">
+                    Minimum checkout is {settings.minAmount} USDT — USDT due may differ from USD total on small orders.
+                  </p>
+                )}
               </div>
 
               <div className="card p-6 md:p-8 mb-8 bg-orange-50 border-orange-100">
                 <h3 className="text-lg font-bold text-zinc-900 mb-3">Payment method</h3>
                 <p className="text-base text-zinc-600 leading-relaxed">
-                  After placing your order, pay the exact USD amount in <strong className="text-zinc-900">USDT (TRC20)</strong> on the order page. This site does not accept credit cards or automatic PayPal checkout.
+                  After placing your order, pay <strong className="text-zinc-900">{formatUsdtAmount(usdtDue)} USDT</strong> on{" "}
+                  <strong className="text-zinc-900">Tron TRC20</strong> on the order page (1:1 with USD for standard SKUs).
+                  This site does not accept credit cards or automatic PayPal checkout.
                 </p>
                 <p className="text-base text-zinc-600 mt-4 leading-relaxed">
                   For bank transfer (T/T), Wise, or PayPal invoice, contact{" "}

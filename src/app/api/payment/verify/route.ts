@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { checkAndUpdatePayment } from "@/lib/payment";
+import { checkAndUpdatePayment, isAutoPaymentVerificationEnabled } from "@/lib/payment";
 import { prisma } from "@/lib/prisma";
 
 export async function GET(req: NextRequest) {
@@ -17,6 +17,8 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({
     status: result.status,
     reason: "reason" in result ? result.reason : undefined,
+    manualConfirmation: "manualConfirmation" in result ? result.manualConfirmation : undefined,
+    autoVerifyEnabled: isAutoPaymentVerificationEnabled(),
     payment: payment
       ? {
           paymentStatus: payment.paymentStatus,

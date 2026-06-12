@@ -15,7 +15,7 @@ const LINKS = [
   { href: "/admin/orders", label: "Orders" },
   { href: "/admin/products", label: "Products" },
   { href: "/admin/users", label: "Users" },
-  { href: "/admin/payments", label: "USDT Settings" },
+  { href: "/admin/payments", label: "USDT Payments" },
   { href: "/admin/contacts", label: "Contacts" },
 ];
 
