@@ -11,7 +11,7 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     slug: "phone-farm",
     term: "Phone farm",
     definition:
-      "A phone farm is a hardware setup running multiple real Android smartphones in parallel with centralized power, cooling, and USB data routing. Teams use phone farms for mobile app QA, compatibility testing, automation R&D, creator studio multi-account workflows, digital marketing device labs, and e-commerce app testing. PhoneFarm Fun manufactures the industrial chassis layer — 20-node phone farm boxes shipped from Guangzhou, China.",
+      "A phone farm is a hardware setup running multiple real Android smartphones in parallel with centralized power, cooling, and USB data routing. Teams use phone farms for mobile app QA, compatibility testing, automation R&D, creator studio parallel device workflows, digital marketing device labs, and e-commerce app testing. PhoneFarm Fun manufactures the industrial chassis layer — 20-node phone farm boxes shipped from Guangzhou, China.",
     relatedLinks: [
       { label: "About phone farms", href: "/about#what-is-phone-farm" },
       { label: "Phone farm FAQ", href: "/faq" },
@@ -72,20 +72,20 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     ],
   },
   {
-    slug: "tiktok-phone-farm",
-    term: "TikTok phone farm / creator studio device farm",
+    slug: "creator-studio-device-farm",
+    term: "Creator studio device farm",
     definition:
-      "Creator studios and social teams use phone farm hardware to run parallel Android devices for multi-account content workflows, regional app checks, and engagement testing on real silicon. Stable factory chassis with cooling and labeled USB slots reduce crashes versus desk chargers. PhoneFarm Fun supplies the hardware layer; platform compliance remains the operator's responsibility.",
+      "Creator studios and content teams use phone farm hardware to run parallel Android devices for regional app checks, content-app QA, and engagement testing on real silicon. Stable factory chassis with cooling and labeled USB slots reduce crashes versus desk chargers. PhoneFarm Fun supplies the hardware layer; platform compliance remains the operator's responsibility.",
     relatedLinks: [
       { label: "Creator studio guide", href: "/blog/creator-studio-device-farm-setup" },
       { label: "Crashes & stability lesson", href: "/blog/phone-farm-crashes-and-bans-lesson" },
     ],
   },
   {
-    slug: "multi-account-automation",
-    term: "Multi-account automation hardware",
+    slug: "parallel-device-automation",
+    term: "Parallel device automation hardware",
     definition:
-      "Multi-account automation at scale requires isolated real devices with reliable power and ADB paths — not shared emulators. Phone farm boxes provide 20 labeled node slots, centralized PSU, and batch-capable USB routing for install scheduling, mirroring, and grouped commands from a control PC.",
+      "Parallel device automation at scale requires isolated real devices with reliable power and ADB paths — not shared emulators. Phone farm boxes provide 20 labeled node slots, centralized PSU, and batch-capable USB routing for install scheduling, mirroring, and grouped commands from a control PC.",
     relatedLinks: [
       { label: "Group control service", href: "/services/group-control-system-configuration" },
       { label: "Bulk APK guide", href: "/blog/bulk-apk-installation-guide" },
@@ -133,12 +133,12 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     relatedLinks: [{ label: "ADB setup guide", href: "/blog/adb-setup-phone-farm-workstation" }],
   },
   {
-    slug: "phone-bot-farm",
-    term: "Phone bot farm",
+    slug: "batch-device-automation",
+    term: "Batch device automation hardware",
     definition:
-      "Phone bot farm hardware runs many real Android devices executing scripted or batch automation via ADB — parallel app installs, test suites, and operational scripts. Unlike cloud bots or emulators, phone bot farms use physical silicon in factory chassis. PhoneFarm Fun manufactures 20-node phone bot farm boxes from $428 entry through N9 Professional ($998) tiers.",
+      "Batch device automation hardware runs many real Android devices executing scripted or batch workflows via ADB — parallel app installs, test suites, and operational scripts. Unlike cloud bots or emulators, these use physical silicon in factory chassis. PhoneFarm Fun manufactures 20-node boxes from $428 entry through N9 Professional ($998) tiers.",
     relatedLinks: [
-      { label: "Phone bot farm guide", href: "/blog/phone-bot-farm-mobile-farm-hardware-guide" },
+      { label: "Batch automation guide", href: "/blog/phone-bot-farm-mobile-farm-hardware-guide" },
       { label: "N9 Professional box", href: "/products/samsung-n9-professional-20-node-farm" },
     ],
   },
@@ -163,12 +163,12 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
     ],
   },
   {
-    slug: "phone-farming-profitability",
-    term: "Phone farming profitability",
+    slug: "phone-farm-hardware-roi",
+    term: "Phone farm hardware ROI",
     definition:
-      "Phone farming profitability depends on workflow — QA contracts, automation services, content operations, and B2B lab deployments. Hardware cost is dominated by chassis tier ($428–$1,220+ for 20-node boxes) plus shipping. PhoneFarm Fun sells hardware only; buyers run their own apps and compliance policies.",
+      "Phone farm hardware ROI depends on workflow — QA contracts, automation services, content operations, and B2B lab deployments. Hardware cost is dominated by chassis tier ($428–$1,220+ for 20-node boxes) plus shipping. PhoneFarm Fun sells hardware only; buyers run their own apps and compliance policies.",
     relatedLinks: [
-      { label: "Profitability guide", href: "/blog/is-phone-farming-still-profitable" },
+      { label: "Hardware ROI guide", href: "/blog/is-phone-farming-still-profitable" },
       { label: "Choose a box guide", href: "/blog/how-to-choose-phone-farm-box" },
     ],
   },

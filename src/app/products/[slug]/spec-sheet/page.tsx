@@ -5,10 +5,22 @@ import { getProductMeta } from "@/data/product-meta";
 import { getProfessionalSpecs } from "@/data/product-specs";
 import { SITE, CONTACT } from "@/lib/config";
 import { PrintSpecButton } from "@/components/print-spec-button";
+import { buildMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata({ params }: Props) {
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
+  if (!product) return {};
+  return buildMetadata({
+    title: `${product.name} — Spec Sheet`,
+    description: `Procurement spec sheet for ${product.name}: MOQ, dimensions, voltage, lead time, and export details from PhoneFarm Fun Guangzhou factory.`,
+    path: `/products/${slug}/spec-sheet`,
+  });
+}
 
 function parseJson<T>(s: string, fallback: T): T {
   try {

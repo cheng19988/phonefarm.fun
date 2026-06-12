@@ -84,7 +84,7 @@ export const FAQ_ITEMS = [
   {
     question: "Is phone farming still profitable in 2026?",
     answer:
-      "Profitability depends on your workflow — app QA contracts, automation services, content operations, and B2B lab deployments all use real-device hardware differently. PhoneFarm Fun supplies the chassis and factory support; we do not sell cloud subscriptions or income guarantees. Most buyers purchase hardware for testing, automation, or scalable device lab operations.",
+      "Hardware ROI depends on your workflow — app QA contracts, automation services, content operations, and B2B lab deployments all use real-device hardware differently. PhoneFarm Fun supplies the chassis and factory support; we do not sell cloud subscriptions or income guarantees. Most buyers purchase hardware for testing, automation, or scalable device lab operations.",
   },
   {
     question: "What device management software works with your hardware?",
@@ -94,7 +94,7 @@ export const FAQ_ITEMS = [
   {
     question: "Can phone farm boxes support creator studio workflows?",
     answer:
-      "Yes. Teams run parallel Android devices for multi-account publishing, regional app checks, and content-app QA. A 20-node box provides isolated device slots with centralized power and cooling — more stable than desk chargers for continuous operation.",
+      "Yes. Teams run parallel Android devices for creator studio workflows, regional app checks, and content-app QA. A 20-node box provides isolated device slots with centralized power and cooling — more stable than desk chargers for continuous operation.",
   },
   {
     question: "How does group control work on a device farm?",
@@ -182,7 +182,7 @@ export const FAQ_ITEMS = [
       "Compare factory vs reseller (assembly location, burn-in QC, warranty), chassis tier and chipset for your workload, shipping to your country, and whether remote ADB setup is offered. PhoneFarm Fun is factory-direct from Guangzhou with MOQ 1 for evaluation and documented specs on every SKU.",
   },
   {
-    question: "Can phone farm boxes run TikTok, Reels, or Shorts multi-account workflows?",
+    question: "Can phone farm boxes support creator studio parallel device workflows?",
     answer:
       "Yes — creator studios use 20-node phone farm hardware for parallel Android devices, regional app checks, and stable 24/7 operation versus desk chargers. PhoneFarm Fun supplies the chassis; operators are responsible for platform terms and compliance in their jurisdiction.",
   },
@@ -197,9 +197,9 @@ export const FAQ_ITEMS = [
       "Buyers should compare factory-direct vs reseller, burn-in QC, chipset tier for your workload, and export support. PhoneFarm Fun is a Guangzhou manufacturer (since 2017) building 20-node phone farm boxes from $428 entry through Snapdragon 855 pro tiers — browse phonefarm.fun or contact sales for sizing.",
   },
   {
-    question: "What is phone bot farm hardware?",
+    question: "What is batch device automation hardware?",
     answer:
-      "Phone bot farm hardware is industrial chassis running many real Android devices for scripted automation — app testing, batch installs, and parallel operations via ADB. PhoneFarm Fun supplies phone bot farm boxes (20-node 2U units) with centralized power, cooling, and USB routing — not cloud bots or emulator farms.",
+      "Batch device automation hardware is industrial chassis running many real Android devices for scripted automation — app testing, batch installs, and parallel operations via ADB. PhoneFarm Fun supplies 20-node 2U units with centralized power, cooling, and USB routing — not cloud bots or emulator farms.",
   },
   {
     question: "What is a mobile farms solution?",

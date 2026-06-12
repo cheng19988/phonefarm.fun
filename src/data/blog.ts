@@ -137,7 +137,7 @@ Contact support if you need help integrating PhoneFarm Fun hardware with your ex
     category: "Applications & Use Cases",
     date: "2026-02-28",
     excerpt:
-      "How real-device hardware fits modern QA, automation, and lab workflows — without hype about passive income schemes.",
+      "How real-device hardware fits modern QA, automation, and lab workflows — without hype about unrealistic income promises.",
     content: `Phone farming means different things to different buyers. For PhoneFarm Fun customers, it usually means **operating a real Android device lab** — not reselling cloud accounts.
 
 **Legitimate hardware use cases**
@@ -150,7 +150,7 @@ Contact support if you need help integrating PhoneFarm Fun hardware with your ex
 Factory-assembled chassis, power, cooling, and USB routing from Guangzhou. Buyers own the hardware and run their own workflows.
 
 **What we do not promise**
-Passive income schemes, account farming guarantees, or cloud phone subscriptions. Evaluate ROI based on your testing or operations model — not generic online claims.
+Passive income promises, misleading automation guarantees, or cloud phone subscriptions. Evaluate ROI based on your testing or operations model — not generic online claims.
 
 Contact ${CONTACT.email} with your use case for sizing guidance.`,
   },
@@ -284,7 +284,7 @@ For rack projects above 40 nodes, contact ${CONTACT.email} with your floor plan,
     category: "Applications & Use Cases",
     date: "2026-05-15",
     excerpt:
-      "Why desk chargers fail for TikTok matrices and QA labs — overheating, cable chaos, and how factory chassis fix the root cause.",
+      "Why desk chargers fail for creator studio device labs and QA teams — overheating, cable chaos, and how factory chassis fix the root cause.",
     content: `Many teams start by stacking phones on a dining table. Within weeks: random disconnects, thermal shutdowns, and workflow downtime that costs far more than a proper chassis.
 
 **What went wrong on the desk**
@@ -443,7 +443,7 @@ Resellers repackage third-party chassis with unknown burn-in history. A Guangzho
 5. **After-sales** — warranty on assembly, optional remote setup
 
 **Contact PhoneFarm Fun**
-Telegram @huicheng1998 · WhatsApp +85262155642 · qiuxui646@gmail.com · https://phonefarm.fun/products`,
+Telegram @huicheng1998 · WhatsApp +85262155642 · qiuxui646@gmail.com · https://www.phonefarm.fun/products`,
   },
   {
     slug: "where-to-buy-phone-farm-box-factory-direct-china",
@@ -453,7 +453,7 @@ Telegram @huicheng1998 · WhatsApp +85262155642 · qiuxui646@gmail.com · https:
     excerpt:
       "Order 20-node phone farm hardware online or by quote — pricing tiers, shipping, payment, and what factory-direct delivery includes.",
     content: `**Where to buy**
-PhoneFarm Fun sells phone farm boxes at **https://phonefarm.fun** — browse 20-node SKUs, add to cart, or request a factory quote.
+PhoneFarm Fun sells phone farm boxes at **https://www.phonefarm.fun** — browse 20-node SKUs, add to cart, or request a factory quote.
 
 **Reference USD pricing**
 Exynos N5 entry $428 · Android starter $517 · S8 Reliable $620 · S8+ $699 · N8 multitask $750 · Note 8 $857 · S9+ $942 · N9 Professional $998 · S10+ $1,220.
@@ -463,18 +463,18 @@ Exynos N5 entry $428 · Android starter $517 · S8 Reliable $620 · S8+ $699 · 
   },
   {
     slug: "phone-bot-farm-mobile-farm-hardware-guide",
-    title: "Phone Bot Farm & Mobile Farms Hardware: 20-Node Box Guide",
+    title: "Batch Device Automation Hardware: 20-Node Box Guide",
     category: "Applications & Use Cases",
     date: "2026-06-03",
     excerpt:
-      "Phone bot farm hardware vs cloud bots — real Android mobile farms solutions for parallel automation, TikTok matrices, and QA at scale.",
-    content: `**Phone bot farm** and **mobile farms** mean many real Android devices running batch operations — not emulators or cloud VMs.
+      "Batch device automation hardware vs cloud bots — real Android device lab solutions for parallel automation, creator studios, and QA at scale.",
+    content: `**Batch device automation** and **mobile device labs** mean many real Android devices running batch operations — not emulators or cloud VMs.
 
 **Hardware requirements:** centralized PSU, active cooling, labeled USB backplane, factory burn-in.
 
-**PhoneFarm Fun** builds 20-node phone bot farm boxes from entry Exynos through N9 Professional ($998) and S10+ clusters. Optional ADB workstation setup — vendor-neutral.
+**PhoneFarm Fun** builds 20-node automation boxes from entry Exynos through N9 Professional ($998) and S10+ clusters. Optional ADB workstation setup — vendor-neutral.
 
-**Workflows:** TikTok / Reels / Shorts creator studios · ad verification · e-commerce app testing · QA regression.
+**Workflows:** creator studio parallel device labs · mobile ad QA · e-commerce app testing · QA regression.
 
 PhoneFarm Fun sells hardware for legitimate testing and automation. Compare at /compare · Quote at phonefarm.fun/contact`,
   },

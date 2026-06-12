@@ -89,7 +89,7 @@ export default function PhoneFarmManufacturerPage() {
             <ul className="space-y-3 text-zinc-600 text-base md:text-lg">
               <li className="flex gap-2"><span className="list-marker list-marker--check shrink-0">✓</span>Local assembly, burn-in QC, foam export packing</li>
               <li className="flex gap-2"><span className="list-marker list-marker--check shrink-0">✓</span>20-node phone farm boxes from $428 entry through $1,220 pro tiers</li>
-              <li className="flex gap-2"><span className="list-marker list-marker--check shrink-0">✓</span>Phone bot farm &amp; mobile farms chassis — ADB-ready, no software lock-in</li>
+              <li className="flex gap-2"><span className="list-marker list-marker--check shrink-0">✓</span>Batch device automation chassis — ADB-ready, no software lock-in</li>
               <li className="flex gap-2"><span className="list-marker list-marker--check shrink-0">✓</span>MOQ 1 for evaluation · volume pricing from 5 units</li>
               <li className="flex gap-2"><span className="list-marker list-marker--check shrink-0">✓</span>Worldwide express &amp; sea freight from Guangzhou</li>
             </ul>
@@ -124,12 +124,12 @@ export default function PhoneFarmManufacturerPage() {
           <div>
             <SectionHeader title="Use cases we hardware-enable" large />
             <div className="grid sm:grid-cols-2 gap-4 text-sm md:text-base text-zinc-600">
-              <p>Creator studio TikTok / Reels / Shorts multi-account device labs</p>
-              <p>Digital marketing &amp; ad verification on real Android OEM builds</p>
+              <p>Creator studio parallel device labs for content-app QA</p>
+              <p>Digital marketing &amp; mobile ad QA on real Android OEM builds</p>
               <p>E-commerce seller app &amp; payment SDK testing</p>
               <p>Development &amp; QA regression on Snapdragon / Exynos silicon</p>
-              <p>Phone bot farm parallel automation via ADB</p>
-              <p>Mobile farms batch control with optional remote setup</p>
+              <p>Batch device automation via ADB</p>
+              <p>Mobile device lab batch control with optional remote setup</p>
             </div>
           </div>
 

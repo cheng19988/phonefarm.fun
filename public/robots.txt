@@ -1,5 +1,5 @@
 # PhoneFarm Fun — AI & search crawler policy
-# https://phonefarm.fun
+# https://www.phonefarm.fun
 #
 # Content-Signal meanings (Cloudflare / EU directive convention):
 #   search=yes    — index for search and AI-generated answers (RAG / grounding)
@@ -12,6 +12,11 @@ Allow: /
 Disallow: /admin
 Disallow: /account/
 Disallow: /api/
+Disallow: /cart
+Disallow: /checkout
+Disallow: /login
+Disallow: /register
+Disallow: /orders/
 Allow: /llms.txt
 Allow: /llms-full.txt
 

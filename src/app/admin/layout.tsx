@@ -1,6 +1,14 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/auth";
+import { buildMetadata } from "@/lib/seo";
+
+export const metadata = buildMetadata({
+  title: "Admin",
+  description: "PhoneFarm Fun admin.",
+  path: "/admin",
+  noIndex: true,
+});
 
 const LINKS = [
   { href: "/admin", label: "Dashboard" },

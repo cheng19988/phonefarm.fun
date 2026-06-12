@@ -154,7 +154,7 @@ Start with 20 nodes or plan multi-chassis expansion. Single-point USB or Etherne
       scenarios: [
         "24/7 social automation on efficient silicon",
         "Large-scale APK regression on Snapdragon 835",
-        "Creator studio multi-account workflows",
+        "Creator studio parallel device workflows",
         "Mid-budget lab scaling before S9/S10 tiers",
       ],
       accessories: ["Pro 2U chassis", "Enhanced cooling module", "Industrial PSU", "Labeled USB cable set"],
@@ -167,7 +167,7 @@ Start with 20 nodes or plan multi-chassis expansion. Single-point USB or Etherne
     750,
     10,
     {
-      description: `Multi-task tier positions **6GB RAM Snapdragon 835** nodes for teams running heavier parallel apps — multiple social clients, ad verification stacks, or layered test harnesses on each device without constant swapping.
+      description: `Multi-task tier positions **6GB RAM Snapdragon 835** nodes for teams running heavier parallel apps — multiple client apps, mobile ad QA stacks, or layered test harnesses on each device without constant swapping.
 
 Factory-assembled in Guangzhou with the same 2U chassis architecture as our Pro line: centralized PSU, ducted cooling, and structured USB backplane. Confirm exact device SKU list before production.`,
       features: [
@@ -197,7 +197,7 @@ Factory-assembled in Guangzhou with the same 2U chassis architecture as our Pro 
     857,
     9,
     {
-      description: `Note 8 class configuration delivers **6+128GB** headroom for teams that keep large media caches, multi-account apps, and logging tools on-device during long runs. Built for continuous operations with the same export QC pipeline as our Pro SKUs.`,
+      description: `Note 8 class configuration delivers **6+128GB** headroom for teams that keep large media caches, parallel client apps, and logging tools on-device during long runs. Built for continuous operations with the same export QC pipeline as our Pro SKUs.`,
       features: [
         "20× Note 8 class devices (6+128GB typical)",
         "High-capacity storage for media-heavy workflows",
@@ -291,13 +291,13 @@ Built for teams that need 835 efficiency and 24/7 stability without the premium 
     998,
     8,
     {
-      description: `N9 Professional tier targets **automated multi-app operations** — parallel social clients, ad verification stacks, and layered QA harnesses on Snapdragon 845 silicon with 128GB-class storage. Positioned between S9+ and heavy multitask N8 layouts for teams needing pro-grade continuous operations without S10+ flagship cost.
+      description: `N9 Professional tier targets **automated multi-app operations** — parallel client apps, mobile ad QA stacks, and layered QA harnesses on Snapdragon 845 silicon with 128GB-class storage. Positioned between S9+ and heavy multitask N8 layouts for teams needing pro-grade continuous operations without S10+ flagship cost.
 
 Factory-assembled mobile farms solution: 2U chassis, ducted 4-fan cooling, OVP/OCP PSU, structured USB backplane, extended burn-in. Confirm device SKU list before production.`,
       features: [
         "20-node Snapdragon 845 professional configuration",
         "128GB storage class for multi-app workloads",
-        "Mobile farms / phone bot farm ready chassis",
+        "Batch device automation ready chassis",
         "Pro thermal path & industrial PSU",
         "Optional visual batch control setup",
       ],
@@ -314,7 +314,7 @@ Factory-assembled mobile farms solution: 2U chassis, ducted 4-fan cooling, OVP/O
       scenarios: [
         "Professional multi-app automation",
         "Digital marketing device labs",
-        "Phone bot farm hardware at scale",
+        "Batch device automation hardware at scale",
         "Mid-flagship upgrade from S8+/N8 tiers",
       ],
       accessories: ["Pro 2U chassis", "Enhanced cooling", "Industrial PSU", "QC documentation"],

@@ -10,9 +10,9 @@ import { FilterPills, BuyingGuideBlock, SectionHeader } from "@/components/store
 import { DeviceModelGridAll } from "@/components/device-model-grid";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Hardware Catalog",
+  title: "Factory Hardware Catalog — Phone Farm Boxes & Clusters",
   description:
-    "Browse factory-built phone farm boxes, motherboard arrays, rack solutions, and accessories. Reference USD pricing, MOQ, and lead times for B2B buyers.",
+    "Guangzhou factory catalog: phone farm boxes, motherboard arrays, custom racks, and accessories. Reference USD pricing, MOQ 1, lead times, and export specs for B2B procurement.",
   path: "/products",
 });
 

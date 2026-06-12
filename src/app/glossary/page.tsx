@@ -9,7 +9,7 @@ import { IMAGES } from "@/lib/images";
 export const metadata = buildMetadata({
   title: "Phone Farm Glossary — Hardware Terms & Definitions",
   description:
-    "Definitions of phone farm box, Android device farm, cell phone farm, motherboard cluster, TikTok creator studio hardware, and factory-direct supplier terms. By PhoneFarm Fun.",
+    "Definitions of phone farm box, Android device farm, cell phone farm, motherboard cluster, creator studio device farm hardware, and factory-direct supplier terms. By PhoneFarm Fun.",
   path: "/glossary",
 });
 

@@ -20,12 +20,12 @@ export const USE_CASES = [
   {
     title: "Creator & Content Studio",
     description:
-      "Run parallel Android devices for multi-account publishing, short-form content workflows, and device-specific app validation before campaigns go live.",
+      "Run parallel Android devices for creator studio workflows, short-form content app QA, and device-specific app validation before campaigns go live.",
   },
   {
     title: "Digital Marketing Labs",
     description:
-      "Scale ad verification, install attribution checks, and regional app compatibility testing on real hardware — not emulators alone.",
+      "Scale mobile ad QA, install attribution checks, and regional app compatibility testing on real hardware — not emulators alone.",
   },
   {
     title: "E-commerce Operations",

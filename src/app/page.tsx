@@ -57,7 +57,7 @@ const FACTORY_SHOWCASE = [
 
 export const metadata: Metadata = {
   ...buildMetadata({
-    title: "Professional Phone Farm Boxes & Motherboard Arrays",
+    title: "Guangzhou Factory-Direct Phone Farm Box Manufacturer",
     description: SITE.description,
     path: "/",
   }),

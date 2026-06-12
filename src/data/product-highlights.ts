@@ -21,7 +21,7 @@ export const PRODUCT_HIGHLIGHTS: Record<string, string> = {
   "samsung-s8-reliable-20-node-farm":
     "20 nodes · S8 Snapdragon 835 · 4+64GB · stable 24/7 hub · cost between entry and S8+ Pro",
   "samsung-n9-professional-20-node-farm":
-    "20 nodes · Snapdragon 845 pro · 128GB · multi-app mobile farms · phone bot farm ready",
+    "20 nodes · Snapdragon 845 pro · 128GB · multi-app device labs · batch automation ready",
   "real-device-phone-farm":
     "20 nodes · turnkey bundle · power + cooling + USB + network · single-PO lab stand-up",
   "iphone-phone-farm":

@@ -6,9 +6,9 @@ import { PageHero, SectionHeader, CapabilityStrip, DeliveryTimeline } from "@/co
 import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
-  title: "Device Farm Setup & Hardware Support",
+  title: "Guangzhou Factory Setup & Export Services",
   description:
-    "Assembly, remote workstation setup, custom hardware engineering, deployment support, and maintenance for phone farm labs from Guangzhou.",
+    "Factory assembly, remote workstation setup, custom rack engineering, bulk deployment, and maintenance for phone farm labs — direct from PhoneFarm Fun Guangzhou.",
   path: "/services",
 });
 

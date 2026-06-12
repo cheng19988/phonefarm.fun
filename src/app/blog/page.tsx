@@ -7,9 +7,9 @@ import { PageHero } from "@/components/store";
 import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm Hardware Guides",
+  title: "Guangzhou Factory Hardware Guides for QA Labs",
   description:
-    "Practical guides on phone farm boxes, motherboard arrays, power and cooling, custom rack deployment, and remote control setup.",
+    "Factory-written guides on phone farm box selection, motherboard clusters, power and cooling, rack deployment, and ADB workstation setup — from PhoneFarm Fun Guangzhou.",
   path: "/blog",
 });
 

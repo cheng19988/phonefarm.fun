@@ -4,6 +4,25 @@ import { BLOG_POSTS } from "@/data/blog";
 import { PRODUCT_SEEDS } from "@/data/products";
 import { SERVICES } from "@/data/services";
 
+/** Paths that must never appear in the public sitemap. */
+const SITEMAP_EXCLUDED_PREFIXES = [
+  "/admin",
+  "/account",
+  "/api",
+  "/cart",
+  "/checkout",
+  "/login",
+  "/register",
+  "/orders",
+];
+
+function isPublicSitemapUrl(url: string): boolean {
+  if (!url.startsWith(SITE.url)) return false;
+  const path = url.slice(SITE.url.length) || "/";
+  if (path.includes("localhost") || path.includes("vercel.app")) return false;
+  return !SITEMAP_EXCLUDED_PREFIXES.some((prefix) => path === prefix || path.startsWith(`${prefix}/`));
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = ["", "/products", "/services", "/about", "/faq", "/glossary", "/phone-farm-manufacturer", "/contact", "/blog", "/privacy", "/terms", "/shipping", "/warranty", "/compare"].map(
     (path) => ({
@@ -42,5 +61,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
-  return [...staticPages, ...productPages, ...servicePages, ...blogPages, ...specSheets];
+  return [...staticPages, ...productPages, ...servicePages, ...blogPages, ...specSheets].filter((entry) =>
+    isPublicSitemapUrl(entry.url),
+  );
 }

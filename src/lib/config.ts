@@ -1,18 +1,20 @@
+import { CANONICAL_HOST, getSiteUrl } from "@/lib/site-url";
+
 export const SITE = {
   name: "PhoneFarm Fun",
-  domain: "www.phonefarm.fun",
-  /** Canonical public URL — must match live redirect target (www). */
-  url: "https://www.phonefarm.fun",
+  domain: CANONICAL_HOST,
+  /** Canonical public URL — must match live redirect target (www). Override via NEXT_PUBLIC_SITE_URL. */
+  url: getSiteUrl(),
   /** Primary site language — all public pages are English */
   language: "en",
   locale: "en_US",
-  tagline: "Android Device Farm Hardware for QA & Automation",
+  tagline: "Guangzhou Factory-Direct Android Device Farm Hardware",
   intro:
-    "Factory-built Android phone farm boxes, motherboard clusters, and real-device lab hardware for QA testing, app compatibility, remote operation, and scalable deployment.",
+    "PhoneFarm Fun is a Guangzhou factory building Android phone farm boxes, motherboard clusters, and custom rack hardware with burn-in QC and worldwide export — sold direct to QA teams, automation labs, and B2B buyers.",
   location: "Guangzhou, China",
   since: 2017,
   description:
-    "PhoneFarm Fun supplies factory-built Android device farm hardware from Guangzhou — starter and pro testing boxes, motherboard clusters, rack solutions, and lab accessories for mobile QA and automation teams.",
+    "Guangzhou factory-direct phone farm box manufacturer since 2017 — 20-node Android device farm chassis, motherboard clusters, rack solutions, and lab accessories with burn-in QC and worldwide export.",
 } as const;
 
 const SALES_EMAIL = "qiuxui646@gmail.com";

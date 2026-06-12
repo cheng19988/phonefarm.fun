@@ -10,6 +10,7 @@ import { getProductMeta, getProductEyebrow } from "@/data/product-meta";
 import { getProductHighlight } from "@/data/product-highlights";
 import { getProfessionalSpecs } from "@/data/product-specs";
 import { isQuotePreferredProduct } from "@/lib/product-commerce";
+import { getProductProcurementRows } from "@/lib/product-procurement";
 import { buildMetadata, productJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { Breadcrumbs, SpecTable, IconList, MetaGrid, PriceDisplay, SectionHeader, DetailSection, TrustStrip } from "@/components/store";
 
@@ -57,6 +58,7 @@ export default async function ProductDetailPage({ params }: Props) {
   if (!product) notFound();
 
   const meta = getProductMeta(slug);
+  const procurementRows = getProductProcurementRows(slug);
   const quotePreferred = isQuotePreferredProduct(slug, meta.leadTime, meta.deploymentType);
   const related = await getRelatedProducts(slug, 3);
 
@@ -173,6 +175,16 @@ export default async function ProductDetailPage({ params }: Props) {
                   <span className="font-semibold text-zinc-900">Best for: </span>
                   {meta.useCase}
                 </p>
+              </DetailSection>
+
+              <DetailSection
+                title="Procurement & Export"
+                subtitle="MOQ, lead time, packing, voltage, warranty, shipping, and payment — factory-direct from Guangzhou."
+              >
+                <SpecTable
+                  specs={Object.fromEntries(procurementRows.map((r) => [r.label, r.value]))}
+                  large
+                />
               </DetailSection>
 
               <DetailSection

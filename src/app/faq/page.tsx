@@ -7,9 +7,9 @@ import { PageHero } from "@/components/store";
 import { IMAGES } from "@/lib/images";
 
 export const metadata = buildMetadata({
-  title: "Phone Farm FAQ — Size, Power, Models, Lead Time & Warranty",
+  title: "Factory Procurement FAQ — Size, Power, Lead Time & Warranty",
   description:
-    "B2B answers: chassis dimensions, weight, voltage, power draw, supported phone models, packaging, lead time, warranty, remote setup, and pre-shipment photos.",
+    "Guangzhou factory answers on chassis dimensions, voltage, power draw, Samsung models, export packaging, lead time, warranty, and remote setup for B2B buyers.",
   path: "/faq",
 });
 
@@ -56,7 +56,7 @@ const FAQ_CATEGORIES = [
   },
   {
     title: "Operations & batch control",
-    description: "Stability, bulk APK install, visual command center, phone bot & mobile farms.",
+    description: "Stability, bulk APK install, visual command center, and batch device automation.",
     indices: [30, 39, 40],
   },
   {
@@ -66,7 +66,7 @@ const FAQ_CATEGORIES = [
   },
   {
     title: "Creator & social workflows",
-    description: "Multi-account device labs for TikTok, Reels, and content teams.",
+    description: "Creator studio parallel device labs for content-app QA and regional builds.",
     indices: [18, 36],
   },
   {

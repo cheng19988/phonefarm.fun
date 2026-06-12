@@ -68,7 +68,7 @@ export default function AboutPage() {
                 <p>
                   Phone farms are used by QA labs, app developers, marketing teams, and automation engineers who need
                   <strong> real silicon behavior</strong> that emulators and cloud phones cannot fully replicate: OEM-specific builds,
-                  regional apps, payment SDKs, camera/sensor paths, and multi-account workflows.
+                  regional apps, payment SDKs, camera/sensor paths, and parallel device workflows.
                 </p>
                 <p>
                   PhoneFarm Fun builds the <strong>hardware layer</strong>: factory-assembled boxes, motherboard clusters, and custom racks
