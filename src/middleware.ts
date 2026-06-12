@@ -2,8 +2,6 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { CANONICAL_HOST } from "@/lib/site-url";
 
-const CANONICAL_ORIGIN = `https://${CANONICAL_HOST}`;
-
 /** Keep one canonical host — 301 to www for apex, Vercel preview, and other aliases. */
 export function middleware(request: NextRequest) {
   const host = request.headers.get("host")?.split(":")[0]?.toLowerCase();
@@ -11,14 +9,21 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  const url = request.nextUrl.clone();
+  const proto = request.headers.get("x-forwarded-proto")?.split(",")[0]?.trim().toLowerCase();
   const isCanonical = host === CANONICAL_HOST;
   const isApex = host === "phonefarm.fun";
   const isVercelPreview = host.endsWith(".vercel.app");
+  const needsHostRedirect = !isCanonical && (isApex || isVercelPreview);
 
-  if (!isCanonical && (isApex || isVercelPreview)) {
-    const url = request.nextUrl.clone();
+  if (needsHostRedirect) {
     url.protocol = "https:";
     url.host = CANONICAL_HOST;
+    return NextResponse.redirect(url, 301);
+  }
+
+  if (proto === "http") {
+    url.protocol = "https:";
     return NextResponse.redirect(url, 301);
   }
 

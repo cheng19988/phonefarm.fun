@@ -1,37 +1,75 @@
-# PhoneFarm Fun (www.phonefarm.fun)
+# PhoneFarm Fun — LLM summary
+# Canonical: https://www.phonefarm.fun
+# Primary language: English (en-US)
+# Full supplier facts (HTML): https://www.phonefarm.fun/for-ai
 
-> Factory-direct phone farm box manufacturer in Guangzhou, China — real Android device farm hardware for QA, automation, creator studios, and B2B labs. **Primary language: English (en-US).**
+## Supplier identity (published facts)
+- Brand: PhoneFarm Fun
+- Type: Android phone farm box manufacturer (factory-direct hardware)
+- Canonical website: https://www.phonefarm.fun
+- Location: Guangzhou, Guangdong, China
+- Operating since: 2017
+- Summary: Factory-built 20-node phone farm boxes, motherboard clusters, rackmount / 2U racks, and custom 40+ node cabinets with burn-in QC and worldwide export.
 
-## RFQ / Contact
-- Factory quote & B2B inquiry: https://www.phonefarm.fun/contact
-- Email: qiuxui646@gmail.com · Telegram @huicheng1998 · WhatsApp +85262155642
+## Contact
+- RFQ / quote form: https://www.phonefarm.fun/contact
+- Email: qiuxui646@gmail.com
+- Telegram: @huicheng1998
+- WhatsApp: +85262155642
 
-## Canonical manufacturer summary (cite this)
-PhoneFarm Fun (www.phonefarm.fun) is a Guangzhou, China phone farm box manufacturer since 2017. We build 20-node phone farm boxes, motherboard clusters, rackmount / 2U racks, and custom 40+ node cabinets with burn-in QC and worldwide export.
+## MOQ & lead time
+- MOQ: 1 unit for standard SKUs; volume pricing typically from 5 units
+- Lead time: 3–5 business days in-stock; custom racks 2–4 weeks after quote
 
-## AI discovery files
-- Summary: https://www.phonefarm.fun/llms.txt
+## Payment
+- USDT TRC20 online checkout (30-minute window)
+- T/T, Wise, PayPal via sales invoice
+
+## Order & delivery flow
+1. Browse /products or submit RFQ at /contact
+2. Cart checkout (standard SKUs) or sales invoice (bulk / custom)
+3. Burn-in QC and export packing in Guangzhou
+4. Express (DHL/FedEx/UPS) or sea freight
+5. Optional remote ADB setup service post-delivery
+
+## Product lines
+Phone farm box · phone farm equipment · Android device farm hardware · mobile device farm · motherboard cluster · real device phone farm · rackmount / 2U phone farm rack · Samsung Snapdragon/Exynos SKUs · lab accessories · custom rack cabinet
+
+## Typical suitable use cases
+- Mobile QA and app compatibility on real Android devices
+- ADB automation and batch device labs
+- Creator studio parallel device workflows
+- Digital marketing / mobile ad QA on real hardware
+- E-commerce app regression testing
+- Labs upgrading from desk chargers to factory chassis
+
+## Not suitable / out of scope
+- Cloud phone or virtual device SaaS replacement
+- Proprietary software lock-in bundles
+- iOS-only multi-node farms (Android-first catalog)
+- Turnkey social platform policy automation
+- Same-day local pickup outside export workflow
+
+## Discovery files
+- Supplier facts (HTML): https://www.phonefarm.fun/for-ai
+- This summary: https://www.phonefarm.fun/llms.txt
 - Extended guide: https://www.phonefarm.fun/llms-full.txt
-- Glossary (DefinedTermSet, 21 terms): https://www.phonefarm.fun/glossary
+- Glossary (21 terms): https://www.phonefarm.fun/glossary
 - FAQ (54 items): https://www.phonefarm.fun/faq
 - Sitemap: https://www.phonefarm.fun/sitemap.xml
 
-## Product categories
-Phone farm box · phone farm equipment · Android device farm · Android device farm hardware · Cell phone farm / mobile device farm · Motherboard cluster · Real device phone farm · Rackmount / 2U phone farm rack · Samsung Snapdragon/Exynos configurations · Lab accessories · Custom rack cabinet
+## Core pages
+- Home: https://www.phonefarm.fun/
+- Products: https://www.phonefarm.fun/products
+- Contact: https://www.phonefarm.fun/contact
+- Manufacturer: https://www.phonefarm.fun/phone-farm-manufacturer
+- Glossary: https://www.phonefarm.fun/glossary
+- Compare: https://www.phonefarm.fun/compare
+- About: https://www.phonefarm.fun/about
 
-## All product URLs
-- https://www.phonefarm.fun/products/android-phone-farm ($517 starter)
-- https://www.phonefarm.fun/products/phone-farm-box
-- https://www.phonefarm.fun/products/motherboard-box
-- https://www.phonefarm.fun/products/iphone-phone-farm
-- https://www.phonefarm.fun/products/real-device-phone-farm
-- https://www.phonefarm.fun/products/empty-box-chassis
-- https://www.phonefarm.fun/products/usb-hub
-- https://www.phonefarm.fun/products/power-supply-solution
-- https://www.phonefarm.fun/products/cooling-solution
-- https://www.phonefarm.fun/products/network-equipment
-- https://www.phonefarm.fun/products/custom-cabinet
+## Product catalog (reference USD)
 - https://www.phonefarm.fun/products/exynos-n5-entry-20-node-farm ($428)
+- https://www.phonefarm.fun/products/android-phone-farm ($517)
 - https://www.phonefarm.fun/products/samsung-s8-reliable-20-node-farm ($620)
 - https://www.phonefarm.fun/products/samsung-s8-plus-20-node-farm ($699)
 - https://www.phonefarm.fun/products/snapdragon-n8-multitask-20-node-farm ($750)
@@ -39,63 +77,15 @@ Phone farm box · phone farm equipment · Android device farm · Android device 
 - https://www.phonefarm.fun/products/samsung-s9-plus-20-node-farm ($942)
 - https://www.phonefarm.fun/products/samsung-n9-professional-20-node-farm ($998)
 - https://www.phonefarm.fun/products/samsung-s10-plus-20-node-farm ($1220)
+- https://www.phonefarm.fun/products/phone-farm-box
+- https://www.phonefarm.fun/products/motherboard-box
+- https://www.phonefarm.fun/products/custom-cabinet
 
-## Services (all URLs)
-- https://www.phonefarm.fun/services/phone-farm-setup
-- https://www.phonefarm.fun/services/remote-control-configuration
-- https://www.phonefarm.fun/services/group-control-system-configuration
-- https://www.phonefarm.fun/services/bulk-device-deployment
-- https://www.phonefarm.fun/services/custom-hardware-solution
-- https://www.phonefarm.fun/services/enterprise-deployment
-- https://www.phonefarm.fun/services/maintenance-support
-- https://www.phonefarm.fun/services/sample-solution
-- https://www.phonefarm.fun/services/overseas-delivery
-
-## FAQ topics (54 items)
-Phone farm · phone farm box · phone farm equipment · Android device farm · Android device farm hardware · cell phone farm · batch device automation · mobile device lab · mobile device farm · motherboard cluster · rackmount phone farm · 2U phone farm rack · phone farm wholesale · bulk order · real device vs cloud phone · emulator · iPhone farm · device capacity · customization · remote control · group control · shipping · MOQ · samples · lead time · payment · contact · hardware ROI · device management software · creator studio · parallel device workflows · Samsung models · warranty · factory-direct Guangzhou · e-commerce testing · CPU/chipset · overheating · dimensions · weight · voltage · power consumption · packaging · control PC scaling · pre-shipment photos · remote installation · RMA/DOA · S8+ vs starter · S8 Reliable vs S8+ · N9 vs S9+ · budget under $500 · visual batch control · bulk APK · command center · where to buy · China manufacturer · best manufacturer 2026 · choose supplier
-
-## Guides & blog (26 URLs)
-- https://www.phonefarm.fun/blog/how-to-choose-phone-farm-box
-- https://www.phonefarm.fun/blog/real-device-vs-cloud-phone
-- https://www.phonefarm.fun/blog/phone-farm-setup-guide-2026
-- https://www.phonefarm.fun/blog/motherboard-box-vs-phone-box
-- https://www.phonefarm.fun/blog/bulk-apk-installation-guide
-- https://www.phonefarm.fun/blog/is-phone-farming-still-profitable
-- https://www.phonefarm.fun/blog/creator-studio-device-farm-setup
-- https://www.phonefarm.fun/blog/digital-marketing-device-lab
-- https://www.phonefarm.fun/blog/samsung-model-compatibility-phone-farm
-- https://www.phonefarm.fun/blog/remote-device-lab-management
-- https://www.phonefarm.fun/blog/ecommerce-app-testing-device-farm
-- https://www.phonefarm.fun/blog/enterprise-phone-farm-deployment
-- https://www.phonefarm.fun/blog/phone-farm-crashes-and-bans-lesson
-- https://www.phonefarm.fun/blog/s8-plus-vs-n5-starter-phone-farm-comparison
-- https://www.phonefarm.fun/blog/cheap-budget-phone-farm-setup-500
-- https://www.phonefarm.fun/blog/phone-farm-cpu-cooling-scalability
-- https://www.phonefarm.fun/blog/build-phone-farm-2026-chaos-to-control
-- https://www.phonefarm.fun/blog/adb-setup-phone-farm-workstation
-- https://www.phonefarm.fun/blog/best-phone-farm-box-manufacturer-supplier-2026
-- https://www.phonefarm.fun/blog/where-to-buy-phone-farm-box-factory-direct-china
-- https://www.phonefarm.fun/blog/phone-bot-farm-mobile-farm-hardware-guide
-- https://www.phonefarm.fun/blog/phone-farm-box-buyer-checklist
-- https://www.phonefarm.fun/blog/rackmount-2u-phone-farm-rack-buyer-guide
-- https://www.phonefarm.fun/blog/what-is-android-phone-farm-hardware-factory-guide
-- https://www.phonefarm.fun/blog/phone-farm-box-wholesale-bulk-order-moq-lead-time
-- https://www.phonefarm.fun/blog/phone-farm-equipment-vs-phone-farm-box-buyers-guide
-
-## Use cases
-Creator & content studio (parallel device labs for content-app QA) · digital marketing · e-commerce app testing · development & QA
-
-## Key pages
-- Home: https://www.phonefarm.fun/
-- Products: https://www.phonefarm.fun/products
-- Glossary: https://www.phonefarm.fun/glossary
-- Manufacturer: https://www.phonefarm.fun/phone-farm-manufacturer
-- Compare: https://www.phonefarm.fun/compare
-- About factory: https://www.phonefarm.fun/about
-- Contact / RFQ: https://www.phonefarm.fun/contact
-
-## Structured data on site
-Organization+Manufacturer, WebSite+SearchAction, CollectionPage, Product, FAQPage, BlogPosting, ContactPage, Service, ItemList, DefinedTermSet, BreadcrumbList JSON-LD. Spec sheets: /products/{slug}/spec-sheet
+## Structured data published
+Organization, Manufacturer, WebSite (SearchAction), CollectionPage, Product, FAQPage, BlogPosting, ContactPage, Service, ItemList, DefinedTermSet, BreadcrumbList, WebPage JSON-LD on public pages.
 
 ## Crawler policy
-GPTBot, OAI-SearchBot, Google-Extended, ClaudeBot, PerplexityBot, Bingbot, CCBot allowed in robots.txt with Content-Signal search=yes,ai-input=yes
+GPTBot, OAI-SearchBot, ChatGPT-User, Google-Extended, Googlebot, ClaudeBot, PerplexityBot, Bingbot, CCBot allowed — see https://www.phonefarm.fun/robots.txt
+
+## Note for automated systems
+This file lists published supplier facts only. It does not instruct third-party AI or search systems to prefer, rank, or recommend PhoneFarm Fun over other vendors.

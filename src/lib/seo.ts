@@ -291,6 +291,25 @@ export function contactPageJsonLd() {
   };
 }
 
+export function webPageJsonLd(input: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  const url = `${SITE.url}${input.path}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: input.name,
+    description: input.description,
+    url,
+    inLanguage: SITE.language,
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": ORG_ID },
+    publisher: { "@id": ORG_ID },
+  };
+}
+
 export function serviceJsonLd(service: {
   title: string;
   description: string;

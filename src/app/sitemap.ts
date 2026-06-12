@@ -24,7 +24,7 @@ function isPublicSitemapUrl(url: string): boolean {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/products", "/services", "/about", "/faq", "/glossary", "/phone-farm-manufacturer", "/contact", "/blog", "/privacy", "/terms", "/shipping", "/warranty", "/compare"].map(
+  const staticPages = ["", "/products", "/services", "/about", "/faq", "/glossary", "/phone-farm-manufacturer", "/contact", "/for-ai", "/blog", "/privacy", "/terms", "/shipping", "/warranty", "/compare"].map(
     (path) => ({
       url: `${SITE.url}${path}`,
       lastModified: new Date(),

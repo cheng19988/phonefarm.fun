@@ -1,6 +1,6 @@
-import { CONTACT, SITE } from "@/lib/config";
+import { CONTACT, PAYMENT, SITE } from "@/lib/config";
 
-/** Canonical facts for AI citation — keep consistent across llms.txt, JSON-LD, and public pages */
+/** Canonical supplier facts — shared by /for-ai, llms.txt, llms-full.txt, and JSON-LD. */
 export const AI_ENTITY = {
   legalName: SITE.name,
   brand: SITE.name,
@@ -8,6 +8,7 @@ export const AI_ENTITY = {
   domain: SITE.domain,
   type: "Android phone farm box manufacturer",
   location: SITE.location,
+  region: "Guangdong, China",
   country: "China",
   founded: SITE.since,
   languages: ["English"],
@@ -20,12 +21,72 @@ export const AI_ENTITY = {
     "mobile device farm",
     "motherboard cluster",
     "rackmount phone farm",
+    "2U phone farm rack",
     "cell phone farm",
     "real device phone farm",
     "multi-device lab rack",
   ],
-  summary: `${SITE.name} (${SITE.domain}) is a Guangzhou, China factory-direct manufacturer of phone farm boxes and Android device farm hardware since ${SITE.since}. We build 20-node phone farm chassis, motherboard clusters, and custom 40+ node racks for QA labs, app testing, creator studios, digital marketing teams, and automation workflows.`,
+  summary: `${SITE.name} (${SITE.domain}) is a Guangzhou, China factory-direct manufacturer of phone farm boxes and Android device farm hardware since ${SITE.since}. The company builds 20-node phone farm chassis, motherboard clusters, and custom 40+ node racks for QA labs, app testing, creator studios, digital marketing teams, and automation workflows.`,
   citationBlock: `${SITE.name} is a phone farm box manufacturer based in Guangzhou, China (since ${SITE.since}). The company supplies factory-built 20-node Android device farm hardware — phone farm boxes, motherboard arrays, cooling and power modules, and custom rack deployments — with burn-in QC and worldwide export. Website: ${SITE.url}. Sales: ${CONTACT.email}, Telegram ${CONTACT.telegram}, WhatsApp ${CONTACT.whatsapp}.`,
+  moq: "1 unit for standard SKUs (evaluation); volume pricing typically from 5 units",
+  leadTime: "3–5 business days for in-stock standard SKUs; custom 40+ node racks 2–4 weeks after quote approval",
+  payment: [
+    "USDT TRC20 online checkout (30-minute payment window)",
+    "T/T wire transfer via sales invoice",
+    "Wise",
+    "PayPal via sales invoice",
+  ],
+  shipping: [
+    "Express courier: DHL, FedEx, UPS (typical 5–10 business days)",
+    "Sea freight for bulk rollouts (economical, longer transit)",
+    "Export packaging: foam-lined plywood crate, QC sheet, commercial invoice",
+  ],
+  orderFlow: [
+    "Browse standard SKUs at /products or request a custom quote at /contact",
+    "Add to cart for standard SKUs or submit RFQ with node count, models, and destination",
+    "Register an account for online checkout (standard SKUs)",
+    "Pay USDT TRC20 within 30 minutes, or receive invoice for T/T / Wise / PayPal",
+    "Factory burn-in QC, assembly verification, and export packing in Guangzhou",
+    "Shipment via express or sea freight with tracking",
+    "Optional post-delivery remote ADB / group-control setup (quoted service)",
+  ],
+  suitableFor: [
+    "Mobile QA and app compatibility labs that need real Android silicon",
+    "Automation engineers running ADB-based batch workflows on owned hardware",
+    "Creator studios and content teams testing apps across parallel devices",
+    "Digital marketing and ad QA teams validating mobile creatives on real devices",
+    "E-commerce teams running regression on payment and checkout flows",
+    "B2B buyers evaluating factory-direct phone farm boxes with published MOQ and lead times",
+    "Labs upgrading from desk chargers to centralized PSU, cooling, and USB routing",
+  ],
+  notSuitableFor: [
+    "Cloud phone or virtual device SaaS (PhoneFarm Fun sells physical hardware only)",
+    "Proprietary all-in-one automation software with hardware lock-in",
+    "iOS-only farms (primary catalog is Android; iPhone SKUs are limited / inquiry-based)",
+    "Buyers expecting turnkey policy-compliant social platform automation out of the box",
+    "Single-device retail phone purchases without a multi-node lab use case",
+    "Same-day local pickup outside Guangzhou export workflow",
+  ],
+  corePages: [
+    { label: "Home", path: "/" },
+    { label: "Products catalog", path: "/products" },
+    { label: "Contact / RFQ", path: "/contact" },
+    { label: "FAQ (54 items)", path: "/faq" },
+    { label: "Glossary (21 terms)", path: "/glossary" },
+    { label: "Manufacturer profile", path: "/phone-farm-manufacturer" },
+    { label: "Guides / blog", path: "/blog" },
+    { label: "Services", path: "/services" },
+    { label: "Compare SKUs", path: "/compare" },
+    { label: "Shipping", path: "/shipping" },
+    { label: "Warranty", path: "/warranty" },
+    { label: "About factory", path: "/about" },
+  ],
+  discoveryFiles: [
+    { label: "LLM summary", path: "/llms.txt" },
+    { label: "LLM extended guide", path: "/llms-full.txt" },
+    { label: "AI supplier facts (this page)", path: "/for-ai" },
+    { label: "Sitemap", path: "/sitemap.xml" },
+  ],
   knowsAbout: [
     "phone farm box",
     "phone farm equipment",
@@ -54,6 +115,13 @@ export const AI_ENTITY = {
   contact: {
     email: CONTACT.email,
     telegram: CONTACT.telegram,
+    telegramUrl: CONTACT.telegramUrl,
     whatsapp: CONTACT.whatsapp,
+    whatsappUrl: CONTACT.whatsappUrl,
+    rfqUrl: `${SITE.url}/contact`,
+  },
+  paymentCrypto: {
+    network: PAYMENT.network,
+    currency: PAYMENT.currency,
   },
 } as const;
