@@ -33,6 +33,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
+  const zhStaticPages = ["", "/products", "/contact", "/phone-farm-manufacturer", "/faq"].map((path) => ({
+    url: `${SITE.url}${path === "" ? "/zh" : `/zh${path}`}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: path === "" ? 0.95 : 0.85,
+  }));
+
   const productPages = PRODUCT_SEEDS.map((p) => ({
     url: `${SITE.url}/products/${p.slug}`,
     lastModified: new Date(),
@@ -61,7 +68,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.65,
   }));
 
-  return [...staticPages, ...productPages, ...servicePages, ...blogPages, ...specSheets].filter((entry) =>
+  return [...staticPages, ...zhStaticPages, ...productPages, ...servicePages, ...blogPages, ...specSheets].filter((entry) =>
     isPublicSitemapUrl(entry.url),
   );
 }

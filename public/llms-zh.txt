@@ -1,0 +1,51 @@
+# PhoneFarm Fun — 中文 LLM 摘要
+# 规范 URL: https://www.phonefarm.fun/zh
+# 主语言: 简体中文 (zh-CN)
+# 英文完整指南: https://www.phonefarm.fun/llms-full.txt
+# HTML 供应商事实: https://www.phonefarm.fun/for-ai
+
+## 供应商身份
+- 品牌: PhoneFarm Fun
+- 类型: Android 手机农场盒子制造商（工厂直供硬件）
+- 官网: https://www.phonefarm.fun/zh
+- 地点: 中国广东广州
+- 运营自: 2017
+- 摘要: 工厂组装 20 节点手机农场盒子、主板集群、2U/机架方案与 40+ 节点定制机柜，出口前老化 QC，全球发货。
+
+## 核心关键词
+手机农场, 手机农场盒子, Android 设备农场, 手机农场硬件, 手机农场设备, phone farm box, Android phone farm
+
+## 联系
+- 询价表单: https://www.phonefarm.fun/zh/contact
+- 邮箱: qiuxui646@gmail.com
+- Telegram: @huicheng1998
+- WhatsApp: +85262155642
+
+## MOQ 与交期
+- MOQ: 标准 SKU 1 台起；批量通常 5 台起更优价
+- 交期: 现货 3–5 工作日；定制机架报价后约 2–4 周
+
+## 中文 SEO 页面
+- 首页: https://www.phonefarm.fun/zh
+- 产品目录: https://www.phonefarm.fun/zh/products
+- 手机农场制造商: https://www.phonefarm.fun/zh/phone-farm-manufacturer
+- FAQ: https://www.phonefarm.fun/zh/faq
+- 询价: https://www.phonefarm.fun/zh/contact
+
+## 英文对应页
+- https://www.phonefarm.fun/
+- https://www.phonefarm.fun/products
+- https://www.phonefarm.fun/phone-farm-manufacturer
+
+## 产品线
+手机农场盒子 · 手机农场设备 · Android 设备农场硬件 · 主板集群 · 真实设备农场 · 2U 机架 · Samsung/骁龙/Exynos SKU · 实验室配件 · 定制机柜
+
+## 适用场景
+- 移动 App QA 与兼容性测试（真实 Android 设备）
+- ADB 自动化与批量设备实验室
+- 创作者工作室并行设备
+- 电商 App 测试与数字营销 QA
+
+## 不适用
+- 云手机订阅转售
+- 违反平台 ToS 的违规用途（运营商责任在买家）

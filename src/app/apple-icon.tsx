@@ -1,0 +1,48 @@
+import { ImageResponse } from "next/og";
+
+export const size = { width: 180, height: 180 };
+export const contentType = "image/png";
+
+/** Same chassis mark as `icon.svg` / `SiteLogo` — PNG for iOS bookmarks & link previews. */
+export default function AppleIcon() {
+  return new ImageResponse(
+    (
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#fafafa",
+        }}
+      >
+        <svg width="160" height="160" viewBox="0 0 48 48" fill="none">
+          <defs>
+            <linearGradient id="chassis" x1="8" y1="6" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+              <stop stopColor="#3f3f46" />
+              <stop offset="1" stopColor="#18181b" />
+            </linearGradient>
+            <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+              <stop stopColor="#fb923c" />
+              <stop offset="1" stopColor="#c2410c" />
+            </linearGradient>
+          </defs>
+          <rect x="4" y="5" width="40" height="38" rx="8" fill="url(#chassis)" stroke="#09090b" strokeWidth="1" />
+          <rect x="9" y="10" width="30" height="22" rx="4" fill="#27272a" stroke="#52525b" strokeWidth="0.75" />
+          <rect x="11.5" y="12.5" width="7" height="7" rx="1.75" fill="#fafafa" />
+          <rect x="20.5" y="12.5" width="7" height="7" rx="1.75" fill="#fafafa" />
+          <rect x="29.5" y="12.5" width="7" height="7" rx="1.75" fill="#fafafa" />
+          <rect x="11.5" y="21.5" width="7" height="7" rx="1.75" fill="#fafafa" />
+          <rect x="20.5" y="21.5" width="7" height="7" rx="1.75" fill="url(#accent)" />
+          <rect x="29.5" y="21.5" width="7" height="7" rx="1.75" fill="#fafafa" />
+          <rect x="9" y="35" width="30" height="4" rx="2" fill="#09090b" opacity="0.55" />
+          <circle cx="14" cy="37" r="1.25" fill="#71717a" />
+          <circle cx="24" cy="37" r="1.6" fill="#f97316" />
+          <circle cx="34" cy="37" r="1.25" fill="#71717a" />
+        </svg>
+      </div>
+    ),
+    { ...size },
+  );
+}

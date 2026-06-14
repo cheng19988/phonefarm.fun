@@ -5,8 +5,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CartButton } from "./cart-button";
 import { SiteLogo } from "./site-logo";
+import { LanguageSwitcher } from "./language-switcher";
+import { getLocaleFromPathname, localizedPath } from "@/lib/i18n/paths";
+import { ZH } from "@/messages/zh";
 
-const MAIN_NAV = [
+const MAIN_NAV_EN = [
   {
     label: "Products",
     href: "/products",
@@ -28,8 +31,19 @@ const MAIN_NAV = [
   { href: "/contact", label: "Contact" },
 ] as const;
 
+const MAIN_NAV_ZH = [
+  { href: "/zh/products", label: ZH.nav.products },
+  { href: "/zh/phone-farm-manufacturer", label: ZH.nav.manufacturer },
+  { href: "/zh/faq", label: ZH.nav.faq },
+  { href: "/zh/contact", label: ZH.nav.contact },
+] as const;
+
 export function HeaderNav({ sessionEmail, isAdmin }: { sessionEmail?: string | null; isAdmin?: boolean }) {
   const pathname = usePathname();
+  const locale = getLocaleFromPathname(pathname);
+  const isZh = locale === "zh";
+  const mainNav = isZh ? MAIN_NAV_ZH : MAIN_NAV_EN;
+  const homeHref = localizedPath("/", locale);
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
 
@@ -45,10 +59,10 @@ export function HeaderNav({ sessionEmail, isAdmin }: { sessionEmail?: string | n
   return (
     <header className={heroMode ? "site-header site-header--hero" : "site-header site-header--solid"}>
       <div className="container-wide h-[72px] md:h-[76px] flex items-center justify-between gap-6">
-        <SiteLogo variant={heroMode ? "hero" : "default"} size="md" />
+        <SiteLogo variant={heroMode ? "hero" : "default"} size="md" href={homeHref} />
 
         <nav className="hidden xl:flex items-center gap-1">
-          {MAIN_NAV.map((item) =>
+          {mainNav.map((item) =>
             "children" in item ? (
               <div
                 key={item.label}
@@ -111,19 +125,20 @@ export function HeaderNav({ sessionEmail, isAdmin }: { sessionEmail?: string | n
         </nav>
 
         <div className="flex items-center gap-2 shrink-0">
+          <LanguageSwitcher />
           <CartButton inverted={heroMode} />
           <Link
-            href="/contact"
+            href={isZh ? "/zh/contact" : "/contact"}
             className={`hidden md:inline-flex text-sm font-medium px-4 py-2.5 rounded-lg border transition-colors ${
               heroMode
                 ? "border-white/30 text-white hover:bg-white/10"
                 : "border-zinc-300 text-zinc-800 hover:border-zinc-900 hover:bg-zinc-50"
             }`}
           >
-            Get Quote
+            {isZh ? ZH.nav.contact : "Get Quote"}
           </Link>
-          <Link href="/products" className="btn-primary text-sm py-2.5 px-5 shadow-sm">
-            Shop Now
+          <Link href={isZh ? "/zh/products" : "/products"} className="btn-primary text-sm py-2.5 px-5 shadow-sm">
+            {isZh ? ZH.nav.products : "Shop Now"}
           </Link>
           {sessionEmail ? (
             <Link
@@ -158,7 +173,7 @@ export function HeaderNav({ sessionEmail, isAdmin }: { sessionEmail?: string | n
       {open && (
         <div className="xl:hidden border-t border-zinc-100 bg-white max-h-[70vh] overflow-y-auto shadow-lg">
           <div className="container-wide py-4 space-y-1">
-            {MAIN_NAV.flatMap((item) =>
+            {mainNav.flatMap((item) =>
               "children" in item
                 ? item.children.map((c) => (
                     <Link key={c.href + c.label} href={c.href} className="block px-3 py-2.5 text-sm text-zinc-800 hover:bg-zinc-50 rounded-lg">

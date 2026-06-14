@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { AI_ENTITY } from "@/data/ai-entity";
 import { CONTACT, SITE } from "./config";
+import type { Locale } from "./i18n/config";
+import { LOCALE_META } from "./i18n/config";
+import { languageAlternates } from "./i18n/paths";
 
 const ORG_ID = `${SITE.url}/#organization`;
 const WEBSITE_ID = `${SITE.url}/#website`;
@@ -11,11 +14,22 @@ type SEOInput = {
   path?: string;
   image?: string;
   noIndex?: boolean;
+  locale?: Locale;
 };
+
+/** Accept raw token or a pasted `<meta name="naver-site-verification" content="…" />` snippet. */
+function normalizeNaverVerificationToken(raw: string): string {
+  const trimmed = raw.trim();
+  const fromAttr = trimmed.match(/content=["']([^"']+)["']/i)?.[1];
+  if (fromAttr) return fromAttr.trim();
+  return trimmed.replace(/<[^>]*>/g, "").trim();
+}
 
 /** Naver Search Advisor HTML tag — homepage only; omit when env is unset. */
 export function naverSiteVerificationMetadata(): Pick<Metadata, "other"> | Record<string, never> {
-  const token = process.env.NAVER_SITE_VERIFICATION?.trim();
+  const raw = process.env.NAVER_SITE_VERIFICATION?.trim();
+  if (!raw) return {};
+  const token = normalizeNaverVerificationToken(raw);
   if (!token) return {};
   return {
     other: {
@@ -30,21 +44,28 @@ export function buildMetadata({
   path = "",
   image,
   noIndex,
+  locale = "en",
 }: SEOInput): Metadata {
   const url = `${SITE.url}${path}`;
   const ogImage = image || `${SITE.url}/images/hero_1600x900/phonefarm.fun-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-hero_1600x900.webp`;
+  const langMeta = LOCALE_META[locale];
+  const hreflang = languageAlternates(path, SITE.url);
 
   return {
     title: `${title} | ${SITE.name}`,
     description,
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      ...(hreflang ? { languages: hreflang } : {}),
+    },
     openGraph: {
       title: `${title} | ${SITE.name}`,
       description,
       url,
       siteName: SITE.name,
       images: [{ url: ogImage, width: 1600, height: 900, alt: title }],
-      locale: SITE.locale,
+      locale: langMeta.ogLocale,
+      alternateLocale: locale === "zh" ? ["en_US"] : ["zh_CN"],
       type: "website",
     },
     twitter: {
@@ -54,20 +75,29 @@ export function buildMetadata({
       images: [ogImage],
     },
     robots: noIndex ? { index: false, follow: false } : { index: true, follow: true },
+    other: {
+      "content-language": langMeta.contentLanguage,
+    },
   };
 }
 
-export function organizationJsonLd() {
+export function organizationJsonLd(locale: Locale = "en") {
+  const inLanguage = locale === "zh" ? "zh-CN" : SITE.language;
   return {
     "@context": "https://schema.org",
     "@type": ["Organization", "Manufacturer"],
     "@id": ORG_ID,
     name: SITE.name,
-    alternateName: ["PhoneFarm Fun phone farm manufacturer", "phonefarm.fun"],
+    alternateName:
+      locale === "zh"
+        ? ["PhoneFarm Fun 手机农场制造商", "phonefarm.fun", "手机农场盒子工厂"]
+        : ["PhoneFarm Fun phone farm manufacturer", "phonefarm.fun"],
     url: SITE.url,
-    logo: `${SITE.url}/images/card_800x800/phonefarm.fun-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-card_800x800.webp`,
+    logo: `${SITE.url}/icon.svg`,
+    image: `${SITE.url}/images/card_800x800/phonefarm.fun-product-box-0f5501e1584de9a625d220f62951bc6d-d04df-card_800x800.webp`,
     description: AI_ENTITY.summary,
     foundingDate: String(SITE.since),
+    inLanguage,
     knowsAbout: AI_ENTITY.knowsAbout,
     address: {
       "@type": "PostalAddress",
@@ -81,14 +111,14 @@ export function organizationJsonLd() {
         email: CONTACT.email,
         contactType: "sales",
         areaServed: "Worldwide",
-        availableLanguage: ["English"],
+        availableLanguage: locale === "zh" ? ["Chinese", "English"] : ["English"],
       },
       {
         "@type": "ContactPoint",
         telephone: CONTACT.whatsapp,
         contactType: "customer support",
         areaServed: "Worldwide",
-        availableLanguage: ["English"],
+        availableLanguage: locale === "zh" ? ["Chinese", "English"] : ["English"],
       },
     ],
   };

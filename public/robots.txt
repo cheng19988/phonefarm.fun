@@ -19,7 +19,9 @@ Disallow: /register
 Disallow: /orders/
 Allow: /llms.txt
 Allow: /llms-full.txt
+Allow: /llms-zh.txt
 Allow: /for-ai
+Allow: /zh
 
 # OpenAI — ChatGPT search & browsing
 User-agent: GPTBot
